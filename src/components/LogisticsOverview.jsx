@@ -20,7 +20,7 @@ const LogisticsOverview = () => {
             <div>
               <h3 className="text-[#ff8901] font-medium uppercase mb-2 text-2xl">OVERVIEW</h3>
               <h2 className="text-7xl font-semibold mb-4">Logistics Beyond Expectation</h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-lg">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
             </div>
