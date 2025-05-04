@@ -1,12 +1,21 @@
 import React from "react";
+import About from "../components/About";
+import OurTeam from "../components/OurTeam";
+import Initiatives from "../components/Initiatives";
+import LifeAtNcon from "../components/LifeAtNcon";
 
-function AboutUs() {
-    return (
-      
-      <div>
-        <h1>About us components</h1>
-      </div>
-    );
-  }
-  
-  export default AboutUs;
+
+
+
+const AboutUs= () => {
+  return (
+    <>
+      <About />
+      <OurTeam />
+      <Initiatives />
+      <LifeAtNcon />
+    </>
+  );
+};
+
+export default AboutUs;

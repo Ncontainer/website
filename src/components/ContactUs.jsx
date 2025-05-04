@@ -70,10 +70,10 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="w-full mt-10 bg-white">
-      <div className="w-[90%] mx-auto mt-24 flex flex-col lg:flex-row">
+    <div className="w-[95%] m-auto my-8 bg-white">
+      <div className="w-[90%] mx-auto mt-12 flex flex-col lg:flex-row">
         {/* Left Side - Contact Information */}
-        <div className="w-full mt-10 lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center">
+        <div className="w-full mt-4 lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center">
           <div className="max-w-md">
             <p className="text-[#ff8901] font-medium text-lg mb-4">CONTACT US</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
@@ -116,7 +116,7 @@ const ContactUs = () => {
               <img 
                 src={bg}
                 alt="Shipping vessel" 
-                className="w-full h-full object-cover object-center brightness-50"
+                className="w-full h-full object-cover object-center rounded-md brightness-50"
               />
             </div>
             

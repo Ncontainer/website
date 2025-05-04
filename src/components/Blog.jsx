@@ -43,6 +43,48 @@ const Blog = () => {
       author: 'Neon Group',
       date: '01 Jan 025',
     },
+    {
+      id: 4,
+      title: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
+      image: blogImage1,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 5,
+      title: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
+      image: blogImage2,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 6,
+      title: 'Why CSC Standards Matter: A Complete Guide for Safe Container Transport',
+      image: blogImage3,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 7,
+      title: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
+      image: blogImage1,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 8,
+      title: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
+      image: blogImage2,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 9,
+      title: 'Why CSC Standards Matter: A Complete Guide for Safe Container Transport',
+      image: blogImage3,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
   ];
 
   return (
@@ -56,9 +98,9 @@ const Blog = () => {
       </div>
       
       {/* Blog Posts Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 w-[90%] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 w-[95%] mx-auto">
         {blogPosts.map((post) => (
-          <div key={post.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-gray-100">
+          <div key={post.id} className=" rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-gray-50">
             <div className=" rounded-lg h-48 md:h-56 lg:h-64 overflow-hidden">
               <img 
                 src={post.image} 
@@ -81,7 +123,7 @@ const Blog = () => {
       </div>
       
       {/* Newsletter Subscription */}
-      <div className="bg-[#ff8901] rounded-lg overflow-hidden">
+      <div className="bg-[#ff8901] w-[95%] m-auto rounded-lg overflow-hidden">
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 p-6 md:p-8">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">

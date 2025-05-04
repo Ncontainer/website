@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const [isMobile, setIsMobile] = useState(false);
@@ -9,13 +10,10 @@ export default function Footer() {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    // Set initial state
     handleResize();
 
-    // Add event listener
     window.addEventListener("resize", handleResize);
 
-    // Clean up
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -66,117 +64,99 @@ export default function Footer() {
         </div>
 
         {/* Footer Links - Headings */}
-        <div
-          className={`flex ${
-            isMobile ? "flex-col" : "flex-row"
-          } justify-between mb-6`}
-        >
-          <div
-            className={`${isMobile ? "mb-2 text-center" : "w-1/3 text-center"}`}
-          >
+        <div className="flex justify-between mb-6">
+          <div className="text-left">
             <h2 className="text-xl font-bold">Product</h2>
           </div>
-          <div
-            className={`${isMobile ? "mb-2 text-center" : "w-1/3 text-center"}`}
-          >
+          <div className="text-left">
             <h2 className="text-xl font-bold">Company</h2>
           </div>
-          <div
-            className={`${isMobile ? "mb-2 text-center" : "w-1/3 text-center"}`}
-          >
+          <div className="text-left">
             <h2 className="text-xl font-bold">Support</h2>
           </div>
         </div>
 
         {/* Footer Links - Content */}
-        <div
-          className={`flex ${
-            isMobile ? "flex-col" : "flex-row"
-          } justify-between mb-10`}
-        >
-          <div
-            className={`${isMobile ? "mb-6 text-center" : "w-1/3 text-center"}`}
-          >
+        <div className="flex justify-between mb-10">
+          <div className="text-left">
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Features
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Pricing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Reviews
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Updates
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
-          <div
-            className={`${isMobile ? "mb-6 text-center" : "w-1/3 text-center"}`}
-          >
+          <div className="text-left">
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Contact us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Culture
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
-          <div className={`${isMobile ? "text-center" : "w-1/3 text-center"}`}>
+          <div className="text-left">
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Getting started
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Help center
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Server status
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Report a bug
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-orange-500">
+                <Link to="#" className="hover:text-orange-500">
                   Chat support
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -188,19 +168,19 @@ export default function Footer() {
         {/* Copyright */}
         <div
           className={`flex ${
-            isMobile ? "flex-col space-y-4" : "flex-row"
-          } justify-between items-center`}
+            isMobile ? "flex-col space-y-4" : "flex-row justify-between items-center"
+          }`}
         >
           <div>Copyright © 2025 Company</div>
           <div>
             All Rights Reserved |{" "}
-            <a href="#" className="hover:underline">
+            <Link to="#" className="hover:underline">
               Terms and Conditions
-            </a>{" "}
+            </Link>{" "}
             |{" "}
-            <a href="#" className="hover:underline">
+            <Link to="#" className="hover:underline">
               Privacy Policy
-            </a>
+            </Link>
           </div>
         </div>
       </div>
