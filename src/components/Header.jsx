@@ -218,18 +218,25 @@ export default function Header() {
                 Tanks
               </Link>
               <Link
-                to="/products/page3"
+                to="/products/coil_containers"
                 className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-[#ff8901]"
                 onClick={() => handleNavClick("products")}
               >
-                Product Page 3
+                Coil Containers
               </Link>
               <Link
-                to="/products/page4"
+                to="/products/modular_containers"    
                 className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-[#ff8901]"
                 onClick={() => handleNavClick("products")}
               >
-                Product Page 4
+                Modular Containers
+              </Link>
+              <Link
+                to="/products/refrigerated_containers"
+                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-[#ff8901]"
+                onClick={() => handleNavClick("products")}
+              >
+                Referigerated Containers
               </Link>
             </div>
             <div
@@ -370,18 +377,25 @@ export default function Header() {
                 Tanks
               </Link>
               <Link
-                to="/products/page3"
+                to="/products/coil_containers"
                 className="block py-2 text-gray-600 hover:text-[#ff8901]"
                 onClick={() => handleNavClick("products")}
               >
-                Product Page 3
+                Coil Containers
               </Link>
               <Link
-                to="/products/page4"
+                to="/products/modular_containers"
                 className="block py-2 text-gray-600 hover:text-[#ff8901]"
                 onClick={() => handleNavClick("products")}
               >
-                Product Page 4
+                Modular Containers
+              </Link>
+              <Link
+                to="/products/refrigerated_containers"
+                className="block py-2 text-gray-600 hover:text-[#ff8901]"
+                onClick={() => handleNavClick("products")}
+              >
+                Referigerated Containers
               </Link>
             </div>
           </div>

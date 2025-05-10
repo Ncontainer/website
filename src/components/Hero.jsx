@@ -70,7 +70,7 @@ export default function Hero() {
                   <img 
                     src={hero1} 
                     alt="Orange shipping container being lifted" 
-                    className="w-full h-auto"
+                    className=" translate-y-10 translate-x--2 w-full h-auto"
                   />
                 </div>
               </div>
