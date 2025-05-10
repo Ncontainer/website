@@ -81,23 +81,28 @@ export default function Footer() {
           <div className="text-left">
             <ul className="space-y-2">
               <li>
-                <Link to="#" className="hover:text-orange-500">
-                  Features
+                <Link to="/products/dry_Container" className="hover:text-orange-500">
+                Dry Container
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-orange-500">
-                  Pricing
+                <Link to="/products/tanks" className="hover:text-orange-500">
+                Liquid Transport Solutions
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-orange-500">
-                  Reviews
+                <Link to="/products/coil_containers" lassName="hover:text-orange-500">
+                Coil Containers
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-orange-500">
-                  Updates
+                <Link to="/products/modular_containers" className="hover:text-orange-500">
+                Modular Containers
+                </Link>
+              </li>
+              <li>
+                <Link to="/products/refrigerated_containers" className="hover:text-orange-500">
+                Refrigerated Container
                 </Link>
               </li>
             </ul>
@@ -105,23 +110,23 @@ export default function Footer() {
           <div className="text-left">
             <ul className="space-y-2">
               <li>
-                <Link to="#" className="hover:text-orange-500">
+                <Link to="/about" className="hover:text-orange-500">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-orange-500">
+                <Link to="/contact" className="hover:text-orange-500">
                   Contact us
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-orange-500">
-                  Careers
+                <Link to="/feedback" className="hover:text-orange-500">
+                  Feedback
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-orange-500">
-                  Culture
+                <Link to="/resources" className="hover:text-orange-500">
+                Resources
                 </Link>
               </li>
               <li>
