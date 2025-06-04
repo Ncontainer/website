@@ -78,7 +78,7 @@ const Testimonial = () => {
             {/* Testimonial Card */}
             <div className="absolute bottom-0 right-0 translate-y-1/3 lg:translate-y-1/4 translate-x-0 lg:-translate-x-16 z-10">
               <div 
-                className={`bg-[#ff8901] p-6 md:p-8 rounded-lg shadow-lg w-full max-w-md transform transition-opacity duration-500 ${
+                className={`bg-secondary p-6 md:p-8 rounded-lg shadow-lg w-full max-w-md transform transition-opacity duration-500 ${
                   isAnimating ? 'opacity-0' : 'opacity-100'
                 }`}
               >
@@ -110,8 +110,8 @@ const Testimonial = () => {
         
         {/* Content Section */}
         <div className="w-full lg:w-1/2 pt-16 lg:pt-0">
-          <p className="text-lg font-medium text-[#ff8901] mb-2">TESTIMONIALS</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-6">
+          <p className="text-lg font-medium text-secondary mb-2">TESTIMONIALS</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl  text-black mb-6">
             Positive Reviews<br />from Our Customers
           </h2>
           <p className="text-gray-600 mb-8">
@@ -130,7 +130,7 @@ const Testimonial = () => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-all ${
-              index === currentIndex ? 'bg-[#ff8901] w-6' : 'bg-gray-300'
+              index === currentIndex ? 'bg-secondary w-6' : 'bg-gray-300'
             }`}
             aria-label={`Go to testimonial ${index + 1}`}
           />

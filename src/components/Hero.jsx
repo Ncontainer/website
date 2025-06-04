@@ -6,11 +6,14 @@ import herovideo from "../images/herovideo.mp4"
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
   const [isSmallMobile, setIsSmallMobile] = useState(false);
+  const [isMediumScreen, setIsMediumScreen] = useState(false);
   
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setIsSmallMobile(window.innerWidth < 480);
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsSmallMobile(width < 480);
+      setIsMediumScreen(width >= 768 && width < 1024);
     };
     
     handleResize(); // Initial check
@@ -19,79 +22,101 @@ export default function Hero() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
-  
-  return (
-    <div className="relative w-full h-screen overflow-hidden ">
-      {/* Background Video - Taking only 60% height as per requirement */}
-      <div className="absolute overflow-hidden rounded-xl inset-x-0 bottom-0 w-[85%] mx-auto h-3/5 z-0">
-        <video 
-          className="object-cover w-full h-full rounded-xl "
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-        >
-          {/* In production, replace with your actual video */}
-          <source src={herovideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        {/* Dark overlay for better text visibility */}
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-      </div>
+  }, []);  return (
+    <div className="relative w-full h-screen overflow-hidden ">           {/* Background Video - Visible on all non-mobile screens */}
+      {!isMobile && (
+        <div className="absolute overflow-hidden rounded-xl inset-x-0 bottom-0 w-[90%] mx-auto h-[48%] z-0">
+          <video 
+            className="object-cover w-full h-full rounded-xl"
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
+            <source src={herovideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {/* Dark overlay for better text visibility */}
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        </div>
+      )}
       
-      {/* Content Container - Shifted to top */}
-      <div className="relative z-10 flex flex-col w-full h-full">
-        {/* Text and image content - At top of page */}
-        <div className={`w-full md:-translate-y-36 px-4 sm:px-6 md:px-8 lg:px-16 ${isMobile ? 'pt-6' : 'pt-12'}`}>
+      {/* Content Container - Shifted to top */}      <div className="relative z-10 flex flex-col w-full h-full">        
+        <div className={`w-full px-4 sm:px-6 md:px-8 lg:px-16 ${isMobile ? 'mt-16' : 'mt-12 md:-translate-y-36'}`}>
           {/* Hero Content */}
-          <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center justify-between w-full max-w-7xl mx-auto`}>
+          <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} items-center justify-between w-full max-w-7xl mx-auto ${isMobile ? 'mt-2' : 'mt-10'}`}>
             {/* Text content with mobile optimizations */}
-            <div className={`${isMobile ? 'w-full text-center' : 'w-1/2 pr-8'} ${isMobile ? 'order-2 mt-4' : 'order-1'}`}>
-              <div className="inline-block mb-2 md:mb-4 px-2 py-1 md:px-3 md:py-1 text-[#ff8901] rounded-full">
-                <span className={`${isSmallMobile ? 'text-ms' : 'text-xl'} font-semibold`}>WELCOME TO CONTAINER OPTIONS</span>
+            <div className={`${isMobile ? 'w-full text-left' : 'w-1/2 pr-8'} ${isMobile ? 'order-1 mb-8' : 'order-1'}`}>
+              <div className="mb-2 md:mb-4 text-secondary">
+                <span className={`${isSmallMobile ? 'text-base' : 'text-xl'} font-medium`}>WELCOME TO COMPANY</span>
               </div>
-              <h1 className={`${isSmallMobile ? 'text-3xl' : 'text-4xl'} md:text-5xl lg:text-6xl font-bold text-black mb-2 md:mb-4 `}>
-                Get Your Load<br />to market<br />Faster
-              </h1>
-              <p className="text-gray-800 mb-4 md:mb-8 max-w-lg text-sm md:text-base">
+              <div className={`${isSmallMobile ? 'text-4xl ' : 'text-4xl'} md:text-5xl lg:text-6xl text-black mb-4 md:mb-4 flex flex-col leading-tight`}>
+                <span className="mb-1">Get Your Load</span>
+                <span className="mb-1">to market</span>
+                <span>Faster</span>
+              </div>
+              <p className="text-gray-600 mb-4 md:mb-8 max-w-md text-sm md:text-base">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
-              {/* <button className={`bg-[#ff8901] hover:bg-orange-600 transition-colors text-white font-bold ${isSmallMobile ? 'py-2 px-6 text-sm' : 'py-3 px-8'} rounded-lg`}>
-                Get Started
-              </button> */}
             </div>
             
             {/* Container Image - Optimized for mobile */}
-            <div className={`${isMobile ? 'w-full max-w-sm mx-auto' : 'w-1/2'} relative ${isMobile ? 'order-1' : 'order-2'}`}>
+            <div className={`${isMobile ? 'w-full' : 'w-1/2'} relative ${isMobile ? 'order-2' : 'order-2 margin-top-[-4rem]'} `}>
               <div className="relative">
                 {/* Container being lifted by crane - Optimized for mobile */}
-                <div className="relative z-20 transform translate-y-2 md:-translate-y-0.5 scale-150">
+                <div className={`relative z-20 transform ${
+                  isMobile 
+                  ? 'translate-y-0 scale-100'
+                  : 'translate-y-8 md:translate-y-6 lg:translate-y-10 scale-[1.42]'
+                }`}>
                   <img 
                     src={hero1} 
                     alt="Orange shipping container being lifted" 
-                    className=" translate-y-10 translate-x--2 w-full h-auto"
+                    className="w-full h-auto"
                   />
                 </div>
               </div>
             </div>
           </div>
+            {/* Mobile video placement - below hero1 image */}          {isMobile && (            
+            <div className="w-screen relative -ml-4 sm:-ml-6 md:-ml-8 lg:-ml-16 mt-4 z-10">
+              <div className="relative">
+                <video 
+                  className="object-cover w-full"
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  style={{ aspectRatio: '16/9' }}
+                >
+                  <source src={herovideo} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                {/* Dark overlay for better text visibility */}
+                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+              </div>
+            </div>
+          )}
         </div>
         
         {/* Stats Bar - In right bottom corner */}
-        <div className={`${isMobile ? 'relative w-full mt-auto mb-2 px-16' : 'absolute bottom-0 right-8 md:right-36 w-auto'}`}>
-          <div className={`flex ${isMobile ? 'flex-col space-y-1' : 'flex-row'} bg-[#ff8901] bg-opacity-85 rounded-lg overflow-hidden`}>
-            <div className={`${isMobile ? 'w-full py-2' : 'px-12 py-8'} flex flex-col items-center justify-center ${!isMobile && 'border-r border-[#ff8901]'}`}>
-              <span className={`${isSmallMobile ? 'text-2xl' : 'text-3xl'} md:text-4xl font-bold text-white`}>25+</span>
-              <span className={`${isSmallMobile ? 'text-xs' : 'text-sm'} text-white`}>Years of experience</span>
+        <div className={`status-bar absolute bottom-0  md:right-[5%] w-auto z-50 ' ${isMobile ? 'right-0' : 'right-[7.5%]'}`}>
+          {/* Stats container with responsive design */}
+          <div className={`flex  bg-secondary bg-opacity-85  overflow-hidden ${isMobile ? '' : 'rounded-lg'}`}>
+            {/* Individual stats - Responsive design for mobile and desktop */}
+            <div className={`${isMobile ? 'w-full py-2' : 'px-12 py-8'} flex flex-col items-start ${isMobile ? 'items-center' : ''} ${!isMobile && ' border-secondary'}`}>
+              <span className={`${isSmallMobile ? 'text-2xl' : 'text-3xl'} md:text-5xl text-white`}>25+</span>
+              <span className={`${isSmallMobile ? 'text-xs' : 'text-sm'} text-white mt-1`} style={{fontFamily :'Roboto'}}>Years of experience</span>
             </div>
-            <div className={`${isMobile ? 'w-full py-2' : 'px-16 py-8'} flex flex-col items-center justify-center ${!isMobile && 'border-r border-[#ff8901]'}`}>
-              <span className={`${isSmallMobile ? 'text-2xl' : 'text-3xl'} md:text-4xl font-bold text-white`}>950+</span>
-              <span className={`${isSmallMobile ? 'text-xs' : 'text-sm'} text-white`}>Collaborations</span>
+            <div className="h-16 w-[1px] bg-white opacity-20 self-center my-auto" />
+            <div className={`${isMobile ? 'w-full py-2' : 'px-16 py-8'} flex flex-col items-start ${isMobile ? 'items-center' : ''} ${!isMobile && ' border-secondary'}`}>
+              <span className={`${isSmallMobile ? 'text-2xl' : 'text-3xl'} md:text-5xl text-white`}>950+</span>
+              <span className={`${isSmallMobile ? 'text-xs' : 'text-sm'} text-white mt-1`} style={{fontFamily :'Roboto'}}>Collaborations</span>
             </div>
-            <div className={`${isMobile ? 'w-full py-2' : 'px-16 py-8'} flex flex-col items-center justify-center`}>
-              <span className={`${isSmallMobile ? 'text-2xl' : 'text-3xl'} md:text-4xl font-bold text-white`}>30M+</span>
-              <span className={`${isSmallMobile ? 'text-xs' : 'text-sm'} text-white`}>Containers Sold</span>
+            <div className="h-16 w-[1px] bg-white opacity-20 self-center my-auto" />
+            <div className={`${isMobile ? 'w-full py-2' : 'px-16 py-8'} flex flex-col items-start ${isMobile ? 'items-center' : ''}`}>
+              <span className={`${isSmallMobile ? 'text-2xl' : 'text-3xl'} md:text-5xl text-white`}>30M+</span>
+              <span className={`${isSmallMobile ? 'text-xs' : 'text-sm'} text-white mt-1`} style={{fontFamily :'Roboto'}}>Containers Sold</span>
             </div>
           </div>
         </div>

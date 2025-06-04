@@ -18,9 +18,9 @@ const LogisticsOverview = () => {
           {/* Right side - Text content */}
           <div className="w-fully md:w-1/2 flex flex-col justify-center space-y-24">
             <div>
-              <h3 className="text-[#ff8901] font-medium uppercase mb-2 text-2xl">OVERVIEW</h3>
-              <h2 className="text-7xl font-semibold mb-4">Logistics Beyond Expectation</h2>
-              <p className="text-gray-600 text-lg">
+              <h3 className="text-secondary  uppercase mb-2 text-2xl">OVERVIEW</h3>
+              <h2 className="text-6xl mb-4">Logistics Beyond Expectation</h2>
+              <p className="text-gray-600 text-lg " style={{ fontFamily: 'Roboto'  }}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
             </div>
@@ -29,8 +29,8 @@ const LogisticsOverview = () => {
               {/* Vision Section */}
               <div className="space-y-3 border-r border-gray-300">
                 <div className="flex items-center gap-2">
-                  <Eye className="text-[#ff8901]" size={25} />
-                  <h3 className="text-3xl font-semibold">Our Vision</h3>
+                  <Eye className="text-secondary" size={25} />
+                  <h3 className="text-3xl ">Our Vision</h3>
                 </div>
                 <p className="text-gray-600 text-lg">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -40,8 +40,8 @@ const LogisticsOverview = () => {
               {/* Mission Section */}
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <Rocket className="text-[#ff8901]" size={25} />
-                  <h3 className="text-3xl font-semibold">Our Mission</h3>
+                  <Rocket className="text-secondary" size={25} />
+                  <h3 className="text-3xl ">Our Mission</h3>
                 </div>
                 <p className="text-gray-600 text-lg">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

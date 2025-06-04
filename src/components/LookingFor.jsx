@@ -55,7 +55,7 @@ const LookingFor = () => {
   return (
     <div className="flex flex-col items-center py-12 px-4 md:px-8 lg:px-16 w-[95%] mx-auto">
       <div className="text-center mb-10">
-        <p className="text-lg font-medium text-[#ff8901] mb-2">LOOKING FOR</p>
+        <p className="text-lg font-medium text-secondary mb-2">LOOKING FOR</p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
           Customized Logistics<br />Just for You
         </h2>
@@ -67,7 +67,7 @@ const LookingFor = () => {
             key={index} 
             className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col"
           >
-            <div className="rounded-full bg-[#ff8901]/10 w-12 h-12 flex items-center justify-center mb-4">
+            <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
               {feature.icon}
             </div>
             <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
@@ -78,8 +78,8 @@ const LookingFor = () => {
                   key={btnIndex}
                   className={`px-6 py-2 rounded-full ${
                     button.primary
-                      ? "bg-[#ff8901] text-white"
-                      : "border border-[#ff8901] text-[#ff8901]"
+                      ? "bg-secondary text-white"
+                      : "border border-secondary text-secondary"
                   } text-sm font-medium`}
                 >
                   {button.text}

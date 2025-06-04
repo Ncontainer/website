@@ -75,8 +75,8 @@ const ContactUs = () => {
         {/* Left Side - Contact Information */}
         <div className="w-full mt-4 lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center">
           <div className="max-w-md">
-            <p className="text-[#ff8901] font-medium text-lg mb-4">CONTACT US</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            <p className="text-secondary font-medium text-lg mb-4">CONTACT US</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl  mb-6">
               Get in Touch<br />with Us
             </h2>
             <p className="text-gray-600 mb-10">
@@ -86,7 +86,7 @@ const ContactUs = () => {
             {/* Contact Details */}
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#ff8901] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
                   <Phone className="text-white" size={20} />
                 </div>
                 <div>
@@ -96,7 +96,7 @@ const ContactUs = () => {
               </div>
               
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#ff8901] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
                   <Mail className="text-white" size={20} />
                 </div>
                 <div>
@@ -214,7 +214,7 @@ const ContactUs = () => {
                   onClick={handleSubmit}
                   className="w-full bg-white text-black py-4 rounded-full font-medium hover:bg-white/90 transition-colors"
                 >
-                  <span className="text-[#ff8901] font-semibold">Submit</span>
+                  <span className="text-secondary font-semibold">Submit</span>
                 </button>
               </div>
             </div>
