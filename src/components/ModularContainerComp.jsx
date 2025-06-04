@@ -62,10 +62,10 @@ export default function ModularContainerComp() {
                 <table className="w-full border-collapse rounded-2xl overflow-hidden border-solid shadow-md">
                   <thead>
                     <tr>
-                      <th className="bg-[#ff8901] text-white p-2 text-center">
+                      <th className="bg-secondary text-white p-2 text-center">
                         Length
                       </th>
-                      <th className="bg-[#ff8901] text-white p-2 text-center">
+                      <th className="bg-secondary text-white p-2 text-center">
                         Width
                       </th>
                     </tr>
@@ -133,10 +133,10 @@ export default function ModularContainerComp() {
               <table className="w-full border-collapse rounded-2xl overflow-hidden border-solid shadow-md">
                 <thead>
                   <tr>
-                    <th className="bg-[#ff8901] text-white p-2 text-center">
+                    <th className="bg-secondary text-white p-2 text-center">
                       Length
                     </th>
-                    <th className="bg-[#ff8901] text-white p-2 text-center">
+                    <th className="bg-secondary text-white p-2 text-center">
                       Width
                     </th>
                   </tr>
@@ -176,10 +176,10 @@ export default function ModularContainerComp() {
                 <table className="w-full border-collapse rounded-2xl overflow-hidden border-solid shadow-md">
                   <thead>
                     <tr>
-                      <th className="bg-[#ff8901] text-white p-2 text-center">
+                      <th className="bg-secondary text-white p-2 text-center">
                         Length
                       </th>
-                      <th className="bg-[#ff8901] text-white p-2 text-center">
+                      <th className="bg-secondary text-white p-2 text-center">
                         Width
                       </th>
                     </tr>
@@ -257,10 +257,10 @@ export default function ModularContainerComp() {
               <table className="w-full border-collapse rounded-2xl overflow-hidden border-solid shadow-md">
                 <thead>
                   <tr>
-                    <th className="bg-[#ff8901] text-white p-2 text-center">
+                    <th className="bg-secondary text-white p-2 text-center">
                       Length
                     </th>
-                    <th className="bg-[#ff8901] text-white p-2 text-center">
+                    <th className="bg-secondary text-white p-2 text-center">
                       Width
                     </th>
                   </tr>
@@ -308,10 +308,10 @@ export default function ModularContainerComp() {
                 <table className="w-full border-collapse rounded-2xl overflow-hidden border-solid shadow-md">
                   <thead>
                     <tr>
-                      <th className="bg-[#ff8901] text-white p-2 text-center">
+                      <th className="bg-secondary text-white p-2 text-center">
                         Length
                       </th>
-                      <th className="bg-[#ff8901] text-white p-2 text-center">
+                      <th className="bg-secondary text-white p-2 text-center">
                         Width
                       </th>
                     </tr>

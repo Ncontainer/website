@@ -27,7 +27,7 @@ function Contact() {
       <OurTeam />
       <ContactUs />
          {/* Newsletter Subscription */}
-      <div className="w-[85%] m-auto mb-10 bg-[#ff8901] rounded-lg overflow-hidden">
+      <div className="w-[85%] m-auto mb-10 bg-secondary rounded-lg overflow-hidden">
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 p-6 md:p-8">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
@@ -45,7 +45,7 @@ function Contact() {
               </div>
               <button
                 onClick={handleSubmit}
-                className="px-8 py-2 bg-white text-[#ff8901] rounded-full font-medium hover:bg-white/90 transition-colors"
+                className="px-8 py-2 bg-white text-secondary rounded-full font-medium hover:bg-white/90 transition-colors"
               >
                 {isSubmitted ? "Thanks!" : "Submit"}
               </button>

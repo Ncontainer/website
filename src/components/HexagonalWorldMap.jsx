@@ -50,7 +50,7 @@ const GlobalStatsCounter = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[#ff8901] text-white">
+    <div className="w-full bg-secondary text-white">
       {/* Header section */}
       <div className="container mx-auto px-4 md:px-8 pt-12 pb-6">
         <h1 className="text-2xl md:text-3xl font-bold">

@@ -48,7 +48,7 @@ const About = () => {
       </div>
 
       {/* Vision Box */}
-      <div className="relative bg-[#ff8901] w-[88%] mx-auto py-10 px-6 md:px-16 text-white text-center overflow-hidden rounded-md">
+      <div className="relative bg-secondary w-[88%] mx-auto py-10 px-6 md:px-16 text-white text-center overflow-hidden rounded-md">
   {/* Background diagonal strips */}
   <div className="absolute inset-0 pointer-events-none">
     {[...Array(10)].map((_, i) => (
@@ -93,7 +93,7 @@ const About = () => {
     {/* Content on Right */}
     <div className="grid gap-6">
       <div className="flex items-start gap-4">
-        <CheckCircle className="text-[#ff8901] w-6 h-6 mt-1" />
+        <CheckCircle className="text-secondary w-6 h-6 mt-1" />
         <div>
           <h4 className="font-semibold">Drive cost and operational efficiencies</h4>
           <p className="text-sm text-gray-300">
@@ -103,7 +103,7 @@ const About = () => {
       </div>
 
       <div className="flex items-start gap-4">
-        <UserCheck className="text-[#ff8901] w-6 h-6 mt-1" />
+        <UserCheck className="text-secondary w-6 h-6 mt-1" />
         <div>
           <h4 className="font-semibold">Phygital Approach</h4>
           <p className="text-sm text-gray-300">
@@ -113,7 +113,7 @@ const About = () => {
       </div>
 
       <div className="flex items-start gap-4">
-        <Leaf className="text-[#ff8901] w-6 h-6 mt-1" />
+        <Leaf className="text-secondary w-6 h-6 mt-1" />
         <div>
           <h4 className="font-semibold">Sustainable Innovation</h4>
           <p className="text-sm text-gray-300">
@@ -123,7 +123,7 @@ const About = () => {
       </div>
 
       <div className="flex items-start gap-4">
-        <Briefcase className="text-[#ff8901] w-6 h-6 mt-1" />
+        <Briefcase className="text-secondary w-6 h-6 mt-1" />
         <div>
           <h4 className="font-semibold">Enriching Workspace</h4>
           <p className="text-sm text-gray-300">
@@ -136,7 +136,7 @@ const About = () => {
 </div>
 
 {/* Our Values Section */}
-<div className="bg-[#ff8901] text-white rounded-md p-6 md:p-10">
+<div className="bg-secondary text-white rounded-md p-6 md:p-10">
   <div className="grid md:grid-cols-2 gap-8 items-center">
     {/* Content on Left */}
     <div className="grid gap-6">

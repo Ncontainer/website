@@ -91,7 +91,7 @@ const Blog = () => {
     <div className="w-[90%] mx-auto py-16 mt-6">
       {/* Blog Header */}
       <div className="text-center mb-12">
-        <p className="text-[#ff8901] font-bold text-xl uppercase mb-2">BLOGS</p>
+        <p className="text-secondary  text-xl uppercase mb-2">BLOGS</p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
           Browse our Blogs<br />& Articles
         </h2>
@@ -109,7 +109,7 @@ const Blog = () => {
               />
             </div>
             <div className="p-4 md:p-6">
-              <h3 className="text-lg md:text-xl font-bold mb-4 line-clamp-2 hover:text-[#ff8901] transition-colors cursor-pointer">
+              <h3 className="text-lg md:text-xl font-bold mb-4 line-clamp-2 hover:text-secondary transition-colors cursor-pointer">
                 {post.title}
               </h3>
               <div className="flex items-center text-sm text-gray-600">
@@ -123,7 +123,7 @@ const Blog = () => {
       </div>
       
       {/* Newsletter Subscription */}
-      <div className="bg-[#ff8901] w-[95%] m-auto rounded-lg overflow-hidden">
+      <div className="bg-secondary w-[95%] m-auto rounded-lg overflow-hidden">
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 p-6 md:p-8">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
@@ -141,7 +141,7 @@ const Blog = () => {
               </div>
               <button
                 onClick={handleSubmit}
-                className="px-8 py-2 bg-white text-[#ff8901] rounded-full font-medium hover:bg-white/90 transition-colors"
+                className="px-8 py-2 bg-white text-secondary rounded-full font-medium hover:bg-white/90 transition-colors"
               >
                 {isSubmitted ? "Thanks!" : "Submit"}
               </button>
