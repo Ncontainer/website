@@ -59,26 +59,23 @@ const Testimonial = () => {
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  return (
-    <section className='w-full h-[800px] bg-gray-50 py-16'>
+  return (    <section className='w-full bg-[#FAFAFA] pt-4 sm:py-16'>
 
     
-    <div className="h-40 py-12 px-4 md:px-8 lg:px-16 w-[95%] mx-auto">
+    <div className="container sm:py-12 px-4 md:px-8 lg:px-16 w-[95%] mx-auto">
       <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
-        {/* Image Section */}
-        <div className="relative w-full lg:w-1/2">
+        {/* Image Section */}        <div className="relative w-full lg:w-1/2">
           <div className="relative h-80 md:h-96 lg:h-[450px] rounded-lg overflow-hidden">
             <img 
               src={img1} 
               alt="Shipping containers" 
-              className="rounded-lg ml-36 w-[60%] object-cover object-center bg-slate-800"
+              className="rounded-lg w-full h-full object-cover object-center"
             />
-        </div>    
-            
-            {/* Testimonial Card */}
-            <div className="absolute bottom-0 right-0 translate-y-1/3 lg:translate-y-1/4 translate-x-0 lg:-translate-x-16 z-10">
+          </div>
+              {/* Testimonial Card */}
+            <div className="absolute bottom-0  right-[-16px] md:right-[-90px] translate-y-1/3 lg:translate-y-1/4 translate-x-0 lg:-translate-x-16 z-10">
               <div 
-                className={`bg-secondary p-6 md:p-8 rounded-lg shadow-lg w-full max-w-md transform transition-opacity duration-500 ${
+                className={`bg-secondary p-6 md:p-8 rounded-lg shadow-lg w-full max-w-sm transform transition-opacity duration-500 ${
                   isAnimating ? 'opacity-0' : 'opacity-100'
                 }`}
               >
@@ -124,7 +121,7 @@ const Testimonial = () => {
       </div>
       
       {/* Indicator Dots */}
-      <div className="flex justify-center mt-8 lg:mt-4 gap-2">
+      <div className=" justify-center mt-8 lg:mt-4 gap-2 hidden ">
         {testimonials.map((_, index) => (
           <button
             key={index}

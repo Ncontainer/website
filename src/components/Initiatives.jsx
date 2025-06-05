@@ -43,7 +43,7 @@ const Initiatives = () => {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 text-justify">
+      <div className="mt-12 grid gap-6 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 text-justify">
         {initiatives.map((initiative, index) => (
           <div key={index} className="flex flex-col md:flex-row items-start gap-3 p-2">
             <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center">

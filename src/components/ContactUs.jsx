@@ -70,8 +70,8 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="w-[95%] m-auto my-8 bg-white">
-      <div className="w-[90%] mx-auto mt-12 flex flex-col lg:flex-row">
+    <div className="w-[95%] m-auto sm:my-8 bg-white">
+      <div className="w-[100%] mx-auto mt-12 flex flex-col lg:flex-row">
         {/* Left Side - Contact Information */}
         <div className="w-full mt-4 lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center">
           <div className="max-w-md">
@@ -90,8 +90,8 @@ const ContactUs = () => {
                   <Phone className="text-white" size={20} />
                 </div>
                 <div>
-                  <p className="text-gray-500 text-sm">Our Phone</p>
-                  <p className="font-medium">+91 9876543210</p>
+                  <p className="text-gray-500 text-sm sm:text-base">Our Phone</p>
+                  <p className="font-medium  text-[0.8rem] sm:text-base">+91 9876543210</p>
                 </div>
               </div>
               
@@ -100,8 +100,8 @@ const ContactUs = () => {
                   <Mail className="text-white" size={20} />
                 </div>
                 <div>
-                  <p className="text-gray-500 text-sm">Our Email</p>
-                  <p className="font-medium">containers@shippingcompany.com</p>
+                  <p className="text-gray-500 text-sm sm:text-base">Our Email</p>
+                  <p className="font-medium text-[0.8rem] sm:text-base  ">containers@shippingcompany.com</p>
                 </div>
               </div>
             </div>
@@ -208,13 +208,12 @@ const ContactUs = () => {
                     {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
                   </div>
                 </div>
-                
-                <button
+                  <button
                   type="button"
                   onClick={handleSubmit}
-                  className="w-full bg-white text-black py-4 rounded-full font-medium hover:bg-white/90 transition-colors"
+                  className="w-full sm:max-w-full max-w-[300px] mx-auto bg-white text-black py-1 m:py-4 rounded-full font-medium hover:bg-white/90 transition-colors border-2 border-secondary"
                 >
-                  <span className="text-secondary font-semibold">Submit</span>
+                  <span className="text-secondary font-semibold text-lg">Submit</span>
                 </button>
               </div>
             </div>

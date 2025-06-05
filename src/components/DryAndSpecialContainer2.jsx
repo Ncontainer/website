@@ -9,10 +9,10 @@ export default function DryAndSpecialContainer() {
   return (
     <div className="flex flex-col w-full bg-white">
       {/* Hero Section */}
-      <div className="flex py-6 w-[90%] m-auto flex-col lg:flex-row">
+      <div className="flex py-6 w-[90%] m-auto flex-col">
         {/* Left side - Text content */}
-        <div className="bg-white p-4 lg:p-8 lg:w-1/2">
-          <h1 className="text-4xl md:text-6xl font-semibold text-black mb-4">
+        <div className="bg-white p-4 lg:p-8 md:w-full flex flex-col justify-center">
+          <h1 className="text-4xl md:text-6xl  text-black mb-4 md:text-center">
             DRY & SPECIAL CONTAINERS
           </h1>
         </div>
@@ -26,15 +26,7 @@ export default function DryAndSpecialContainer() {
             and Special Containers, ensuring you have the perfect solution for
             any cargo, regardless of size, shape, or specific needs.
           </p>
-          <p>
-            Move any cargo with confidence using NCON's extensive fleet of DRY
-            and Special Containers. Containers are the cornerstone of global
-            shipping, offering a secure, standardized way to transport a vast
-            array of cargo. At NCON, we recognize that no two shipments are
-            exactly alike. That's why we provide a comprehensive range of DRY
-            and Special Containers, ensuring you have the perfect solution for
-            any cargo, regardless of size, shape, or specific needs.
-          </p>
+        
         </div>
       </div>
 

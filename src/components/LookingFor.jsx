@@ -56,7 +56,7 @@ const LookingFor = () => {
     <div className="flex flex-col items-center py-12 px-4 md:px-8 lg:px-16 w-[95%] mx-auto">
       <div className="text-center mb-10">
         <p className="text-lg font-medium text-secondary mb-2">LOOKING FOR</p>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl  text-black">
           Customized Logistics<br />Just for You
         </h2>
       </div>
@@ -65,12 +65,12 @@ const LookingFor = () => {
         {features.map((feature, index) => (
           <div 
             key={index} 
-            className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col"
+            className="bg-[#FAFAFA] p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col"
           >
             <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
               {feature.icon}
             </div>
-            <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+            <h3 className="text-xl  mb-2">{feature.title}</h3>
             <p className="text-gray-600 text-sm mb-6">{feature.description}</p>
             <div className="flex mt-auto space-x-4">
               {feature.buttons.map((button, btnIndex) => (

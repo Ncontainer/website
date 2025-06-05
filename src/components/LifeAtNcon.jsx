@@ -4,8 +4,8 @@ import img from "../images/blog2.png";
 const LifeAtNcon = () => {
   return (
     <section className="w-[90%] m-auto my-10 px-4 md:px-8 lg:px-16">
-      <div className="flex pa my-6 px-10 justify-between">
-        <div className="text-center md:text-left m-6">
+      <div className="flex flex-col md:flex-row my-6 px-10 justify-between">
+        <div className="text-left sm:text-center md:text-left m-6">
           <h2 className="text-orange-600 font-semibold uppercase text-lg">
             Glimpse at NCON
           </h2>

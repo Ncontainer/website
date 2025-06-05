@@ -4,13 +4,13 @@ import img1 from "../images/img1.jpg"
 
 const OurServices = () => {
   return (
-    <section className="w-full mt-24 bg-gray-50 py-16">
+    <section className="w-full  md:mt-24 bg-gray-50 py-16">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="flex flex-col md:flex-row gap-8 mb-16">
           <div className="w-full md:w-1/2">
             <h3 className="text-secondary font-medium uppercase mb-2">OUR SERVICES</h3>
-            <h2 className="text-4xl md:text-5xl font-bold">We help Transport your Future</h2>
+            <h2 className="text-4xl md:text-5xl ">We help Transport your Future</h2>
           </div>
           <div className="w-full md:w-1/2 mt-9s">
             <p className="text-gray-600 ">
@@ -29,7 +29,7 @@ const OurServices = () => {
               <div className="flex md:justify-end mb-2">
                 <Leaf className="text-secondary" size={32} />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-2">Pioneering a Sustainable Future</h3>
+              <h3 className="text-xl md:text-2xl  mb-2">Pioneering a Sustainable Future</h3>
               <p className="text-gray-600 text-sm md:text-base">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
@@ -38,7 +38,7 @@ const OurServices = () => {
               <div className="flex md:justify-end mb-2">
                 <Building2 className="text-secondary" size={32} />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-2">Enriching Workspace</h3>
+              <h3 className="text-xl md:text-2xl  mb-2">Enriching Workspace</h3>
               <p className="text-gray-600 text-sm md:text-base">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
@@ -46,7 +46,7 @@ const OurServices = () => {
           </div>
             {/* Center Video/Image */}
           <div className="flex justify-center items-center">
-            <div className="relative w-full max-w-[300px] md:max-w-[320px] mx-auto aspect-[3/4] bg-blue-900 rounded-lg overflow-hidden">
+            <div className="relative w-full max-w-full md:max-w-[320px] mx-auto aspect-[3/2] md:aspect-[3/4] bg-blue-900 rounded-lg overflow-hidden">
               <img 
                 src={img1} 
                 alt="Container ship aerial view" 
@@ -66,7 +66,7 @@ const OurServices = () => {
               <div className="flex mb-2">
                 <Shield className="text-secondary" size={32} />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-2">Operational Efficiency</h3>
+              <h3 className="text-xl md:text-2xl  mb-2">Operational Efficiency</h3>
               <p className="text-gray-600 text-sm md:text-base">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
@@ -76,7 +76,7 @@ const OurServices = () => {
               <div className="flex justify-start mb-2">
                 <Network className="text-secondary" size={32} />
               </div>
-              <h3 className="text-xl font-bold mb-2">Our Phygital Edge</h3>
+              <h3 className="text-xl  mb-2">Our Phygital Edge</h3>
               <p className="text-gray-600 text-base">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
