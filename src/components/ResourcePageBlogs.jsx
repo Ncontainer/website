@@ -3,11 +3,22 @@ import blogImage1 from "../images/blog1.png"
 import blogImage2 from "../images/blog2.png"
 import blogImage3 from "../images/blog3.png"
 import blog from "../images/04.png"
-import NewsLetter from './NewsLetter';
 
 const Blog = () => {
-
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
   
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  
+  const handleSubmit = () => {
+    if (email && email.includes('@')) {
+      setIsSubmitted(true);
+      setEmail('');
+      setTimeout(() => setIsSubmitted(false), 3000);
+    }
+  };
   
   // Blog post data
   const blogPosts = [
@@ -32,61 +43,50 @@ const Blog = () => {
       author: 'Neon Group',
       date: '01 Jan 025',
     },
-    // {
-    //   id: 4,
-    //   title: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
-    //   image: blogImage1,
-    //   author: 'Neon Group',
-    //   date: '01 Jan 025',
-    // },
-    // {
-    //   id: 5,
-    //   title: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
-    //   image: blogImage2,
-    //   author: 'Neon Group',
-    //   date: '01 Jan 025',
-    // },
-    // {
-    //   id: 6,
-    //   title: 'Why CSC Standards Matter: A Complete Guide for Safe Container Transport',
-    //   image: blogImage3,
-    //   author: 'Neon Group',
-    //   date: '01 Jan 025',
-    // },
-    // {
-    //   id: 7,
-    //   title: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
-    //   image: blogImage1,
-    //   author: 'Neon Group',
-    //   date: '01 Jan 025',
-    // },
-    // {
-    //   id: 8,
-    //   title: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
-    //   image: blogImage2,
-    //   author: 'Neon Group',
-    //   date: '01 Jan 025',
-    // },
-    // {
-    //   id: 9,
-    //   title: 'Why CSC Standards Matter: A Complete Guide for Safe Container Transport',
-    //   image: blogImage3,
-    //   author: 'Neon Group',
-    //   date: '01 Jan 025',
-    // },
+    {
+      id: 4,
+      title: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
+      image: blogImage1,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 5,
+      title: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
+      image: blogImage2,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 6,
+      title: 'Why CSC Standards Matter: A Complete Guide for Safe Container Transport',
+      image: blogImage3,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 7,
+      title: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
+      image: blogImage1,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    {
+      id: 8,
+      title: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
+      image: blogImage2,
+      author: 'Neon Group',
+      date: '01 Jan 025',
+    },
+    
   ];
 
   return (
-    <div className="w-[90%] mx-auto py-16 mt-6">
-      {/* Blog Header */}      <div className="text-center mb-12">
-        <p className="text-secondary text-xl uppercase mb-2">BLOGS</p>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl ">
-          Browse our Blogs<br />& Articles
-        </h2>
-      </div>
+    <div className="w-[90%] mx-auto py-4 sm:py-16 mt-6">
+    
       
       {/* Blog Posts Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 w-full md:w-[95%] mx-auto">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 w-full md:w-[90%] mx-auto">
         {blogPosts.map((post) => (
           <div key={post.id} className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-gray-50">
             <div className="rounded-lg h-56 md:h-56 lg:h-64 overflow-hidden">
@@ -109,8 +109,7 @@ const Blog = () => {
         ))}
       </div>
       
-      {/* Newsletter Subscription */}
-     <NewsLetter />
+  
     </div>
   );
 };

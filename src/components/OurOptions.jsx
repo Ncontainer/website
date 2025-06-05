@@ -6,7 +6,7 @@ const OurOptions = () => {
   return (
     <div className=" py-12">
       <div className="w-full px-4 sm:px-6 lg:px-8" style={{ width: '85%', margin: '0 auto' }}>
-        <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">
+        <h2 className="text-4xl  text-gray-900 text-center mb-8">
           Our Options
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -28,7 +28,7 @@ const OurOptions = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <h3 className="text-xl  text-gray-800 mb-2">
               One Way Movement
             </h3>
             <p className="text-gray-600 mb-4">
@@ -37,13 +37,13 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                className="bg-transparent hover:bg-orange-500 text-orange-500 font-semibold hover:text-white py-2 px-10 border border-orange-500 hover:border-transparent rounded-3xl"
+                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-10 border border-orange-500 hover:border-transparent rounded-3xl"
                 style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
               >
                 Use
               </button>
               <button
-                className="bg-orange-500 hover:bg-orange-700 text-white font-semibold py-2 px-8 rounded-3xl"
+                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-8 rounded-3xl"
                 style={{ backgroundColor: orangeColor }} // Inline style for orange
               >
                 Supply
@@ -69,7 +69,7 @@ const OurOptions = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <h3 className="text-xl  text-gray-800 mb-2">
               Click to Trade
             </h3>
             <p className="text-gray-600 mb-4">
@@ -78,13 +78,13 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                className="bg-transparent hover:bg-orange-500 text-orange-500 font-semibold hover:text-white py-2 px-11 border border-orange-500 hover:border-transparent rounded-3xl"
+                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-11 border border-orange-500 hover:border-transparent rounded-3xl"
                  style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
               >
                 Buy
               </button>
               <button
-                className="bg-orange-500 hover:bg-orange-700 text-white font-semibold py-2 px-11 rounded-3xl"
+                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-11 rounded-3xl"
                 style={{ backgroundColor: orangeColor }} // Inline style for orange
               >
                 Sell
@@ -110,7 +110,7 @@ const OurOptions = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <h3 className="text-xl  text-gray-800 mb-2">
               Lease with Ease
             </h3>
             <p className="text-gray-600 mb-4">
@@ -119,13 +119,13 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                className="bg-transparent hover:bg-orange-500 text-orange-500 font-semibold hover:text-white py-2 px-6 border border-orange-500 hover:border-transparent rounded-3xl"
+                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-6 border border-orange-500 hover:border-transparent rounded-3xl"
                 style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
               >
                 Domestic
               </button>
               <button
-                className="bg-orange-500 hover:bg-orange-700 text-white font-semibold py-2 px-10 rounded-3xl"
+                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-10 rounded-3xl"
                 style={{ backgroundColor: orangeColor }} // Inline style for orange
               >
                 EXIM

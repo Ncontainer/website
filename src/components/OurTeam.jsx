@@ -149,7 +149,6 @@ const OurTeam = () => {
     <div className="w-[85%] mx-auto px-4 py-4 md:py-8">
       <div className="text-center mb-8 md:mb-12">
         <p className="text-orange-500 font-medium mb-2">TEAM</p>
-        <h2 className="text-3xl md:text-5xl font-bold">Meet Our Team</h2>
       </div>
 
       {/* Featured team member - Improved mobile layout with full image */}
@@ -176,8 +175,8 @@ const OurTeam = () => {
               <h3 className="text-xl font-bold mb-1">{teamMembers[currentIndex].name}</h3>
               <p className="text-gray-600 mb-4">{teamMembers[currentIndex].position}</p>
               <div className="space-y-3 max-h-48 overflow-auto">
-                <p>{teamMembers[currentIndex].bio}</p>
-                <p>{teamMembers[currentIndex].bio}</p>
+                <p style={{fontFamily : "Roboto"}}>{teamMembers[currentIndex].bio}</p>
+                {/* <p>{teamMembers[currentIndex].bio}</p> */}
               </div>
             </div>
           </div>
@@ -228,7 +227,7 @@ const OurTeam = () => {
 
       {/* Team member carousel - Desktop view */}
       <div className="hidden md:block">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {teamMembers.map((member, index) => (
             <div 
               key={member.id} 
@@ -245,7 +244,7 @@ const OurTeam = () => {
                 />
               </div>
               <div className="p-4 bg-gray-100 rounded-b-lg">
-                <h4 className="font-bold text-lg">{member.name}</h4>
+                <h4 className=" text-base">{member.name}</h4>
                 <p className="text-gray-600 text-base">{member.position}</p>
               </div>
             </div>

@@ -27,16 +27,19 @@ const About = () => {
       </div>
 
       {/* Content */}
-      <div className=" w-[94%] m-auto flex justify-evenly px-6 md:px-16 py-10 bg-white text-black">
+      <div className=" w-[94%] m-auto flex flex-col sm:flex-row justify-evenly px-6 md:px-16  py-10 bg-white text-black">
       <div>
         <p className="text-orange-500 uppercase text-lg font-semibold tracking-wide mb-2">
           About Us
         </p>
-        <h2 className="text-3xl md:text-7xl font-semibold mb-6">
-          NCON: Container as a Solution
+        <h2 className="text-3xl md:text-5xl mb-6 w-full">
+          NCON: Container as a
+          <br/> Solution
         </h2>
       </div>
-        <p className="text-gray-700 text-justify text-sm md:text-base max-w-4xl">
+        <p className="text-gray-500 text-justify text-sm md:text-base max-w-3xl"
+        style={{ fontFamily: 'Roboto' }}
+        >
           Containerization is an industry that has rapidly evolved since its inception. Constant
           fluctuations and technological advancements in global supply trade has underscored the need
           to redefine container solutions. NCON is born out of a growing need to use technology and
@@ -81,17 +84,27 @@ const About = () => {
 <section className="w-[90%] mx-auto flex flex-col gap-12 px-4 py-12">
 
 {/* Our Mission Section */}
-<div className="bg-gray-900 text-white rounded-md p-6 md:p-10">
-  <div className="grid md:grid-cols-2 gap-8 items-center">
-    {/* Title on Left - Center Aligned */}
-    <div className="w-full h-[400px] flex justify-center items-center">
-      <h3 className="text-white text-xl md:text-2xl font-semibold bg-black px-16 py-6 rounded-md inline-block">
-        Our Mission
-      </h3>
-    </div>
+<div className="bg-[#1E1E1E] text-white rounded-md p-6 md:p-10 relative overflow-hidden">
+  {/* SVG Background for desktop */}
+  <div className="absolute inset-0 w-full h-full hidden md:block">
+    <svg
+      width="100%" height="100%" viewBox="0 0 257 211" fill="none" xmlns="http://www.w3.org/2000/svg"
+      className="absolute right-0 top-0 h-full opacity-10"
+    >
+      <path d="M140.456 179.32L183.63 176.461L92.5407 367.657L45.2775 367.657L140.456 179.32Z" fill="black" fillOpacity="0.05"/>
+      <path d="M92.3898 367.417L45.6665 367.417L140.608 179.549L183.238 176.726L92.3898 367.417Z" stroke="#8E8E8E" strokeOpacity="0.25" strokeWidth="0.479432"/>
+      <path d="M268.491 69.3237L310.168 69.324L247.314 200.033L200.051 200.033L268.491 69.3237Z" fill="black" fillOpacity="0.05"/>
+      <path d="M247.164 199.792L200.447 199.793L268.637 69.5621L309.787 69.5623L247.164 199.792Z" stroke="#8E8E8E" strokeOpacity="0.25" strokeWidth="0.479432"/>
+      <path d="M106.564 74.9565L148.24 74.9568L85.3866 205.666L38.1234 205.666L106.564 74.9565Z" fill="black" fillOpacity="0.05"/>
+      <path d="M85.236 205.425L38.5188 205.426L106.709 75.1949L147.86 75.1951L85.236 205.425Z" stroke="#8E8E8E" strokeOpacity="0.25" strokeWidth="0.479432"/>
+      <path d="M216.681 19.0405L258.358 19.0408L195.504 149.75L148.241 149.75L216.681 19.0405Z" fill="black" fillOpacity="0.05"/>
+      <path d="M195.353 149.509L148.636 149.51L216.826 19.2789L257.977 19.2791L195.353 149.509Z" stroke="#8E8E8E" strokeOpacity="0.25" strokeWidth="0.479432"/>
+    </svg>
+  </div>
 
-    {/* Content on Right */}
-    <div className="grid gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-8 items-center relative z-10">
+    {/* Content on Left */}
+    <div className="grid gap-6 order-2 md:order-1">
       <div className="flex items-start gap-4">
         <CheckCircle className="text-secondary w-6 h-6 mt-1" />
         <div>
@@ -132,13 +145,29 @@ const About = () => {
         </div>
       </div>
     </div>
+
+        {/* Title on Right - Center Aligned */}
+    <div className="w-full h-auto order-1 py-6 md:h-[400px] flex justify-center items-center ">
+      <h3 className="text-white text-xl md:text-2xl  bg-black px-16 py-4 inline-block">
+        Our Mission
+      </h3>
+    </div>
+    
   </div>
+ 
+
 </div>
 
 {/* Our Values Section */}
 <div className="bg-secondary text-white rounded-md p-6 md:p-10">
   <div className="grid md:grid-cols-2 gap-8 items-center">
-    {/* Content on Left */}
+        {/* Title on Left - Center Aligned */}
+    <div className="w-full flex justify-center items-center">
+      <h3 className="px-16 py-3 rounded-md text-xl md:text-2xl  bg-white/20 inline-block">
+        Our Values
+      </h3>
+    </div>
+    {/* Content on Right */}
     <div className="grid gap-6">
       <div className="flex items-start gap-4">
         <ShieldCheck className="w-6 h-6 mt-1" />
@@ -191,12 +220,7 @@ const About = () => {
       </div>
     </div>
 
-    {/* Title on Right - Center Aligned */}
-    <div className="w-full h-[400px] flex justify-center items-center">
-      <h3 className="px-16 py-6 rounded-md text-xl md:text-2xl font-semibold bg-white/20 inline-block">
-        Our Values
-      </h3>
-    </div>
+
   </div>
 </div>
 </section>
