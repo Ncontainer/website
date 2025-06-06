@@ -10,14 +10,14 @@ export default function CoilContainerComp() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section - Stack vertically on mobile, side by side on larger screens */}
-      <div className="flex py-6 w-[90%] m-auto flex-col lg:flex-row">
+      <div className="flex py-6 w-[90%] m-auto flex-col ">
         {/* Left side - Text content */}
-        <div className="bg-white p-4 lg:p-8 lg:w-1/2">
-          <h1 className="text-4xl md:text-4xl font-semibold text-black mb-4">
+        <div className="bg-white p-4 lg:p-8 ">
+          <h1 className="text-4xl md:text-4xl text-center text-black mb-4">
           COIL-CONTAINERS
           </h1>
           </div>
-          <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3">
+          <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3">
             <p>
             Ensure safety and security for your steel and aluminum coils while transporting with NCON's coils containers. These specialized coil containers are designed to prevent accidents and damage to coils and ensure stability, with secure lashing and protection against shifting during transit. This ensures that both types of coils reach their destinations intact and undamaged.
             </p>
@@ -41,8 +41,8 @@ export default function CoilContainerComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-6 md:mt-0">
+            <h2 className="text-3xl md:text-4xl  text-black mb-3">
               Design and Structure:
             </h2>
             
@@ -51,28 +51,28 @@ export default function CoilContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Reinforced Flooring:</span> Coil-tainers have reinforced floors to support the heavy weight of metal coils.
+                  <span className="font-medium">Reinforced Flooring:</span> Coil-tainers have reinforced floors to support the heavy weight of metal coils.
                 </div>
               </li>
               
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">V-Shaped Beds: </span> Many coil-tainers feature V-shaped beds or cradles that securely hold the coils in place.
+                  <span className="font-medium">V-Shaped Beds: </span> Many coil-tainers feature V-shaped beds or cradles that securely hold the coils in place.
                 </div>
               </li>
               
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Strapping Systems:</span>  Straps or other securing mechanisms are often used to prevent the coils from shifting during transit.
+                  <span className="font-medium">Strapping Systems:</span>  Straps or other securing mechanisms are often used to prevent the coils from shifting during transit.
                 </div>
               </li>
               
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Accessibility:</span> Some designs allow for easy loading and unloading through doors that open fully or through removable sections.
+                  <span className="font-medium">Accessibility:</span> Some designs allow for easy loading and unloading through doors that open fully or through removable sections.
                 </div>
               </li>
             </ul>
@@ -107,7 +107,7 @@ export default function CoilContainerComp() {
           
           {/* Right side - Text content */}
           <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+            <h2 className="text-3xl md:text-4xl  text-black mb-3">
             Loading and Unloading:
             </h2>
                       
@@ -115,14 +115,14 @@ export default function CoilContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold"> Cranes and Forklifts: </span> Metal coils are typically loaded and unloaded using cranes or specialized forklifts.
+                  <span className="font-medium"> Cranes and Forklifts: </span> Metal coils are typically loaded and unloaded using cranes or specialized forklifts.
                 </div>
               </li>
               
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Positioning:</span> The V-shaped beds help position the coils correctly, reducing movement during transport.
+                  <span className="font-medium">Positioning:</span> The V-shaped beds help position the coils correctly, reducing movement during transport.
                 </div>
               </li>
               
@@ -135,8 +135,8 @@ export default function CoilContainerComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-6 md:mt-0">
+            <h2 className="text-3xl md:text-4xl  text-black mb-3">
             Transport:
             </h2>
 
@@ -144,14 +144,14 @@ export default function CoilContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Intermodal Capability:</span> Coil-tainers can be used in various modes of transport, including road, rail, and sea, offering flexibility in logistics.
+                  <span className="font-medium">Intermodal Capability:</span> Coil-tainers can be used in various modes of transport, including road, rail, and sea, offering flexibility in logistics.
                 </div>
               </li>
               
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Protection:</span> The design of coil-tainers protects the coils from external elements such as moisture and impacts, which is critical for maintaining the integrity of the metal.
+                  <span className="font-medium">Protection:</span> The design of coil-tainers protects the coils from external elements such as moisture and impacts, which is critical for maintaining the integrity of the metal.
                 </div>
               </li>
               

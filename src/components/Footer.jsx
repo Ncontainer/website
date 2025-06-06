@@ -47,7 +47,7 @@ export default function Footer() {
             } bg-white/25 p-4 rounded`}
           >
             <Mail className="text-orange-500 mr-2" size={isMobile ? 16 : 20} />
-            <span className="text-[0.8rem] sm:text-sm">containers@shippingcompany.com</span>
+            <span className="text-[0.8rem] lg:text-sm overflow-hidden">containers@shippingcompany.com</span>
           </div>
           <div
             className={`flex items-center ${
