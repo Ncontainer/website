@@ -43,11 +43,10 @@ export default function Header() {
   const toggleProducts = () => {
     setIsProductsOpen(!isProductsOpen);
   };
-
-  const handleNavClick = (item) => {
+  const handleNavClick = (item, keepMenuOpen = false) => {
     setActiveItem(item);
-    if (window.innerWidth < 768) {
-      // Close mobile menu when clicking a nav item on mobile
+    if (window.innerWidth < 768 && !keepMenuOpen) {
+      // Close mobile menu when clicking a nav item on mobile, unless specified to keep open
       setIsMenuOpen(false);
     }
   };
@@ -336,15 +335,14 @@ export default function Header() {
               }}
             >
               About Us
-            </Link>
-
-            {/* Mobile Products Dropdown */}
+            </Link>            {/* Mobile Products Dropdown */}
             <div>              <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   toggleProducts();
-                  handleNavClick("products");
+                  // Don't call handleNavClick here to prevent menu from closing
                 }}
-                className="flex justify-between w-full py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors"
+                className="flex justify-between w-full py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white/25 hover:text-white transition-colors"
               >
                 <span>Products</span>
                 <svg
@@ -364,21 +362,20 @@ export default function Header() {
                   />
                 </svg>
               </button>
-              <div className={`${isProductsOpen ? "block" : "hidden"}`}>
-                <Link
+              <div className={`${isProductsOpen ? "block" : "hidden"}`}>                <Link
                   to="/products/dry_Container"
-                  className="block py-2 px-8 text-white hover:bg-white hover:text-secondary transition-colors"
+                  className="block py-2 px-8 text-white hover:bg-white/25 hover:text-white transition-colors"
                   onClick={() => {
-                    handleNavClick("products");
+                    handleNavClick("products", false);
                     toggleMenu();
                   }}
                 >
                   Dry Container
                 </Link>                <Link
                   to="/products/tanks"
-                  className="block py-2 px-8 text-white hover:bg-white hover:text-secondary transition-colors"
+                  className="block py-2 px-8 text-white hover:bg-white/25 hover:text-white transition-colors"
                   onClick={() => {
-                    handleNavClick("products");
+                    handleNavClick("products", false);
                     toggleMenu();
                   }}
                 >
@@ -386,30 +383,27 @@ export default function Header() {
                 </Link>
                 <Link
                   to="/products/coil_containers"
-                  className="block py-2 px-8 text-white hover:bg-white hover:text-secondary transition-colors"
+                  className="block py-2 px-8 text-white hover:bg-white/25 hover:text-white transition-colors"
                   onClick={() => {
                     handleNavClick("products");
-                    toggleMenu();
                   }}
                 >
                   Coil Containers
                 </Link>
                 <Link
                   to="/products/modular_containers"
-                  className="block py-2 px-8 text-white hover:bg-white hover:text-secondary transition-colors"
+                  className="block py-2 px-8 text-white hover:bg-white/25 hover:text-white transition-colors"
                   onClick={() => {
                     handleNavClick("products");
-                    toggleMenu();
                   }}
                 >
                   Modular Containers
                 </Link>
                 <Link
                   to="/products/refrigerated_containers"
-                  className="block py-2 px-8 text-white hover:bg-white hover:text-secondary transition-colors"
+                  className="block py-2 px-8 text-white hover:bg-white/25 hover:text-white transition-colors"
                   onClick={() => {
                     handleNavClick("products");
-                    toggleMenu();
                   }}
                 >
                   Referigerated Containers

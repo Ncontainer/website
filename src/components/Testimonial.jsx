@@ -59,11 +59,11 @@ const Testimonial = () => {
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  return (    <section className='w-full bg-[#FAFAFA] pt-4 sm:py-16'>
+  return (    <section className='w-full bg-[#FAFAFA] pt-4 lg:py-16'>
 
     
-    <div className="container sm:py-12 px-4 md:px-8 lg:px-16 w-[95%] mx-auto">
-      <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
+    <div className="container lg:py-12  md:px-8 lg:px-16 w-[95%] mx-auto">
+      <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12 px-4 md:px-0">
         {/* Image Section */}        <div className="relative w-full lg:w-1/2">
           <div className="relative h-80 md:h-96 lg:h-[450px] rounded-lg overflow-hidden">
             <img 

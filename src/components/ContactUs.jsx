@@ -71,7 +71,7 @@ const ContactUs = () => {
 
   return (
     <div className="w-[95%] m-auto sm:my-8 bg-white">
-      <div className="w-[100%] mx-auto mt-12 flex flex-col lg:flex-row">
+      <div className="w-[100%] mx-auto lg:mt-12 flex flex-col lg:flex-row">
         {/* Left Side - Contact Information */}
         <div className="w-full mt-4 lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center">
           <div className="max-w-md">

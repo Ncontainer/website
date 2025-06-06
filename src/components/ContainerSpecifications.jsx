@@ -3,7 +3,7 @@ import React from 'react';
 const ContainerSpecifications = () => {
   return (
     <div className="w-[80%] mx-auto font-sans p-4 m-4">
-      <h1 className="text-center text-2xl md:text-3xl font-bold mb-6">Container Specification's</h1>
+      <h1 className="text-center text-2xl md:text-3xl  mb-6">Container Specification's</h1>
       
       {/* Dimensions Tables - Side by side on desktop, stacked on mobile */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">

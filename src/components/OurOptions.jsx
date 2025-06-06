@@ -4,12 +4,12 @@ const OurOptions = () => {
   const orangeColor = '#ff8901';
 
   return (
-    <div className=" py-12">
+    <div className="pb-8 lg:py-12">
       <div className="w-full px-4 sm:px-6 lg:px-8" style={{ width: '85%', margin: '0 auto' }}>
         <h2 className="text-4xl  text-gray-900 text-center mb-8">
           Our Options
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Option 1: One Way Movement */}
           <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-full" style={{ backgroundColor: 'rgba(255, 137, 1, 0.1)' /* Light orange */, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>

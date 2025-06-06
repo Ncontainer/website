@@ -3,6 +3,11 @@ import drycontainer from "../images/drycontainer1.png";
 import drycontainer2 from "../images/drycontainer2.png";
 import drycontainer3 from "../images/drycontainer3.png";
 
+import generalPurpose from "../images/general-purpose-container.png";
+import flatRackContainer from "../images/flat-rack-container.png";
+import highCubeContainer from "../images/high-cube-container.png";
+import openRackContainer from "../images/open-rack-container.png";
+
 export default function DryAndSpecialContainer() {
   const [activeTab, setActiveTab] = useState("dry");
 
@@ -11,12 +16,12 @@ export default function DryAndSpecialContainer() {
       {/* Hero Section */}
       <div className="flex py-6 w-[90%] m-auto flex-col">
         {/* Left side - Text content */}
-        <div className="bg-white p-4 lg:p-8 md:w-full flex flex-col justify-center">
-          <h1 className="text-4xl md:text-6xl  text-black mb-4 md:text-center">
+        <div className="bg-white p-2 md:p-4 lg:p-8 md:w-full flex flex-col justify-center">
+          <h1 className="text-4xl md:text-6xl  text-black mb-4 text-center">
             DRY & SPECIAL CONTAINERS
           </h1>
         </div>
-        <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3">
+        <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3">
           <p>
             Move any cargo with confidence using NCON's extensive fleet of DRY
             and Special Containers. Containers are the cornerstone of global
@@ -119,15 +124,14 @@ export default function DryAndSpecialContainer() {
                   </div>
                 </div>
 
-                <p className="font-medium text-gray-800 mb-4">Available in:</p>
-                <div className="grid grid-cols-2 gap-4">
+                <p className="font-medium text-gray-800 mb-4">Available in:</p>                <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col items-center">
                     <div className="bg-gray-100 p-2 rounded-md w-full h-40 flex items-center justify-center">
-                      <div className="bg-orange-500 w-32 h-20 relative">
-                        <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                          NCON
-                        </div>
-                      </div>
+                      <img 
+                        src={generalPurpose} 
+                        alt="General Purpose Container" 
+                        className="max-w-full max-h-full object-contain" 
+                      />
                     </div>
                     <p className="text-center text-sm mt-2">
                       20 Ft General Purpose Container
@@ -135,11 +139,11 @@ export default function DryAndSpecialContainer() {
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="bg-gray-100 p-2 rounded-md w-full h-40 flex items-center justify-center">
-                      <div className="bg-orange-500 w-40 h-16 relative">
-                        <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                          NCON
-                        </div>
-                      </div>
+                      <img 
+                        src={highCubeContainer} 
+                        alt="High Cube Container" 
+                        className="max-w-full max-h-full object-contain" 
+                      />
                     </div>
                     <p className="text-center text-sm mt-2">
                       40 Ft High Cube Container
@@ -214,30 +218,29 @@ export default function DryAndSpecialContainer() {
                   </div>
                 </div>
 
-                <p className="font-medium text-gray-800 mb-4">Available in:</p>
-                <div className="grid grid-cols-2 gap-4">
+                <p className="font-medium text-gray-800 mb-4">Available in:</p>                <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col items-center">
                     <div className="bg-gray-100 p-2 rounded-md w-full h-40 flex items-center justify-center">
-                      <div className="bg-blue-500 w-32 h-20 relative">
-                        <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                          NCON
-                        </div>
-                      </div>
+                      <img 
+                        src={flatRackContainer} 
+                        alt="Flat Rack Container" 
+                        className="max-w-full max-h-full object-contain" 
+                      />
                     </div>
                     <p className="text-center text-sm mt-2">
-                      Refrigerated Container
+                      20 Ft Flat Rack                                                    
                     </p>
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="bg-gray-100 p-2 rounded-md w-full h-40 flex items-center justify-center">
-                      <div className="bg-green-500 w-40 h-16 relative">
-                        <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                          NCON
-                        </div>
-                      </div>
+                      <img 
+                        src={openRackContainer} 
+                        alt="Open Top Container" 
+                        className="max-w-full max-h-full object-contain" 
+                      />
                     </div>
                     <p className="text-center text-sm mt-2">
-                      Open Top Container
+                      40 Ft Open Top
                     </p>
                   </div>
                 </div>

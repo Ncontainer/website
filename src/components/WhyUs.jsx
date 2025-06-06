@@ -41,11 +41,11 @@ export default function WhyUs() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <p className="text-orange-500 font-medium mb-2">Why Us?</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Why Choose NCON Containers</h2>
+          <h2 className="text-3xl md:text-4xl ">Why Choose NCON Containers</h2>
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2  lg:grid-cols-3  gap-3 md:gap-8">
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
@@ -54,7 +54,7 @@ export default function WhyUs() {
               <div className="mb-4">
                 {benefit.icon}
               </div>
-              <h3 className="text-lg font-bold mb-2">
+              <h3 className="text-lg font-medium mb-2">
                 {benefit.title}
               </h3>
               <p className="text-gray-600 text-sm">

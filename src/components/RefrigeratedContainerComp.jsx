@@ -9,14 +9,14 @@ export default function RefrigeratedContainerComp() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section - Stack vertically on mobile, side by side on larger screens */}
-      <div className="flex py-6 w-[90%] m-auto flex-col lg:flex-row">
+      <div className="flex py-6 w-[90%] m-auto flex-col ">
         {/* Left side - Text content */}
-        <div className="bg-white p-4 lg:p-8 lg:w-1/2">
-          <h1 className="text-4xl md:text-4xl font-semibold text-black mb-4">
+        <div className="bg-white p-4 lg:p-8 ">
+          <h1 className="text-4xl md:text-4xl text-center text-black mb-4">
             REFRIGERATED CONTAINER
           </h1>
         </div>
-        <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3">
+        <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3">
           <p>
             NCON, a leader in intermodal container solutions, now offers
             refrigerated containers for the secure and efficient transport of
@@ -41,8 +41,8 @@ export default function RefrigeratedContainerComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-6 md:mt-0">
+            <h2 className="text-3xl md:text-4xl  text-black mb-3">
               10ft Reefer Containers:
             </h2>
             <p className="py-4">
@@ -55,12 +55,12 @@ export default function RefrigeratedContainerComp() {
               for transporting sensitive goods in environments with space
               constraints..
             </p>
-            <h3 className="font-bold text-lg mb-4">Key Features</h3>
+            <h3 className=" text-lg mb-4 font-medium">Key Features</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold"> Compact Design: </span> Fits
+                  <span className="font-medium"> Compact Design: </span> Fits
                   seamlessly into limited spaces, making it suitable for urban
                   storage and transport.
                 </div>
@@ -69,7 +69,7 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">
+                  <span className="font-medium">
                     Advanced Temperature Control:
                   </span>
                   Maintains temperatures from -30°C to +25°C, ensuring optimal
@@ -80,7 +80,7 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">
+                  <span className="font-medium">
                     Energy-Efficient Cooling Systems:
                   </span>
                   Designed to minimize power consumption while maintaining
@@ -91,7 +91,7 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Robust Construction:</span> Built
+                  <span className="font-medium">Robust Construction:</span> Built
                   with durable, corrosion-resistant materials for extended life.
                 </div>
               </li>
@@ -99,12 +99,15 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Applications:</span>
+                  <span className="font-medium">Applications:</span>
                   Perfect for niche industries, small-scale shipments, or
                   localized cold storage.
                 </div>
               </li>
             </ul>
+                        <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
+              Learn More
+            </button>
           </div>
 
           {/* Right side - Image */}
@@ -136,19 +139,19 @@ export default function RefrigeratedContainerComp() {
 
           {/* Right side - Text content */}
           <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+            <h2 className="text-3xl md:text-4xl  text-black mb-3">
             20ft Reefer Containers:
             </h2>
             <p>
             The 20ft refrigerated shipping container is the most versatile solution for medium-sized cargo loads. Built to meet global shipping standards, it is ideal for industries requiring temperature stability during transport or storage, such as food and beverages, pharmaceuticals, and chemicals. A dependable choice for businesses that need flexibility and capacity without compromising on temperature control.
             </p>
-            <h3 className="font-bold text-lg mt-4">Key Features</h3>
+            <h3 className="font-medium  text-lg mt-4">Key Features</h3>
             <ul className="space-y-3 py-4">
               
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">
+                  <span className="font-medium">
                   Generous Capacity:
                   </span>
                   Offers 27.76 m³ of space for mid-sized shipments.
@@ -158,7 +161,7 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">
+                  <span className="font-medium">
                   Temperature Versatility:
                   </span>
                   Supports a range from -30°C to +25°C, accommodating various cargo types.
@@ -168,24 +171,27 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Intermodal Transport Compatibility:</span>Easily transferable across trucks, ships, and trains for seamless logistics.
+                  <span className="font-medium">Intermodal Transport Compatibility:</span>Easily transferable across trucks, ships, and trains for seamless logistics.
                 </div>
               </li>
 
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Enhanced Safety Standards:</span>
+                  <span className="font-medium">Enhanced Safety Standards:</span>
                   Fully ISO-compliant to ensure cargo integrity during transit.
                 </div>
               </li>
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">  Applications:</span> Widely used in food exports, pharmaceutical supply chains, and temperature-controlled chemical shipments.
+                  <span className="font-medium">  Applications:</span> Widely used in food exports, pharmaceutical supply chains, and temperature-controlled chemical shipments.
                 </div>
               </li>
             </ul>
+                        <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
+              Learn More
+            </button>
           </div>
         </div>
       </div>
@@ -198,20 +204,20 @@ export default function RefrigeratedContainerComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0  order-2 md:order-none mt-6 md:mt-0">
+            <h2 className="text-3xl md:text-4xl  text-black mb-3">
             40ft Reefer Containers:
             </h2>
             <p>
             The 40ft refrigerated shipping container is built for large-scale, temperature-controlled logistics. Offering unmatched capacity, this container is a preferred choice for high-volume cargo transportation across industries such as food processing, pharmaceuticals, and industrial chemicals. It provides businesses with the ideal solution for high-capacity shipping, ensuring consistent performance, robust design, and exceptional reliability for global logistics operations.
             </p>
-            <h3 className="font-bold text-lg mt-4">Key Features</h3>
+            <h3 className="font-medium  text-lg mt-4">Key Features</h3>
             <ul className="space-y-3 py-4">
               
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">
+                  <span className="font-medium">
                   Maximum Capacity:
                   </span>
                   Provides a spacious 68.47 m³ for large-scale operations.
@@ -221,7 +227,7 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">
+                  <span className="font-medium">
                   Precise Cooling Systems:
                   </span>
                   Maintains a consistent temperature range of -30°C to +25°C, ensuring product quality.
@@ -231,7 +237,7 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Global Transport Compatibility:</span>Engineered for seamless intermodal transfers via road, rail, and sea.
+                  <span className="font-medium">Global Transport Compatibility:</span>Engineered for seamless intermodal transfers via road, rail, and sea.
                 </div>
               </li>
 
@@ -239,19 +245,22 @@ export default function RefrigeratedContainerComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">  Sturdy Design:</span> Constructed with premium materials to endure harsh weather conditions and long-haul journeys.
+                  <span className="font-medium">  Sturdy Design:</span> Constructed with premium materials to endure harsh weather conditions and long-haul journeys.
                 </div>
               </li>
 
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-bold">Applications:</span>
+                  <span className="font-medium">Applications:</span>
                   Ideal for bulk transport of frozen goods, medical supplies, and temperature-sensitive chemicals.
                 </div>
               </li>
 
             </ul>
+            <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
+              Learn More
+            </button>
             
           </div>
 
@@ -267,6 +276,8 @@ export default function RefrigeratedContainerComp() {
           </div>
         </div>
       </div>
+
+
 
     </div>
   );
