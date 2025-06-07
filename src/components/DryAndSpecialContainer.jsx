@@ -22,7 +22,7 @@ export default function DryAndSpecialContainer() {
         <div className="absolute inset-0 bg-black opacity-50" />
 
         <div className="relative container mx-auto px-4 h-full flex flex-col justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
             DRY & SPECIAL <br className="md:hidden" />CONTAINERS
           </h1>
           <p className="text-white text-sm md:text-base max-w-2xl mt-4">

@@ -14,7 +14,24 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home"); // Default active item is 'home'
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+
+  // Handle scroll event to change header appearance
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   // Set active item based on current URL path on component mount and when URL changes
   useEffect(() => {
@@ -51,10 +68,10 @@ export default function Header() {
     }
   };
 
-  return (
-    <header className="bg-white shadow-sm w-[90%] mx-auto content-center">
-      {/* Top bar with contact info and social icons - Hidden on mobile but content moved to mobile menu */}
-      <div className="hidden md:flex justify-between items-center px-6 py-2 text-gray-700 border-b">
+  return (    <header className={`bg-white shadow-sm w-full content-center fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "scrolled-header" : ""}`}>
+      <div className="w-[90%] mx-auto">
+        {/* Top bar with contact info and social icons - Hidden on mobile but content moved to mobile menu */}
+        <div className="hidden md:flex justify-between items-center px-6 py-2 text-gray-700 border-b">
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-1">
             <span className="text-secondary">
@@ -150,10 +167,8 @@ export default function Header() {
             {/* If you want to use an image instead:
             <img src="/api/placeholder/120/40" alt="Company Logo" className="h-8" /> */}
           </Link>
-        </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
+        </div>        {/* Desktop Navigation */}
+        <nav className="hidden md:flex md:space-x-4 lg:space-x-6 xl:space-x-8">
           <NavItem
             text="Home"
             to="/"
@@ -165,12 +180,10 @@ export default function Header() {
             to="/about"
             isActive={activeItem === "about"}
             onClick={() => handleNavClick("about")}
-          />
-
-          {/* Products dropdown */}
+          />          {/* Products dropdown */}
           <div className="relative group">
             <button
-              className={`flex items-center ${
+              className={`flex items-center text-sm md:text-sm lg:text-base font-medium ${
                 activeItem === "products"
                   ? "text-secondary"
                   : "text-gray-800 group-hover:text-secondary"
@@ -201,38 +214,36 @@ export default function Header() {
               }`}
               onMouseEnter={() => setIsProductsOpen(true)}
               onMouseLeave={() => setIsProductsOpen(false)}
-            >
-              <Link
+            >              <Link
                 to="/products/dry_Container"
-                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary"
+                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm"
                 onClick={() => handleNavClick("products")}
               >
                 Dry Container
-              </Link>
-              <Link
+              </Link>              <Link
                 to="/products/tanks"
-                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary"
+                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm"
                 onClick={() => handleNavClick("products")}
               >
                 Tanks
               </Link>
               <Link
                 to="/products/coil_containers"
-                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary"
+                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm"
                 onClick={() => handleNavClick("products")}
               >
                 Coil Containers
               </Link>
               <Link
                 to="/products/modular_containers"    
-                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary"
+                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm"
                 onClick={() => handleNavClick("products")}
               >
                 Modular Containers
               </Link>
               <Link
                 to="/products/refrigerated_containers"
-                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary"
+                className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm"
                 onClick={() => handleNavClick("products")}
               >
                 Referigerated Containers
@@ -303,7 +314,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}      <div className={`md:hidden fixed inset-0 z-50 ${isMenuOpen ? "block" : "hidden"}`}>
+      {/* Mobile Menu */}      <div className={`md:hidden fixed inset-0 z-60 ${isMenuOpen ? "block" : "hidden"}`}>
         <div className="fixed inset-0 bg-black bg-opacity-50" onClick={toggleMenu}></div>
         <div className="absolute right-0 top-0 h-full w-[80%] max-w-xs bg-secondary shadow-lg overflow-y-auto">
           <div className="flex justify-end p-4">
@@ -518,9 +529,9 @@ export default function Header() {
               >
                 Download Brochure
               </Link>
-            </div>
-          </div>
+            </div>          </div>
         </div>
+      </div>
       </div>
     </header>
   );
@@ -538,7 +549,7 @@ function NavItem({ text, to, isActive = false, onClick }) {
     >
       <Link
         to={to}
-        className={`font-medium ${isHovered ? "text-secondary" : "text-gray-800 group-hover:text-secondary"}
+        className={`font-medium text-sm md:text-sm lg:text-base ${isHovered ? "text-secondary" : "text-gray-800 group-hover:text-secondary"}
           ${isActive ? "text-secondary" : "text-gray-800 group-hover:text-secondary"}
         `}
         onClick={onClick}

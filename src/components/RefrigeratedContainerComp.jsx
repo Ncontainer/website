@@ -9,14 +9,13 @@ export default function RefrigeratedContainerComp() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section - Stack vertically on mobile, side by side on larger screens */}
-      <div className="flex py-6 w-[90%] m-auto flex-col ">
+      <div className="flex sm:py-6 w-[90%] m-auto flex-col ">
         {/* Left side - Text content */}
-        <div className="bg-white p-4 lg:p-8 ">
-          <h1 className="text-4xl md:text-4xl text-center text-black mb-4">
+        <div className="bg-white p-4 lg:p-8 ">          <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black mb-4">
             REFRIGERATED CONTAINER
           </h1>
         </div>
-        <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3">
+        <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3  mb-4 sm:mb-0">
           <p>
             NCON, a leader in intermodal container solutions, now offers
             refrigerated containers for the secure and efficient transport of
@@ -42,8 +41,8 @@ export default function RefrigeratedContainerComp() {
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
           <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-6 md:mt-0">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
-              10ft Reefer Containers:
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3 font-medium">
+              10ft Reefer Containers
             </h2>
             <p className="py-4">
               The 10ft refrigerated shipping container is an excellent choice
@@ -139,8 +138,8 @@ export default function RefrigeratedContainerComp() {
 
           {/* Right side - Text content */}
           <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
-            20ft Reefer Containers:
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3 font-medium">
+            20ft Reefer Containers
             </h2>
             <p>
             The 20ft refrigerated shipping container is the most versatile solution for medium-sized cargo loads. Built to meet global shipping standards, it is ideal for industries requiring temperature stability during transport or storage, such as food and beverages, pharmaceuticals, and chemicals. A dependable choice for businesses that need flexibility and capacity without compromising on temperature control.
@@ -205,8 +204,8 @@ export default function RefrigeratedContainerComp() {
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
           <div className="md:w-1/2 mb-6 md:mb-0  order-2 md:order-none mt-6 md:mt-0">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
-            40ft Reefer Containers:
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3 font-medium">
+            40ft Reefer Containers
             </h2>
             <p>
             The 40ft refrigerated shipping container is built for large-scale, temperature-controlled logistics. Offering unmatched capacity, this container is a preferred choice for high-volume cargo transportation across industries such as food processing, pharmaceuticals, and industrial chemicals. It provides businesses with the ideal solution for high-capacity shipping, ensuring consistent performance, robust design, and exceptional reliability for global logistics operations.

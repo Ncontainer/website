@@ -28,7 +28,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <Routes>
+      <div className="pt-28"> {/* Added padding-top to account for fixed header */}
+        <Routes>
         <Route path="/" element = {<Home />} />
         <Route path="/about" element = {<AboutUs />} />
         <Route path="/products/dry_Container" element = {<DryContainer />} />
@@ -39,9 +40,9 @@ function App() {
         <Route path="/products/refrigerated_containers" element = {<RefrigeratedContainers />} />
         <Route path="/resources" element = {<Resources />} />
         <Route path="/contact" element = {<Contact />} />
-        <Route path="/feedback" element = {<Feedback />} />
-      </Routes>
-      <Footer/>
+        <Route path="/feedback" element = {<Feedback />} />      </Routes>
+        <Footer/>
+      </div>
     </Router>
   );
 }

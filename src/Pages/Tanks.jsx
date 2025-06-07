@@ -12,10 +12,9 @@ const Tanks= () => {
     <TankComp/>
     <WhyUsTank/>
     <OurOptions />
-    <div className="container mx-auto py-8 w-[93%]">
-      <div className="flex items-center">
+    <div className="container mx-auto py-8 w-[93%]">      <div className="flex items-center">
         <div className="w-1/2 px-4">
-          <h2 className="text-3xl  mb-4">Tanks at a Glance</h2>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">Tanks at a Glance</h2>
        
        
         </div>
@@ -28,13 +27,13 @@ const Tanks= () => {
     </div>
     <div className="container mx-auto py-8 w-[93%]">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div className="bg-gray-100 p-6 py-24 py-24 rounded-lg shadow-md">
+      <div className="bg-gray-100 p-6  py-24 rounded-lg shadow-md">
        
       </div>
-      <div className="bg-gray-100 p-6 py-24 py-24 rounded-lg shadow-md">
+      <div className="bg-gray-100 p-6  py-24 rounded-lg shadow-md">
        
       </div>
-      <div className="bg-gray-100 p-6 py-24 py-24 rounded-lg shadow-md">
+      <div className="bg-gray-100 p-6  py-24 rounded-lg shadow-md">
       
       </div>
       </div>

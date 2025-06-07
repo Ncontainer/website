@@ -36,11 +36,11 @@ export default function WhyUsTank() {
   ];
 
   return (
-    <div className="w-full bg-white py-16 px-4">
+    <div className="w-full bg-white pb-6 sm:py-16 px-4">
       <div className="container mx-auto">
         {/* Section Header */}        <div className="text-center mb-12">
           <p className="text-orange-500 font-medium mb-2">Why Us?</p>
-          <h2 className="text-3xl md:text-4xl ">Benefits of Choosing ARCON for Highly Corrosive Tanks</h2>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">Benefits of Choosing ARCON for Highly Corrosive Tanks</h2>
         </div>
 
         {/* Benefits Grid */}
@@ -53,7 +53,7 @@ export default function WhyUsTank() {
               <div className="mb-4">
                 {benefit.icon}
               </div>
-              <h3 className="text-lg font-medium mb-2">
+              <h3 className="text-base sm:text-lg font-medium mb-2">
                 {benefit.title}
               </h3>
               <p className="text-gray-600 text-sm">

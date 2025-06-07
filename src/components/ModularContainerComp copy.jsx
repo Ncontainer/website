@@ -11,7 +11,7 @@ export default function ModularContainerComp() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section - Stack vertically on mobile, side by side on larger screens */}
-      <div className="flex py-6 w-[90%] m-auto flex-col lg:flex-row">
+      <div className="flex sm:py-6 w-[90%] m-auto flex-col lg:flex-row">
         {/* Left side - Text content */}
         <div className="bg-white p-4 lg:p-8 lg:w-1/2">
           <h1 className="text-4xl md:text-4xl text-center text-black mb-4">

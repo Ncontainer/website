@@ -11,14 +11,13 @@ export default function ModularContainerComp() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section - Stack vertically on mobile, side by side on larger screens */}
-      <div className="flex py-6 w-[90%] m-auto flex-col ">
+      <div className="flex sm:py-6 w-[90%] m-auto flex-col ">
         {/* Left side - Text content */}
-        <div className="bg-white p-4 lg:p-8">
-          <h1 className="text-4xl md:text-4xl text-center text-black mb-4">
+        <div className="bg-white p-4 lg:p-8">          <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black mb-4">
             MODULAR CONTAINER
           </h1>
         </div>
-        <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3">
+        <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3  mb-4 sm:mb-0">
           <p>
             NCON's modular containers are designed to meet your diverse needs
             providing reliable, versatile and cost-effective applications for a
@@ -41,9 +40,8 @@ export default function ModularContainerComp() {
       {/* Portable Security Cabin */}
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
-          {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0 order-1 mt-6 md:mt-0 md:order-none">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+          {/* Left side - Text content */}          <div className="md:w-1/2 mb-6 md:mb-0 order-1 mt-6 md:mt-0 md:order-none">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               Portable Security Cabin:
             </h2>
             <p>
@@ -114,7 +112,7 @@ export default function ModularContainerComp() {
 
           {/* Right side - Text content */}
           <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               PUF Cabin:
             </h2>
             <p>
@@ -164,7 +162,7 @@ export default function ModularContainerComp() {
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
           <div className="md:w-1/2 mb-6 md:mb-0 order-2 mt-6 md:mt-0 md:order-none">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
             Portable Container Toilet:
             </h2>
             <p>
@@ -244,7 +242,7 @@ export default function ModularContainerComp() {
 
           {/* Right side - Text content */}
           <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
             Office Cabin:
             </h2>
             <p>
@@ -296,7 +294,7 @@ export default function ModularContainerComp() {
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
           <div className="md:w-1/2 mb-6 md:mb-0 order-2 mt-6 md:mt-0 md:order-none">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
             Prefabricated Cabin:
             </h2>
             <p>
