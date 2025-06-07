@@ -10,14 +10,13 @@ export default function TankComp() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section - Stack vertically on mobile, side by side on larger screens */}
-      <div className="flex py-6 w-[90%] m-auto flex-col ">
-        {/* Left side - Text content */}
-        <div className="bg-white p-4 lg:p-8 ">
-          <h1 className="text-4xl md:text-4xl text-center text-black mb-4">
+      <div className="flex sm:py-6 w-[90%] m-auto flex-col ">
+        {/* Left side - Text content */}        <div className="bg-white p-4 lg:p-8 ">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black mb-4">
             LIQUID TRANSPORT SOLUTIONS
           </h1>
         </div>
-        <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3">
+        <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 leading-relaxed mb-4 sm:mb-0">
           <p>
             NCON, a premier ISO tank container supplier, specializes in
             providing tanks on lease for bulk and hazardous chemicals. Our
@@ -53,12 +52,9 @@ export default function TankComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               T11 ISO Tank Container
-            </h2>
-
-            <p className="text-gray-700 mb-6">
+            </h2>            <p className="text-gray-700 mb-6">
               The ISO Tank T11 is designed for the safe and efficient transport
               of bulk liquids, chemicals, and gases. Ideal for industries
               handling hazardous and non-hazardous materials, it ensures
@@ -67,13 +63,13 @@ export default function TankComp() {
               various transport modes.
             </p>
 
-            <h3 className=" text-lg mb-4">Key Features</h3>
+            <h3 className="text-base sm:text-lg mb-4 font-medium">Key Features</h3>
 
             <ul className="space-y-3">
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Large Capacity:</span> Up to 26,000 liters
+                  <span className="font-medium">Large Capacity:</span> Up to 26,000 liters
                   for bulk transport.
                 </div>
               </li>
@@ -81,7 +77,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Multi-modal Compatibility:</span> Seamless
+                  <span className="font-medium">Multi-modal Compatibility:</span> Seamless
                   transport by roads, sea, and rail.
                 </div>
               </li>
@@ -89,7 +85,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Certified Safety:</span> ISO-compliant for
+                  <span className="font-medium">Certified Safety:</span> ISO-compliant for
                   hazardous and non-hazardous materials.
                 </div>
               </li>
@@ -97,7 +93,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Customizable Options:</span> Available for
+                  <span className="font-medium">Customizable Options:</span> Available for
                   hire with tailored modifications.
                 </div>
               </li>
@@ -132,12 +128,9 @@ export default function TankComp() {
           </div>
 
           {/* Right side - Text content */}
-          <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+          <div className="md:w-1/2">            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               T14 ISO Tank Container
-            </h2>
-
-            <p className="text-gray-700 mb-6">
+            </h2>            <p className="text-gray-700 mb-6">
               The T14 ISO Tank offers a reliable solution for transporting
               highly corrosive liquids and chemicals. With advanced safety
               features, it ensures secure handling of hazardous materials while
@@ -145,13 +138,13 @@ export default function TankComp() {
               smooth logistics across various modes of transportation.
             </p>
 
-            <h3 className=" text-lg mb-4">Key Features</h3>
+            <h3 className="text-base sm:text-lg mb-4">Key Features</h3>
 
             <ul className="space-y-3">
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Chemical Resistance:</span> Specialty
+                  <span className="font-medium">Chemical Resistance:</span> Specialty
                   linings prevent corrosion for durability.
                 </div>
               </li>
@@ -159,7 +152,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Capacity Range:</span> From 9,000 to 27,000
+                  <span className="font-medium">Capacity Range:</span> From 9,000 to 27,000
                   liters for bulk chemical transport.
                 </div>
               </li>
@@ -167,7 +160,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Multi-modal Transport:</span> Ideal to
+                  <span className="font-medium">Multi-modal Transport:</span> Ideal to
                   transport with container ships, road chassis, and rail cars.
                 </div>
               </li>
@@ -175,7 +168,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Certified Safety:</span> Fully
+                  <span className="font-medium">Certified Safety:</span> Fully
                   ISO-compliant for global safety and efficiency.
                 </div>
               </li>
@@ -183,7 +176,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="">Wide Applications:</span> Ideal for
+                  <span className="font-medium">Wide Applications:</span> Ideal for
                   petrochemical, pharmaceutical, and mining industries.
                 </div>
               </li>
@@ -196,8 +189,7 @@ export default function TankComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               Speciality Lined Liquid Tanks- Corrosive Chemical
             </h2>
 
@@ -241,8 +233,7 @@ export default function TankComp() {
           </div>
 
           {/* Right side - Text content */}
-          <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+          <div className="md:w-1/2">            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               Cryogenic / LNG Tanks
             </h2>
 
@@ -264,8 +255,7 @@ export default function TankComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">
-            <h2 className="text-3xl md:text-4xl  text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               Baffled-lined Liquid Tanks
             </h2>
 

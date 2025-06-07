@@ -149,6 +149,8 @@ const OurTeam = () => {
     <div className="w-[85%] mx-auto px-4 py-4 md:py-8">
       <div className="text-center mb-8 md:mb-12">
         <p className="text-orange-500 font-medium mb-2">TEAM</p>
+                  <h2 className="text-3xl md:text-4xl  ">Meet Our Team</h2>
+
       </div>
 
       {/* Featured team member - Improved mobile layout with full image */}
