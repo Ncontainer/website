@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import img from "../images/04.png"
-import steel from "../images/steel.png"
-import aluminum from "../images/steel.png"
-import copper from "../images/steel.png"
-import iron from "../images/steel.png"
-import titanium from "../images/steel.png"
+import img from "../images/04.png";
+import steel from "../images/steel.png";
+import aluminum from "../images/steel.png";
+import copper from "../images/steel.png";
+import iron from "../images/steel.png";
+import titanium from "../images/steel.png";
 
 const IndustriesSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -50,14 +50,14 @@ const IndustriesSection = () => {
   };
 
   return (
-    <div className="w-full md:w-[95%] mx-auto  pb-4 lg:py-8">
+    <div className="w-full md:w-[95%] mx-auto pb-4 lg:py-8">
       {/* Industries we Cater to Section */}
       <div className="flex flex-col md:flex-row justify-between items-start mb-8 mx-8">
         <div className="mb-6 md:mb-0 md:w-1/3">
           <h3 className="text-orange-500 uppercase font-medium text-sm mb-2">
             OUR EXPERTISE
           </h3>
-          <h2 className="text-3xl md:text-4xl  ">Industries we Cater to</h2>
+          <h2 className="text-3xl md:text-4xl">Industries we Cater to</h2>
         </div>
 
         <div className="md:w-1/2">
@@ -67,30 +67,29 @@ const IndustriesSection = () => {
             nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             Duis aute irure dolor
           </p>
-
-          <div className="flex mt-4">
-            <button
-              onClick={prevSlide}
-              className="bg-orange-500 text-white p-2 rounded-full mr-2"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="bg-orange-500 text-white p-2 rounded-full"
-              aria-label="Next slide"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
         </div>
       </div>
 
       {/* Image slider */}
       <div className="relative overflow-hidden" ref={sliderRef}>
+        {/* Arrows positioned on sides */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-2 rounded-full z-10"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-2 rounded-full z-10"
+          aria-label="Next slide"
+        >
+          <ChevronRight size={20} />
+        </button>
+
         <div
-          className="flex flex-nowrap gap-4 mb-4 md:mb-12 transition-all duration-300"
+          className="flex flex-nowrap gap-4 mb-4 transition-all duration-300"
           style={{
             transform: `translateX(-${currentSlide * (isMobile ? 100 : 33.33)}%)`,
           }}
@@ -103,7 +102,8 @@ const IndustriesSection = () => {
                   ? "relative w-full flex-shrink-0"
                   : "relative w-full sm:w-1/2 md:w-1/3 flex-shrink-0"
               }
-            >              <div className="relative group cursor-pointer overflow-hidden md:rounded-lg">
+            >
+              <div className="relative group cursor-pointer overflow-hidden md:rounded-lg">
                 <img
                   src={industry.image}
                   alt={industry.name}
@@ -119,18 +119,14 @@ const IndustriesSection = () => {
       </div>
 
       {/* We Also Solutions in */}
-        <div  
-          className="bg-gradient-to-r from-[#FF8901] to-[#FFC107] md:rounded-lg p-1 flex flex-col md:flex-row items-center h-auto pt-4 sm:pt-1"
-      >
+      <div className="bg-gradient-to-r from-[#FF8901] to-[#FFC107] md:rounded-lg p-1 flex flex-col md:flex-row items-center h-auto pt-4 sm:pt-1">
         <div className="md:w-1/2 mb-6 md:mb-0 pl-8">
-          <h2 className="text-white text-2xl font-bold mb-4">
-            We Also Solutions in
-          </h2>
+          <h2 className="text-white text-2xl font-bold mb-4">We Also Solutions in</h2>
           <div className="flex flex-wrap gap-2">
             {containerTypes.map((container) => (
               <span
                 key={container.id}
-                className="bg-transparent  border-2 border-white text-white font-medium px-4 py-2 rounded-full text-sm whitespace-nowrap"
+                className="bg-transparent border-2 border-white text-white font-medium px-4 py-2 rounded-full text-sm whitespace-nowrap"
               >
                 {container.name}
               </span>
@@ -138,12 +134,12 @@ const IndustriesSection = () => {
           </div>
         </div>
         <div className="w-full md:w-1/2 h-48 md:h-64 overflow-hidden">
-                    <img 
-                      src={img} 
-                      alt="Container with analytics"
-                      className="w-full h-full scale-150 transform translate-y-[2rem] "
-                    />
-                  </div>
+          <img
+            src={img}
+            alt="Container with analytics"
+            className="w-full h-full scale-150 transform translate-y-[2rem]"
+          />
+        </div>
       </div>
     </div>
   );
