@@ -111,12 +111,16 @@ const IndustriesSection = () => {
                 />
                 <div className="absolute inset-0 bg-[#00000080] flex items-center justify-center">
                   <h3 className="text-white text-3xl font-bold">{industry.name}</h3>
+                <div className="absolute inset-0 bg-[#00000080] flex items-center justify-center">
+                  <h3 className="text-white text-3xl font-bold">{industry.name}</h3>
                 </div>
               </div>
             </div>
+          </div>
           ))}
         </div>
       </div>
+        
 
       {/* We Also Solutions in */}
       <div className="bg-gradient-to-r from-[#FF8901] to-[#FFC107] md:rounded-lg p-1 flex flex-col md:flex-row items-center h-auto pt-4 sm:pt-1">

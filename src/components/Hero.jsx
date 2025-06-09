@@ -18,6 +18,7 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+
   return (
     <div className="relative w-full h-screen overflow-hidden ">
       {/* Background Video */}
