@@ -138,7 +138,7 @@ export default function TankComp() {
               smooth logistics across various modes of transportation.
             </p>
 
-            <h3 className="text-base sm:text-lg mb-4">Key Features</h3>
+            <h3 className="text-base sm:text-lg mb-4 font-medium">Key Features</h3>
 
             <ul className="space-y-3">
               <li className="flex items-start">
