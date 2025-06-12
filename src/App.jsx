@@ -13,7 +13,9 @@ import Tanks from "./Pages/Tanks";
 import CoilContainers from "./Pages/CoilContainers";
 import ModularContainers from "./Pages/ModularContainers";
 import RefrigeratedContainers from "./Pages/RefrigeratedContainers";  
-
+import LoginPage from './Pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
+import RequirementPage from './pages/RequirementPage';
 
 // function App() {
 //   return (
@@ -40,7 +42,11 @@ function App() {
         <Route path="/products/refrigerated_containers" element = {<RefrigeratedContainers />} />
         <Route path="/resources" element = {<Resources />} />
         <Route path="/contact" element = {<Contact />} />
-        <Route path="/feedback" element = {<Feedback />} />      </Routes>
+        <Route path="/feedback" element = {<Feedback />} />    
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/requirement" element={<RequirementPage />}/>
+        </Routes>
         <Footer/>
       </div>
     </Router>
