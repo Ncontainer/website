@@ -17,6 +17,8 @@ export default defineConfig({
     __PROD__: process.env.NODE_ENV === 'production',
     // React Router 7+ might need these
     __ROUTER_BASE__: JSON.stringify('/'),
+    // Add server host definition
+    __SERVER_HOST__: JSON.stringify('http://localhost:4173'),
     // Add any other variables you see in error messages
   },
   build: {
