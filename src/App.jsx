@@ -15,7 +15,11 @@ import ModularContainers from "./Pages/ModularContainers";
 import RefrigeratedContainers from "./Pages/RefrigeratedContainers";  
 import LoginPage from './Pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
-import RequirementPage from './pages/RequirementPage';
+import OneWayForm from "./Pages/OnewayForm";
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import VerificationPage from './pages/VerificationPage';
+import LeaseForm from './pages/LeaseForm';
+import TradeForm from './pages/TradeForm';
 
 // function App() {
 //   return (
@@ -45,7 +49,12 @@ function App() {
         <Route path="/feedback" element = {<Feedback />} />    
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/requirement" element={<RequirementPage />}/>
+        
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/verify" element={<VerificationPage />} />
+        <Route path="/one-way" element={<OneWayForm />} />
+        <Route path="/lease" element={<LeaseForm />} />
+        <Route path="/trade" element={<TradeForm />} />
         </Routes>
         <Footer/>
       </div>
