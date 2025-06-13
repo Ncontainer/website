@@ -94,7 +94,8 @@ export default function Header() {
         </div>
 
         {/* Main Navigation */}
-        <div className="flex justify-between items-center px-6 py-4">
+        {/* THE CHANGE IS HERE: "px-6" is changed to "md:px-6" to remove horizontal padding on mobile */}
+        <div className="flex justify-between items-center py-4 md:px-6">
           <div className="flex-1 md:flex-none flex justify-center md:justify-start items-center">
             <Link to="/" className="flex items-center" onClick={() => handleNavClick("home")}>
               <div className="font-bold text-2xl uppercase">LOGO</div>
