@@ -73,11 +73,7 @@ function ForgotPasswordPage() {
         </div>
 
         {/* Bottom Decorative Image */}
-        <img
-          src="/src/assets/images/0f1163addb43adf2881e4d9228b07d4caa1db610.png"
-          alt="Decorative"
-          className="absolute bottom-0 right-0 w-40 h-40 object-cover opacity-20 pointer-events-none"
-        />
+        
       </div>
     </div>
   );

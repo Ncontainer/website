@@ -18,9 +18,8 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
   return (
-    <div className="relative w-full h-screen overflow-hidden ">
+    <div className="relative w-full h-screen overflow-hidden">
       {/* Background Video */}
       <div
         className={`absolute overflow-hidden bottom-0 z-0 ${
@@ -95,18 +94,24 @@ export default function Hero() {
             {/* Text Section */}
             <div
               className={`${
-                isMobile ? "w-full text-left" : "w-1/2 pr-8"
-              } ${isMobile ? "order-1 mb-6" : "order-1"}`}
+                isMobile
+                  ? "w-full text-center items-center flex flex-col mb-6"
+                  : "w-1/2 pr-8 text-left"
+              } order-1`}
             >
               <div className="mb-2 md:mb-4 text-secondary">
-                <span className="text-sm sm:text-base md:text-lg font-medium">
+                <span className="text-sm sm:text-base md:text-lg font-medium text-orange-600">
                   WELCOME TO COMPANY
                 </span>
               </div>
-              <div className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-black mb-4 md:mb-4 flex flex-col leading-tight">
-                <span className="mb-1">Get Your Load</span>
-                <span className="mb-1">to market</span>
-                <span>Faster</span>
+              <div
+                className={`${
+                  isMobile
+                    ? "text-xl whitespace-nowrap text-center"
+                    : "text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-left"
+                } text-black mb-4 md:mb-4 font-semibold`}
+              >
+                Get your load to market faster
               </div>
               <p className="text-gray-600 mb-4 md:mb-8 max-w-md text-xs sm:text-sm md:text-base lg:text-lg">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

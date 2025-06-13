@@ -79,11 +79,7 @@ function VerificationPage() {
         </div>
 
         {/* Bottom Right Image */}
-        <img
-          src="/src/assets/images/0f1163addb43adf2881e4d9228b07d4caa1db610.png"
-          alt="Bottom Right Corner Image"
-          className="absolute bottom-0 right-0 w-66 h-66 object-cover -mb-12 opacity-20"
-        />
+       
       </div>
     </div>
   );
