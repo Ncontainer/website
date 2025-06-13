@@ -30,9 +30,9 @@ const TradeForm = () => {
   };
 
   return (
-    <div className="min-h-screen grid grid-cols-[60%_40%]">
-      {/* Left 60% with Background Image and Welcome Text */}
-      <div className="bg-amber-700 relative">
+    <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
+      {/* Left Side - Background Image and Welcome Text */}
+      <div className="bg-amber-700 relative h-96 md:h-auto">
         <img
           src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
           alt="Main Example"
@@ -80,7 +80,7 @@ const TradeForm = () => {
         </div>
       </div>
 
-      {/* Right 40% Form */}
+      {/* Right Side - Form */}
       <div className="bg-white relative p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-gray-100">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 border-w-fit">
@@ -191,6 +191,13 @@ const TradeForm = () => {
         <button className="bg-orange-500 text-white text-center w-48 py-3 rounded-full font-semibold hover:bg-orange-600 mx-auto block">
           Proceed
         </button>
+
+        {/* Bottom-right image on large screens */}
+        <img
+          src="/src/assets/images/small-corner-img.png"
+          alt="Decorative"
+          className="hidden md:block absolute bottom-4 right-4 w-24 h-24 object-contain"
+        />
 
         {/* Modal */}
         {showModal && (

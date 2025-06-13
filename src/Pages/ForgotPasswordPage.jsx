@@ -61,13 +61,15 @@ function ForgotPasswordPage() {
             className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
           />
 
-          {/* Reset Password Button */}
-          <Link
-            to="/verify"
-            className="bg-amber-500 w-80 text-white px-4 py-3 rounded-full font-semibold text-center hover:bg-amber-400 transition duration-300"
-          >
-            Reset Password
-          </Link>
+          {/* Reset Password Button - Centered on mobile */}
+          <div className="flex justify-center md:justify-start">
+            <Link
+              to="/verify"
+              className="bg-amber-500 w-80 text-white px-4 py-3 rounded-full font-semibold text-center hover:bg-amber-400 transition duration-300"
+            >
+              Reset Password
+            </Link>
+          </div>
         </div>
 
         {/* Bottom Decorative Image */}

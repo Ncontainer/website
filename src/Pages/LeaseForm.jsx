@@ -15,32 +15,32 @@ const LeaseForm = () => {
   };
 
   return (
-    <div className="min-h-screen grid grid-cols-[60%_40%] relative">
-      {/* Left Section */}
-      <div className="bg-amber-700 relative">
+    <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%] relative">
+      {/* Top (on mobile) / Left Section (on desktop) */}
+      <div className="bg-amber-700 relative h-64 md:h-auto">
         <img
           src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
           alt="Background"
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-10 left-9 text-left px-4 z-10">
+        <div className="absolute top-10 left-6 text-left px-4 z-10">
           <p className="text-white text-sm font-medium" style={{ textShadow: "-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901" }}>
             Welcome to
           </p>
-          <h1 className="text-[35px] font-bold text-white" style={{ textShadow: "-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901" }}>
+          <h1 className="text-[28px] md:text-[35px] font-bold text-white" style={{ textShadow: "-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901" }}>
             NCON Containers
           </h1>
         </div>
       </div>
 
-      {/* Right Section */}
-      <div className="bg-white p-8 overflow-y-auto">
-        <h2 className="text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 mb-6">
+      {/* Bottom (on mobile) / Right Section (on desktop) */}
+      <div className="bg-white p-6 md:p-8 overflow-y-auto">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 mb-6">
           Requirements Form
         </h2>
 
         {/* Dropdown Tabs */}
-        <div className="grid grid-cols-[70%_30%] gap-2 mb-6">
+        <div className="grid grid-cols-[65%_35%] gap-2 mb-6">
           <select
             className="w-full border border-gray-300 rounded-md p-2"
             value="Lease"
@@ -61,7 +61,7 @@ const LeaseForm = () => {
 
         {/* Container Entries */}
         {containers.map((_, i) => (
-          <fieldset key={i} className="rounded-md p-4 mb-6 relative">
+          <fieldset key={i} className="rounded-md p-4 mb-6 relative border border-gray-200">
             {i > 0 && (
               <button
                 onClick={() => removeContainer(i)}
@@ -74,7 +74,7 @@ const LeaseForm = () => {
               Container Specifications
             </legend>
 
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm mb-1">Container Quantity: <span className="text-red-500">*</span></label>
                 <input type="number" placeholder="Enter Quantity" className="w-full border border-gray-300 p-2 rounded-md" />
@@ -89,7 +89,7 @@ const LeaseForm = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-[30%_30%_40%] gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm mb-1">Container Condition: <span className="text-red-500">*</span></label>
                 <select className="w-full border border-gray-300 p-2 rounded-md">
@@ -118,7 +118,7 @@ const LeaseForm = () => {
         {/* Location Details */}
         <div className="mb-6">
           <h3 className="font-semibold text-gray-700 mb-2">Location Details</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm mb-1">On-Hire Location: <span className="text-red-500">*</span></label>
               <div className="flex gap-2">
@@ -143,21 +143,21 @@ const LeaseForm = () => {
         {/* Contact Details */}
         <div className="mb-6">
           <h3 className="font-semibold text-gray-700 mb-2">Contact Details</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input type="email" placeholder="Email ID" className="w-full border border-gray-300 p-2 rounded-md" />
             <input type="text" placeholder="Mobile No." className="w-full border border-gray-300 p-2 rounded-md" />
           </div>
         </div>
 
         {/* Submit */}
-        <button className="bg-orange-500 text-white text-center w-48 py-3 rounded-full font-semibold hover:bg-orange-600 mx-auto block">
+        <button className="bg-orange-500 text-white text-center w-full sm:w-48 py-3 rounded-full font-semibold hover:bg-orange-600 mx-auto block">
           Proceed
         </button>
 
         {/* Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-            <div className="bg-white rounded-xl shadow-lg w-[500px] max-h-[80vh] p-6 overflow-y-auto border-4 border-blue-300">
+            <div className="bg-white rounded-xl shadow-lg w-[90%] sm:w-[500px] max-h-[80vh] p-6 overflow-y-auto border-4 border-blue-300">
               <h3 className="font-semibold text-gray-800 text-lg mb-4">Location Selector Popup Modal</h3>
               <input type="text" placeholder="Select by Port, Country or Region Name" className="w-full border border-gray-300 rounded-md p-2 mb-4" />
               <div className="space-y-4">

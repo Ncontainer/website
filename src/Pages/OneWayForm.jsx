@@ -9,7 +9,6 @@ const OneWayForm = () => {
 
   const handleFormTypeChange = (e) => {
     const selected = e.target.value;
-
     if (selected === 'Lease') {
       navigate('/lease');
     } else if (selected === 'Trade') {
@@ -21,8 +20,42 @@ const OneWayForm = () => {
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
-      {/* Right 40% - Requirements Form */}
-      <div className="bg-white relative p-6 md:p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-gray-100 order-1 md:order-2">
+      {/* Left Image Section - Order 1 on all screens */}
+      <div className="bg-amber-700 relative order-1 h-64 md:h-auto">
+        <img
+          src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
+          alt="Main Example"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute top-5 left-5 text-left px-4 z-10">
+          <p
+            className="tracking-wider text-sm"
+            style={{
+              fontFamily: 'Saira, sans-serif',
+              fontWeight: '500',
+              color: 'white',
+              textShadow:
+                '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+            }}
+          >
+            Welcome to
+          </p>
+          <h1
+            className="text-xl md:text-3xl leading-snug font-saira"
+            style={{
+              fontFamily: 'Saira, sans-serif',
+              color: '#ffffff',
+              textShadow:
+                '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+            }}
+          >
+            NCON Containers
+          </h1>
+        </div>
+      </div>
+
+      {/* Right Form Section - Order 2 on all screens */}
+      <div className="bg-white relative p-6 md:p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-gray-100 order-2">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 border-w-fit">
             Requirements Form
@@ -49,7 +82,6 @@ const OneWayForm = () => {
           </button>
         </div>
 
-        {/* Container Specifications */}
         <fieldset className="rounded-md p-4 mb-6">
           <legend className="font-semibold text-lg text-gray-700">Container Specifications</legend>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -88,7 +120,6 @@ const OneWayForm = () => {
           </div>
         </fieldset>
 
-        {/* Drop-off and Pick-Up */}
         <div className="mb-6">
           <h3 className="font-semibold text-gray-700 mb-2">Drop-off and Pick-Up</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -119,7 +150,6 @@ const OneWayForm = () => {
           </div>
         </div>
 
-        {/* Contact Details */}
         <div className="mb-6">
           <h3 className="font-semibold text-gray-700 mb-2">Contact Details</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -171,38 +201,6 @@ const OneWayForm = () => {
             </div>
           </div>
         )}
-      </div>
-
-      {/* Left 60% with Background Image */}
-      <div className="bg-amber-700 relative order-2 md:order-1 h-64 md:h-auto">
-        <img
-          src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
-          alt="Main Example"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-5 left-5 text-left px-4 z-10">
-          <p
-            className="tracking-wider text-sm"
-            style={{
-              fontFamily: 'Saira, sans-serif',
-              fontWeight: '500',
-              color: 'white',
-              textShadow: `-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901`,
-            }}
-          >
-            Welcome to
-          </p>
-          <h1
-            className="text-xl md:text-3xl leading-snug font-saira"
-            style={{
-              fontFamily: 'Saira, sans-serif',
-              color: '#ffffff',
-              textShadow: `-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901`,
-            }}
-          >
-            NCON Containers
-          </h1>
-        </div>
       </div>
     </div>
   );
