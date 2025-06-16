@@ -34,7 +34,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <div className="pt-28"> {/* Added padding-top to account for fixed header */}
+      <div className="md:pt-28 pt-16"> {/* Added padding-top to account for fixed header */}
         <Routes>
         <Route path="/" element = {<Home />} />
         <Route path="/about" element = {<AboutUs />} />
