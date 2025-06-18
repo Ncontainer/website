@@ -2,6 +2,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// ✅ Import images correctly
+import mainImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+
+
 const TradeForm = () => {
   const [locations, setLocations] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -34,7 +38,7 @@ const TradeForm = () => {
       {/* Left Side - Background Image and Welcome Text */}
       <div className="bg-amber-700 relative h-96 md:h-auto">
         <img
-          src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
+          src={mainImage}
           alt="Main Example"
           className="w-full h-full object-cover"
         />
@@ -192,12 +196,8 @@ const TradeForm = () => {
           Proceed
         </button>
 
-        {/* Bottom-right image on large screens */}
-        <img
-          src="/src/assets/images/small-corner-img.png"
-          alt="Decorative"
-          className="hidden md:block absolute bottom-4 right-4 w-24 h-24 object-contain"
-        />
+        {/* ✅ Decorative image with correct import */}
+        
 
         {/* Modal */}
         {showModal && (

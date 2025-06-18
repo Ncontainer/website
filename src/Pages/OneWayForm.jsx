@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'; // ✅ Import image correctly
 
 const OneWayForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -20,10 +21,10 @@ const OneWayForm = () => {
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
-      {/* Left Image Section - Order 1 on all screens */}
+      {/* Left Image Section */}
       <div className="bg-amber-700 relative order-1 h-64 md:h-auto">
         <img
-          src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
+          src={heroImage}
           alt="Main Example"
           className="w-full h-full object-cover"
         />
@@ -54,7 +55,7 @@ const OneWayForm = () => {
         </div>
       </div>
 
-      {/* Right Form Section - Order 2 on all screens */}
+      {/* Right Form Section */}
       <div className="bg-white relative p-6 md:p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-gray-100 order-2">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 border-w-fit">

@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'; // ✅ Correct import path
 
 function VerificationPage() {
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
+      
       {/* Left 60% with Image */}
       <div className="bg-amber-700 hidden md:block">
         <img
-          src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
+          src={bannerImage} // ✅ Use imported image
           alt="Main Example"
           className="w-full h-full object-cover"
         />
@@ -15,6 +17,7 @@ function VerificationPage() {
 
       {/* Right 40% - Verification Form Content */}
       <div className="bg-white relative flex flex-col justify-start p-8">
+        
         {/* Header */}
         <div className="w-full mb-8">
           <p
@@ -77,9 +80,6 @@ function VerificationPage() {
             Verify
           </button>
         </div>
-
-        {/* Bottom Right Image */}
-       
       </div>
     </div>
   );

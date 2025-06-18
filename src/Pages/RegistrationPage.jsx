@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'; // ✅ Import image
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ export default function RegistrationPage() {
       {/* Image Section */}
       <div className="bg-amber-700 h-64 md:h-auto">
         <img
-          src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
+          src={bannerImage} // ✅ Use imported image
           alt="Main Example"
           className="w-full h-full object-cover"
         />
@@ -92,7 +93,6 @@ export default function RegistrationPage() {
 
         {/* Form */}
         <form className="w-full max-w-xl space-y-4">
-          {/* First and Last Name */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="text"
@@ -110,7 +110,6 @@ export default function RegistrationPage() {
             />
           </div>
 
-          {/* Email and Mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="email"
@@ -128,7 +127,6 @@ export default function RegistrationPage() {
             />
           </div>
 
-          {/* Company Name */}
           <input
             type="text"
             placeholder="Company Name"
@@ -137,7 +135,6 @@ export default function RegistrationPage() {
             onChange={handleChange}
           />
 
-          {/* Country and State */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <select
               name="country"
@@ -163,7 +160,6 @@ export default function RegistrationPage() {
             </select>
           </div>
 
-          {/* Address */}
           <textarea
             placeholder="Enter Address"
             rows="3"
@@ -172,7 +168,6 @@ export default function RegistrationPage() {
             onChange={handleChange}
           ></textarea>
 
-          {/* Continue Button */}
           <button
             onClick={handleContinue}
             className="w-full bg-amber-500 text-white py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300"
@@ -180,9 +175,6 @@ export default function RegistrationPage() {
             Continue
           </button>
         </form>
-
-        {/* Decorative Image */}
-        
       </div>
     </div>
   );
