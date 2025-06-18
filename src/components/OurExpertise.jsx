@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Add this for internal routing
 import img from "../images/04.png";
 import steel from "../images/steel.png";
 import aluminum from "../images/steel.png";
@@ -21,10 +22,10 @@ const IndustriesSection = () => {
   ];
 
   const containerTypes = [
-    { id: 1, name: 'Tanks' },
-    { id: 2, name: 'Coil-tainers' },
-    { id: 3, name: 'Modular Containers' },
-    { id: 4, name: 'Refrigerated Containers' },
+    { id: 1, name: 'Tanks', path: '/products/tanks' },
+    { id: 2, name: 'Coil-tainers', path: '/products/coil_containers' },
+    { id: 3, name: 'Modular Containers', path: '/products/modular_containers' },
+    { id: 4, name: 'Refrigerated Containers', path: '/products/refrigerated_containers' },
   ];
 
   const checkIsMobile = () => {
@@ -72,7 +73,7 @@ const IndustriesSection = () => {
 
       {/* Image slider */}
       <div className="relative overflow-hidden" ref={sliderRef}>
-        {/* Arrows positioned on sides */}
+        {/* Arrows */}
         <button
           onClick={prevSlide}
           className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-2 rounded-full z-10"
@@ -111,16 +112,12 @@ const IndustriesSection = () => {
                 />
                 <div className="absolute inset-0 bg-[#00000080] flex items-center justify-center">
                   <h3 className="text-white text-3xl font-bold">{industry.name}</h3>
-                <div className="absolute inset-0 bg-[#00000080] flex items-center justify-center">
-                  <h3 className="text-white text-3xl font-bold">{industry.name}</h3>
                 </div>
               </div>
             </div>
-          </div>
           ))}
         </div>
       </div>
-        
 
       {/* We Also Solutions in */}
       <div className="bg-gradient-to-r from-[#FF8901] to-[#FFC107] md:rounded-lg p-1 flex flex-col md:flex-row items-center h-auto pt-4 sm:pt-1">
@@ -128,20 +125,23 @@ const IndustriesSection = () => {
           <h2 className="text-white text-2xl font-bold mb-4">We Also Solutions in</h2>
           <div className="flex flex-wrap gap-2">
             {containerTypes.map((container) => (
-              <span
+              <Link
                 key={container.id}
-                className="bg-transparent border-2 border-white text-white font-medium px-4 py-2 rounded-full text-sm whitespace-nowrap"
+                to={container.path}
+                className="bg-transparent border-2 border-white text-white font-medium px-4 py-2 rounded-full text-sm whitespace-nowrap hover:bg-white hover:text-orange-500 transition-colors"
               >
                 {container.name}
-              </span>
+              </Link>
             ))}
           </div>
         </div>
+
+        {/* Image */}
         <div className="w-full md:w-1/2 h-48 md:h-64 overflow-hidden">
           <img
             src={img}
             alt="Container with analytics"
-            className="w-full h-full scale-150 transform translate-y-[2rem]"
+            className="w-full h-full object-cover object-center"
           />
         </div>
       </div>
