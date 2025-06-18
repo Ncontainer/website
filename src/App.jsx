@@ -20,7 +20,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import VerificationPage from './pages/VerificationPage';
 import LeaseForm from './pages/LeaseForm';
 import TradeForm from './pages/TradeForm';
-
+import ScrollToTop from './components/ScrollToTop';
 // function App() {
 //   return (
 //     <Home />
@@ -33,6 +33,7 @@ import TradeForm from './pages/TradeForm';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <div className="md:pt-28 pt-16"> {/* Added padding-top to account for fixed header */}
         <Routes>
@@ -55,6 +56,7 @@ function App() {
         <Route path="/one-way" element={<OneWayForm />} />
         <Route path="/lease" element={<LeaseForm />} />
         <Route path="/trade" element={<TradeForm />} />
+
         </Routes>
         <Footer/>
       </div>

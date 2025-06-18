@@ -1,6 +1,7 @@
 // src/pages/LoginPage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import loginImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 
 export default function LoginPage() {
   return (
@@ -9,11 +10,11 @@ export default function LoginPage() {
       
       {/* Left - Image */}
       <div className="bg-amber-700">
-        <img
-          src="/src/images/add5ce280c52659353300a1f07d05e4e79e2fbff.png"
-          alt="Main Example"
-          className="w-full h-full object-cover"
-        />
+      <img
+  src={loginImage}
+  alt="Main Example"
+  className="w-full h-full object-cover"
+/>
       </div>
 
       {/* Right - Login Form */}
