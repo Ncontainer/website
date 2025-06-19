@@ -94,8 +94,7 @@ export default function Header() {
         </div>
 
         {/* Main Navigation */}
-        {/* THE CHANGE IS HERE: "px-6" is changed to "md:px-6" to remove horizontal padding on mobile */}
-        <div className="flex justify-between items-center py-4 md:px-6">
+        <div className="flex justify-between items-center px-6 py-4">
           <div className="flex-1 md:flex-none flex justify-center md:justify-start items-center">
             <Link to="/" className="flex items-center" onClick={() => handleNavClick("home")}>
               <div className="font-bold text-2xl uppercase">LOGO</div>
@@ -231,4 +230,4 @@ function NavItem({ text, to, isActive = false, onClick }) {
       <div className={`h-0.5 bg-secondary transition-all duration-300 ${isActive || isHovered ? "w-full" : "w-0"} group-hover:w-full`}></div>
     </div>
   );
-}
+} 
