@@ -1,6 +1,9 @@
+// ✅ Updated RegistrationPage.jsx with API integration
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'; // ✅ Import image
+import axios from 'axios';
+import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
@@ -42,136 +45,70 @@ export default function RegistrationPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleContinue = (e) => {
+  const handleContinue = async (e) => {
     e.preventDefault();
     const required = ['firstName', 'lastName', 'emailId', 'mobileNumber', 'companyName', 'country', 'state', 'address'];
     const allFilled = required.every(field => formData[field] && formData[field].trim() !== '');
 
-    if (allFilled) {
-      navigate('/one-way');
-    } else {
+    if (!allFilled) {
       alert('Please fill all the required details.');
+      return;
+    }
+
+    try {
+      const res = await axios.post('https://backend-production-d773.up.railway.app/api/auth/register', formData);
+      alert('Registration successful!');
+      navigate('/login');
+    } catch (error) {
+      console.error(error);
+      alert('Registration failed!');
     }
   };
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
-      
-      {/* Image Section */}
       <div className="bg-amber-700 h-64 md:h-auto">
-        <img
-          src={bannerImage} // ✅ Use imported image
-          alt="Main Example"
-          className="w-full h-full object-cover"
-        />
+        <img src={bannerImage} alt="Main Example" className="w-full h-full object-cover" />
       </div>
 
-      {/* Form Section */}
       <div className="bg-white relative flex flex-col items-center px-6 py-10 md:px-12 overflow-y-auto">
-        
-        {/* Header */}
         <div className="w-full mb-8">
-          <p
-            className="text-center tracking-wider text-sm md:text-base"
-            style={{
-              fontFamily: 'Saira, sans-serif',
-              fontWeight: '500',
-              color: '#FF8901',
-            }}
-          >
+          <p className="text-center tracking-wider text-sm md:text-base text-[#FF8901] font-medium">
             Welcome to
           </p>
           <div className="w-full border-b-4 border-orange-400 pb-2 mt-1">
-            <h1
-              className="text-center text-xl md:text-2xl leading-normal font-saira font-normal mx-auto"
-              style={{ fontFamily: 'Saira, sans-serif' }}
-            >
+            <h1 className="text-center text-xl md:text-2xl leading-normal font-saira font-normal mx-auto">
               NCON Containers
             </h1>
           </div>
         </div>
 
-        {/* Form */}
         <form className="w-full max-w-xl space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              placeholder="First Name"
-              className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-              value={formData.firstName}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-              value={formData.lastName}
-              onChange={handleChange}
-            />
+            <input type="text" placeholder="First Name" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.firstName} onChange={handleChange} />
+            <input type="text" placeholder="Last Name" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.lastName} onChange={handleChange} />
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              type="email"
-              placeholder="Email ID"
-              className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-              value={formData.emailId}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              placeholder="Mobile Number"
-              className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-              value={formData.mobileNumber}
-              onChange={handleChange}
-            />
+            <input type="email" placeholder="Email ID" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.emailId} onChange={handleChange} />
+            <input type="text" placeholder="Mobile Number" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.mobileNumber} onChange={handleChange} />
           </div>
-
-          <input
-            type="text"
-            placeholder="Company Name"
-            className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-            value={formData.companyName}
-            onChange={handleChange}
-          />
-
+          <input type="text" placeholder="Company Name" className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.companyName} onChange={handleChange} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <select
-              name="country"
-              className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
-              value={formData.country}
-              onChange={handleSelectChange}
-            >
+            <select name="country" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.country} onChange={handleSelectChange}>
               <option value="">Select Country</option>
               <option value="USA">USA</option>
               <option value="Canada">Canada</option>
               <option value="India">India</option>
             </select>
-            <select
-              name="state"
-              className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
-              value={formData.state}
-              onChange={handleSelectChange}
-            >
+            <select name="state" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.state} onChange={handleSelectChange}>
               <option value="">Select State</option>
               <option value="California">California</option>
               <option value="Texas">Texas</option>
               <option value="Gujarat">Gujarat</option>
             </select>
           </div>
-
-          <textarea
-            placeholder="Enter Address"
-            rows="3"
-            className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
-            value={formData.address}
-            onChange={handleChange}
-          ></textarea>
-
-          <button
-            onClick={handleContinue}
-            className="w-full bg-amber-500 text-white py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300"
-          >
+          <textarea placeholder="Enter Address" rows="3" className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none" value={formData.address} onChange={handleChange}></textarea>
+          <button onClick={handleContinue} className="w-full bg-amber-500 text-white py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300">
             Continue
           </button>
         </form>
