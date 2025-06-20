@@ -1,4 +1,4 @@
-// ✅ Updated RegistrationPage.jsx with API integration
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
