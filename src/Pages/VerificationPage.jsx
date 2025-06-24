@@ -22,7 +22,7 @@ function VerificationPage() {
 
   const handleResend = async () => {
     try {
-      await axios.post('https://backend-production-d773.up.railway.app/api/auth/resend-otp', {
+      await axios.post('https://backend-production-d773.up.railway.app/api/auth/send-otp', {
         phoneNumber,
       });
       alert('OTP re-sent successfully!');

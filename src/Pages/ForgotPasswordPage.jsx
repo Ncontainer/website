@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 
 function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   const handleReset = async () => {
     try {
@@ -11,6 +13,10 @@ function ForgotPasswordPage() {
         email,
       });
       alert('Reset link or OTP sent to your email.');
+
+      // Redirect to VerificationPage and pass email as state
+      navigate('/verify', { state: { email } });
+
     } catch (error) {
       alert('Failed to send reset instructions. Please try again.');
       console.error(error);
@@ -54,4 +60,4 @@ function ForgotPasswordPage() {
   );
 }
 
-export default ForgotPasswordPage;   
+export default ForgotPasswordPage;

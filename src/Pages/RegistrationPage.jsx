@@ -1,12 +1,14 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 
-
 export default function RegistrationPage() {
   const navigate = useNavigate();
+
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -16,8 +18,34 @@ export default function RegistrationPage() {
     companyName: '',
     country: '',
     state: '',
+    city: '',
     address: '',
   });
+
+  // Fetch countries on component load
+  useEffect(() => {
+    axios.get('https://backend-production-d773.up.railway.app/api/locations/countries')
+      .then(res => setCountries(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
+  // Fetch states on country change
+  useEffect(() => {
+    if (formData.country) {
+      axios.get(`https://backend-production-d773.up.railway.app/api/locations/states?countryId=${formData.country}`)
+        .then(res => setStates(res.data))
+        .catch(err => console.error(err));
+    }
+  }, [formData.country]);
+
+  // Fetch cities on state change
+  useEffect(() => {
+    if (formData.state) {
+      axios.get(`https://backend-production-d773.up.railway.app/api/locations/cities?stateId=${formData.state}`)
+        .then(res => setCities(res.data))
+        .catch(err => console.error(err));
+    }
+  }, [formData.state]);
 
   const handleChange = (e) => {
     const { placeholder, value } = e.target;
@@ -40,14 +68,9 @@ export default function RegistrationPage() {
     setFormData(prev => ({ ...prev, [fieldName]: value }));
   };
 
-  const handleSelectChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
   const handleContinue = async (e) => {
     e.preventDefault();
-    const required = ['firstName', 'lastName', 'emailId', 'mobileNumber', 'companyName', 'country', 'state', 'address'];
+    const required = ['firstName', 'lastName', 'emailId', 'mobileNumber', 'companyName', 'country', 'state', 'city', 'address'];
     const allFilled = required.every(field => formData[field] && formData[field].trim() !== '');
 
     if (!allFilled) {
@@ -93,20 +116,31 @@ export default function RegistrationPage() {
             <input type="text" placeholder="Mobile Number" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.mobileNumber} onChange={handleChange} />
           </div>
           <input type="text" placeholder="Company Name" className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.companyName} onChange={handleChange} />
+
+          {/* Country, State, City Selects */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <select name="country" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.country} onChange={handleSelectChange}>
+            <select name="country" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.country} onChange={handleChange}>
               <option value="">Select Country</option>
-              <option value="USA">USA</option>
-              <option value="Canada">Canada</option>
-              <option value="India">India</option>
+              {countries.map((country) => (
+                <option key={country.id} value={country.id}>{country.name}</option>
+              ))}
             </select>
-            <select name="state" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.state} onChange={handleSelectChange}>
+
+            <select name="state" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.state} onChange={handleChange} disabled={!formData.country}>
               <option value="">Select State</option>
-              <option value="California">California</option>
-              <option value="Texas">Texas</option>
-              <option value="Gujarat">Gujarat</option>
+              {states.map((state) => (
+                <option key={state.id} value={state.id}>{state.name}</option>
+              ))}
             </select>
           </div>
+
+          <select name="city" className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.city} onChange={handleChange} disabled={!formData.state}>
+            <option value="">Select City</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>{city.name}</option>
+            ))}
+          </select>
+
           <textarea placeholder="Enter Address" rows="3" className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none" value={formData.address} onChange={handleChange}></textarea>
           <button onClick={handleContinue} className="w-full bg-amber-500 text-white py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300">
             Continue
