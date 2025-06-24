@@ -18,6 +18,13 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const handleExploreClick = () => {
+    const section = document.getElementById('logistics-overview');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Video */}
@@ -113,10 +120,16 @@ export default function Hero() {
               >
                 Get your load to market faster
               </div>
-              <p className="text-gray-600 mb-4 md:mb-8 max-w-md text-xs sm:text-sm md:text-base lg:text-lg">
+              <p className="text-gray-600 mb-4 md:mb-6 max-w-md text-xs sm:text-sm md:text-base lg:text-lg">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
+              <button
+                className="bg-amber-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-amber-600 transition duration-300"
+                onClick={handleExploreClick}
+              >
+                Explore More
+              </button>
             </div>
 
             {/* Image Section */}

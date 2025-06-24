@@ -15,8 +15,12 @@ const Home = () => {
     <>
       {/* <Header /> */}
       <Hero />
-      <LogisticsOverview/>
-      <OurServices/>
+      <section id="logistics-overview">
+        <LogisticsOverview />
+      </section>
+      <section id="our-services">
+       <OurServices />
+      </section> 
       <GetStarted />
       <LookingFor />
       <Testimonial />

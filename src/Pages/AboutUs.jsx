@@ -11,7 +11,7 @@ const AboutUs= () => {
   return (
     <>
       <About />
-      <OurTeam />
+      {/* <OurTeam /> */}
       <Initiatives />
       <LifeAtNcon />
     </>

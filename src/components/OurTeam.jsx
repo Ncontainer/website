@@ -145,130 +145,131 @@ const OurTeam = () => {
     }
   };
 
-  return (
-    <div className="w-[85%] mx-auto px-4 py-4 md:py-8">
-      <div className="text-center mb-8 md:mb-12">
-        <p className="text-orange-500 font-medium mb-2">TEAM</p>
-                  <h2 className="text-3xl md:text-4xl  ">Meet Our Team</h2>
+  return  <div></div>
+  //(
+  //   <div className="w-[85%] mx-auto px-4 py-4 md:py-8">
+  //     <div className="text-center mb-8 md:mb-12">
+  //       <p className="text-orange-500 font-medium mb-2">TEAM</p>
+  //                 <h2 className="text-3xl md:text-4xl  ">Meet Our Team</h2>
 
-      </div>
+  //     </div>
 
-      {/* Featured team member - Improved mobile layout with full image */}
-      <div className="relative mb-8 md:mb-10 overflow-hidden">
-        <div 
-          className={`bg-gray-200 rounded-lg overflow-hidden transition-all duration-500 ease-in-out ${getAnimationClass()}`}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          {/* Mobile layout (stack) */}
-          <div className="block md:hidden">
-            {/* Full image container - no height restriction */}
-            <div className="w-full">
-              <img 
-                src={teamMembers[currentIndex].image} 
-                alt={teamMembers[currentIndex].name}
-                className="w-full object-contain" 
-              />
-            </div>
+  //     {/* Featured team member - Improved mobile layout with full image */}
+  //     <div className="relative mb-8 md:mb-10 overflow-hidden">
+  //       <div 
+  //         className={`bg-gray-200 rounded-lg overflow-hidden transition-all duration-500 ease-in-out ${getAnimationClass()}`}
+  //         onTouchStart={handleTouchStart}
+  //         onTouchMove={handleTouchMove}
+  //         onTouchEnd={handleTouchEnd}
+  //       >
+  //         {/* Mobile layout (stack) */}
+  //         <div className="block md:hidden">
+  //           {/* Full image container - no height restriction */}
+  //           <div className="w-full">
+  //             <img 
+  //               src={teamMembers[currentIndex].image} 
+  //               alt={teamMembers[currentIndex].name}
+  //               className="w-full object-contain" 
+  //             />
+  //           </div>
             
-            {/* Bio section */}
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-1">{teamMembers[currentIndex].name}</h3>
-              <p className="text-gray-600 mb-4">{teamMembers[currentIndex].position}</p>
-              <div className="space-y-3 max-h-48 overflow-auto">
-                <p style={{fontFamily : "Roboto"}}>{teamMembers[currentIndex].bio}</p>
-                {/* <p>{teamMembers[currentIndex].bio}</p> */}
-              </div>
-            </div>
-          </div>
+  //           {/* Bio section */}
+  //           <div className="p-6">
+  //             <h3 className="text-xl font-bold mb-1">{teamMembers[currentIndex].name}</h3>
+  //             <p className="text-gray-600 mb-4">{teamMembers[currentIndex].position}</p>
+  //             <div className="space-y-3 max-h-48 overflow-auto">
+  //               <p style={{fontFamily : "Roboto"}}>{teamMembers[currentIndex].bio}</p>
+  //               {/* <p>{teamMembers[currentIndex].bio}</p> */}
+  //             </div>
+  //           </div>
+  //         </div>
           
-          {/* Desktop layout (side by side) */}
-          <div className="hidden md:flex md:flex-row">
-            {/* Bio section */}
-            <div className="md:w-2/3 p-10">
-              <h3 className="text-3xl font-bold mb-1">{teamMembers[currentIndex].name}</h3>
-              <p className="text-xl text-gray-600 mb-20">{teamMembers[currentIndex].position}</p>
-              <div className="space-y-4">
-                <p className='text-xl text-justify'>{teamMembers[currentIndex].bio}</p>
-                <p className='text-xl text-justify'>{teamMembers[currentIndex].bio}</p>
-              </div>
-            </div>
+  //         {/* Desktop layout (side by side) */}
+  //         <div className="hidden md:flex md:flex-row">
+  //           {/* Bio section */}
+  //           <div className="md:w-2/3 p-10">
+  //             <h3 className="text-3xl font-bold mb-1">{teamMembers[currentIndex].name}</h3>
+  //             <p className="text-xl text-gray-600 mb-20">{teamMembers[currentIndex].position}</p>
+  //             <div className="space-y-4">
+  //               <p className='text-xl text-justify'>{teamMembers[currentIndex].bio}</p>
+  //               <p className='text-xl text-justify'>{teamMembers[currentIndex].bio}</p>
+  //             </div>
+  //           </div>
             
-            {/* Image section */}
-            <div className="md:w-1/3">
-              <img 
-                src={teamMembers[currentIndex].image} 
-                alt={teamMembers[currentIndex].name}
-                className="w-full h-full object-cover" 
-              />
-            </div>
-          </div>
-        </div>
+  //           {/* Image section */}
+  //           <div className="md:w-1/3">
+  //             <img 
+  //               src={teamMembers[currentIndex].image} 
+  //               alt={teamMembers[currentIndex].name}
+  //               className="w-full h-full object-cover" 
+  //             />
+  //           </div>
+  //         </div>
+  //       </div>
         
-        {/* Mobile navigation arrows */}
-        <button 
-          className="absolute top-1/3 left-2 bg-white/70 p-2 rounded-full shadow md:hidden z-10"
-          onClick={() => changeTeamMember('prev')}
-          aria-label="Previous team member"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button 
-          className="absolute top-1/3 right-2 bg-white/70 p-2 rounded-full shadow md:hidden z-10"
-          onClick={() => changeTeamMember('next')}
-          aria-label="Next team member"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
+  //       {/* Mobile navigation arrows */}
+  //       <button 
+  //         className="absolute top-1/3 left-2 bg-white/70 p-2 rounded-full shadow md:hidden z-10"
+  //         onClick={() => changeTeamMember('prev')}
+  //         aria-label="Previous team member"
+  //       >
+  //         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  //           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+  //         </svg>
+  //       </button>
+  //       <button 
+  //         className="absolute top-1/3 right-2 bg-white/70 p-2 rounded-full shadow md:hidden z-10"
+  //         onClick={() => changeTeamMember('next')}
+  //         aria-label="Next team member"
+  //       >
+  //         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  //           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  //         </svg>
+  //       </button>
+  //     </div>
 
-      {/* Team member carousel - Desktop view */}
-      <div className="hidden md:block">
-        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          {teamMembers.map((member, index) => (
-            <div 
-              key={member.id} 
-              className={` cursor-pointer transition-all duration-300 ${
-                index === currentIndex ? 'ring-2 rounded-lg ring-orange-500 scale-105' : 'hover:scale-105'
-              }`}
-              onClick={() => selectTeamMember(index)}
-            >
-              <div className="bg-gray-200 rounded-t-lg overflow-hidden h-[450px]">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-4 bg-gray-100 rounded-b-lg">
-                <h4 className=" text-base">{member.name}</h4>
-                <p className="text-gray-600 text-base">{member.position}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+  //     {/* Team member carousel - Desktop view */}
+  //     <div className="hidden md:block">
+  //       <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-4">
+  //         {teamMembers.map((member, index) => (
+  //           <div 
+  //             key={member.id} 
+  //             className={` cursor-pointer transition-all duration-300 ${
+  //               index === currentIndex ? 'ring-2 rounded-lg ring-orange-500 scale-105' : 'hover:scale-105'
+  //             }`}
+  //             onClick={() => selectTeamMember(index)}
+  //           >
+  //             <div className="bg-gray-200 rounded-t-lg overflow-hidden h-[450px]">
+  //               <img 
+  //                 src={member.image} 
+  //                 alt={member.name} 
+  //                 className="w-full h-full object-cover"
+  //               />
+  //             </div>
+  //             <div className="p-4 bg-gray-100 rounded-b-lg">
+  //               <h4 className=" text-base">{member.name}</h4>
+  //               <p className="text-gray-600 text-base">{member.position}</p>
+  //             </div>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     </div>
 
-      {/* Mobile navigation dots only */}
-      <div className="md:hidden flex justify-center mt-6 pb-8">
-        {teamMembers.map((_, index) => (
-          <button
-            key={`dot-${index}`}
-            className={`h-3 w-3 mx-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-orange-500 scale-110' : 'bg-gray-300'
-            }`}
-            onClick={() => selectTeamMember(index)}
-            aria-label={`View ${teamMembers[index].name}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
+  //     {/* Mobile navigation dots only */}
+  //     <div className="md:hidden flex justify-center mt-6 pb-8">
+  //       {teamMembers.map((_, index) => (
+  //         <button
+  //           key={`dot-${index}`}
+  //           className={`h-3 w-3 mx-2 rounded-full transition-all duration-300 ${
+  //             index === currentIndex ? 'bg-orange-500 scale-110' : 'bg-gray-300'
+  //           }`}
+  //           onClick={() => selectTeamMember(index)}
+  //           aria-label={`View ${teamMembers[index].name}`}
+  //         />
+  //       ))}
+  //     </div>
+  //   </div>
+  // );
 };
 
 export default OurTeam;
