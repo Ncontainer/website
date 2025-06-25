@@ -1,6 +1,7 @@
+// OneWayForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'; // ✅ Import image correctly
+import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 
 const OneWayForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -83,8 +84,8 @@ const OneWayForm = () => {
           </button>
         </div>
 
-        <fieldset className="rounded-md p-4 mb-6">
-          <legend className="font-semibold text-lg text-gray-700">Container Specifications</legend>
+        <fieldset className="rounded-md p-4 mb-6 border border-black-400">
+          <legend className="font-semibold text-lg  text-gray-700">Container Specifications</legend>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Container Quantity: *</label>
@@ -123,10 +124,10 @@ const OneWayForm = () => {
 
         <div className="mb-6">
           <h3 className="font-semibold text-gray-700 mb-2">Drop-off and Pick-Up</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input type="text" placeholder="Location" className="flex-grow border border-gray-300 p-2 rounded-md" />
                 <button
                   onClick={toggleModal}
@@ -138,7 +139,7 @@ const OneWayForm = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Drop-off Location: *</label>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input type="text" placeholder="Location" className="flex-grow border border-gray-300 p-2 rounded-md" />
                 <button
                   onClick={toggleModal}

@@ -113,7 +113,7 @@ const TradeForm = () => {
         </div>
 
         {/* Container Specifications */}
-        <div className="mb-6">
+        <div className="rounded-md p-4 mb-6 border border-black-400">
           <h3 className="font-semibold text-lg text-gray-700 mb-4">Container Specifications</h3>
           <div className="grid grid-cols-2 gap-4">
             <div>

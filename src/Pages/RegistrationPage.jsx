@@ -6,10 +6,6 @@ import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'
 export default function RegistrationPage() {
   const navigate = useNavigate();
 
-  const [countries, setCountries] = useState([]);
-  const [states, setStates] = useState([]);
-  const [cities, setCities] = useState([]);
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -18,34 +14,29 @@ export default function RegistrationPage() {
     companyName: '',
     country: '',
     state: '',
-    city: '',
     address: '',
+    password: '',
   });
 
-  // Fetch countries on component load
-  useEffect(() => {
-    axios.get('https://backend-production-d773.up.railway.app/api/locations/countries')
-      .then(res => setCountries(res.data))
-      .catch(err => console.error(err));
-  }, []);
+  const [otpData, setOtpData] = useState({
+    otp: '',
+    isOtpSent: false,
+    isOtpVerified: false,
+    sessionToken: '',
+    isLoading: false,
+  });
 
-  // Fetch states on country change
-  useEffect(() => {
-    if (formData.country) {
-      axios.get(`https://backend-production-d773.up.railway.app/api/locations/states?countryId=${formData.country}`)
-        .then(res => setStates(res.data))
-        .catch(err => console.error(err));
-    }
-  }, [formData.country]);
+  const [resendTimer, setResendTimer] = useState(0);
 
-  // Fetch cities on state change
   useEffect(() => {
-    if (formData.state) {
-      axios.get(`https://backend-production-d773.up.railway.app/api/locations/cities?stateId=${formData.state}`)
-        .then(res => setCities(res.data))
-        .catch(err => console.error(err));
+    let timer;
+    if (resendTimer > 0) {
+      timer = setInterval(() => {
+        setResendTimer((prev) => prev - 1);
+      }, 1000);
     }
-  }, [formData.state]);
+    return () => clearInterval(timer);
+  }, [resendTimer]);
 
   const handleChange = (e) => {
     const { placeholder, value } = e.target;
@@ -58,6 +49,7 @@ export default function RegistrationPage() {
       case 'Mobile Number': fieldName = 'mobileNumber'; break;
       case 'Company Name': fieldName = 'companyName'; break;
       case 'Enter Address': fieldName = 'address'; break;
+      case 'Password': fieldName = 'password'; break;
       default: fieldName = placeholder;
     }
 
@@ -68,9 +60,74 @@ export default function RegistrationPage() {
     setFormData(prev => ({ ...prev, [fieldName]: value }));
   };
 
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleOtpChange = (e) => {
+    setOtpData(prev => ({ ...prev, otp: e.target.value }));
+  };
+
+  const sendOtp = async () => {
+    if (!formData.mobileNumber.trim()) {
+      alert('Please enter mobile number first.');
+      return;
+    }
+
+    setOtpData(prev => ({ ...prev, isLoading: true }));
+
+    try {
+      await axios.post('https://backend-production-d773.up.railway.app/api/auth/send-otp', {
+        mobileNumber: formData.mobileNumber
+      });
+
+      setOtpData(prev => ({
+        ...prev,
+        isOtpSent: true,
+        isLoading: false
+      }));
+      alert('OTP sent successfully!');
+    } catch (error) {
+      console.error(error);
+      setOtpData(prev => ({ ...prev, isLoading: false }));
+      setResendTimer(6); // Start countdown only on failure
+      alert('Failed to send OTP. Please try again.');
+    }
+  };
+
+  const verifyOtp = async () => {
+    if (!otpData.otp.trim()) {
+      alert('Please enter OTP.');
+      return;
+    }
+
+    setOtpData(prev => ({ ...prev, isLoading: true }));
+
+    try {
+      const response = await axios.post('https://backend-production-d773.up.railway.app/api/auth/verify-otp', {
+        mobileNumber: formData.mobileNumber,
+        otp: otpData.otp
+      });
+
+      setOtpData(prev => ({
+        ...prev,
+        isOtpVerified: true,
+        sessionToken: response.data.sessionToken || response.data.token || '',
+        isLoading: false
+      }));
+      alert('OTP verified successfully!');
+    } catch (error) {
+      console.error('Error:', error.response || error);
+      setOtpData(prev => ({ ...prev, isLoading: false }));
+      alert('Invalid OTP. Please try again.');
+    }
+  };
+
   const handleContinue = async (e) => {
     e.preventDefault();
-    const required = ['firstName', 'lastName', 'emailId', 'mobileNumber', 'companyName', 'country', 'state', 'city', 'address'];
+
+    const required = ['firstName', 'lastName', 'emailId', 'mobileNumber', 'companyName', 'country', 'state', 'address', 'password'];
     const allFilled = required.every(field => formData[field] && formData[field].trim() !== '');
 
     if (!allFilled) {
@@ -78,8 +135,26 @@ export default function RegistrationPage() {
       return;
     }
 
+    if (!otpData.isOtpVerified) {
+      alert('Please verify your mobile number with OTP first.');
+      return;
+    }
+
     try {
-      const res = await axios.post('https://backend-production-d773.up.railway.app/api/auth/register', formData);
+      const registrationData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.emailId,
+        mobileNumber: formData.mobileNumber,
+        companyName: formData.companyName,
+        country: formData.country,
+        state: formData.state,
+        address: formData.address,
+        password: formData.password,
+        sessionToken: otpData.sessionToken
+      };
+
+      await axios.post('https://backend-production-d773.up.railway.app/api/auth/register', registrationData);
       alert('Registration successful!');
       navigate('/login');
     } catch (error) {
@@ -106,46 +181,148 @@ export default function RegistrationPage() {
           </div>
         </div>
 
-        <form className="w-full max-w-xl space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" placeholder="First Name" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.firstName} onChange={handleChange} />
-            <input type="text" placeholder="Last Name" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.lastName} onChange={handleChange} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="email" placeholder="Email ID" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.emailId} onChange={handleChange} />
-            <input type="text" placeholder="Mobile Number" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.mobileNumber} onChange={handleChange} />
-          </div>
-          <input type="text" placeholder="Company Name" className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" value={formData.companyName} onChange={handleChange} />
+        {!otpData.isOtpVerified && (
+          <form className="w-full max-w-xl space-y-4">
+            <p className="text-left text-sm text-gray-700 font-medium">Verify your mobile number</p>
 
-          {/* Country, State, City Selects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <select name="country" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.country} onChange={handleChange}>
-              <option value="">Select Country</option>
-              {countries.map((country) => (
-                <option key={country.id} value={country.id}>{country.name}</option>
-              ))}
-            </select>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Mobile Number"
+                className="flex-1 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+              />
+              <button
+                type="button"
+                onClick={sendOtp}
+                disabled={otpData.isLoading || otpData.isOtpVerified}
+                className={`px-4 py-2 rounded-md font-semibold transition duration-300 ${
+                  otpData.isOtpVerified
+                    ? 'bg-green-500 text-white cursor-not-allowed'
+                    : otpData.isLoading
+                    ? 'bg-gray-400 text-white cursor-not-allowed'
+                    : 'bg-amber-500 text-white hover:bg-amber-400'
+                }`}
+              >
+                {otpData.isLoading ? 'Sending...' : otpData.isOtpVerified ? 'Verified' : 'Send OTP'}
+              </button>
+            </div>
 
-            <select name="state" className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.state} onChange={handleChange} disabled={!formData.country}>
-              <option value="">Select State</option>
-              {states.map((state) => (
-                <option key={state.id} value={state.id}>{state.name}</option>
-              ))}
-            </select>
-          </div>
+            {/* ⏱ Timer on failed OTP send */}
+            {resendTimer > 0 && (
+              <p className="text-sm text-red-500 mt-1 ml-1">
+                Resend OTP in {resendTimer} second{resendTimer !== 1 ? 's' : ''}
+              </p>
+            )}
 
-          <select name="city" className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white" value={formData.city} onChange={handleChange} disabled={!formData.state}>
-            <option value="">Select City</option>
-            {cities.map((city) => (
-              <option key={city.id} value={city.id}>{city.name}</option>
-            ))}
-          </select>
+            {otpData.isOtpSent && !otpData.isOtpVerified && (
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  className="flex-1 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  value={otpData.otp}
+                  onChange={handleOtpChange}
+                  maxLength="6"
+                />
+                <button
+                  type="button"
+                  onClick={verifyOtp}
+                  disabled={otpData.isLoading}
+                  className={`px-3 py-2 rounded-md font-semibold text-sm whitespace-nowrap transition duration-300 ${
+                    otpData.isLoading
+                      ? 'bg-gray-400 text-white cursor-not-allowed'
+                      : 'bg-green-500 text-white hover:bg-green-400'
+                  }`}
+                >
+                  {otpData.isLoading ? 'Verifying...' : 'Verify OTP'}
+                </button>
+              </div>
+            )}
+          </form>
+        )}
 
-          <textarea placeholder="Enter Address" rows="3" className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none" value={formData.address} onChange={handleChange}></textarea>
-          <button onClick={handleContinue} className="w-full bg-amber-500 text-white py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300">
-            Continue
-          </button>
-        </form>
+        {otpData.isOtpVerified && (
+          <form className="w-full max-w-xl space-y-4 mt-6" onSubmit={handleContinue}>
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="First Name"
+                className="p-4 border border-gray-300 rounded-md"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                className="p-4 border border-gray-300 rounded-md"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                type="email"
+                placeholder="Email ID"
+                className="p-4 border border-gray-300 rounded-md"
+                value={formData.emailId}
+                onChange={handleChange}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="p-4 border border-gray-300 rounded-md"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </div>
+            <input
+              type="text"
+              placeholder="Company Name"
+              className="w-full p-4 border border-gray-300 rounded-md"
+              value={formData.companyName}
+              onChange={handleChange}
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <select
+                name="country"
+                className="p-4 border border-gray-300 rounded-md bg-white"
+                value={formData.country}
+                onChange={handleSelectChange}
+              >
+                <option value="">Select Country</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <option value="India">India</option>
+              </select>
+              <select
+                name="state"
+                className="p-4 border border-gray-300 rounded-md bg-white"
+                value={formData.state}
+                onChange={handleSelectChange}
+              >
+                <option value="">Select State</option>
+                <option value="California">California</option>
+                <option value="Texas">Texas</option>
+                <option value="Gujarat">Gujarat</option>
+              </select>
+            </div>
+            <textarea
+              placeholder="Enter Address"
+              rows="3"
+              className="w-full p-4 border border-gray-300 rounded-md resize-none"
+              value={formData.address}
+              onChange={handleChange}
+            />
+            <button
+              type="submit"
+              className="w-full bg-amber-500 text-white py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300"
+            >
+              Continue
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

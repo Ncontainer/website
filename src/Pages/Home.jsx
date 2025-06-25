@@ -12,21 +12,22 @@ import Footer from "../components/Footer";
 
 const Home = () => {
   return (
-    <>
-      {/* <Header /> */}
+    <div className="w-full overflow-x-hidden">
+      <Header />
       <Hero />
       <section id="logistics-overview">
         <LogisticsOverview />
       </section>
       <section id="our-services">
-       <OurServices />
-      </section> 
+        <OurServices />
+      </section>
       <GetStarted />
       <LookingFor />
       <Testimonial />
-      <ContactUs/>
+      <ContactUs />
       <Blog />
-    </>
+      <Footer />
+    </div>
   );
 };
 
