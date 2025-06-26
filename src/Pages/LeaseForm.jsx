@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'; // ✅ correct image import
 
 const LeaseForm = () => {
   const [containers, setContainers] = useState([{}]);
@@ -17,10 +17,10 @@ const LeaseForm = () => {
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%] relative">
-      {/* Left Section */}
+      {/* Top (on mobile) / Left Section (on desktop) */}
       <div className="bg-amber-700 relative h-64 md:h-auto">
         <img
-          src={leaseImage}
+          src={leaseImage} // ✅ use imported image here
           alt="Background"
           className="w-full h-full object-cover"
         />
@@ -46,7 +46,7 @@ const LeaseForm = () => {
         </div>
       </div>
 
-      {/* Right Section */}
+      {/* Bottom (on mobile) / Right Section (on desktop) */}
       <div className="bg-white p-6 md:p-8 overflow-y-auto">
         <h2 className="text-xl md:text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 mb-6">
           Requirements Form
@@ -161,10 +161,10 @@ const LeaseForm = () => {
           + Add More
         </button>
 
-        {/* Location Details (One below the other) */}
+        {/* Location Details */}
         <div className="mb-6">
           <h3 className="font-semibold text-gray-700 mb-2">Location Details</h3>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm mb-1">
                 On-Hire Location: <span className="text-red-500">*</span>
