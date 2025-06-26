@@ -87,7 +87,7 @@ export default function RegistrationPage() {
         isOtpSent: true,
         isLoading: false
       }));
-      setResendTimer(12); // Updated from 6 to 12 seconds
+      setResendTimer(6);
       alert('OTP sent successfully!');
     } catch (error) {
       console.error(error);
@@ -184,7 +184,7 @@ export default function RegistrationPage() {
         {!otpData.isOtpVerified && (
           <form className="w-full max-w-xl space-y-4">
             <p className="text-left text-sm text-gray-700 font-medium">Verify your mobile number</p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-stretch">
               <input
                 type="text"
                 placeholder="Mobile Number"
@@ -196,7 +196,7 @@ export default function RegistrationPage() {
                 type="button"
                 onClick={sendOtp}
                 disabled={otpData.isLoading || otpData.isOtpVerified || resendTimer > 0}
-                className={`px-4 py-2 rounded-md font-semibold transition duration-300 ${
+                className={`px-4 rounded-md font-semibold transition duration-300 ${
                   otpData.isOtpVerified
                     ? 'bg-green-500 text-white cursor-not-allowed'
                     : otpData.isLoading || resendTimer > 0
@@ -221,7 +221,7 @@ export default function RegistrationPage() {
             )}
 
             {otpData.isOtpSent && !otpData.isOtpVerified && (
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-stretch">
                 <input
                   type="text"
                   placeholder="Enter OTP"
@@ -234,7 +234,7 @@ export default function RegistrationPage() {
                   type="button"
                   onClick={verifyOtp}
                   disabled={otpData.isLoading}
-                  className={`px-3 py-2 rounded-md font-semibold text-sm whitespace-nowrap transition duration-300 ${
+                  className={`px-3 rounded-md font-semibold text-sm whitespace-nowrap transition duration-300 ${
                     otpData.isLoading
                       ? 'bg-gray-400 text-white cursor-not-allowed'
                       : 'bg-green-500 text-white hover:bg-green-400'

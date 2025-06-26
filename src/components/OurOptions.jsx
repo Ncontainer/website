@@ -6,11 +6,11 @@ const OurOptions = () => {
   const navigate = useNavigate();
 
   const handleRedirect = (path) => {
-    const isLoggedIn = localStorage.getItem('token'); // Adjust key if your token is named differently
+    const isLoggedIn = localStorage.getItem('token'); // Replace 'token' if using a different key
     if (isLoggedIn) {
       navigate(path);
     } else {
-      console.error("You have to login to access this");
+      console.error("log in to access this section");
     }
   };
 
