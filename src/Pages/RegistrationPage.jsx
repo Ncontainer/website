@@ -87,7 +87,7 @@ export default function RegistrationPage() {
         isOtpSent: true,
         isLoading: false
       }));
-      setResendTimer(6); // ⏱️ Start 6-second timer
+      setResendTimer(12); // Updated from 6 to 12 seconds
       alert('OTP sent successfully!');
     } catch (error) {
       console.error(error);
@@ -214,7 +214,6 @@ export default function RegistrationPage() {
               </button>
             </div>
 
-            {/* ⏱️ Show resend countdown */}
             {resendTimer > 0 && (
               <p className="text-sm text-gray-600 mt-1 ml-1">
                 Resend OTP in {resendTimer} second{resendTimer !== 1 ? 's' : ''}
