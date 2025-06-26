@@ -29,13 +29,13 @@ export default function RegistrationPage() {
   const [resendTimer, setResendTimer] = useState(0);
 
   useEffect(() => {
-    let timer;
+    let interval;
     if (resendTimer > 0) {
-      timer = setInterval(() => {
+      interval = setInterval(() => {
         setResendTimer((prev) => prev - 1);
       }, 1000);
     }
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, [resendTimer]);
 
   const handleChange = (e) => {
@@ -87,11 +87,11 @@ export default function RegistrationPage() {
         isOtpSent: true,
         isLoading: false
       }));
+      setResendTimer(6); // ⏱️ Start 6-second timer
       alert('OTP sent successfully!');
     } catch (error) {
       console.error(error);
       setOtpData(prev => ({ ...prev, isLoading: false }));
-      setResendTimer(6); // Start countdown only on failure
       alert('Failed to send OTP. Please try again.');
     }
   };
@@ -184,7 +184,6 @@ export default function RegistrationPage() {
         {!otpData.isOtpVerified && (
           <form className="w-full max-w-xl space-y-4">
             <p className="text-left text-sm text-gray-700 font-medium">Verify your mobile number</p>
-
             <div className="flex gap-2">
               <input
                 type="text"
@@ -196,22 +195,28 @@ export default function RegistrationPage() {
               <button
                 type="button"
                 onClick={sendOtp}
-                disabled={otpData.isLoading || otpData.isOtpVerified}
+                disabled={otpData.isLoading || otpData.isOtpVerified || resendTimer > 0}
                 className={`px-4 py-2 rounded-md font-semibold transition duration-300 ${
                   otpData.isOtpVerified
                     ? 'bg-green-500 text-white cursor-not-allowed'
-                    : otpData.isLoading
+                    : otpData.isLoading || resendTimer > 0
                     ? 'bg-gray-400 text-white cursor-not-allowed'
                     : 'bg-amber-500 text-white hover:bg-amber-400'
                 }`}
               >
-                {otpData.isLoading ? 'Sending...' : otpData.isOtpVerified ? 'Verified' : 'Send OTP'}
+                {otpData.isLoading
+                  ? 'Sending...'
+                  : otpData.isOtpVerified
+                  ? 'Verified'
+                  : resendTimer > 0
+                  ? `Wait (${resendTimer}s)`
+                  : 'Send OTP'}
               </button>
             </div>
 
-            {/* ⏱ Timer on failed OTP send */}
+            {/* ⏱️ Show resend countdown */}
             {resendTimer > 0 && (
-              <p className="text-sm text-red-500 mt-1 ml-1">
+              <p className="text-sm text-gray-600 mt-1 ml-1">
                 Resend OTP in {resendTimer} second{resendTimer !== 1 ? 's' : ''}
               </p>
             )}
@@ -249,14 +254,14 @@ export default function RegistrationPage() {
               <input
                 type="text"
                 placeholder="First Name"
-                className="p-4 border border-gray-300 rounded-md"
+                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
                 value={formData.firstName}
                 onChange={handleChange}
               />
               <input
                 type="text"
                 placeholder="Last Name"
-                className="p-4 border border-gray-300 rounded-md"
+                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
                 value={formData.lastName}
                 onChange={handleChange}
               />
@@ -265,14 +270,14 @@ export default function RegistrationPage() {
               <input
                 type="email"
                 placeholder="Email ID"
-                className="p-4 border border-gray-300 rounded-md"
+                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
                 value={formData.emailId}
                 onChange={handleChange}
               />
               <input
                 type="password"
                 placeholder="Password"
-                className="p-4 border border-gray-300 rounded-md"
+                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
                 value={formData.password}
                 onChange={handleChange}
               />
@@ -280,14 +285,14 @@ export default function RegistrationPage() {
             <input
               type="text"
               placeholder="Company Name"
-              className="w-full p-4 border border-gray-300 rounded-md"
+              className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
               value={formData.companyName}
               onChange={handleChange}
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select
                 name="country"
-                className="p-4 border border-gray-300 rounded-md bg-white"
+                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
                 value={formData.country}
                 onChange={handleSelectChange}
               >
@@ -298,7 +303,7 @@ export default function RegistrationPage() {
               </select>
               <select
                 name="state"
-                className="p-4 border border-gray-300 rounded-md bg-white"
+                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
                 value={formData.state}
                 onChange={handleSelectChange}
               >
@@ -311,7 +316,7 @@ export default function RegistrationPage() {
             <textarea
               placeholder="Enter Address"
               rows="3"
-              className="w-full p-4 border border-gray-300 rounded-md resize-none"
+              className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
               value={formData.address}
               onChange={handleChange}
             />
