@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Send, Phone, MapPin, MessageSquare } from "lucide-react";
 import img from "../images/feedbackimg1.png";
 import img2 from "../images/feedbackimg2.png";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
+import axios from "axios"; // Add axios import
 
 export default function FeedbackComp() {
   const [formData, setFormData] = useState({
@@ -23,10 +24,42 @@ export default function FeedbackComp() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // Update handleSubmit to use axios POST
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
+    try {
+      await axios.post('https://backend-production-d773.up.railway.app/api/help', {
+        name: formData.name,
+        companyName: formData.companyName,
+        email: formData.email,
+        mobile: formData.mobile,
+        bookingEnquiryNumber: formData.bookingNumber,
+        category: formData.category.toLowerCase(),
+        message: formData.message
+      });
+      alert('Feedback submitted successfully!');
+      setFormData({
+        name: "",
+        companyName: "",
+        email: "",
+        mobile: "",
+        bookingNumber: "",
+        category: "",
+        message: "",
+      });
+    } catch (error) {
+      // Log the error details for debugging
+      if (error.response) {
+        console.log("API Error Response:", error.response.data);
+        alert(
+          'Failed to submit feedback: ' +
+          (error.response.data?.message || JSON.stringify(error.response.data))
+        );
+      } else {
+        console.log("Error:", error.message);
+        alert('Failed to submit feedback. Please try again.');
+      }
+    }
   };
 
   return (

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Phone, Mail } from 'lucide-react';
 import bg from "../images/contactusbg.png"
+import axios from 'axios';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -52,20 +53,27 @@ const ContactUs = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
-      // Here you would typically send the data to your server
-      console.log('Form submitted:', formData);
-      alert('Form submitted successfully!');
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        topic: 'Topic 1',
-        message: ''
-      });
+      try {
+        await axios.post('https://backend-production-d773.up.railway.app/api/contact', {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          topic: formData.topic.toLowerCase(), // or just formData.topic if backend expects "Topic 1"
+          message: formData.message
+        });
+        alert('Form submitted successfully!');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          topic: 'Topic 1',
+          message: ''
+        });
+      } catch (error) {
+        alert('Failed to submit form. Please try again.');
+      }
     }
   };
 
