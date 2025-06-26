@@ -2,9 +2,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import axios from 'axios';
 
 const OneWayForm = () => {
   const [showModal, setShowModal] = useState(false);
+  const [form, setForm] = useState({
+    quantity: '',
+    containerType: '',
+    condition: '',
+    pickUpLocation: '',
+    dropOffLocation: '',
+    email: '',
+    mobile: '',
+    notes: ''
+  });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const toggleModal = () => setShowModal(!showModal);
@@ -18,6 +30,69 @@ const OneWayForm = () => {
     } else if (selected === 'One-Way') {
       navigate('/one-way');
     }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Example static location data for demonstration
+  const getLocationObj = (locationStr) => ({
+    portName: locationStr || "Unknown",
+    portCode: "UNK",
+    country: "Unknown",
+    region: "Unknown"
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await axios.post('https://backend-production-d773.up.railway.app/api/lead-request', {
+        requestType: "buy",
+        tradeType: "trade",
+        tradeAction: "buy_containers",
+        containerType: form.containerType,
+        purposeOfContainer: "export",
+        condition: form.condition,
+        withCSCRevalidation: true,
+        locations: [
+          getLocationObj(form.pickUpLocation)
+        ],
+        email: form.email,
+        mobile: form.mobile,
+        quantity: Number(form.quantity),
+        urgency: "high",
+        notes: form.notes
+      });
+      alert('Request submitted successfully!');
+      setForm({
+        quantity: '',
+        containerType: '',
+        condition: '',
+        pickUpLocation: '',
+        dropOffLocation: '',
+        email: '',
+        mobile: '',
+        notes: ''
+      });
+    } catch (error) {
+      if (error.response) {
+        console.log("API Error Response:", error.response.data);
+        alert(
+          'Failed to submit request: ' +
+          (error.response.data?.message || JSON.stringify(error.response.data))
+        );
+      } else {
+        console.log("Error:", error.message);
+        alert('Failed to submit request. Please try again.');
+      }
+    }
+    setLoading(false);
   };
 
   return (
@@ -84,91 +159,164 @@ const OneWayForm = () => {
           </button>
         </div>
 
-        <fieldset className="rounded-md p-4 mb-6 border border-black-400">
-          <legend className="font-semibold text-lg  text-gray-700">Container Specifications</legend>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Container Quantity: *</label>
-              <input type="number" placeholder="Enter Quantity" className="w-full border border-gray-300 p-2 rounded-md" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Container Type: *</label>
-              <select className="w-full border border-gray-300 p-2 rounded-md">
-                <option>Select type</option>
-                <option>20 HC RF</option>
-                <option>40 HC RF</option>
-                <option>40 PW</option>
-                <option>20 PW</option>
-                <option>20 GP</option>
-                <option>40 GP</option>
-                <option>20 HC</option>
-                <option>40 HC</option>
-                <option>20 OT</option>
-                <option>40 OT</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Container Condition: *</label>
-              <select className="w-full border border-gray-300 p-2 rounded-md">
-                <option>Select Condition</option>
-                <option>WWT</option>
-                <option>Brand New</option>
-                <option>As is</option>
-                <option>Scrap</option>
-                <option>Cargo Worthy</option>
-                <option>IIICL</option>
-              </select>
-            </div>
-          </div>
-        </fieldset>
-
-        <div className="mb-6">
-          <h3 className="font-semibold text-gray-700 mb-2">Drop-off and Pick-Up</h3>
-          <div className="grid grid-cols-1 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input type="text" placeholder="Location" className="flex-grow border border-gray-300 p-2 rounded-md" />
-                <button
-                  onClick={toggleModal}
-                  className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
+        <form onSubmit={handleSubmit}>
+          <fieldset className="rounded-md p-4 mb-6 border border-black-400">
+            <legend className="font-semibold text-lg  text-gray-700">Container Specifications</legend>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Container Quantity: *</label>
+                <input
+                  type="number"
+                  name="quantity"
+                  value={form.quantity}
+                  onChange={handleChange}
+                  placeholder="Enter Quantity"
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Container Type: *</label>
+                <select
+                  name="containerType"
+                  value={form.containerType}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  required
                 >
-                  + Add Location
-                </button>
+                  <option value="">Select type</option>
+                  <option value="20ft Standard">20ft Standard</option>
+                  <option value="20 HC RF">20 HC RF</option>
+                  <option value="40 HC RF">40 HC RF</option>
+                  <option value="40 PW">40 PW</option>
+                  <option value="20 PW">20 PW</option>
+                  <option value="20 GP">20 GP</option>
+                  <option value="40 GP">40 GP</option>
+                  <option value="20 HC">20 HC</option>
+                  <option value="40 HC">40 HC</option>
+                  <option value="20 OT">20 OT</option>
+                  <option value="40 OT">40 OT</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Container Condition: *</label>
+                <select
+                  name="condition"
+                  value={form.condition}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  required
+                >
+                  <option value="">Select Condition</option>
+                  <option value="WWT">WWT</option>
+                  <option value="brand_new">Brand New</option>
+                  <option value="as_is">As is</option>
+                  <option value="scrap">Scrap</option>
+                  <option value="cargo_worthy">Cargo Worthy</option>
+                  <option value="iiicl">IIICL</option>
+                </select>
               </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Drop-off Location: *</label>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input type="text" placeholder="Location" className="flex-grow border border-gray-300 p-2 rounded-md" />
-                <button
-                  onClick={toggleModal}
-                  className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                >
-                  + Add Location
-                </button>
+          </fieldset>
+
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-700 mb-2">Drop-off and Pick-Up</h3>
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <input
+                    type="text"
+                    name="pickUpLocation"
+                    value={form.pickUpLocation}
+                    onChange={handleChange}
+                    placeholder="Location"
+                    className="flex-grow border border-gray-300 p-2 rounded-md"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={toggleModal}
+                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
+                  >
+                    + Add Location
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Drop-off Location: *</label>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <input
+                    type="text"
+                    name="dropOffLocation"
+                    value={form.dropOffLocation}
+                    onChange={handleChange}
+                    placeholder="Location"
+                    className="flex-grow border border-gray-300 p-2 rounded-md"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={toggleModal}
+                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
+                  >
+                    + Add Location
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="mb-6">
-          <h3 className="font-semibold text-gray-700 mb-2">Contact Details</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email ID: *</label>
-              <input type="email" placeholder="Enter Email ID" className="w-full border border-gray-300 p-2 rounded-md" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Mobile No.: *</label>
-              <input type="text" placeholder="Enter Mobile No." className="w-full border border-gray-300 p-2 rounded-md" />
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-700 mb-2">Contact Details</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email ID: *</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="Enter Email ID"
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Mobile No.: *</label>
+                <input
+                  type="text"
+                  name="mobile"
+                  value={form.mobile}
+                  onChange={handleChange}
+                  placeholder="Enter Mobile No."
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  required
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        <button className="bg-orange-500 text-white text-center w-48 py-3 rounded-full font-semibold hover:bg-orange-600 mx-auto block">
-          Proceed
-        </button>
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Notes:</label>
+            <textarea
+              name="notes"
+              value={form.notes}
+              onChange={handleChange}
+              placeholder="Any additional notes"
+              className="w-full border border-gray-300 p-2 rounded-md"
+              rows={3}
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-orange-500 text-white text-center w-48 py-3 rounded-full font-semibold hover:bg-orange-600 mx-auto block"
+          >
+            {loading ? "Submitting..." : "Proceed"}
+          </button>
+        </form>
 
         {/* Modal */}
         {showModal && (
