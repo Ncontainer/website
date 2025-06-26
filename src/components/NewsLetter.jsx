@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import blog from "../images/04.png";
+import axios from "axios"; // Add axios import
 
 const NewsLetter = () => {
   const [email, setEmail] = useState('');
@@ -9,11 +10,19 @@ const NewsLetter = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = () => {
+  // Update handleSubmit to use axios POST
+  const handleSubmit = async () => {
     if (email && email.includes('@')) {
-      setIsSubmitted(true);
-      setEmail('');
-      setTimeout(() => setIsSubmitted(false), 3000);
+      try {
+        await axios.post('https://backend-production-d773.up.railway.app/api/subscribe', {
+          email: email
+        });
+        setIsSubmitted(true);
+        setEmail('');
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } catch (error) {
+        alert('Subscription failed. Please try again.');
+      }
     }
   };
 
