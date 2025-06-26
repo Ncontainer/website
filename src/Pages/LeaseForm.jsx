@@ -55,9 +55,9 @@ const LeaseForm = () => {
       // Send one API call per container entry
       for (const c of containers) {
         await axios.post('https://backend-production-d773.up.railway.app/api/lead-request', {
-          requestType: "lease",
-          tradeType: "lease",
-          tradeAction: "lease_containers",
+          requestType: "buy", // <-- FIXED: must be "buy" or "sell"
+          tradeType: "trade", // <-- FIXED: match your other forms
+          tradeAction: "buy_containers", // <-- FIXED: must be "buy_containers" or "sell_containers"
           containerType: c.containerType,
           purposeOfContainer: "export",
           condition: c.condition,
