@@ -1,18 +1,104 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'; // ✅ correct image import
+import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import axios from 'axios'; // <-- Add axios import
 
 const LeaseForm = () => {
-  const [containers, setContainers] = useState([{}]);
+  const [containers, setContainers] = useState([{
+    quantity: '',
+    containerType: '',
+    condition: '',
+    leasingPeriod: '',
+    perDiem: ''
+  }]);
   const [showModal, setShowModal] = useState(false);
+  const [onHireLocation, setOnHireLocation] = useState('');
+  const [offHireLocation, setOffHireLocation] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const toggleModal = () => setShowModal(!showModal);
-  const addContainer = () => setContainers([...containers, {}]);
+  const addContainer = () => setContainers([...containers, {
+    quantity: '',
+    containerType: '',
+    condition: '',
+    leasingPeriod: '',
+    perDiem: ''
+  }]);
   const removeContainer = (index) => {
     const updated = [...containers];
     updated.splice(index, 1);
     setContainers(updated);
+  };
+
+  const handleContainerChange = (index, field, value) => {
+    const updated = containers.map((c, i) =>
+      i === index ? { ...c, [field]: value } : c
+    );
+    setContainers(updated);
+  };
+
+  // Example static location data for demonstration
+  const getLocationObj = (locationStr) => ({
+    portName: locationStr || "Unknown",
+    portCode: "UNK",
+    country: "Unknown",
+    region: "Unknown"
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      // Send one API call per container entry
+      for (const c of containers) {
+        await axios.post('https://backend-production-d773.up.railway.app/api/lead-request', {
+          requestType: "buy", // <-- FIXED: must be "buy" or "sell"
+          tradeType: "trade", // <-- FIXED: match your other forms
+          tradeAction: "buy_containers", // <-- FIXED: must be "buy_containers" or "sell_containers"
+          containerType: c.containerType,
+          purposeOfContainer: "export",
+          condition: c.condition,
+          leasingPeriod: c.leasingPeriod,
+          perDiem: c.perDiem,
+          withCSCRevalidation: false,
+          locations: [
+            getLocationObj(onHireLocation)
+          ],
+          email: email,
+          mobile: mobile,
+          quantity: Number(c.quantity),
+          urgency: "high",
+          notes: `Off-hire location: ${offHireLocation}`
+        });
+      }
+      alert('Lease request(s) submitted successfully!');
+      setContainers([{
+        quantity: '',
+        containerType: '',
+        condition: '',
+        leasingPeriod: '',
+        perDiem: ''
+      }]);
+      setOnHireLocation('');
+      setOffHireLocation('');
+      setEmail('');
+      setMobile('');
+    } catch (error) {
+      if (error.response) {
+        console.log("API Error Response:", error.response.data);
+        alert(
+          'Failed to submit lease request: ' +
+          (error.response.data?.message || JSON.stringify(error.response.data))
+        );
+      } else {
+        console.log("Error:", error.message);
+        alert('Failed to submit lease request. Please try again.');
+      }
+    }
+    setLoading(false);
   };
 
   return (
@@ -72,159 +158,199 @@ const LeaseForm = () => {
           </button>
         </div>
 
-        {/* Container Entries */}
-        {containers.map((_, i) => (
-          <fieldset
-            key={i}
-            className="rounded-md p-4 mb-6 relative border border-gray-200"
+        <form onSubmit={handleSubmit}>
+          {/* Container Entries */}
+          {containers.map((c, i) => (
+            <fieldset
+              key={i}
+              className="rounded-md p-4 mb-6 relative border border-gray-200"
+            >
+              {i > 0 && (
+                <button
+                  type="button"
+                  onClick={() => removeContainer(i)}
+                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                >
+                  🗑️
+                </button>
+              )}
+              <legend className="text-md font-semibold text-gray-700 mb-4">
+                Container Specifications
+              </legend>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="block text-sm mb-1">
+                    Container Quantity: <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Enter Quantity"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                    value={c.quantity || ''}
+                    onChange={e => handleContainerChange(i, 'quantity', e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">
+                    Container Type: <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                    value={c.containerType || ''}
+                    onChange={e => handleContainerChange(i, 'containerType', e.target.value)}
+                    required
+                  >
+                    <option value="">Select Type</option>
+                    <option value="20 HC">20 HC</option>
+                    <option value="40 HC">40 HC</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm mb-1">
+                    Container Condition: <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                    value={c.condition || ''}
+                    onChange={e => handleContainerChange(i, 'condition', e.target.value)}
+                    required
+                  >
+                    <option value="">Select Condition</option>
+                    <option value="WWT">WWT</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">
+                    Leasing period (in Days):{' '}
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Days"
+                    className="w-full border border-gray-300 p-2 rounded-md"
+                    value={c.leasingPeriod || ''}
+                    onChange={e => handleContainerChange(i, 'leasingPeriod', e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">
+                    Per Diem Charge: <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Per Diem"
+                      className="w-full border border-gray-300 p-2 rounded-md pr-12"
+                      value={c.perDiem || ''}
+                      onChange={e => handleContainerChange(i, 'perDiem', e.target.value)}
+                      required
+                    />
+                    <span className="absolute right-3 top-2.5 text-sm text-gray-500">
+                      | USD
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          ))}
+
+          <button
+            type="button"
+            onClick={addContainer}
+            className="text-orange-600 font-medium text-sm mb-6"
           >
-            {i > 0 && (
-              <button
-                onClick={() => removeContainer(i)}
-                className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-              >
-                🗑️
-              </button>
-            )}
-            <legend className="text-md font-semibold text-gray-700 mb-4">
-              Container Specifications
-            </legend>
+            + Add More
+          </button>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          {/* Location Details */}
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-700 mb-2">Location Details</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm mb-1">
-                  Container Quantity: <span className="text-red-500">*</span>
+                  On-Hire Location: <span className="text-red-500">*</span>
                 </label>
-                <input
-                  type="number"
-                  placeholder="Enter Quantity"
-                  className="w-full border border-gray-300 p-2 rounded-md"
-                />
-              </div>
-              <div>
-                <label className="block text-sm mb-1">
-                  Container Type: <span className="text-red-500">*</span>
-                </label>
-                <select className="w-full border border-gray-300 p-2 rounded-md">
-                  <option>Select Type</option>
-                  <option>20 HC</option>
-                  <option>40 HC</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-sm mb-1">
-                  Container Condition: <span className="text-red-500">*</span>
-                </label>
-                <select className="w-full border border-gray-300 p-2 rounded-md">
-                  <option>Select Condition</option>
-                  <option>WWT</option>
-                  <option>Brand New</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm mb-1">
-                  Leasing period (in Days):{' '}
-                  <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="number"
-                  placeholder="Days"
-                  className="w-full border border-gray-300 p-2 rounded-md"
-                />
-              </div>
-              <div>
-                <label className="block text-sm mb-1">
-                  Per Diem Charge: <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
+                <div className="flex gap-2">
                   <input
                     type="text"
-                    placeholder="Per Diem"
-                    className="w-full border border-gray-300 p-2 rounded-md pr-12"
+                    placeholder="Location"
+                    className="flex-grow border border-gray-300 p-2 rounded-md"
+                    value={onHireLocation}
+                    onChange={e => setOnHireLocation(e.target.value)}
+                    required
                   />
-                  <span className="absolute right-3 top-2.5 text-sm text-gray-500">
-                    | USD
-                  </span>
+                  <button
+                    type="button"
+                    onClick={toggleModal}
+                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
+                  >
+                    + Add Location
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm mb-1">
+                  Off-Hire Location: <span className="text-red-500">*</span>
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Location"
+                    className="flex-grow border border-gray-300 p-2 rounded-md"
+                    value={offHireLocation}
+                    onChange={e => setOffHireLocation(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={toggleModal}
+                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
+                  >
+                    + Add Location
+                  </button>
                 </div>
               </div>
             </div>
-          </fieldset>
-        ))}
+          </div>
 
-        <button
-          onClick={addContainer}
-          className="text-orange-600 font-medium text-sm mb-6"
-        >
-          + Add More
-        </button>
-
-        {/* Location Details */}
-        <div className="mb-6">
-          <h3 className="font-semibold text-gray-700 mb-2">Location Details</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm mb-1">
-                On-Hire Location: <span className="text-red-500">*</span>
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Location"
-                  className="flex-grow border border-gray-300 p-2 rounded-md"
-                />
-                <button
-                  onClick={toggleModal}
-                  className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                >
-                  + Add Location
-                </button>
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm mb-1">
-                Off-Hire Location: <span className="text-red-500">*</span>
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Location"
-                  className="flex-grow border border-gray-300 p-2 rounded-md"
-                />
-                <button
-                  onClick={toggleModal}
-                  className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                >
-                  + Add Location
-                </button>
-              </div>
+          {/* Contact Details */}
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-700 mb-2">Contact Details</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input
+                type="email"
+                placeholder="Email ID"
+                className="w-full border border-gray-300 p-2 rounded-md"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Mobile No."
+                className="w-full border border-gray-300 p-2 rounded-md"
+                value={mobile}
+                onChange={e => setMobile(e.target.value)}
+                required
+              />
             </div>
           </div>
-        </div>
 
-        {/* Contact Details */}
-        <div className="mb-6">
-          <h3 className="font-semibold text-gray-700 mb-2">Contact Details</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input
-              type="email"
-              placeholder="Email ID"
-              className="w-full border border-gray-300 p-2 rounded-md"
-            />
-            <input
-              type="text"
-              placeholder="Mobile No."
-              className="w-full border border-gray-300 p-2 rounded-md"
-            />
-          </div>
-        </div>
-
-        {/* Submit */}
-        <button className="bg-orange-500 text-white text-center w-full sm:w-48 py-3 rounded-full font-semibold hover:bg-orange-600 mx-auto block">
-          Proceed
-        </button>
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-orange-500 text-white text-center w-full sm:w-48 py-3 rounded-full font-semibold hover:bg-orange-600 mx-auto block"
+          >
+            {loading ? "Submitting..." : "Proceed"}
+          </button>
+        </form>
 
         {/* Modal */}
         {showModal && (
