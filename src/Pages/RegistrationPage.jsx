@@ -87,13 +87,23 @@ export default function RegistrationPage() {
         isOtpSent: true,
         isLoading: false
       }));
-      setResendTimer(6);
+      setResendTimer(12); // Updated from 6 to 12
       alert('OTP sent successfully!');
     } catch (error) {
-      console.error(error);
-      setOtpData(prev => ({ ...prev, isLoading: false }));
-      alert('Failed to send OTP. Please try again.');
-    }
+  console.error(error);
+  setOtpData(prev => ({ ...prev, isLoading: false }));
+
+  if (
+    error.response &&
+    error.response.data &&
+    typeof error.response.data.message === 'string' &&
+    error.response.data.message.toLowerCase().includes('already registered')
+  ) {
+    alert('This number is already registered.');
+  } else {
+    alert('Failed to send OTP. Please try again.');
+  }
+}
   };
 
   const verifyOtp = async () => {
