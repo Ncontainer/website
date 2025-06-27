@@ -209,11 +209,11 @@ const OneWayForm = () => {
                 >
                   <option value="">Select Condition</option>
                   <option value="WWT">WWT</option>
-                  <option value="brand_new">Brand New</option>
+                  <option value="brand_new_one_trip_factory">Brand New/One Trip/Factory</option>
                   <option value="as_is">As is</option>
                   <option value="scrap">Scrap</option>
                   <option value="cargo_worthy">Cargo Worthy</option>
-                  <option value="iiicl">IIICL</option>
+                  <option value="IICL">IICL</option>
                 </select>
               </div>
             </div>
