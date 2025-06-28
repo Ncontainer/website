@@ -55,23 +55,18 @@ const handleLogout = () => {
   }, []);
 
   // Effect for setting the active nav item based on the current URL
-  useEffect(() => {
-    const handleRouteChange = () => {
-      const path = window.location.pathname;
-      if (path === "/") setActiveItem("home");
-      else if (path === "/about") setActiveItem("about");
-      else if (path.startsWith("/products")) setActiveItem("products");
-      else if (path === "/resources") setActiveItem("resources");
-      else if (path === "/contact") setActiveItem("contact");
-      else if (path === "/feedback") setActiveItem("feedback");
-      else if (path === "/brochure") setActiveItem("brochure");
-      else if (path === "/login") setActiveItem("login");
-    };
-
-    handleRouteChange();
-    window.addEventListener("popstate", handleRouteChange);
-    return () => window.removeEventListener("popstate", handleRouteChange);
-  }, []);
+ useEffect(() => {
+  const path = location.pathname;
+  if (path === "/") setActiveItem("home");
+  else if (path === "/about") setActiveItem("about");
+  else if (path.startsWith("/products")) setActiveItem("products");
+  else if (path === "/resources") setActiveItem("resources");
+  else if (path === "/contact") setActiveItem("contact");
+  else if (path === "/feedback") setActiveItem("feedback");
+  else if (path === "/brochure") setActiveItem("brochure");
+  else if (path === "/login") setActiveItem("login");
+  else setActiveItem(""); // fallback
+}, [location.pathname]);  // ← track actual route changes
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -81,13 +76,12 @@ const handleLogout = () => {
     setIsProductsOpen(!isProductsOpen);
   };
 
-  const handleNavClick = (item, keepMenuOpen = false) => {
-    setActiveItem(item);
-    if (window.innerWidth < 768 && !keepMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  };
-
+ const handleNavClick = (item, keepMenuOpen = false) => {
+  if (window.innerWidth < 768 && !keepMenuOpen) {
+    setIsMenuOpen(false);
+  }
+};
+  
   return (
     <header className={`bg-white shadow-sm w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "scrolled-header" : ""}`}>
       <div className="w-[90%] mx-auto">
@@ -160,7 +154,7 @@ const handleLogout = () => {
             <NavItem text="Resources" to="/resources" isActive={activeItem === "resources"} onClick={() => handleNavClick("resources")} />
             <NavItem text="Contact Us" to="/contact" isActive={activeItem === "contact"} onClick={() => handleNavClick("contact")} />
             <NavItem text="Feedback" to="/feedback" isActive={activeItem === "feedback"} onClick={() => handleNavClick("feedback")} />
-            <NavItem text="Brochure" to="/brochure" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
+            <NavItem text="Brochure" to="/footer" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
           </nav>
 
           <div className="flex items-center">

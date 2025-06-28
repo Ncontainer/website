@@ -6,6 +6,117 @@ import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'
 export default function RegistrationPage() {
   const navigate = useNavigate();
 
+  const countryOptions = [
+  "India", "USA", "Canada", "Australia", "Germany", "France", "Brazil", "UK", "Japan", "China",
+  "Russia", "Italy", "Spain", "Mexico", "South Africa", "Argentina", "Netherlands", "Turkey", "Indonesia", "Egypt",
+  "Sweden", "Norway", "Switzerland", "Belgium", "Denmark", "Finland", "New Zealand", "Poland", "Thailand", "Malaysia",
+  "Vietnam", "Philippines", "Colombia", "Chile", "Peru", "Greece", "Portugal", "Ireland", "Czech Republic", "Ukraine",
+  "Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Afghanistan", "Iraq", "Iran", "UAE", "Saudi Arabia", "Qatar",
+  "Oman", "Kuwait", "Israel", "Singapore", "South Korea", "North Korea", "Morocco", "Nigeria", "Kenya", "Ethiopia",
+  "Sudan", "Algeria", "Tunisia", "Venezuela", "Cuba", "Panama", "Uruguay", "Paraguay", "Bolivia", "Iceland",
+  "Luxembourg", "Lithuania", "Latvia", "Estonia", "Slovakia", "Slovenia", "Croatia", "Serbia", "Romania", "Hungary",
+  "Bulgaria", "Georgia", "Armenia", "Azerbaijan", "Jordan", "Lebanon", "Yemen", "Syria", "Myanmar", "Cambodia",
+  "Laos", "Mongolia", "Kazakhstan", "Uzbekistan", "Tajikistan", "Turkmenistan", "Bhutan", "Maldives", "Zambia", "Zimbabwe"
+];
+
+
+const stateOptions = {
+  India: ["Maharashtra", "Uttar Pradesh", "West Bengal"],
+  USA: ["California", "New York", "Texas"],
+  Canada: ["Ontario", "Quebec", "British Columbia"],
+  Australia: ["New South Wales", "Victoria", "Queensland"],
+  Germany: ["Bavaria", "North Rhine-Westphalia", "Berlin"],
+  France: ["Île-de-France", "Provence-Alpes-Côte d'Azur", "Auvergne-Rhône-Alpes"],
+  Brazil: ["São Paulo", "Rio de Janeiro", "Minas Gerais"],
+  UK: ["England", "Scotland", "Wales"],
+  Japan: ["Tokyo", "Osaka", "Kyoto"],
+  China: ["Shanghai", "Beijing", "Guangdong"],
+  Russia: ["Moscow Oblast", "Saint Petersburg", "Sverdlovsk Oblast"],
+  Italy: ["Lombardy", "Lazio", "Campania"],
+  Spain: ["Madrid", "Catalonia", "Andalusia"],
+  Mexico: ["Mexico City", "Jalisco", "Nuevo León"],
+  Argentina: ["Buenos Aires", "Cordoba", "Santa Fe"],
+  Netherlands: ["North Holland", "South Holland", "Utrecht"],
+  Turkey: ["Istanbul", "Ankara", "Izmir"],
+  Indonesia: ["Jakarta", "West Java", "East Java"],
+  Egypt: ["Cairo", "Giza", "Alexandria"],
+  Sweden: ["Stockholm", "Gothenburg", "Malmö"],
+  Norway: ["Oslo", "Bergen", "Trondheim"],
+  Switzerland: ["Zurich", "Geneva", "Bern"],
+  Belgium: ["Brussels", "Antwerp", "Ghent"],
+  Denmark: ["Copenhagen", "Aarhus", "Odense"],
+  Finland: ["Helsinki", "Tampere", "Turku"],
+  Poland: ["Warsaw", "Krakow", "Wroclaw"],
+  Thailand: ["Bangkok", "Chiang Mai", "Phuket"],
+  Malaysia: ["Kuala Lumpur", "Selangor", "Johor"],
+  Vietnam: ["Ho Chi Minh City", "Hanoi", "Da Nang"],
+  Philippines: ["Manila", "Cebu", "Davao"],
+  Colombia: ["Bogotá", "Medellín", "Cali"],
+  Chile: ["Santiago", "Valparaíso", "Concepción"],
+  Peru: ["Lima", "Cusco", "Arequipa"],
+  Greece: ["Athens", "Thessaloniki", "Crete"],
+  Portugal: ["Lisbon", "Porto", "Faro"],
+  Ireland: ["Dublin", "Cork", "Galway"],
+  Ukraine: ["Kyiv", "Kharkiv", "Odesa"],
+  Pakistan: ["Karachi", "Lahore", "Islamabad"],
+  Bangladesh: ["Dhaka", "Chittagong", "Khulna"],
+  Nepal: ["Kathmandu", "Pokhara", "Lalitpur"],
+  Afghanistan: ["Kabul", "Kandahar", "Herat"],
+  Iraq: ["Baghdad", "Basra", "Mosul"],
+  Iran: ["Tehran", "Mashhad", "Isfahan"],
+  UAE: ["Dubai", "Abu Dhabi", "Sharjah"],
+  Qatar: ["Doha", "Al Rayyan", "Umm Salal Municipality"],
+  Oman: ["Muscat", "Salalah", "Sohar"],
+  Kuwait: ["Kuwait City", "Hawalli", "Farwaniya"],
+  Israel: ["Jerusalem", "Tel Aviv", "Haifa"],
+  Singapore: ["Central Region", "North-East Region", "West Region"],
+  Morocco: ["Casablanca", "Rabat", "Marrakech"],
+  Nigeria: ["Lagos", "Abuja", "Kano"],
+  Kenya: ["Nairobi", "Mombasa", "Kisumu"],
+  Ethiopia: ["Addis Ababa", "Dire Dawa", "Mekelle"],
+  Sudan: ["Khartoum", "Omdurman", "Port Sudan"],
+  Algeria: ["Algiers", "Oran", "Constantine"],
+  Tunisia: ["Tunis", "Sfax", "Sousse"],
+  Venezuela: ["Caracas", "Maracaibo", "Valencia"],
+  Cuba: ["Havana", "Santiago de Cuba", "Camagüey"],
+  Panama: ["Panama City", "Colón", "David"],
+  Uruguay: ["Montevideo", "Salto", "Paysandú"],
+  Paraguay: ["Asunción", "Ciudad del Este", "Encarnación"],
+  Bolivia: ["La Paz", "Santa Cruz de la Sierra", "Cochabamba"],
+  Iceland: ["Reykjavik", "Kopavogur", "Hafnarfjordur"],
+  Luxembourg: ["Luxembourg City", "Esch-sur-Alzette", "Differdange"],
+  Lithuania: ["Vilnius", "Kaunas", "Klaipėda"],
+  Latvia: ["Riga", "Daugavpils", "Liepāja"],
+  Estonia: ["Tallinn", "Tartu", "Narva"],
+  Slovakia: ["Bratislava", "Košice", "Prešov"],
+  Slovenia: ["Ljubljana", "Maribor", "Celje"],
+  Croatia: ["Zagreb", "Split", "Rijeka"],
+  Serbia: ["Belgrade", "Novi Sad", "Niš"],
+  Romania: ["Bucharest", "Cluj-Napoca", "Timișoara"],
+  Hungary: ["Budapest", "Debrecen", "Szeged"],
+  Bulgaria: ["Sofia", "Plovdiv", "Varna"],
+  Georgia: ["Tbilisi", "Batumi", "Kutaisi"],
+  Armenia: ["Yerevan", "Gyumri", "Vanadzor"],
+  Azerbaijan: ["Baku", "Ganja", "Sumqayit"],
+  Jordan: ["Amman", "Zarqa", "Irbid"],
+  Lebanon: ["Beirut", "Tripoli", "Sidon"],
+  Yemen: ["Sana'a", "Aden", "Ta'izz"],
+  Syria: ["Damascus", "Aleppo", "Homs"],
+  Myanmar: ["Yangon", "Mandalay", "Naypyidaw"],
+  Cambodia: ["Phnom Penh", "Siem Reap", "Battambang"],
+  Laos: ["Vientiane", "Luang Prabang", "Savannakhet"],
+  Mongolia: ["Ulaanbaatar", "Erdenet", "Darkhan"],
+  Kazakhstan: ["Astana", "Almaty", "Shymkent"],
+  Uzbekistan: ["Tashkent", "Samarkand", "Bukhara"],
+  Tajikistan: ["Dushanbe", "Khujand", "Kulob"],
+  Turkmenistan: ["Ashgabat", "Turkmenabat", "Dashoguz"],
+  Bhutan: ["Thimphu", "Phuntsholing", "Punakha"],
+  Maldives: ["Malé", "Addu City", "Fuvahmulah"],
+  Zambia: ["Lusaka", "Ndola", "Kitwe"],
+  Zimbabwe: ["Harare", "Bulawayo", "Chitungwiza"]
+};
+
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -149,7 +260,9 @@ export default function RegistrationPage() {
       alert('Please verify your mobile number with OTP first.');
       return;
     }
-
+    
+    
+    
     try {
       const registrationData = {
         firstName: formData.firstName,
@@ -299,29 +412,31 @@ export default function RegistrationPage() {
               onChange={handleChange}
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <select
-                name="country"
-                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
-                value={formData.country}
-                onChange={handleSelectChange}
-              >
-                <option value="">Select Country</option>
-                <option value="USA">USA</option>
-                <option value="Canada">Canada</option>
-                <option value="India">India</option>
-              </select>
-              <select
-                name="state"
-                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
-                value={formData.state}
-                onChange={handleSelectChange}
-              >
-                <option value="">Select State</option>
-                <option value="California">California</option>
-                <option value="Texas">Texas</option>
-                <option value="Gujarat">Gujarat</option>
-              </select>
-            </div>
+  <select
+    name="country"
+    className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+    value={formData.country}
+    onChange={handleSelectChange}
+  >
+    <option value="">Select Country</option>
+    {countryOptions.map((country) => (
+      <option key={country} value={country}>{country}</option>
+    ))}
+  </select>
+
+  <select
+    name="state"
+    className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+    value={formData.state}
+    onChange={handleSelectChange}
+    disabled={!formData.country || !stateOptions[formData.country]}
+  >
+    <option value="">Select State</option>
+    {(stateOptions[formData.country] || []).map((state) => (
+      <option key={state} value={state}>{state}</option>
+    ))}
+  </select>
+</div>
             <textarea
               placeholder="Enter Address"
               rows="3"
