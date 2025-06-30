@@ -1,10 +1,14 @@
 // OneWayForm.jsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 import axios from 'axios';
 
 const OneWayForm = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const selectedFromQuery = params.get('selected');
+
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({
     quantity: '',
@@ -17,7 +21,12 @@ const OneWayForm = () => {
     notes: ''
   });
   const [loading, setLoading] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(selectedFromQuery || "use");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedFromQuery) setSelectedOption(selectedFromQuery);
+  }, [selectedFromQuery]);
 
   const toggleModal = () => setShowModal(!showModal);
 
@@ -151,10 +160,26 @@ const OneWayForm = () => {
             <option value="Empty Repo">Empty Repo</option>
           </select>
 
-          <button className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
+          <button
+            type="button"
+            className={
+              selectedOption === "use"
+                ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+                : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
+            }
+            onClick={() => setSelectedOption("use")}
+          >
             Use Containers
           </button>
-          <button className="border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50">
+          <button
+            type="button"
+            className={
+              selectedOption === "supply"
+                ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+                : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
+            }
+            onClick={() => setSelectedOption("supply")}
+          >
             Supply Containers
           </button>
         </div>

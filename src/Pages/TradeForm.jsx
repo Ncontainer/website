@@ -1,12 +1,14 @@
 // src/components/TradeForm.jsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import mainImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 
 const TradeForm = () => {
-  const [locations, setLocations] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const selectedFromQuery = params.get('selected');
+
   const [form, setForm] = useState({
     quantity: '',
     containerType: '',
@@ -18,7 +20,13 @@ const TradeForm = () => {
     withCSCRevalidation: false,
   });
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(selectedFromQuery || "sell");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedFromQuery) setSelectedOption(selectedFromQuery);
+  }, [selectedFromQuery]);
 
   const toggleModal = () => setShowModal(!showModal);
 
@@ -50,7 +58,6 @@ const TradeForm = () => {
     }));
   };
 
-  // Example static location data for demonstration
   const getLocationObj = (locationStr) => ({
     portName: locationStr || "Unknown",
     portCode: "UNK",
@@ -177,10 +184,26 @@ const TradeForm = () => {
               <option>Empty Repo</option>
             </select>
 
-            <button type="button" className="border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50">
+            <button
+              type="button"
+              className={
+                selectedOption === "buy"
+                  ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+                  : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
+              }
+              onClick={() => setSelectedOption("buy")}
+            >
               Buy Containers
             </button>
-            <button type="button" className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
+            <button
+              type="button"
+              className={
+                selectedOption === "sell"
+                  ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+                  : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
+              }
+              onClick={() => setSelectedOption("sell")}
+            >
               Sell Containers
             </button>
           </div>
@@ -234,9 +257,11 @@ const TradeForm = () => {
                 >
                   <option value="">Select Condition</option>
                   <option value="WWT">WWT</option>
-                  <option value="Cargo Worthy">Cargo Worthy</option>
-                  <option value="As is">As is</option>
-                  <option value="Scrap">Scrap</option>
+                  <option value="brand_new_one_trip_factory">Brand New/One Trip/Factory</option>
+                  <option value="as_is">As is</option>
+                  <option value="scrap">Scrap</option>
+                  <option value="cargo_worthy">Cargo Worthy</option>
+                  <option value="IICL">IICL</option>
                 </select>
               </div>
               <div>

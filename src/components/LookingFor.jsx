@@ -1,9 +1,10 @@
-
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ArrowLeftRight, FileText } from 'lucide-react';
 
 const LookingFor = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,8 +29,8 @@ const LookingFor = () => {
       title: "One Way Movement",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       buttons: [
-        { text: "Use", primary: false },
-        { text: "Supply", primary: true }
+        { text: "Use", primary: false, route: "/one-way", option: "use" },
+        { text: "Supply", primary: true, route: "/one-way", option: "supply" }
       ]
     },
     {
@@ -37,8 +38,8 @@ const LookingFor = () => {
       title: "Click to Trade",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       buttons: [
-        { text: "Buy", primary: false },
-        { text: "Sell", primary: true }
+        { text: "Buy", primary: false, route: "/trade", option: "buy" },
+        { text: "Sell", primary: true, route: "/trade", option: "sell" }
       ]
     },
     {
@@ -46,11 +47,16 @@ const LookingFor = () => {
       title: "Lease with Ease",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       buttons: [
-        { text: "Domestic", primary: false },
-        { text: "EXIM", primary: true }
+        { text: "Domestic", primary: false, route: "/lease", option: "domestic" },
+        { text: "EXIM", primary: true, route: "/lease", option: "exim" }
       ]
     }
   ];
+
+  // Handler to navigate with selected option as query param
+  const handleButtonClick = (route, option) => {
+    navigate(`${route}?selected=${option}`);
+  };
 
   return (
     <div className="flex flex-col items-center py-12 px-4 md:px-8 lg:px-16 w-[95%] mx-auto">
@@ -81,6 +87,7 @@ const LookingFor = () => {
                       ? "bg-secondary text-white"
                       : "border border-secondary text-secondary"
                   } text-sm font-medium`}
+                  onClick={() => handleButtonClick(button.route, button.option)}
                 >
                   {button.text}
                 </button>
