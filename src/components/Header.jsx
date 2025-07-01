@@ -145,7 +145,7 @@ useEffect(() => {
             <NavItem text="Resources" to="/resources" isActive={activeItem === "resources"} onClick={() => handleNavClick("resources")} />
             <NavItem text="Contact Us" to="/contact" isActive={activeItem === "contact"} onClick={() => handleNavClick("contact")} />
             <NavItem text="Feedback" to="/feedback" isActive={activeItem === "feedback"} onClick={() => handleNavClick("feedback")} />
-            <NavItem text="Brochure" to="/brochure" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
+            <NavItem text="Brochure" to="/footer" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
           </nav>
 
           <div className="flex items-center">

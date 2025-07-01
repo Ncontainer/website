@@ -22,18 +22,22 @@ export default function Footer() {
   return (
     <section className="w-full bg-[#1E1E1E] text-white py-10">
       <div className="mx-auto w-4/5">
-        {/* Logo and Tagline */}        <div className="text-center mb-8">
+        {/* Logo and Tagline */}
+        <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold mb-2">LOGO</h1>
           <p className="text-sm md:text-base text-gray-300">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-        </div>{/* Contact Info */}
+        </div>
+
+        {/* Contact Info */}
         <div
           className={`grid ${
             isMobile ? "grid-cols-1 gap-4" : "grid-cols-3 gap-2"
           } mb-12`}
-        >          <div
+        >
+          <div
             className={`flex items-center ${
               isMobile ? "justify-center" : ""
             } bg-white/25 p-4 rounded`}
@@ -57,9 +61,11 @@ export default function Footer() {
             <Phone className="text-orange-500 mr-2" size={isMobile ? 16 : 20} />
             <span className="text-[0.8rem] sm:text-sm">+91 9876543210</span>
           </div>
-        </div>        {/* Footer Links - Headings */}
+        </div>
+
+        {/* Footer Links - Headings */}
         <div className="flex justify-between mb-6">
-          <div className="text-left w-1/3">
+          <div className="text-center w-1/3">
             <h2 className="text-base md:text-xl font-bold">Product</h2>
           </div>
           <div className="text-center w-1/3">
@@ -70,34 +76,39 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Footer Links - Content */}        <div className="flex justify-between mb-10">
-          <div className="text-left w-1/3">
+        {/* Footer Links - Content */}
+        <div className="flex justify-between mb-10">
+          <div className="text-center w-1/3">
             <ul className="space-y-2">
               <li>
                 <Link to="/products/dry_Container" className="text-sm md:text-base hover:text-orange-500">
-                Dry Container
+                  Dry Container
                 </Link>
               </li>
               <li>
                 <Link to="/products/tanks" className="text-sm md:text-base hover:text-orange-500">
-                Liquid Transport Solutions
+                  Liquid Transport Solutions
                 </Link>
-              </li>              <li>
+              </li>
+              <li>
                 <Link to="/products/coil_containers" className="text-sm md:text-base hover:text-orange-500">
-                Coil Containers
+                  Coil Containers
                 </Link>
               </li>
               <li>
                 <Link to="/products/modular_containers" className="text-sm md:text-base hover:text-orange-500">
-                Modular Containers
+                  Modular Containers
                 </Link>
               </li>
               <li>
                 <Link to="/products/refrigerated_containers" className="text-sm md:text-base hover:text-orange-500">
-                Refrigerated Container
+                  Refrigerated Container
                 </Link>
               </li>
-            </ul>          </div>          <div className="text-center w-1/3">
+            </ul>
+          </div>
+
+          <div className="text-center w-1/3">
             <ul className="space-y-2">
               <li>
                 <Link to="/about" className="text-sm md:text-base hover:text-orange-500">
@@ -116,7 +127,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/resources" className="text-sm md:text-base hover:text-orange-500">
-                Resources
+                  Resources
                 </Link>
               </li>
               <li>
@@ -125,7 +136,9 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>          <div className="text-center w-1/3">
+          </div>
+
+          <div className="text-center w-1/3">
             <ul className="space-y-2">
               <li>
                 <Link to="#" className="text-sm md:text-base hover:text-orange-500">
@@ -157,7 +170,9 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-700 my-6"></div>        {/* Copyright */}
+        <div className="border-t border-gray-700 my-6"></div>
+
+        {/* Copyright */}
         <div
           className={`flex ${
             isMobile ? "flex-col space-y-4" : "flex-row justify-between items-center"
