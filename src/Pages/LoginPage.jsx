@@ -4,25 +4,30 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import loginImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 
+
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      const res = await axios.post('https://backend-production-d773.up.railway.app/api/auth/login', {
-        email,
-        password,
-      });
-      localStorage.setItem('token', res.data.token);
-      alert('Login successful!');
-      navigate('/one-way');
-    } catch (error) {
-      alert('Login failed. Please check your credentials.');
-      console.error(error);
-    }
-  };
+const handleLogin = async () => {
+  try {
+    const res = await axios.post('https://backend-production-d773.up.railway.app/api/auth/login', {
+      email,
+      password,
+    });
+
+    // Store login status and token
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('token', res.data.token);
+
+    alert('Login successful!');
+    navigate('/');
+  } catch (error) {
+    alert('Login failed. Please check your credentials.');
+    console.error(error);
+  }
+};
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">

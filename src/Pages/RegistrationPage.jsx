@@ -327,7 +327,7 @@ const stateOptions = {
                 type="button"
                 onClick={sendOtp}
                 disabled={otpData.isLoading || otpData.isOtpVerified || resendTimer > 0}
-                className={`px-4 rounded-md font-semibold transition duration-300 ${
+                className={`px-3 rounded-md font-semibold transition duration-300 ${
                   otpData.isOtpVerified
                     ? 'bg-green-500 text-white cursor-not-allowed'
                     : otpData.isLoading || resendTimer > 0

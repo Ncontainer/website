@@ -115,56 +115,42 @@ const TradeForm = () => {
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
       {/* Left Side - Background Image and Welcome Text */}
-      <div className="bg-amber-700 relative h-96 md:h-auto">
-        <img
-          src={mainImage}
-          alt="Main Example"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-10 left-6 text-left px-4 z-10">
-          <div className="w-full mb-8">
-            <p
-              className="tracking-wider"
-              style={{
-                fontFamily: 'Saira, sans-serif',
-                fontWeight: '500',
-                fontSize: '15.3621px',
-                lineHeight: '109%',
-                color: 'white',
-                textShadow: `
-                  -1px -1px 0 #FF8901,
-                  1px -1px 0 #FF8901,
-                  -1px 1px 0 #FF8901,
-                  1px 1px 0 #FF8901
-                `,
-              }}
-            >
-              Welcome to
-            </p>
-            <div className="w-full pb-2 mt-1">
-              <h1
-                className="text-2xl leading-normal font-saira font-normal"
-                style={{
-                  fontFamily: 'Saira, sans-serif',
-                  fontSize: '35.3621px',
-                  color: '#ffffff',
-                  textShadow: `
-                    -1px -1px 0 #FF8901,
-                    1px -1px 0 #FF8901,
-                    -1px 1px 0 #FF8901,
-                    1px 1px 0 #FF8901
-                  `,
-                }}
-              >
-                NCON Containers
-              </h1>
-            </div>
-          </div>
-        </div>
-      </div>
+     <div className="bg-amber-700 relative md:order-1 order-2 h-64 md:h-auto">
+             <img
+               src={mainImage}
+               alt="Main Example"
+               className="w-full h-full object-cover"
+             />
+             <div className="absolute top-5 left-5 text-left px-4 z-10">
+               <p
+                 className="tracking-wider text-sm"
+                 style={{
+                   fontFamily: 'Saira, sans-serif',
+                   fontWeight: '500',
+                   color: 'white',
+                   textShadow:
+                     '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+                 }}
+               >
+                 Welcome to
+               </p>
+               <h1
+                 className="text-xl md:text-3xl leading-snug font-saira"
+                 style={{
+                   fontFamily: 'Saira, sans-serif',
+                   color: '#ffffff',
+                   textShadow:
+                     '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+                 }}
+               >
+                 NCON Containers
+               </h1>
+             </div>
+           </div>
+     
 
       {/* Right Side - Form */}
-      <div className="bg-white relative p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-gray-100">
+      <div className="bg-white p-6 md:p-8 overflow-y-auto md:order-2 order-1">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 border-w-fit">
             Requirements Form

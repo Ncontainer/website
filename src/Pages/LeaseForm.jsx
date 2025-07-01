@@ -102,38 +102,44 @@ const LeaseForm = () => {
   };
 
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%] relative">
-      {/* Top (on mobile) / Left Section (on desktop) */}
-      <div className="bg-amber-700 relative h-64 md:h-auto">
-        <img
-          src={leaseImage} // ✅ use imported image here
-          alt="Background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-10 left-6 text-left px-4 z-10">
-          <p
-            className="text-white text-sm font-medium"
-            style={{
-              textShadow:
-                '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
-            }}
-          >
-            Welcome to
-          </p>
-          <h1
-            className="text-[28px] md:text-[35px] font-bold text-white"
-            style={{
-              textShadow:
-                '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
-            }}
-          >
-            NCON Containers
-          </h1>
-        </div>
-      </div>
+    <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
+          {/* Left Image Section */}
+         <div className="bg-amber-700 relative order-1 h-64 md:h-auto">
+                 <img
+                   src={leaseImage}
+                   alt="Main Example"
+                   className="w-full h-full object-cover"
+                 />
+                 <div className="absolute top-5 left-5 text-left px-4 z-10">
+                   <p
+                     className="tracking-wider text-sm"
+                     style={{
+                       fontFamily: 'Saira, sans-serif',
+                       fontWeight: '500',
+                       color: 'white',
+                       textShadow:
+                         '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+                     }}
+                   >
+                     Welcome to
+                   </p>
+                   <h1
+                     className="text-xl md:text-3xl leading-snug font-saira"
+                     style={{
+                       fontFamily: 'Saira, sans-serif',
+                       color: '#ffffff',
+                       textShadow:
+                         '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+                     }}
+                   >
+                     NCON Containers
+                   </h1>
+                 </div>
+               </div>
+         
 
       {/* Bottom (on mobile) / Right Section (on desktop) */}
-      <div className="bg-white p-6 md:p-8 overflow-y-auto">
+      <div className="bg-white p-6 md:p-8 overflow-y-auto md:order-2 order-1">
         <h2 className="text-xl md:text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 mb-6">
           Requirements Form
         </h2>
