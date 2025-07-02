@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 import axios from 'axios'; // <-- Add axios import
@@ -17,6 +17,9 @@ const LeaseForm = () => {
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [loading, setLoading] = useState(false);
+  const [ports, setPorts] = useState([]);
+  const [portsLoading, setPortsLoading] = useState(false);
+  const [portsSearch, setPortsSearch] = useState("");
   const navigate = useNavigate();
 
   const toggleModal = () => setShowModal(!showModal);
@@ -100,6 +103,22 @@ const LeaseForm = () => {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    const fetchPorts = async () => {
+      setPortsLoading(true);
+      try {
+        const res = await axios.get(
+          `https://backend-production-d773.up.railway.app/api/ports?page=1&limit=50&search=${portsSearch}`
+        );
+        setPorts(res.data?.data || []);
+      } catch (err) {
+        setPorts([]);
+      }
+      setPortsLoading(false);
+    };
+    fetchPorts();
+  }, [portsSearch]);
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
@@ -282,45 +301,37 @@ const LeaseForm = () => {
                 <label className="block text-sm mb-1">
                   On-Hire Location: <span className="text-red-500">*</span>
                 </label>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Location"
-                    className="flex-grow border border-gray-300 p-2 rounded-md"
-                    value={onHireLocation}
-                    onChange={e => setOnHireLocation(e.target.value)}
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleModal}
-                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                  >
-                    + Add Location
-                  </button>
-                </div>
+                <select
+                  className="flex-grow border border-gray-300 p-2 rounded-md"
+                  value={onHireLocation}
+                  onChange={e => setOnHireLocation(e.target.value)}
+                  required
+                >
+                  <option value="">Select On-Hire Location</option>
+                  {ports.map(port => (
+                    <option key={port._id} value={port._id}>
+                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-sm mb-1">
                   Off-Hire Location: <span className="text-red-500">*</span>
                 </label>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Location"
-                    className="flex-grow border border-gray-300 p-2 rounded-md"
-                    value={offHireLocation}
-                    onChange={e => setOffHireLocation(e.target.value)}
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleModal}
-                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                  >
-                    + Add Location
-                  </button>
-                </div>
+                <select
+                  className="flex-grow border border-gray-300 p-2 rounded-md"
+                  value={offHireLocation}
+                  onChange={e => setOffHireLocation(e.target.value)}
+                  required
+                >
+                  <option value="">Select Off-Hire Location</option>
+                  {ports.map(port => (
+                    <option key={port._id} value={port._id}>
+                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
@@ -369,24 +380,29 @@ const LeaseForm = () => {
                 type="text"
                 placeholder="Select by Port, Country or Region Name"
                 className="w-full border border-gray-300 rounded-md p-2 mb-4"
+                value={portsSearch}
+                onChange={e => setPortsSearch(e.target.value)}
               />
               <div className="space-y-4">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-4 p-2 border rounded-md shadow-sm"
-                  >
-                    <div className="text-orange-500 text-xl">⚓</div>
-                    <div className="flex-grow">
-                      <p className="font-semibold">Port Name</p>
-                      <p className="text-sm text-gray-500">
-                        Address: Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt.
-                      </p>
+                {portsLoading ? (
+                  <div>Loading ports...</div>
+                ) : (
+                  ports.map((port, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-4 p-2 border rounded-md shadow-sm"
+                    >
+                      <div className="text-orange-500 text-xl">⚓</div>
+                      <div className="flex-grow">
+                        <p className="font-semibold">{port.portName}</p>
+                        <p className="text-sm text-gray-500">
+                          Address: {port.address || "N/A"}
+                        </p>
+                      </div>
+                      <input type="checkbox" className="mt-2" />
                     </div>
-                    <input type="checkbox" className="mt-2" />
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
               <button
                 onClick={toggleModal}

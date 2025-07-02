@@ -1,4 +1,3 @@
-// OneWayForm.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
@@ -22,11 +21,30 @@ const OneWayForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(selectedFromQuery || "use");
+  const [ports, setPorts] = useState([]);
+  const [portsLoading, setPortsLoading] = useState(false);
+  const [portsSearch, setPortsSearch] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     if (selectedFromQuery) setSelectedOption(selectedFromQuery);
   }, [selectedFromQuery]);
+
+  useEffect(() => {
+    const fetchPorts = async () => {
+      setPortsLoading(true);
+      try {
+        const res = await axios.get(
+          `https://backend-production-d773.up.railway.app/api/ports?page=1&limit=50&search=${portsSearch}`
+        );
+        setPorts(res.data?.data || []);
+      } catch (err) {
+        setPorts([]);
+      }
+      setPortsLoading(false);
+    };
+    fetchPorts();
+  }, [portsSearch]);
 
   const toggleModal = () => setShowModal(!showModal);
 
@@ -162,22 +180,18 @@ const OneWayForm = () => {
 
           <button
             type="button"
-            className={
-              selectedOption === "use"
-                ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
-                : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
-            }
+            className={selectedOption === "use"
+              ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+              : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"}
             onClick={() => setSelectedOption("use")}
           >
             Use Containers
           </button>
           <button
             type="button"
-            className={
-              selectedOption === "supply"
-                ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
-                : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
-            }
+            className={selectedOption === "supply"
+              ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+              : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"}
             onClick={() => setSelectedOption("supply")}
           >
             Supply Containers
@@ -185,7 +199,7 @@ const OneWayForm = () => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <fieldset className="rounded-md p-4 mb-6 border border-black-400">
+          <fieldset className="rounded-md p-4 mb-6 border border-gray-400">
             <legend className="font-semibold text-lg  text-gray-700">Container Specifications</legend>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -249,45 +263,37 @@ const OneWayForm = () => {
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <input
-                    type="text"
-                    name="pickUpLocation"
-                    value={form.pickUpLocation}
-                    onChange={handleChange}
-                    placeholder="Location"
-                    className="flex-grow border border-gray-300 p-2 rounded-md"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleModal}
-                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                  >
-                    + Add Location
-                  </button>
-                </div>
+                <select
+                  name="pickUpLocation"
+                  value={form.pickUpLocation}
+                  onChange={handleChange}
+                  className="flex-grow border border-gray-300 p-2 rounded-md"
+                  required
+                >
+                  <option value="">Select Pick-up Location</option>
+                  {ports.map(port => (
+                    <option key={port._id} value={port._id}>
+                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Drop-off Location: *</label>
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <input
-                    type="text"
-                    name="dropOffLocation"
-                    value={form.dropOffLocation}
-                    onChange={handleChange}
-                    placeholder="Location"
-                    className="flex-grow border border-gray-300 p-2 rounded-md"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleModal}
-                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                  >
-                    + Add Location
-                  </button>
-                </div>
+                <select
+                  name="dropOffLocation"
+                  value={form.dropOffLocation}
+                  onChange={handleChange}
+                  className="flex-grow border border-gray-300 p-2 rounded-md"
+                  required
+                >
+                  <option value="">Select Drop-off Location</option>
+                  {ports.map(port => (
+                    <option key={port._id} value={port._id}>
+                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
@@ -342,40 +348,6 @@ const OneWayForm = () => {
             {loading ? "Submitting..." : "Proceed"}
           </button>
         </form>
-
-        {/* Modal */}
-        {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-            <div className="bg-white rounded-xl shadow-lg w-[90%] sm:w-[500px] max-h-[80vh] p-6 overflow-y-auto border-4 border-blue-300">
-              <h3 className="font-semibold text-gray-800 text-lg mb-4">Location Selector Popup Modal</h3>
-              <input
-                type="text"
-                placeholder="Select by Port, Country or Region Name"
-                className="w-full border border-gray-300 rounded-md p-2 mb-4"
-              />
-              <div className="space-y-4">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="flex items-start gap-4 p-2 border rounded-md shadow-sm">
-                    <div className="text-orange-500 text-xl">⚓</div>
-                    <div className="flex-grow">
-                      <p className="font-semibold">Port Name</p>
-                      <p className="text-sm text-gray-500">
-                        Address: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      </p>
-                    </div>
-                    <input type="checkbox" className="mt-2" />
-                  </div>
-                ))}
-              </div>
-              <button
-                onClick={toggleModal}
-                className="bg-orange-500 text-white py-2 px-6 mt-4 rounded-md hover:bg-orange-600 float-right"
-              >
-                Done
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -22,11 +22,30 @@ const TradeForm = () => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState(selectedFromQuery || "sell");
+  const [ports, setPorts] = useState([]);
+  const [portsLoading, setPortsLoading] = useState(false);
+  const [portsSearch, setPortsSearch] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     if (selectedFromQuery) setSelectedOption(selectedFromQuery);
   }, [selectedFromQuery]);
+
+  useEffect(() => {
+    const fetchPorts = async () => {
+      setPortsLoading(true);
+      try {
+        const res = await axios.get(
+          `https://backend-production-d773.up.railway.app/api/ports?page=1&limit=50&search=${portsSearch}`
+        );
+        setPorts(res.data?.data || []);
+      } catch (err) {
+        setPorts([]);
+      }
+      setPortsLoading(false);
+    };
+    fetchPorts();
+  }, [portsSearch]);
 
   const toggleModal = () => setShowModal(!showModal);
 
@@ -275,7 +294,7 @@ const TradeForm = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
                 <div className="flex gap-2">
-                  <input
+                  {/* <input
                     type="text"
                     name="pickUpLocation"
                     value={form.pickUpLocation}
@@ -290,7 +309,21 @@ const TradeForm = () => {
                     className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
                   >
                     + Add Location
-                  </button>
+                  </button> */}
+                  <select
+  name="pickUpLocation"
+  value={form.pickUpLocation}
+  onChange={handleChange}
+  className="flex-grow border border-gray-300 p-2 rounded-md"
+  required
+>
+  <option value="">Select Pick-up Location</option>
+  {ports.map(port => (
+    <option key={port._id} value={port._id}>
+      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
+    </option>
+  ))}
+</select>
                 </div>
               </div>
             </div>
@@ -357,20 +390,25 @@ const TradeForm = () => {
                 type="text"
                 placeholder="Select by Port, Country or Region Name"
                 className="w-full border border-gray-300 rounded-md p-2 mb-4"
+                onChange={(e) => setPortsSearch(e.target.value)}
               />
               <div className="space-y-4">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="flex items-start gap-4 p-2 border rounded-md shadow-sm">
-                    <div className="text-orange-500 text-xl">⚓</div>
-                    <div className="flex-grow">
-                      <p className="font-semibold">Port Name</p>
-                      <p className="text-sm text-gray-500">
-                        Address: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-                      </p>
+                {portsLoading ? (
+                  <div>Loading ports...</div>
+                ) : (
+                  ports.map((port, i) => (
+                    <div key={i} className="flex items-start gap-4 p-2 border rounded-md shadow-sm">
+                      <div className="text-orange-500 text-xl">⚓</div>
+                      <div className="flex-grow">
+                        <p className="font-semibold">{port.portName}</p>
+                        <p className="text-sm text-gray-500">
+                          Address: {port.address || "N/A"}
+                        </p>
+                      </div>
+                      <input type="checkbox" className="mt-2" />
                     </div>
-                    <input type="checkbox" className="mt-2" />
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
               <button
                 onClick={toggleModal}
