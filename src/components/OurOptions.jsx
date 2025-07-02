@@ -125,14 +125,14 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
              <button
-                onClick={() => navigate('/leaseform')} // ✅ Add this
+                onClick={() => navigate('/lease')} // ✅ Add this
                 className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 border border-orange-500 hover:border-transparent rounded-3xl"
                 style={{ color: orangeColor, borderColor: orangeColor }}
               >
                 Domestic
               </button>
               <button
-                onClick={() => navigate('/LeaseForm')} // ✅ Add this
+                onClick={() => navigate('/lease')} // ✅ Add this
                 className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-10 rounded-3xl"
                 style={{ backgroundColor: orangeColor }}
               >
