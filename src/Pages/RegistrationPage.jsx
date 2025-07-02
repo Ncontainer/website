@@ -41,6 +41,8 @@ export default function RegistrationPage() {
     return () => clearInterval(interval);
   }, [resendTimer]);
 
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
   // Fetch countries on mount
   useEffect(() => {
     const fetchCountries = async () => {
@@ -233,8 +235,10 @@ export default function RegistrationPage() {
       };
 
       await axios.post('https://backend-production-d773.up.railway.app/api/auth/register', registrationData);
-      alert('Registration successful!');
-      navigate('/login');
+      setShowSuccessPopup(true);
+        setTimeout(() => {
+          navigate('/login');
+        }, 2500);
     } catch (error) {
      if (error.response) {
     console.error("API Error Response:", error.response.data);
@@ -425,6 +429,28 @@ export default function RegistrationPage() {
           </form>
         )}
       </div>
+    {showSuccessPopup && (
+  <div className="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center">
+    <div className="bg-white rounded-2xl p-8 shadow-xl w-[90%] max-w-sm text-center border-t-4 border-amber-500">
+      <div className="flex justify-center mb-4">
+        <div className="bg-amber-100 rounded-full h-16 w-16 flex items-center justify-center">
+          <svg
+            className="h-8 w-8 text-amber-500"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+      </div>
+      <h2 className="text-xl font-semibold text-gray-800 mb-2">Thank You!</h2>
+      <p className="text-sm text-gray-600">Thank you for registering with us. You will be redirected shortly.</p>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
