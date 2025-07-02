@@ -132,7 +132,7 @@ const OurOptions = () => {
                 Domestic
               </button>
               <button
-                onClick={() => navigate('/leaseform')} // ✅ Add this
+                onClick={() => navigate('/LeaseForm')} // ✅ Add this
                 className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-10 rounded-3xl"
                 style={{ backgroundColor: orangeColor }}
               >
