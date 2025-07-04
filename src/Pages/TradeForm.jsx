@@ -9,6 +9,10 @@ const TradeForm = () => {
   const params = new URLSearchParams(location.search);
   const selectedFromQuery = params.get('selected');
 
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupType, setPopupType] = useState("success"); // "success" or "error"
+  const [showPopup, setShowPopup] = useState(false);
+
   const [form, setForm] = useState({
     quantity: '',
     containerType: '',
@@ -29,6 +33,8 @@ const TradeForm = () => {
 
   // Define the base URL as a constant for easy modification
   const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
+  const [tradeAction, setTradeAction] = useState("buy_containers");
 
   useEffect(() => {
     if (selectedFromQuery) setSelectedOption(selectedFromQuery);
@@ -95,7 +101,7 @@ const TradeForm = () => {
       await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
         requestType: "buy",
         tradeType: "trade",
-        tradeAction: "buy_containers",
+        tradeAction: tradeAction,
         containerType: form.containerType,
         purposeOfContainer: "export",
         condition: form.condition,
@@ -109,7 +115,7 @@ const TradeForm = () => {
         urgency: "high",
         notes: form.notes
       });
-      console.log('Request submitted successfully!'); // Replaced alert
+      showMessage("Request submitted successfully!", "success"); // Replaced alert
       setForm({
         quantity: '',
         containerType: '',
@@ -122,18 +128,25 @@ const TradeForm = () => {
       });
     } catch (error) {
       if (error.response) {
-        console.error("API Error Response:", error.response.data); // Replaced alert
-        console.error(
-          'Failed to submit request: ' +
-          (error.response.data?.message || JSON.stringify(error.response.data))
-        );
+        showMessage(
+  'Failed to submit request: ' +
+    (error.response.data?.message || "Unexpected error."),
+  "error"
+);
       } else {
-        console.error("Error:", error.message); // Replaced alert
-        console.error('Failed to submit request. Please try again.');
+       showMessage("Failed to submit request. Please try again.", "error");
       }
     }
     setLoading(false);
   };
+  const showMessage = (message, type = "success") => {
+  setPopupMessage(message);
+  setPopupType(type);
+  setShowPopup(true);
+
+  // Auto-close after 3 seconds
+  setTimeout(() => setShowPopup(false), 3000);
+};
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
@@ -194,27 +207,34 @@ const TradeForm = () => {
             </select>
 
             <button
-              type="button"
-              className={
-                selectedOption === "buy"
-                  ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
-                  : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
-              }
-              onClick={() => setSelectedOption("buy")}
-            >
-              Buy Containers
-            </button>
-            <button
-              type="button"
-              className={
-                selectedOption === "sell"
-                  ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
-                  : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
-              }
-              onClick={() => setSelectedOption("sell")}
-            >
-              Sell Containers
-            </button>
+          type="button"
+          className={
+            selectedOption === "buy"
+              ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+              : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
+          }
+          onClick={() => {
+            setSelectedOption("buy");
+            setTradeAction("buy_containers");
+          }}
+        >
+          Buy Containers
+        </button>
+
+        <button
+          type="button"
+          className={
+            selectedOption === "sell"
+              ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+              : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
+          }
+          onClick={() => {
+            setSelectedOption("sell");
+            setTradeAction("sell_containers");
+          }}
+        >
+          Sell Containers
+        </button>
           </div>
 
           {/* Container Specifications */}
@@ -424,6 +444,46 @@ const TradeForm = () => {
           </div>
         )}
       </div>
+
+      {/* Pop-up Modal for Success/Error */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all duration-300">
+          <div
+            className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${popupType === 'success' ? 'border-orange-500' : 'border-red-500'} scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+            style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', backdropFilter: 'blur(10px)' }}
+          >
+            <div className="p-8">
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${popupType === 'success' ? 'bg-gradient-to-r from-orange-400 to-amber-500' : 'bg-gradient-to-r from-red-400 to-rose-500'}`}>
+                    {popupType === 'success' ? (
+                      <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className={`text-2xl font-bold ${popupType === 'success' ? 'text-orange-600' : 'text-red-600'}`}>{popupType === 'success' ? 'Success!' : 'Error!'}</h2>
+                <p className="text-gray-600 leading-relaxed">{popupMessage}</p>
+              </div>
+              {popupType === 'error' && (
+                <button
+                  onClick={() => setShowPopup(false)}
+                  className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                >
+                  Close
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

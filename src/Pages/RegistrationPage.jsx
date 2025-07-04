@@ -45,6 +45,7 @@ export default function RegistrationPage() {
   }, [resendTimer]);
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [popup, setPopup] = useState({ visible: false, message: '', success: true });
 
   // Fetch countries on mount
   useEffect(() => {
@@ -149,8 +150,7 @@ export default function RegistrationPage() {
   // --- Email OTP logic ---
   const sendOtp = async () => {
     if (!formData.emailId.trim()) {
-      // Using a custom message box instead of alert()
-      console.log('Please enter email address first.');
+      setPopup({ visible: true, message: 'Please enter email address first.', success: false });
       return;
     }
 
@@ -167,10 +167,8 @@ export default function RegistrationPage() {
         isLoading: false
       }));
       setResendTimer(12);
-      // Using a custom message box instead of alert()
-      console.log('OTP sent successfully!');
+      setPopup({ visible: true, message: 'OTP sent successfully!', success: true });
     } catch (error) {
-      console.error(error);
       setOtpData(prev => ({ ...prev, isLoading: false }));
 
       if (
@@ -179,19 +177,16 @@ export default function RegistrationPage() {
         typeof error.response.data.message === 'string' &&
         error.response.data.message.toLowerCase().includes('already registered')
       ) {
-        // Using a custom message box instead of alert()
-        console.log('This email is already registered.');
+        setPopup({ visible: true, message: 'This email is already registered.', success: false });
       } else {
-        // Using a custom message box instead of alert()
-        console.log('Failed to send OTP. Please try again.');
+        setPopup({ visible: true, message: 'Failed to send OTP. Please try again.', success: false });
       }
     }
   };
 
   const verifyOtp = async () => {
     if (!otpData.otp.trim()) {
-      // Using a custom message box instead of alert()
-      console.log('Please enter OTP.');
+      setPopup({ visible: true, message: 'Please enter OTP.', success: false });
       return;
     }
 
@@ -209,13 +204,10 @@ export default function RegistrationPage() {
         sessionToken: response.data.sessionToken || response.data.token || '',
         isLoading: false
       }));
-      // Using a custom message box instead of alert()
-      console.log('OTP verified successfully!');
+      setPopup({ visible: true, message: 'OTP verified successfully!', success: true });
     } catch (error) {
-      console.error('Error:', error.response || error);
       setOtpData(prev => ({ ...prev, isLoading: false }));
-      // Using a custom message box instead of alert()
-      console.log('Invalid OTP. Please try again.');
+      setPopup({ visible: true, message: 'Invalid OTP. Please try again.', success: false });
     }
   };
 
@@ -226,14 +218,12 @@ export default function RegistrationPage() {
     const allFilled = required.every(field => formData[field] && formData[field].trim() !== '');
 
     if (!allFilled) {
-      // Using a custom message box instead of alert()
-      console.log('Please fill all the required details.');
+      setPopup({ visible: true, message: 'Please fill all the required details.', success: false });
       return;
     }
 
     if (!otpData.isOtpVerified) {
-      // Using a custom message box instead of alert()
-      console.log('Please verify your email address with OTP first.');
+      setPopup({ visible: true, message: 'Please verify your email address with OTP first.', success: false });
       return;
     }
 
@@ -252,25 +242,29 @@ export default function RegistrationPage() {
       };
 
       await axios.post(`${BASE_BACKEND_URL}api/auth/register`, registrationData);
-      setShowSuccessPopup(true);
-        setTimeout(() => {
-          navigate('/login');
-        }, 2500);
+      setPopup({ visible: true, message: 'Registration successful! Redirecting to login...', success: true });
+      setTimeout(() => {
+        setPopup({ visible: false, message: '', success: true });
+        navigate('/login');
+      }, 2500);
     } catch (error) {
-     if (error.response) {
-    console.error("API Error Response:", error.response.data);
-    // Using a custom message box instead of alert()
-    console.log(
-      'Registration failed: ' +
-      (error.response.data?.message || JSON.stringify(error.response.data))
-    );
-  } else {
-    console.error("Error:", error.message);
-    // Using a custom message box instead of alert()
-    console.log('Registration failed! Please try again.');
-  }
+      if (error.response) {
+        setPopup({ visible: true, message: 'Registration failed: ' + (error.response.data?.message || JSON.stringify(error.response.data)), success: false });
+      } else {
+        setPopup({ visible: true, message: 'Registration failed! Please try again.', success: false });
+      }
     }
   };
+
+  // Show popup for 2 seconds (2000ms) for both success and error
+  useEffect(() => {
+    if (popup.visible) {
+      const timer = setTimeout(() => {
+        setPopup(prev => ({ ...prev, visible: false }));
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [popup.visible]);
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
@@ -448,97 +442,42 @@ export default function RegistrationPage() {
           </form>
         )}
       </div>
-    {showSuccessPopup && (
-  <div className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${true ? 'bg-black bg-opacity-50' : 'bg-opacity-0'}`}>
-    <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 border-orange-500 scale-100 opacity-100 translate-y-0 transition-all duration-500`}
-      style={{
-        background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-        backdropFilter: 'blur(10px)'
-      }}>
-      <div className="absolute -top-2 -right-2 w-8 h-8 bg-orange-400 rounded-full opacity-20 animate-ping"></div>
-      <div className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full"></div>
+
+      {/* Pop-up Modal for Success/Error */}
+      {popup.visible && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all duration-300">
+    <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${popup.success ? 'border-orange-500' : 'border-red-500'} scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+      style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', backdropFilter: 'blur(10px)' }}>
       <div className="p-8">
         <div className="flex justify-center mb-6">
           <div className="relative">
-            <div className={`bg-gradient-to-r from-orange-400 to-amber-500 rounded-full h-20 w-20 flex items-center justify-center shadow-lg scale-100 rotate-0 transition-all duration-700`}>
-              <svg
-                className={`h-10 w-10 text-white scale-100 opacity-100 transition-all duration-500 delay-200`}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 13l4 4L19 7"
-                  className="animate-[checkmark_0.6s_ease-in-out_0.4s_forwards]"
-                  style={{
-                    strokeDasharray: 20,
-                    strokeDashoffset: 0
-                  }}
-                />
-              </svg>
+            <div className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${popup.success ? 'bg-gradient-to-r from-orange-400 to-amber-500' : 'bg-gradient-to-r from-red-400 to-rose-500'}`}>
+              {popup.success ? (
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              )}
             </div>
-            <div className="absolute inset-0 bg-orange-400 rounded-full scale-150 opacity-0 transition-all duration-1000"></div>
           </div>
         </div>
         <div className="space-y-3">
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent translate-y-0 opacity-100 transition-all duration-500 delay-300">
-            Success!
-          </h2>
-          <p className="text-gray-600 leading-relaxed translate-y-0 opacity-100 transition-all duration-500 delay-400">
-            Your request received successfully. Thankyou for choosing NCON
-            You will be contacted shortly.
-          </p>
+          <h2 className={`text-2xl font-bold ${popup.success ? 'text-orange-600' : 'text-red-600'}`}>{popup.success ? 'Success!' : 'Error!'}</h2>
+          <p className="text-gray-600 leading-relaxed">{popup.message}</p>
         </div>
-        <div className="mt-6 bg-gray-200 rounded-full h-1 overflow-hidden opacity-100 transition-all duration-500 delay-500">
-          <div
-            className="h-full bg-gradient-to-r from-orange-400 to-amber-500 rounded-full transition-all duration-[2500ms] ease-linear"
-            style={{
-              width: '100%',
-              transitionDelay: '600ms'
-            }}
-          ></div>
-        </div>
-      </div>
-      <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-2 h-2 bg-orange-400 rounded-full animate-float`}
-            style={{
-              left: `${20 + i * 12}%`,
-              top: `${30 + (i % 2) * 20}%`,
-              animationDelay: `${i * 0.2}s`,
-              animationDuration: `${2 + i * 0.3}s`
-            }}
-          ></div>
-        ))}
+        {!popup.success && (
+          <button
+            onClick={() => setPopup({ ...popup, visible: false })}
+            className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
+            Close
+          </button>
+        )}
       </div>
     </div>
-
-    <style jsx>{`
-      @keyframes checkmark {
-        0% {
-          stroke-dashoffset: 20;
-        }
-        100% {
-          stroke-dashoffset: 0;
-        }
-      }
-
-      @keyframes float {
-        0%, 100% {
-          transform: translateY(0px) rotate(0deg);
-          opacity: 0.7;
-        }
-        50% {
-          transform: translateY(-10px) rotate(180deg);
-          opacity: 0.3;
-        }
-      }
-    `}</style>
   </div>
 )}
 

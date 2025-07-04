@@ -145,7 +145,8 @@ useEffect(() => {
             <NavItem text="Resources" to="/resources" isActive={activeItem === "resources"} onClick={() => handleNavClick("resources")} />
             <NavItem text="Contact Us" to="/contact" isActive={activeItem === "contact"} onClick={() => handleNavClick("contact")} />
             <NavItem text="Feedback" to="/feedback" isActive={activeItem === "feedback"} onClick={() => handleNavClick("feedback")} />
-            <NavItem text="Brochure" to="/footer" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
+            {/* Brochure button - now non-functional */}
+            <NavItem text="Brochure" to="#" isActive={activeItem === "brochure"} onClick={e => { e.preventDefault(); }} />
           </nav>
 
           <div className="flex items-center">
@@ -206,7 +207,8 @@ useEffect(() => {
               <Link to="/resources" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("resources")}>Resources</Link>
               <Link to="/contact" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap" onClick={() => handleNavClick("contact")}>Contact Us</Link>
               <Link to="/feedback" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("feedback")}>Feedback</Link>
-              <Link to="/brochure" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("brochure")}>Brochure</Link>
+              {/* Brochure button - now non-functional */}
+              <span className="block py-3 px-4 border-b border-white/20 text-white font-medium opacity-60 cursor-not-allowed select-none">Brochure</span>
               {/* Mobile Extras */}
               <div className="pt-3 border-t border-white/20">
                 <div className="flex space-x-5 pb-5 justify-center">
@@ -271,4 +273,4 @@ function NavItem({ text, to, isActive = false, onClick }) {
       <div className={`h-0.5 bg-secondary transition-all duration-300 ${isActive || isHovered ? "w-full" : "w-0"} group-hover:w-full`}></div>
     </div>
   );
-} 
+}

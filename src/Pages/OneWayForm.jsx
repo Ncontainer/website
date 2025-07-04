@@ -24,10 +24,16 @@ const OneWayForm = () => {
   const [ports, setPorts] = useState([]);
   const [portsLoading, setPortsLoading] = useState(false);
   const [portsSearch, setPortsSearch] = useState("");
+  const [popup, setPopup] = useState({ visible: false, message: '', success: true });
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   // Define the base URL as a constant for easy modification
   const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
+  const [tradeAction, setTradeAction] = useState("buy_containers");
+  // New state for requestType
+  const [requestType, setRequestType] = useState("buy");
 
   useEffect(() => {
     if (selectedFromQuery) setSelectedOption(selectedFromQuery);
@@ -87,53 +93,49 @@ const OneWayForm = () => {
   };
 };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
-        requestType: "buy", // This might need adjustment based on "use" or "supply"
-        tradeType: "one_way", // Changed from "trade" to "one_way" for clarity
-        tradeAction: selectedOption === "use" ? "use" : "supply", // Dynamic based on selectedOption
-        containerType: form.containerType,
-        purposeOfContainer: "export", // This might need adjustment
-        condition: form.condition,
-        withCSCRevalidation: true, // Assuming true for one-way
-        locations: [
-          getLocationObj(form.pickUpLocation),
-          getLocationObj(form.dropOffLocation) // Added drop-off location
-        ],
-        email: form.email,
-        mobile: form.mobile,
-        quantity: Number(form.quantity),
-        urgency: "high", // This might need adjustment
-        notes: form.notes
-      });
-      console.log('Request submitted successfully!'); // Replaced alert
-      setForm({
-        quantity: '',
-        containerType: '',
-        condition: '',
-        pickUpLocation: '',
-        dropOffLocation: '',
-        email: '',
-        mobile: '',
-        notes: ''
-      });
-    } catch (error) {
-      if (error.response) {
-        console.error("API Error Response:", error.response.data); // Replaced alert
-        console.error(
-          'Failed to submit request: ' +
-          (error.response.data?.message || JSON.stringify(error.response.data))
-        );
-      } else {
-        console.error("Error:", error.message); // Replaced alert
-        console.error('Failed to submit request. Please try again.');
-      }
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const response = await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
+      requestType: requestType, // Use the new state here
+      tradeType: "one_way",
+      tradeAction: tradeAction,
+      containerType: form.containerType,
+      purposeOfContainer: "export",
+      condition: form.condition,
+      withCSCRevalidation: true,
+      locations: [
+        getLocationObj(form.pickUpLocation),
+        getLocationObj(form.dropOffLocation)
+      ],
+      email: form.email,
+      mobile: form.mobile,
+      quantity: Number(form.quantity),
+      urgency: "high",
+      notes: form.notes
+    });
+    setPopup({ visible: true, message: "Request submitted successfully!", success: true });
+    setTimeout(() => setPopup({ visible: false, message: '', success: true }), 2500);
+    setForm({
+      quantity: '',
+      containerType: '',
+      condition: '',
+      pickUpLocation: '',
+      dropOffLocation: '',
+      email: '',
+      mobile: '',
+      notes: ''
+    });
+  } catch (error) {
+    if (error.response) {
+      setPopup({ visible: true, message: error.response.data?.message || "Failed to submit request.", success: false });
+    } else {
+      setPopup({ visible: true, message: "Failed to submit request. Please try again.", success: false });
     }
-    setLoading(false);
-  };
+  }
+  setLoading(false);
+};
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
@@ -196,7 +198,11 @@ const OneWayForm = () => {
             className={selectedOption === "use"
               ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
               : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"}
-            onClick={() => setSelectedOption("use")}
+            onClick={() => {
+              setSelectedOption("use");
+              setTradeAction("buy_containers");
+              setRequestType("buy");
+            }}
           >
             Use Containers
           </button>
@@ -205,7 +211,11 @@ const OneWayForm = () => {
             className={selectedOption === "supply"
               ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
               : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"}
-            onClick={() => setSelectedOption("supply")}
+            onClick={() => {
+              setSelectedOption("supply");
+              setTradeAction("sell_containers");
+              setRequestType("sell");
+            }}
           >
             Supply Containers
           </button>
@@ -361,6 +371,44 @@ const OneWayForm = () => {
             {loading ? "Submitting..." : "Proceed"}
           </button>
         </form>
+
+        {/* Pop-up Modal for Success/Error */}
+        {popup.visible && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all duration-300">
+    <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${popup.success ? 'border-orange-500' : 'border-red-500'} scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+      style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', backdropFilter: 'blur(10px)' }}>
+      <div className="p-8">
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            <div className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${popup.success ? 'bg-gradient-to-r from-orange-400 to-amber-500' : 'bg-gradient-to-r from-red-400 to-rose-500'}`}>
+              {popup.success ? (
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="space-y-3">
+          <h2 className={`text-2xl font-bold ${popup.success ? 'text-orange-600' : 'text-red-600'}`}>{popup.success ? 'Success!' : 'Error!'}</h2>
+          <p className="text-gray-600 leading-relaxed">{popup.message}</p>
+        </div>
+        {!popup.success && (
+          <button
+            onClick={() => setPopup({ ...popup, visible: false })}
+            className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
+            Close
+          </button>
+        )}
+      </div>
+    </div>
+  </div>
+)}
       </div>
     </div>
   );
