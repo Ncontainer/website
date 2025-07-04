@@ -56,7 +56,7 @@ const ContactUs = () => {
   const handleSubmit = async () => {
     if (validateForm()) {
       try {
-        await axios.post('https://backend-production-d773.up.railway.app/api/contact', {
+        await axios.post('https://cktgf93ztd.us-east-1.awsapprunner.com/api/contact', {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,

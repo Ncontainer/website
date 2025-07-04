@@ -10,24 +10,27 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-const handleLogin = async () => {
-  try {
-    const res = await axios.post('https://backend-production-d773.up.railway.app/api/auth/login', {
-      email,
-      password,
-    });
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
 
-    // Store login status and token
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('token', res.data.token);
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post(`${BASE_BACKEND_URL}api/auth/login`, {
+        email,
+        password,
+      });
 
-    alert('Login successful!');
-    navigate('/');
-  } catch (error) {
-    alert('Login failed. Please check your credentials.');
-    console.error(error);
-  }
-};
+      // Store login status and token
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('token', res.data.token);
+
+      console.log('Login successful!'); // Replaced alert
+      navigate('/');
+    } catch (error) {
+      console.error('Login failed. Please check your credentials.', error); // Replaced alert
+      // You might want to implement a custom modal or toast notification here
+    }
+  };
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">

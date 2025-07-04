@@ -7,19 +7,22 @@ function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
   const handleReset = async () => {
     try {
-      const res = await axios.post('https://backend-production-d773.up.railway.app/api/auth/forgot-password', {
+      const res = await axios.post(`${BASE_BACKEND_URL}api/auth/forgot-password`, {
         email,
       });
-      alert('Reset link or OTP sent to your email.');
+      console.log('Reset link or OTP sent to your email.'); // Replaced alert
 
       // Redirect to VerificationPage and pass email as state
       navigate('/verify', { state: { email } });
 
     } catch (error) {
-      alert('Failed to send reset instructions. Please try again.');
-      console.error(error);
+      console.error('Failed to send reset instructions. Please try again.', error); // Replaced alert
+      // You might want to implement a custom modal or toast notification here
     }
   };
 

@@ -28,7 +28,7 @@ export default function FeedbackComp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://backend-production-d773.up.railway.app/api/help', {
+      await axios.post('https://cktgf93ztd.us-east-1.awsapprunner.com/api/help', {
         name: formData.name,
         companyName: formData.companyName,
         email: formData.email,

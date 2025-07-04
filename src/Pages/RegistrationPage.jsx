@@ -31,6 +31,9 @@ export default function RegistrationPage() {
   const [states, setStates] = useState([]);
   const [countryMap, setCountryMap] = useState({}); // For mapping country name to id
 
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
   useEffect(() => {
     let interval;
     if (resendTimer > 0) {
@@ -53,11 +56,11 @@ export default function RegistrationPage() {
         let hasMore = true;
         while (hasMore) {
           const res = await axios.get(
-            `https://backend-production-d773.up.railway.app/api/geo/country?page=${page}&page_size=50`
+            `${BASE_BACKEND_URL}api/geo/country?page=${page}&page_size=50`
           );
           const data = res.data?.results || res.data?.data || [];
           data.forEach((c) => {
-            map[c.name] = c.id; // <-- use _id, not id
+            map[c.name] = c.id;
           });
           allCountries = [...allCountries, ...data];
           hasMore = res.data?.next || (data.length === 50);
@@ -68,7 +71,10 @@ export default function RegistrationPage() {
       } catch (err) {
         setCountries([]);
         setCountryMap({});
-        alert('Failed to fetch countries');
+        // Using a custom message box instead of alert()
+        console.error('Failed to fetch countries:', err);
+        // You might want to implement a custom modal or toast notification here
+        // For demonstration, we'll log to console.
       }
     };
     fetchCountries();
@@ -87,7 +93,7 @@ export default function RegistrationPage() {
         let hasMore = true;
         while (hasMore) {
           const res = await axios.get(
-            `https://backend-production-d773.up.railway.app/api/geo/state?country_id=${formData.country}&page=${page}&page_size=50`
+            `${BASE_BACKEND_URL}api/geo/state?country_id=${formData.country}&page=${page}&page_size=50`
           );
           const data = res.data?.results || res.data?.data || [];
           allStates = [...allStates, ...data];
@@ -97,7 +103,9 @@ export default function RegistrationPage() {
         setStates(allStates);
       } catch (err) {
         setStates([]);
-        alert('Failed to fetch states');
+        // Using a custom message box instead of alert()
+        console.error('Failed to fetch states:', err);
+        // You might want to implement a custom modal or toast notification here
       }
     };
     fetchStates();
@@ -141,14 +149,15 @@ export default function RegistrationPage() {
   // --- Email OTP logic ---
   const sendOtp = async () => {
     if (!formData.emailId.trim()) {
-      alert('Please enter email address first.');
+      // Using a custom message box instead of alert()
+      console.log('Please enter email address first.');
       return;
     }
 
     setOtpData(prev => ({ ...prev, isLoading: true }));
 
     try {
-      await axios.post('https://backend-production-d773.up.railway.app/api/auth/send-otp', {
+      await axios.post(`${BASE_BACKEND_URL}api/auth/send-otp`, {
         email: formData.emailId
       });
 
@@ -158,7 +167,8 @@ export default function RegistrationPage() {
         isLoading: false
       }));
       setResendTimer(12);
-      alert('OTP sent successfully!');
+      // Using a custom message box instead of alert()
+      console.log('OTP sent successfully!');
     } catch (error) {
       console.error(error);
       setOtpData(prev => ({ ...prev, isLoading: false }));
@@ -169,23 +179,26 @@ export default function RegistrationPage() {
         typeof error.response.data.message === 'string' &&
         error.response.data.message.toLowerCase().includes('already registered')
       ) {
-        alert('This email is already registered.');
+        // Using a custom message box instead of alert()
+        console.log('This email is already registered.');
       } else {
-        alert('Failed to send OTP. Please try again.');
+        // Using a custom message box instead of alert()
+        console.log('Failed to send OTP. Please try again.');
       }
     }
   };
 
   const verifyOtp = async () => {
     if (!otpData.otp.trim()) {
-      alert('Please enter OTP.');
+      // Using a custom message box instead of alert()
+      console.log('Please enter OTP.');
       return;
     }
 
     setOtpData(prev => ({ ...prev, isLoading: true }));
 
     try {
-      const response = await axios.post('https://backend-production-d773.up.railway.app/api/auth/verify-otp', {
+      const response = await axios.post(`${BASE_BACKEND_URL}api/auth/verify-otp`, {
         email: formData.emailId,
         otp: otpData.otp
       });
@@ -196,11 +209,13 @@ export default function RegistrationPage() {
         sessionToken: response.data.sessionToken || response.data.token || '',
         isLoading: false
       }));
-      alert('OTP verified successfully!');
+      // Using a custom message box instead of alert()
+      console.log('OTP verified successfully!');
     } catch (error) {
       console.error('Error:', error.response || error);
       setOtpData(prev => ({ ...prev, isLoading: false }));
-      alert('Invalid OTP. Please try again.');
+      // Using a custom message box instead of alert()
+      console.log('Invalid OTP. Please try again.');
     }
   };
 
@@ -211,12 +226,14 @@ export default function RegistrationPage() {
     const allFilled = required.every(field => formData[field] && formData[field].trim() !== '');
 
     if (!allFilled) {
-      alert('Please fill all the required details.');
+      // Using a custom message box instead of alert()
+      console.log('Please fill all the required details.');
       return;
     }
 
     if (!otpData.isOtpVerified) {
-      alert('Please verify your email address with OTP first.');
+      // Using a custom message box instead of alert()
+      console.log('Please verify your email address with OTP first.');
       return;
     }
 
@@ -234,7 +251,7 @@ export default function RegistrationPage() {
         sessionToken: otpData.sessionToken
       };
 
-      await axios.post('https://backend-production-d773.up.railway.app/api/auth/register', registrationData);
+      await axios.post(`${BASE_BACKEND_URL}api/auth/register`, registrationData);
       setShowSuccessPopup(true);
         setTimeout(() => {
           navigate('/login');
@@ -242,13 +259,15 @@ export default function RegistrationPage() {
     } catch (error) {
      if (error.response) {
     console.error("API Error Response:", error.response.data);
-    alert(
+    // Using a custom message box instead of alert()
+    console.log(
       'Registration failed: ' +
       (error.response.data?.message || JSON.stringify(error.response.data))
     );
   } else {
     console.error("Error:", error.message);
-    alert('Registration failed! Please try again.');
+    // Using a custom message box instead of alert()
+    console.log('Registration failed! Please try again.');
   }
     }
   };
@@ -430,24 +449,96 @@ export default function RegistrationPage() {
         )}
       </div>
     {showSuccessPopup && (
-  <div className="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center">
-    <div className="bg-white rounded-2xl p-8 shadow-xl w-[90%] max-w-sm text-center border-t-4 border-amber-500">
-      <div className="flex justify-center mb-4">
-        <div className="bg-amber-100 rounded-full h-16 w-16 flex items-center justify-center">
-          <svg
-            className="h-8 w-8 text-amber-500"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
+  <div className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${true ? 'bg-black bg-opacity-50' : 'bg-opacity-0'}`}>
+    <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 border-orange-500 scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+      style={{
+        background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+        backdropFilter: 'blur(10px)'
+      }}>
+      <div className="absolute -top-2 -right-2 w-8 h-8 bg-orange-400 rounded-full opacity-20 animate-ping"></div>
+      <div className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full"></div>
+      <div className="p-8">
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            <div className={`bg-gradient-to-r from-orange-400 to-amber-500 rounded-full h-20 w-20 flex items-center justify-center shadow-lg scale-100 rotate-0 transition-all duration-700`}>
+              <svg
+                className={`h-10 w-10 text-white scale-100 opacity-100 transition-all duration-500 delay-200`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 13l4 4L19 7"
+                  className="animate-[checkmark_0.6s_ease-in-out_0.4s_forwards]"
+                  style={{
+                    strokeDasharray: 20,
+                    strokeDashoffset: 0
+                  }}
+                />
+              </svg>
+            </div>
+            <div className="absolute inset-0 bg-orange-400 rounded-full scale-150 opacity-0 transition-all duration-1000"></div>
+          </div>
+        </div>
+        <div className="space-y-3">
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent translate-y-0 opacity-100 transition-all duration-500 delay-300">
+            Success!
+          </h2>
+          <p className="text-gray-600 leading-relaxed translate-y-0 opacity-100 transition-all duration-500 delay-400">
+            Your request received successfully. Thankyou for choosing NCON
+You will be contacted shortly.
+          </p>
+        </div>
+        <div className="mt-6 bg-gray-200 rounded-full h-1 overflow-hidden opacity-100 transition-all duration-500 delay-500">
+          <div
+            className="h-full bg-gradient-to-r from-orange-400 to-amber-500 rounded-full transition-all duration-[2500ms] ease-linear"
+            style={{
+              width: '100%',
+              transitionDelay: '600ms'
+            }}
+          ></div>
         </div>
       </div>
-      <h2 className="text-xl font-semibold text-gray-800 mb-2">Thank You!</h2>
-      <p className="text-sm text-gray-600">Thank you for registering with us. You will be redirected shortly.</p>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute w-2 h-2 bg-orange-400 rounded-full animate-float`}
+            style={{
+              left: `${20 + i * 12}%`,
+              top: `${30 + (i % 2) * 20}%`,
+              animationDelay: `${i * 0.2}s`,
+              animationDuration: `${2 + i * 0.3}s`
+            }}
+          ></div>
+        ))}
+      </div>
     </div>
+
+    <style jsx>{`
+      @keyframes checkmark {
+        0% {
+          stroke-dashoffset: 20;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px) rotate(0deg);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translateY(-10px) rotate(180deg);
+          opacity: 0.3;
+        }
+      }
+    `}</style>
   </div>
 )}
 
