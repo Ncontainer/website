@@ -489,7 +489,7 @@ export default function RegistrationPage() {
           </h2>
           <p className="text-gray-600 leading-relaxed translate-y-0 opacity-100 transition-all duration-500 delay-400">
             Your request received successfully. Thankyou for choosing NCON
-You will be contacted shortly.
+            You will be contacted shortly.
           </p>
         </div>
         <div className="mt-6 bg-gray-200 rounded-full h-1 overflow-hidden opacity-100 transition-all duration-500 delay-500">

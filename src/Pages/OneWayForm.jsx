@@ -26,6 +26,9 @@ const OneWayForm = () => {
   const [portsSearch, setPortsSearch] = useState("");
   const navigate = useNavigate();
 
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
   useEffect(() => {
     if (selectedFromQuery) setSelectedOption(selectedFromQuery);
   }, [selectedFromQuery]);
@@ -35,11 +38,12 @@ const OneWayForm = () => {
       setPortsLoading(true);
       try {
         const res = await axios.get(
-          `https://backend-production-d773.up.railway.app/api/ports?page=1&limit=50&search=${portsSearch}`
+          `${BASE_BACKEND_URL}api/ports?page=1&limit=50&search=${portsSearch}`
         );
         setPorts(res.data?.data || []);
       } catch (err) {
         setPorts([]);
+        console.error('Failed to fetch ports:', err); // Replaced alert
       }
       setPortsLoading(false);
     };
@@ -68,35 +72,44 @@ const OneWayForm = () => {
   };
 
   // Example static location data for demonstration
-  const getLocationObj = (locationStr) => ({
-    portName: locationStr || "Unknown",
+ const getLocationObj = (locationId) => {
+  const port = ports.find(p => p._id === locationId);
+  return port ? {
+    portName: port.name,
+    portCode: port.code || "UNK",
+    country: port.countryName || "Unknown",
+    region: port.region || "Unknown"
+  } : {
+    portName: "Unknown",
     portCode: "UNK",
     country: "Unknown",
     region: "Unknown"
-  });
+  };
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('https://backend-production-d773.up.railway.app/api/lead-request', {
-        requestType: "buy",
-        tradeType: "trade",
-        tradeAction: "buy_containers",
+      await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
+        requestType: "buy", // This might need adjustment based on "use" or "supply"
+        tradeType: "one_way", // Changed from "trade" to "one_way" for clarity
+        tradeAction: selectedOption === "use" ? "use" : "supply", // Dynamic based on selectedOption
         containerType: form.containerType,
-        purposeOfContainer: "export",
+        purposeOfContainer: "export", // This might need adjustment
         condition: form.condition,
-        withCSCRevalidation: true,
+        withCSCRevalidation: true, // Assuming true for one-way
         locations: [
-          getLocationObj(form.pickUpLocation)
+          getLocationObj(form.pickUpLocation),
+          getLocationObj(form.dropOffLocation) // Added drop-off location
         ],
         email: form.email,
         mobile: form.mobile,
         quantity: Number(form.quantity),
-        urgency: "high",
+        urgency: "high", // This might need adjustment
         notes: form.notes
       });
-      alert('Request submitted successfully!');
+      console.log('Request submitted successfully!'); // Replaced alert
       setForm({
         quantity: '',
         containerType: '',
@@ -109,14 +122,14 @@ const OneWayForm = () => {
       });
     } catch (error) {
       if (error.response) {
-        console.log("API Error Response:", error.response.data);
-        alert(
+        console.error("API Error Response:", error.response.data); // Replaced alert
+        console.error(
           'Failed to submit request: ' +
           (error.response.data?.message || JSON.stringify(error.response.data))
         );
       } else {
-        console.log("Error:", error.message);
-        alert('Failed to submit request. Please try again.');
+        console.error("Error:", error.message); // Replaced alert
+        console.error('Failed to submit request. Please try again.');
       }
     }
     setLoading(false);

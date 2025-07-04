@@ -27,6 +27,9 @@ const TradeForm = () => {
   const [portsSearch, setPortsSearch] = useState("");
   const navigate = useNavigate();
 
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
   useEffect(() => {
     if (selectedFromQuery) setSelectedOption(selectedFromQuery);
   }, [selectedFromQuery]);
@@ -36,11 +39,12 @@ const TradeForm = () => {
       setPortsLoading(true);
       try {
         const res = await axios.get(
-          `https://backend-production-d773.up.railway.app/api/ports?page=1&limit=50&search=${portsSearch}`
+          `${BASE_BACKEND_URL}api/ports?page=1&limit=50&search=${portsSearch}`
         );
         setPorts(res.data?.data || []);
       } catch (err) {
         setPorts([]);
+        console.error('Failed to fetch ports:', err); // Replaced alert
       }
       setPortsLoading(false);
     };
@@ -88,7 +92,7 @@ const TradeForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('https://backend-production-d773.up.railway.app/api/lead-request', {
+      await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
         requestType: "buy",
         tradeType: "trade",
         tradeAction: "buy_containers",
@@ -105,7 +109,7 @@ const TradeForm = () => {
         urgency: "high",
         notes: form.notes
       });
-      alert('Request submitted successfully!');
+      console.log('Request submitted successfully!'); // Replaced alert
       setForm({
         quantity: '',
         containerType: '',
@@ -118,14 +122,14 @@ const TradeForm = () => {
       });
     } catch (error) {
       if (error.response) {
-        console.log("API Error Response:", error.response.data);
-        alert(
+        console.error("API Error Response:", error.response.data); // Replaced alert
+        console.error(
           'Failed to submit request: ' +
           (error.response.data?.message || JSON.stringify(error.response.data))
         );
       } else {
-        console.log("Error:", error.message);
-        alert('Failed to submit request. Please try again.');
+        console.error("Error:", error.message); // Replaced alert
+        console.error('Failed to submit request. Please try again.');
       }
     }
     setLoading(false);
@@ -166,7 +170,7 @@ const TradeForm = () => {
                </h1>
              </div>
            </div>
-     
+
 
       {/* Right Side - Form */}
       <div className="bg-white p-6 md:p-8 overflow-y-auto md:order-2 order-1">
@@ -425,3 +429,7 @@ const TradeForm = () => {
 };
 
 export default TradeForm;
+
+
+
+

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
-import axios from 'axios'; // <-- Add axios import
+import axios from 'axios';
 
 const LeaseForm = () => {
   const [containers, setContainers] = useState([{
@@ -20,7 +20,11 @@ const LeaseForm = () => {
   const [ports, setPorts] = useState([]);
   const [portsLoading, setPortsLoading] = useState(false);
   const [portsSearch, setPortsSearch] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false); // New state for success popup
   const navigate = useNavigate();
+
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
 
   const toggleModal = () => setShowModal(!showModal);
   const addContainer = () => setContainers([...containers, {
@@ -57,10 +61,10 @@ const LeaseForm = () => {
     try {
       // Send one API call per container entry
       for (const c of containers) {
-        await axios.post('https://backend-production-d773.up.railway.app/api/lead-request', {
-          requestType: "buy", // <-- FIXED: must be "buy" or "sell"
-          tradeType: "trade", // <-- FIXED: match your other forms
-          tradeAction: "buy_containers", // <-- FIXED: must be "buy_containers" or "sell_containers"
+        await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
+          requestType: "buy",
+          tradeType: "lease",
+          tradeAction: "lease_containers",
           containerType: c.containerType,
           purposeOfContainer: "export",
           condition: c.condition,
@@ -68,16 +72,22 @@ const LeaseForm = () => {
           perDiem: c.perDiem,
           withCSCRevalidation: false,
           locations: [
-            getLocationObj(onHireLocation)
+            getLocationObj(onHireLocation),
+            getLocationObj(offHireLocation)
           ],
           email: email,
           mobile: mobile,
           quantity: Number(c.quantity),
           urgency: "high",
-          notes: `Off-hire location: ${offHireLocation}`
+          notes: `Lease request for ${c.quantity} ${c.containerType} containers. On-hire: ${onHireLocation}, Off-hire: ${offHireLocation}. Additional notes: ${c.notes || ''}`
         });
       }
-      alert('Lease request(s) submitted successfully!');
+      setShowSuccessPopup(true); // Show success popup
+      setTimeout(() => {
+        setShowSuccessPopup(false); // Hide popup after 2.5 seconds
+        // Optionally navigate or reset form here
+      }, 2500);
+
       setContainers([{
         quantity: '',
         containerType: '',
@@ -91,14 +101,14 @@ const LeaseForm = () => {
       setMobile('');
     } catch (error) {
       if (error.response) {
-        console.log("API Error Response:", error.response.data);
-        alert(
+        console.error("API Error Response:", error.response.data);
+        console.error(
           'Failed to submit lease request: ' +
           (error.response.data?.message || JSON.stringify(error.response.data))
         );
       } else {
-        console.log("Error:", error.message);
-        alert('Failed to submit lease request. Please try again.');
+        console.error("Error:", error.message);
+        console.error('Failed to submit lease request. Please try again.');
       }
     }
     setLoading(false);
@@ -109,11 +119,12 @@ const LeaseForm = () => {
       setPortsLoading(true);
       try {
         const res = await axios.get(
-          `https://backend-production-d773.up.railway.app/api/ports?page=1&limit=50&search=${portsSearch}`
+          `${BASE_BACKEND_URL}api/ports?page=1&limit=50&search=${portsSearch}`
         );
         setPorts(res.data?.data || []);
       } catch (err) {
         setPorts([]);
+        console.error('Failed to fetch ports:', err);
       }
       setPortsLoading(false);
     };
@@ -155,7 +166,7 @@ const LeaseForm = () => {
                    </h1>
                  </div>
                </div>
-         
+
 
       {/* Bottom (on mobile) / Right Section (on desktop) */}
       <div className="bg-white p-6 md:p-8 overflow-y-auto md:order-2 order-1">
@@ -414,6 +425,100 @@ const LeaseForm = () => {
           </div>
         )}
       </div>
+
+      {/* Success Popup */}
+      {showSuccessPopup && (
+        <div className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${true ? 'bg-black bg-opacity-50' : 'bg-opacity-0'}`}>
+          <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 border-orange-500 scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+            style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+              backdropFilter: 'blur(10px)'
+            }}>
+            <div className="absolute -top-2 -right-2 w-8 h-8 bg-orange-400 rounded-full opacity-20 animate-ping"></div>
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full"></div>
+            <div className="p-8">
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className={`bg-gradient-to-r from-orange-400 to-amber-500 rounded-full h-20 w-20 flex items-center justify-center shadow-lg scale-100 rotate-0 transition-all duration-700`}>
+                    <svg
+                      className={`h-10 w-10 text-white scale-100 opacity-100 transition-all duration-500 delay-200`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                        className="animate-[checkmark_0.6s_ease-in-out_0.4s_forwards]"
+                        style={{
+                          strokeDasharray: 20,
+                          strokeDashoffset: 0
+                        }}
+                      />
+                    </svg>
+                  </div>
+                  <div className="absolute inset-0 bg-orange-400 rounded-full scale-150 opacity-0 transition-all duration-1000"></div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent translate-y-0 opacity-100 transition-all duration-500 delay-300">
+                  Success!
+                </h2>
+                <p className="text-gray-600 leading-relaxed translate-y-0 opacity-100 transition-all duration-500 delay-400">
+                  Form is submitted successfully.
+                </p>
+              </div>
+              <div className="mt-6 bg-gray-200 rounded-full h-1 overflow-hidden opacity-100 transition-all duration-500 delay-500">
+                <div
+                  className="h-full bg-gradient-to-r from-orange-400 to-amber-500 rounded-full transition-all duration-[2500ms] ease-linear"
+                  style={{
+                    width: '100%',
+                    transitionDelay: '600ms'
+                  }}
+                ></div>
+              </div>
+            </div>
+            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className={`absolute w-2 h-2 bg-orange-400 rounded-full animate-float`}
+                  style={{
+                    left: `${20 + i * 12}%`,
+                    top: `${30 + (i % 2) * 20}%`,
+                    animationDelay: `${i * 0.2}s`,
+                    animationDuration: `${2 + i * 0.3}s`
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+
+          <style jsx>{`
+            @keyframes checkmark {
+              0% {
+                stroke-dashoffset: 20;
+              }
+              100% {
+                stroke-dashoffset: 0;
+              }
+            }
+
+            @keyframes float {
+              0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.7;
+              }
+              50% {
+                transform: translateY(-10px) rotate(180deg);
+                opacity: 0.3;
+              }
+            }
+          `}</style>
+        </div>
+      )}
     </div>
   );
 };
