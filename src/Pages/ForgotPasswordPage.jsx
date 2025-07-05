@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 
 function ForgotPasswordPage() {
@@ -19,7 +19,7 @@ function ForgotPasswordPage() {
       setPopup({ visible: true, message: 'Reset link or OTP sent to your email.', success: true });
       setTimeout(() => {
         setPopup({ visible: false, message: '', success: true });
-        navigate('/verify', { state: { email } });
+        navigate('/'); // Redirect to home page after success popup
       }, 2000);
     } catch (error) {
       setPopup({ visible: true, message: 'Failed to send reset instructions. Please try again.', success: false });

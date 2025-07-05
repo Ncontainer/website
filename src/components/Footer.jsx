@@ -132,7 +132,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="#" className="text-sm md:text-base hover:text-orange-500">
-                  Blog
+                  Brochure
                 </Link>
               </li>
             </ul>

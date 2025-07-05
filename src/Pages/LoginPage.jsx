@@ -8,10 +8,18 @@ import loginImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [popup, setPopup] = useState({ visible: false, message: '', success: true });
   const navigate = useNavigate();
 
   // Define the base URL as a constant for easy modification
   const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
+  // If already logged in, redirect to home
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  if (isLoggedIn) {
+    navigate('/', { replace: true });
+    return null;
+  }
 
   const handleLogin = async () => {
     try {
@@ -27,8 +35,7 @@ export default function LoginPage() {
       console.log('Login successful!'); // Replaced alert
       navigate('/');
     } catch (error) {
-      console.error('Login failed. Please check your credentials.', error); // Replaced alert
-      // You might want to implement a custom modal or toast notification here
+      setPopup({ visible: true, message: 'Login failed. Please check your credentials.', success: false });
     }
   };
 
@@ -87,6 +94,44 @@ export default function LoginPage() {
             Forgot Password?
           </Link>
         </div>
+
+        {/* Pop-up Modal for Success/Error */}
+        {popup.visible && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all duration-300">
+            <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${popup.success ? 'border-orange-500' : 'border-red-500'} scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+              style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', backdropFilter: 'blur(10px)' }}>
+              <div className="p-8">
+                <div className="flex justify-center mb-6">
+                  <div className="relative">
+                    <div className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${popup.success ? 'bg-gradient-to-r from-orange-400 to-amber-500' : 'bg-gradient-to-r from-red-400 to-rose-500'}`}>
+                      {popup.success ? (
+                        <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      ) : (
+                        <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <h2 className={`text-2xl font-bold ${popup.success ? 'text-orange-600' : 'text-red-600'}`}>{popup.success ? 'Success!' : 'Error!'}</h2>
+                  <p className="text-gray-600 leading-relaxed">{popup.message}</p>
+                </div>
+                {!popup.success && (
+                  <button
+                    onClick={() => setPopup({ ...popup, visible: false })}
+                    className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                  >
+                    Close
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

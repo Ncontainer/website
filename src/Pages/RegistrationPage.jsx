@@ -23,8 +23,9 @@ export default function RegistrationPage() {
     isOtpSent: false,
     isOtpVerified: false,
     sessionToken: '',
-    isLoading: false,
+    isLoading: false, // Only for Send OTP
   });
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false); // For Verify OTP button
 
   const [resendTimer, setResendTimer] = useState(0);
   const [countries, setCountries] = useState([]);
@@ -171,16 +172,15 @@ export default function RegistrationPage() {
     } catch (error) {
       setOtpData(prev => ({ ...prev, isLoading: false }));
 
-      if (
-        error.response &&
-        error.response.data &&
-        typeof error.response.data.message === 'string' &&
-        error.response.data.message.toLowerCase().includes('already registered')
-      ) {
-        setPopup({ visible: true, message: 'This email is already registered.', success: false });
-      } else {
-        setPopup({ visible: true, message: 'Failed to send OTP. Please try again.', success: false });
-      }
+    if (
+  (error.response && error.response.status === 400 && error.request && typeof XMLHttpRequest !== 'undefined' && error.request instanceof XMLHttpRequest) ||
+  (error.response && error.response.data && typeof error.response.data.message === 'string' &&
+    (error.response.data.message.toLowerCase().includes('already registered') || error.response.data.message.toLowerCase().includes('already exists')))
+) {
+  setPopup({ visible: true, message: 'The user is already registered.', success: false });
+} else {
+  setPopup({ visible: true, message: 'Failed to send OTP. Please try again.', success: false });
+}
     }
   };
 
@@ -189,25 +189,22 @@ export default function RegistrationPage() {
       setPopup({ visible: true, message: 'Please enter OTP.', success: false });
       return;
     }
-
-    setOtpData(prev => ({ ...prev, isLoading: true }));
-
+    setIsVerifyingOtp(true);
     try {
       const response = await axios.post(`${BASE_BACKEND_URL}api/auth/verify-otp`, {
         email: formData.emailId,
         otp: otpData.otp
       });
-
       setOtpData(prev => ({
         ...prev,
         isOtpVerified: true,
         sessionToken: response.data.sessionToken || response.data.token || '',
-        isLoading: false
       }));
       setPopup({ visible: true, message: 'OTP verified successfully!', success: true });
     } catch (error) {
-      setOtpData(prev => ({ ...prev, isLoading: false }));
       setPopup({ visible: true, message: 'Invalid OTP. Please try again.', success: false });
+    } finally {
+      setIsVerifyingOtp(false);
     }
   };
 
@@ -261,7 +258,7 @@ export default function RegistrationPage() {
     if (popup.visible) {
       const timer = setTimeout(() => {
         setPopup(prev => ({ ...prev, visible: false }));
-      }, 2000);
+      }, popup.success ? 2000 : 6000); // 2s for success, 6s for error
       return () => clearTimeout(timer);
     }
   }, [popup.visible]);
@@ -308,13 +305,7 @@ export default function RegistrationPage() {
                     : 'bg-amber-500 text-white hover:bg-amber-400'
                 }`}
               >
-                {otpData.isLoading
-                  ? 'Sending...'
-                  : otpData.isOtpVerified
-                  ? 'Verified'
-                  : resendTimer > 0
-                  ? `Wait (${resendTimer}s)`
-                  : 'Send OTP'}
+                {'Send OTP'}
               </button>
             </div>
 
@@ -337,14 +328,14 @@ export default function RegistrationPage() {
                 <button
                   type="button"
                   onClick={verifyOtp}
-                  disabled={otpData.isLoading}
+                  disabled={isVerifyingOtp}
                   className={`px-3 rounded-md font-semibold text-sm whitespace-nowrap transition duration-300 ${
-                    otpData.isLoading
+                    isVerifyingOtp
                       ? 'bg-gray-400 text-white cursor-not-allowed'
                       : 'bg-green-500 text-white hover:bg-green-400'
                   }`}
                 >
-                  {otpData.isLoading ? 'Verifying...' : 'Verify OTP'}
+                  {isVerifyingOtp ? 'Verifying...' : 'Verify OTP'}
                 </button>
               </div>
             )}
