@@ -8,14 +8,42 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // ← Add useLocation
 
 export default function Header() {
+  const navigate = useNavigate();
+  const location = useLocation(); // ← Get current route
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+// Check login state on mount
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  setIsLoggedIn(!!token);
+}, [location]);
+
+// Optional: Also update on route changes if needed
+useEffect(() => {
+  const handleRouteChange = () => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  };
+
+  window.addEventListener("popstate", handleRouteChange);
+  return () => window.removeEventListener("popstate", handleRouteChange);
+}, []);
+
+const handleLogout = () => {
+  const confirmed = window.confirm("Are you sure you want to logout?");
+  if (confirmed) {
+    localStorage.removeItem("token"); // or whatever key you're using
+    setIsLoggedIn(false);
+    navigate("/login");
+  }
+};
 
   // Effect for handling header style on scroll
   useEffect(() => {
@@ -27,23 +55,18 @@ export default function Header() {
   }, []);
 
   // Effect for setting the active nav item based on the current URL
-  useEffect(() => {
-    const handleRouteChange = () => {
-      const path = window.location.pathname;
-      if (path === "/") setActiveItem("home");
-      else if (path === "/about") setActiveItem("about");
-      else if (path.startsWith("/products")) setActiveItem("products");
-      else if (path === "/resources") setActiveItem("resources");
-      else if (path === "/contact") setActiveItem("contact");
-      else if (path === "/feedback") setActiveItem("feedback");
-      else if (path === "/brochure") setActiveItem("brochure");
-      else if (path === "/login") setActiveItem("login");
-    };
-
-    handleRouteChange();
-    window.addEventListener("popstate", handleRouteChange);
-    return () => window.removeEventListener("popstate", handleRouteChange);
-  }, []);
+ useEffect(() => {
+  const path = location.pathname;
+  if (path === "/") setActiveItem("home");
+  else if (path === "/about") setActiveItem("about");
+  else if (path.startsWith("/products")) setActiveItem("products");
+  else if (path === "/resources") setActiveItem("resources");
+  else if (path === "/contact") setActiveItem("contact");
+  else if (path === "/feedback") setActiveItem("feedback");
+  else if (path === "/brochure") setActiveItem("brochure");
+  else if (path === "/login") setActiveItem("login");
+  else setActiveItem(""); // fallback
+}, [location.pathname]);  // ← track actual route changes
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -53,13 +76,12 @@ export default function Header() {
     setIsProductsOpen(!isProductsOpen);
   };
 
-  const handleNavClick = (item, keepMenuOpen = false) => {
-    setActiveItem(item);
-    if (window.innerWidth < 768 && !keepMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  };
-
+ const handleNavClick = (item, keepMenuOpen = false) => {
+  if (window.innerWidth < 768 && !keepMenuOpen) {
+    setIsMenuOpen(false);
+  }
+};
+  
   return (
     <header className={`bg-white shadow-sm w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "scrolled-header" : ""}`}>
       <div className="w-[90%] mx-auto">
@@ -132,17 +154,30 @@ export default function Header() {
             <NavItem text="Resources" to="/resources" isActive={activeItem === "resources"} onClick={() => handleNavClick("resources")} />
             <NavItem text="Contact Us" to="/contact" isActive={activeItem === "contact"} onClick={() => handleNavClick("contact")} />
             <NavItem text="Feedback" to="/feedback" isActive={activeItem === "feedback"} onClick={() => handleNavClick("feedback")} />
-            <NavItem text="Brochure" to="/brochure" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
+            <NavItem text="Brochure" to="/footer" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
           </nav>
 
           <div className="flex items-center">
             <div className="hidden md:block">
-              <Link to="/login" className="bg-secondary hover:bg-secondary-dark text-white py-2 px-4 rounded-md flex items-center transition-colors whitespace-nowrap" onClick={() => handleNavClick("login")}>
+            {isLoggedIn ? (
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md transition-colors whitespace-nowrap"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="bg-secondary hover:bg-secondary-dark text-white py-2 px-4 rounded-md flex items-center transition-colors whitespace-nowrap"
+                onClick={() => handleNavClick("login")}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                 </svg>
                 Login
               </Link>
+            )}
             </div>
             <div className="md:hidden">
               <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
@@ -204,7 +239,25 @@ export default function Header() {
                   </div>
                 </div>
                 <div className="pt-4">
-                  <Link to="/login" className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors" onClick={toggleMenu}>Login</Link>
+                {isLoggedIn ? (
+                  <button
+                    onClick={() => {
+                      toggleMenu();
+                      handleLogout();
+                    }}
+                    className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors"
+                    onClick={toggleMenu}
+                  >
+                    Login
+                  </Link>
+                )}
                 </div>
               </div>
             </div>

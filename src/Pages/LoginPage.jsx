@@ -17,7 +17,7 @@ export default function LoginPage() {
       });
       localStorage.setItem('token', res.data.token);
       alert('Login successful!');
-      navigate('/one-way');
+      navigate('/');
     } catch (error) {
       alert('Login failed. Please check your credentials.');
       console.error(error);
