@@ -20,6 +20,8 @@ import VerificationPage from './pages/VerificationPage';
 import LeaseForm from './pages/LeaseForm';
 import TradeForm from './pages/TradeForm';
 import ScrollToTop from './components/ScrollToTop';
+import Footer from "./components/Footer";
+
 // function App() {
 //   return (
 //     <Home />
