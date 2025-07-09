@@ -3,16 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const OurOptions = () => {
   const orangeColor = '#ff8901';
-  const navigate = useNavigate();
-
-  const handleRedirect = (path) => {
-    const isLoggedIn = localStorage.getItem('token'); // Replace 'token' if using a different key
-    if (isLoggedIn) {
-      navigate(path);
-    } else {
-      console.error("log in to access this section");
-    }
-  };
 
   return (
     <div className="pb-8 lg:py-12">
@@ -35,16 +25,14 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                onClick={() => handleRedirect('/one-way')}
-                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-10 border border-orange-500 hover:border-transparent rounded-3xl"
-                style={{ color: orangeColor, borderColor: orangeColor }}
+                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-10 border border-orange-500 hover:border-transparent rounded-3xl"
+                style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
               >
                 Use
               </button>
               <button
-                onClick={() => handleRedirect('/one-way')}
-                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-8 rounded-3xl"
-                style={{ backgroundColor: orangeColor }}
+                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-8 rounded-3xl"
+                style={{ backgroundColor: orangeColor }} // Inline style for orange
               >
                 Supply
               </button>
@@ -64,16 +52,14 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                onClick={() => handleRedirect('/trade')}
-                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-11 border border-orange-500 hover:border-transparent rounded-3xl"
-                style={{ color: orangeColor, borderColor: orangeColor }}
+                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-11 border border-orange-500 hover:border-transparent rounded-3xl"
+                 style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
               >
                 Buy
               </button>
               <button
-                onClick={() => handleRedirect('/trade')}
-                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-11 rounded-3xl"
-                style={{ backgroundColor: orangeColor }}
+                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-11 rounded-3xl"
+                style={{ backgroundColor: orangeColor }} // Inline style for orange
               >
                 Sell
               </button>
@@ -93,16 +79,14 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                onClick={() => handleRedirect('/lease')}
-                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 border border-orange-500 hover:border-transparent rounded-3xl"
-                style={{ color: orangeColor, borderColor: orangeColor }}
+                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-6 border border-orange-500 hover:border-transparent rounded-3xl"
+                style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
               >
                 Domestic
               </button>
               <button
-                onClick={() => handleRedirect('/lease')}
-                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-10 rounded-3xl"
-                style={{ backgroundColor: orangeColor }}
+                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-10 rounded-3xl"
+                style={{ backgroundColor: orangeColor }} // Inline style for orange
               >
                 EXIM
               </button>

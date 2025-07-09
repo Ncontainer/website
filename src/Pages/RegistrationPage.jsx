@@ -6,117 +6,6 @@ import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png'
 export default function RegistrationPage() {
   const navigate = useNavigate();
 
-  const countryOptions = [
-  "India", "USA", "Canada", "Australia", "Germany", "France", "Brazil", "UK", "Japan", "China",
-  "Russia", "Italy", "Spain", "Mexico", "South Africa", "Argentina", "Netherlands", "Turkey", "Indonesia", "Egypt",
-  "Sweden", "Norway", "Switzerland", "Belgium", "Denmark", "Finland", "New Zealand", "Poland", "Thailand", "Malaysia",
-  "Vietnam", "Philippines", "Colombia", "Chile", "Peru", "Greece", "Portugal", "Ireland", "Czech Republic", "Ukraine",
-  "Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Afghanistan", "Iraq", "Iran", "UAE", "Saudi Arabia", "Qatar",
-  "Oman", "Kuwait", "Israel", "Singapore", "South Korea", "North Korea", "Morocco", "Nigeria", "Kenya", "Ethiopia",
-  "Sudan", "Algeria", "Tunisia", "Venezuela", "Cuba", "Panama", "Uruguay", "Paraguay", "Bolivia", "Iceland",
-  "Luxembourg", "Lithuania", "Latvia", "Estonia", "Slovakia", "Slovenia", "Croatia", "Serbia", "Romania", "Hungary",
-  "Bulgaria", "Georgia", "Armenia", "Azerbaijan", "Jordan", "Lebanon", "Yemen", "Syria", "Myanmar", "Cambodia",
-  "Laos", "Mongolia", "Kazakhstan", "Uzbekistan", "Tajikistan", "Turkmenistan", "Bhutan", "Maldives", "Zambia", "Zimbabwe"
-];
-
-
-const stateOptions = {
-  India: ["Maharashtra", "Uttar Pradesh", "West Bengal"],
-  USA: ["California", "New York", "Texas"],
-  Canada: ["Ontario", "Quebec", "British Columbia"],
-  Australia: ["New South Wales", "Victoria", "Queensland"],
-  Germany: ["Bavaria", "North Rhine-Westphalia", "Berlin"],
-  France: ["Île-de-France", "Provence-Alpes-Côte d'Azur", "Auvergne-Rhône-Alpes"],
-  Brazil: ["São Paulo", "Rio de Janeiro", "Minas Gerais"],
-  UK: ["England", "Scotland", "Wales"],
-  Japan: ["Tokyo", "Osaka", "Kyoto"],
-  China: ["Shanghai", "Beijing", "Guangdong"],
-  Russia: ["Moscow Oblast", "Saint Petersburg", "Sverdlovsk Oblast"],
-  Italy: ["Lombardy", "Lazio", "Campania"],
-  Spain: ["Madrid", "Catalonia", "Andalusia"],
-  Mexico: ["Mexico City", "Jalisco", "Nuevo León"],
-  Argentina: ["Buenos Aires", "Cordoba", "Santa Fe"],
-  Netherlands: ["North Holland", "South Holland", "Utrecht"],
-  Turkey: ["Istanbul", "Ankara", "Izmir"],
-  Indonesia: ["Jakarta", "West Java", "East Java"],
-  Egypt: ["Cairo", "Giza", "Alexandria"],
-  Sweden: ["Stockholm", "Gothenburg", "Malmö"],
-  Norway: ["Oslo", "Bergen", "Trondheim"],
-  Switzerland: ["Zurich", "Geneva", "Bern"],
-  Belgium: ["Brussels", "Antwerp", "Ghent"],
-  Denmark: ["Copenhagen", "Aarhus", "Odense"],
-  Finland: ["Helsinki", "Tampere", "Turku"],
-  Poland: ["Warsaw", "Krakow", "Wroclaw"],
-  Thailand: ["Bangkok", "Chiang Mai", "Phuket"],
-  Malaysia: ["Kuala Lumpur", "Selangor", "Johor"],
-  Vietnam: ["Ho Chi Minh City", "Hanoi", "Da Nang"],
-  Philippines: ["Manila", "Cebu", "Davao"],
-  Colombia: ["Bogotá", "Medellín", "Cali"],
-  Chile: ["Santiago", "Valparaíso", "Concepción"],
-  Peru: ["Lima", "Cusco", "Arequipa"],
-  Greece: ["Athens", "Thessaloniki", "Crete"],
-  Portugal: ["Lisbon", "Porto", "Faro"],
-  Ireland: ["Dublin", "Cork", "Galway"],
-  Ukraine: ["Kyiv", "Kharkiv", "Odesa"],
-  Pakistan: ["Karachi", "Lahore", "Islamabad"],
-  Bangladesh: ["Dhaka", "Chittagong", "Khulna"],
-  Nepal: ["Kathmandu", "Pokhara", "Lalitpur"],
-  Afghanistan: ["Kabul", "Kandahar", "Herat"],
-  Iraq: ["Baghdad", "Basra", "Mosul"],
-  Iran: ["Tehran", "Mashhad", "Isfahan"],
-  UAE: ["Dubai", "Abu Dhabi", "Sharjah"],
-  Qatar: ["Doha", "Al Rayyan", "Umm Salal Municipality"],
-  Oman: ["Muscat", "Salalah", "Sohar"],
-  Kuwait: ["Kuwait City", "Hawalli", "Farwaniya"],
-  Israel: ["Jerusalem", "Tel Aviv", "Haifa"],
-  Singapore: ["Central Region", "North-East Region", "West Region"],
-  Morocco: ["Casablanca", "Rabat", "Marrakech"],
-  Nigeria: ["Lagos", "Abuja", "Kano"],
-  Kenya: ["Nairobi", "Mombasa", "Kisumu"],
-  Ethiopia: ["Addis Ababa", "Dire Dawa", "Mekelle"],
-  Sudan: ["Khartoum", "Omdurman", "Port Sudan"],
-  Algeria: ["Algiers", "Oran", "Constantine"],
-  Tunisia: ["Tunis", "Sfax", "Sousse"],
-  Venezuela: ["Caracas", "Maracaibo", "Valencia"],
-  Cuba: ["Havana", "Santiago de Cuba", "Camagüey"],
-  Panama: ["Panama City", "Colón", "David"],
-  Uruguay: ["Montevideo", "Salto", "Paysandú"],
-  Paraguay: ["Asunción", "Ciudad del Este", "Encarnación"],
-  Bolivia: ["La Paz", "Santa Cruz de la Sierra", "Cochabamba"],
-  Iceland: ["Reykjavik", "Kopavogur", "Hafnarfjordur"],
-  Luxembourg: ["Luxembourg City", "Esch-sur-Alzette", "Differdange"],
-  Lithuania: ["Vilnius", "Kaunas", "Klaipėda"],
-  Latvia: ["Riga", "Daugavpils", "Liepāja"],
-  Estonia: ["Tallinn", "Tartu", "Narva"],
-  Slovakia: ["Bratislava", "Košice", "Prešov"],
-  Slovenia: ["Ljubljana", "Maribor", "Celje"],
-  Croatia: ["Zagreb", "Split", "Rijeka"],
-  Serbia: ["Belgrade", "Novi Sad", "Niš"],
-  Romania: ["Bucharest", "Cluj-Napoca", "Timișoara"],
-  Hungary: ["Budapest", "Debrecen", "Szeged"],
-  Bulgaria: ["Sofia", "Plovdiv", "Varna"],
-  Georgia: ["Tbilisi", "Batumi", "Kutaisi"],
-  Armenia: ["Yerevan", "Gyumri", "Vanadzor"],
-  Azerbaijan: ["Baku", "Ganja", "Sumqayit"],
-  Jordan: ["Amman", "Zarqa", "Irbid"],
-  Lebanon: ["Beirut", "Tripoli", "Sidon"],
-  Yemen: ["Sana'a", "Aden", "Ta'izz"],
-  Syria: ["Damascus", "Aleppo", "Homs"],
-  Myanmar: ["Yangon", "Mandalay", "Naypyidaw"],
-  Cambodia: ["Phnom Penh", "Siem Reap", "Battambang"],
-  Laos: ["Vientiane", "Luang Prabang", "Savannakhet"],
-  Mongolia: ["Ulaanbaatar", "Erdenet", "Darkhan"],
-  Kazakhstan: ["Astana", "Almaty", "Shymkent"],
-  Uzbekistan: ["Tashkent", "Samarkand", "Bukhara"],
-  Tajikistan: ["Dushanbe", "Khujand", "Kulob"],
-  Turkmenistan: ["Ashgabat", "Turkmenabat", "Dashoguz"],
-  Bhutan: ["Thimphu", "Phuntsholing", "Punakha"],
-  Maldives: ["Malé", "Addu City", "Fuvahmulah"],
-  Zambia: ["Lusaka", "Ndola", "Kitwe"],
-  Zimbabwe: ["Harare", "Bulawayo", "Chitungwiza"]
-};
-
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -134,10 +23,17 @@ const stateOptions = {
     isOtpSent: false,
     isOtpVerified: false,
     sessionToken: '',
-    isLoading: false,
+    isLoading: false, // Only for Send OTP
   });
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false); // For Verify OTP button
 
   const [resendTimer, setResendTimer] = useState(0);
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [countryMap, setCountryMap] = useState({}); // For mapping country name to id
+
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
 
   useEffect(() => {
     let interval;
@@ -148,6 +44,74 @@ const stateOptions = {
     }
     return () => clearInterval(interval);
   }, [resendTimer]);
+
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [popup, setPopup] = useState({ visible: false, message: '', success: true });
+
+  // Fetch countries on mount
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        let page = 1;
+        let allCountries = [];
+        let map = {};
+        let hasMore = true;
+        while (hasMore) {
+          const res = await axios.get(
+            `${BASE_BACKEND_URL}api/geo/country?page=${page}&page_size=50`
+          );
+          const data = res.data?.results || res.data?.data || [];
+          data.forEach((c) => {
+            map[c.name] = c.id;
+          });
+          allCountries = [...allCountries, ...data];
+          hasMore = res.data?.next || (data.length === 50);
+          page += 1;
+        }
+        setCountries(allCountries);
+        setCountryMap(map);
+      } catch (err) {
+        setCountries([]);
+        setCountryMap({});
+        // Using a custom message box instead of alert()
+        console.error('Failed to fetch countries:', err);
+        // You might want to implement a custom modal or toast notification here
+        // For demonstration, we'll log to console.
+      }
+    };
+    fetchCountries();
+  }, []);
+
+  // Fetch states when country changes
+  useEffect(() => {
+    const fetchStates = async () => {
+      if (!formData.country) {
+        setStates([]);
+        return;
+      }
+      try {
+        let page = 1;
+        let allStates = [];
+        let hasMore = true;
+        while (hasMore) {
+          const res = await axios.get(
+            `${BASE_BACKEND_URL}api/geo/state?country_id=${formData.country}&page=${page}&page_size=50`
+          );
+          const data = res.data?.results || res.data?.data || [];
+          allStates = [...allStates, ...data];
+          hasMore = res.data?.next || (data.length === 50);
+          page += 1;
+        }
+        setStates(allStates);
+      } catch (err) {
+        setStates([]);
+        // Using a custom message box instead of alert()
+        console.error('Failed to fetch states:', err);
+        // You might want to implement a custom modal or toast notification here
+      }
+    };
+    fetchStates();
+  }, [formData.country]);
 
   const handleChange = (e) => {
     const { placeholder, value } = e.target;
@@ -173,7 +137,11 @@ const stateOptions = {
 
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+      ...(name === 'country' ? { state: '' } : {}) // Reset state if country changes
+    }));
   };
 
   const handleOtpChange = (e) => {
@@ -183,14 +151,14 @@ const stateOptions = {
   // --- Email OTP logic ---
   const sendOtp = async () => {
     if (!formData.emailId.trim()) {
-      alert('Please enter email address first.');
+      setPopup({ visible: true, message: 'Please enter email address first.', success: false });
       return;
     }
 
     setOtpData(prev => ({ ...prev, isLoading: true }));
 
     try {
-      await axios.post('https://backend-production-d773.up.railway.app/api/auth/send-otp', {
+      await axios.post(`${BASE_BACKEND_URL}api/auth/send-otp`, {
         email: formData.emailId
       });
 
@@ -200,49 +168,43 @@ const stateOptions = {
         isLoading: false
       }));
       setResendTimer(12);
-      alert('OTP sent successfully!');
+      setPopup({ visible: true, message: 'OTP sent successfully!', success: true });
     } catch (error) {
-      console.error(error);
       setOtpData(prev => ({ ...prev, isLoading: false }));
 
-      if (
-        error.response &&
-        error.response.data &&
-        typeof error.response.data.message === 'string' &&
-        error.response.data.message.toLowerCase().includes('already registered')
-      ) {
-        alert('This email is already registered.');
-      } else {
-        alert('Failed to send OTP. Please try again.');
-      }
+    if (
+  (error.response && error.response.status === 400 && error.request && typeof XMLHttpRequest !== 'undefined' && error.request instanceof XMLHttpRequest) ||
+  (error.response && error.response.data && typeof error.response.data.message === 'string' &&
+    (error.response.data.message.toLowerCase().includes('already registered') || error.response.data.message.toLowerCase().includes('already exists')))
+) {
+  setPopup({ visible: true, message: 'The user is already registered.', success: false });
+} else {
+  setPopup({ visible: true, message: 'Failed to send OTP. Please try again.', success: false });
+}
     }
   };
 
   const verifyOtp = async () => {
     if (!otpData.otp.trim()) {
-      alert('Please enter OTP.');
+      setPopup({ visible: true, message: 'Please enter OTP.', success: false });
       return;
     }
-
-    setOtpData(prev => ({ ...prev, isLoading: true }));
-
+    setIsVerifyingOtp(true);
     try {
-      const response = await axios.post('https://backend-production-d773.up.railway.app/api/auth/verify-otp', {
+      const response = await axios.post(`${BASE_BACKEND_URL}api/auth/verify-otp`, {
         email: formData.emailId,
         otp: otpData.otp
       });
-
       setOtpData(prev => ({
         ...prev,
         isOtpVerified: true,
         sessionToken: response.data.sessionToken || response.data.token || '',
-        isLoading: false
       }));
-      alert('OTP verified successfully!');
+      setPopup({ visible: true, message: 'OTP verified successfully!', success: true });
     } catch (error) {
-      console.error('Error:', error.response || error);
-      setOtpData(prev => ({ ...prev, isLoading: false }));
-      alert('Invalid OTP. Please try again.');
+      setPopup({ visible: true, message: 'Invalid OTP. Please try again.', success: false });
+    } finally {
+      setIsVerifyingOtp(false);
     }
   };
 
@@ -253,12 +215,12 @@ const stateOptions = {
     const allFilled = required.every(field => formData[field] && formData[field].trim() !== '');
 
     if (!allFilled) {
-      alert('Please fill all the required details.');
+      setPopup({ visible: true, message: 'Please fill all the required details.', success: false });
       return;
     }
 
     if (!otpData.isOtpVerified) {
-      alert('Please verify your email address with OTP first.');
+      setPopup({ visible: true, message: 'Please verify your email address with OTP first.', success: false });
       return;
     }
 
@@ -276,22 +238,30 @@ const stateOptions = {
         sessionToken: otpData.sessionToken
       };
 
-      await axios.post('https://backend-production-d773.up.railway.app/api/auth/register', registrationData);
-      alert('Registration successful!');
-      navigate('/login');
+      await axios.post(`${BASE_BACKEND_URL}api/auth/register`, registrationData);
+      setPopup({ visible: true, message: 'Registration successful! Redirecting to login...', success: true });
+      setTimeout(() => {
+        setPopup({ visible: false, message: '', success: true });
+        navigate('/login');
+      }, 2500);
     } catch (error) {
-     if (error.response) {
-    console.error("API Error Response:", error.response.data);
-    alert(
-      'Registration failed: ' +
-      (error.response.data?.message || JSON.stringify(error.response.data))
-    );
-  } else {
-    console.error("Error:", error.message);
-    alert('Registration failed! Please try again.');
-  }
+      if (error.response) {
+        setPopup({ visible: true, message: 'Registration failed: ' + (error.response.data?.message || JSON.stringify(error.response.data)), success: false });
+      } else {
+        setPopup({ visible: true, message: 'Registration failed! Please try again.', success: false });
+      }
     }
   };
+
+  // Show popup for 2 seconds (2000ms) for both success and error
+  useEffect(() => {
+    if (popup.visible) {
+      const timer = setTimeout(() => {
+        setPopup(prev => ({ ...prev, visible: false }));
+      }, popup.success ? 2000 : 6000); // 2s for success, 6s for error
+      return () => clearTimeout(timer);
+    }
+  }, [popup.visible]);
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
@@ -327,7 +297,7 @@ const stateOptions = {
                 type="button"
                 onClick={sendOtp}
                 disabled={otpData.isLoading || otpData.isOtpVerified || resendTimer > 0}
-                className={`px-4 rounded-md font-semibold transition duration-300 ${
+                className={`px-3 rounded-md font-semibold transition duration-300 ${
                   otpData.isOtpVerified
                     ? 'bg-green-500 text-white cursor-not-allowed'
                     : otpData.isLoading || resendTimer > 0
@@ -335,13 +305,7 @@ const stateOptions = {
                     : 'bg-amber-500 text-white hover:bg-amber-400'
                 }`}
               >
-                {otpData.isLoading
-                  ? 'Sending...'
-                  : otpData.isOtpVerified
-                  ? 'Verified'
-                  : resendTimer > 0
-                  ? `Wait (${resendTimer}s)`
-                  : 'Send OTP'}
+                {'Send OTP'}
               </button>
             </div>
 
@@ -364,14 +328,14 @@ const stateOptions = {
                 <button
                   type="button"
                   onClick={verifyOtp}
-                  disabled={otpData.isLoading}
+                  disabled={isVerifyingOtp}
                   className={`px-3 rounded-md font-semibold text-sm whitespace-nowrap transition duration-300 ${
-                    otpData.isLoading
+                    isVerifyingOtp
                       ? 'bg-gray-400 text-white cursor-not-allowed'
                       : 'bg-green-500 text-white hover:bg-green-400'
                   }`}
                 >
-                  {otpData.isLoading ? 'Verifying...' : 'Verify OTP'}
+                  {isVerifyingOtp ? 'Verifying...' : 'Verify OTP'}
                 </button>
               </div>
             )}
@@ -432,11 +396,11 @@ const stateOptions = {
                 name="country"
                 className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
                 value={formData.country}
-                onChange={handleSelectChange}
+                onChange={e => setFormData(prev => ({ ...prev, country: e.target.value, state: '' }))}
               >
                 <option value="">Select Country</option>
-                {countryOptions.map((country) => (
-                  <option key={country} value={country}>{country}</option>
+                {countries.map((country) => (
+                  <option key={country.id} value={country.id}>{country.name}</option>
                 ))}
               </select>
 
@@ -444,12 +408,12 @@ const stateOptions = {
                 name="state"
                 className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
                 value={formData.state}
-                onChange={handleSelectChange}
-                disabled={!formData.country || !stateOptions[formData.country]}
+                onChange={e => setFormData(prev => ({ ...prev, state: e.target.value }))}
+                //disabled={!formData.country || !states.length}
               >
                 <option value="">Select State</option>
-                {(stateOptions[formData.country] || []).map((state) => (
-                  <option key={state} value={state}>{state}</option>
+                {states.map((state) => (
+                  <option key={state.id} value={state.id}>{state.name}</option>
                 ))}
               </select>
             </div>
@@ -469,6 +433,45 @@ const stateOptions = {
           </form>
         )}
       </div>
+
+      {/* Pop-up Modal for Success/Error */}
+      {popup.visible && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all duration-300">
+    <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${popup.success ? 'border-orange-500' : 'border-red-500'} scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+      style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', backdropFilter: 'blur(10px)' }}>
+      <div className="p-8">
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            <div className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${popup.success ? 'bg-gradient-to-r from-orange-400 to-amber-500' : 'bg-gradient-to-r from-red-400 to-rose-500'}`}>
+              {popup.success ? (
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="space-y-3">
+          <h2 className={`text-2xl font-bold ${popup.success ? 'text-orange-600' : 'text-red-600'}`}>{popup.success ? 'Success!' : 'Error!'}</h2>
+          <p className="text-gray-600 leading-relaxed">{popup.message}</p>
+        </div>
+        {!popup.success && (
+          <button
+            onClick={() => setPopup({ ...popup, visible: false })}
+            className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
+            Close
+          </button>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

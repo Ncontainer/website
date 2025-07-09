@@ -8,7 +8,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { Link, useNavigate, useLocation } from "react-router-dom"; // ← Add useLocation
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -55,18 +55,23 @@ const handleLogout = () => {
   }, []);
 
   // Effect for setting the active nav item based on the current URL
- useEffect(() => {
-  const path = location.pathname;
-  if (path === "/") setActiveItem("home");
-  else if (path === "/about") setActiveItem("about");
-  else if (path.startsWith("/products")) setActiveItem("products");
-  else if (path === "/resources") setActiveItem("resources");
-  else if (path === "/contact") setActiveItem("contact");
-  else if (path === "/feedback") setActiveItem("feedback");
-  else if (path === "/brochure") setActiveItem("brochure");
-  else if (path === "/login") setActiveItem("login");
-  else setActiveItem(""); // fallback
-}, [location.pathname]);  // ← track actual route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      const path = window.location.pathname;
+      if (path === "/") setActiveItem("home");
+      else if (path === "/about") setActiveItem("about");
+      else if (path.startsWith("/products")) setActiveItem("products");
+      else if (path === "/resources") setActiveItem("resources");
+      else if (path === "/contact") setActiveItem("contact");
+      else if (path === "/feedback") setActiveItem("feedback");
+      else if (path === "/brochure") setActiveItem("brochure");
+      else if (path === "/login") setActiveItem("login");
+    };
+
+    handleRouteChange();
+    window.addEventListener("popstate", handleRouteChange);
+    return () => window.removeEventListener("popstate", handleRouteChange);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -76,12 +81,13 @@ const handleLogout = () => {
     setIsProductsOpen(!isProductsOpen);
   };
 
- const handleNavClick = (item, keepMenuOpen = false) => {
-  if (window.innerWidth < 768 && !keepMenuOpen) {
-    setIsMenuOpen(false);
-  }
-};
-  
+  const handleNavClick = (item, keepMenuOpen = false) => {
+    setActiveItem(item);
+    if (window.innerWidth < 768 && !keepMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <header className={`bg-white shadow-sm w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "scrolled-header" : ""}`}>
       <div className="w-[90%] mx-auto">
@@ -154,30 +160,17 @@ const handleLogout = () => {
             <NavItem text="Resources" to="/resources" isActive={activeItem === "resources"} onClick={() => handleNavClick("resources")} />
             <NavItem text="Contact Us" to="/contact" isActive={activeItem === "contact"} onClick={() => handleNavClick("contact")} />
             <NavItem text="Feedback" to="/feedback" isActive={activeItem === "feedback"} onClick={() => handleNavClick("feedback")} />
-            <NavItem text="Brochure" to="/footer" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
+            <NavItem text="Brochure" to="/brochure" isActive={activeItem === "brochure"} onClick={() => handleNavClick("brochure")} />
           </nav>
 
           <div className="flex items-center">
             <div className="hidden md:block">
-            {isLoggedIn ? (
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md transition-colors whitespace-nowrap"
-              >
-                Logout
-              </button>
-            ) : (
-              <Link
-                to="/login"
-                className="bg-secondary hover:bg-secondary-dark text-white py-2 px-4 rounded-md flex items-center transition-colors whitespace-nowrap"
-                onClick={() => handleNavClick("login")}
-              >
+              <Link to="/login" className="bg-secondary hover:bg-secondary-dark text-white py-2 px-4 rounded-md flex items-center transition-colors whitespace-nowrap" onClick={() => handleNavClick("login")}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                 </svg>
                 Login
               </Link>
-            )}
             </div>
             <div className="md:hidden">
               <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
@@ -218,7 +211,8 @@ const handleLogout = () => {
               <Link to="/resources" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("resources")}>Resources</Link>
               <Link to="/contact" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap" onClick={() => handleNavClick("contact")}>Contact Us</Link>
               <Link to="/feedback" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("feedback")}>Feedback</Link>
-              <Link to="/brochure" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("brochure")}>Brochure</Link>
+              {/* Brochure button - now non-functional */}
+              <span className="block py-3 px-4 border-b border-white/20 text-white font-medium opacity-60 cursor-not-allowed select-none">Brochure</span>
               {/* Mobile Extras */}
               <div className="pt-3 border-t border-white/20">
                 <div className="flex space-x-5 pb-5 justify-center">
@@ -239,25 +233,7 @@ const handleLogout = () => {
                   </div>
                 </div>
                 <div className="pt-4">
-                {isLoggedIn ? (
-                  <button
-                    onClick={() => {
-                      toggleMenu();
-                      handleLogout();
-                    }}
-                    className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors"
-                  >
-                    Logout
-                  </button>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors"
-                    onClick={toggleMenu}
-                  >
-                    Login
-                  </Link>
-                )}
+                  <Link to="/login" className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors" onClick={toggleMenu}>Login</Link>
                 </div>
               </div>
             </div>

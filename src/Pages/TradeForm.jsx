@@ -9,6 +9,10 @@ const TradeForm = () => {
   const params = new URLSearchParams(location.search);
   const selectedFromQuery = params.get('selected');
 
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupType, setPopupType] = useState("success"); // "success" or "error"
+  const [showPopup, setShowPopup] = useState(false);
+
   const [form, setForm] = useState({
     quantity: '',
     containerType: '',
@@ -22,11 +26,36 @@ const TradeForm = () => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState(selectedFromQuery || "sell");
+  const [ports, setPorts] = useState([]);
+  const [portsLoading, setPortsLoading] = useState(false);
+  const [portsSearch, setPortsSearch] = useState("");
   const navigate = useNavigate();
+
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
+  const [tradeAction, setTradeAction] = useState("buy_containers");
 
   useEffect(() => {
     if (selectedFromQuery) setSelectedOption(selectedFromQuery);
   }, [selectedFromQuery]);
+
+  useEffect(() => {
+    const fetchPorts = async () => {
+      setPortsLoading(true);
+      try {
+        const res = await axios.get(
+          `${BASE_BACKEND_URL}api/ports?page=1&limit=50&search=${portsSearch}`
+        );
+        setPorts(res.data?.data || []);
+      } catch (err) {
+        setPorts([]);
+        console.error('Failed to fetch ports:', err); // Replaced alert
+      }
+      setPortsLoading(false);
+    };
+    fetchPorts();
+  }, [portsSearch]);
 
   const toggleModal = () => setShowModal(!showModal);
 
@@ -69,10 +98,10 @@ const TradeForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('https://backend-production-d773.up.railway.app/api/lead-request', {
+      await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
         requestType: "buy",
         tradeType: "trade",
-        tradeAction: "buy_containers",
+        tradeAction: tradeAction,
         containerType: form.containerType,
         purposeOfContainer: "export",
         condition: form.condition,
@@ -86,7 +115,7 @@ const TradeForm = () => {
         urgency: "high",
         notes: form.notes
       });
-      alert('Request submitted successfully!');
+      showMessage("Request submitted successfully!", "success"); // Replaced alert
       setForm({
         quantity: '',
         containerType: '',
@@ -99,72 +128,65 @@ const TradeForm = () => {
       });
     } catch (error) {
       if (error.response) {
-        console.log("API Error Response:", error.response.data);
-        alert(
-          'Failed to submit request: ' +
-          (error.response.data?.message || JSON.stringify(error.response.data))
-        );
+        showMessage(
+  'Failed to submit request: ' +
+    (error.response.data?.message || "Unexpected error."),
+  "error"
+);
       } else {
-        console.log("Error:", error.message);
-        alert('Failed to submit request. Please try again.');
+       showMessage("Failed to submit request. Please try again.", "error");
       }
     }
     setLoading(false);
   };
+  const showMessage = (message, type = "success") => {
+  setPopupMessage(message);
+  setPopupType(type);
+  setShowPopup(true);
+
+  // Auto-close after 3 seconds
+  setTimeout(() => setShowPopup(false), 3000);
+};
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
       {/* Left Side - Background Image and Welcome Text */}
-      <div className="bg-amber-700 relative h-96 md:h-auto">
-        <img
-          src={mainImage}
-          alt="Main Example"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-10 left-6 text-left px-4 z-10">
-          <div className="w-full mb-8">
-            <p
-              className="tracking-wider"
-              style={{
-                fontFamily: 'Saira, sans-serif',
-                fontWeight: '500',
-                fontSize: '15.3621px',
-                lineHeight: '109%',
-                color: 'white',
-                textShadow: `
-                  -1px -1px 0 #FF8901,
-                  1px -1px 0 #FF8901,
-                  -1px 1px 0 #FF8901,
-                  1px 1px 0 #FF8901
-                `,
-              }}
-            >
-              Welcome to
-            </p>
-            <div className="w-full pb-2 mt-1">
-              <h1
-                className="text-2xl leading-normal font-saira font-normal"
-                style={{
-                  fontFamily: 'Saira, sans-serif',
-                  fontSize: '35.3621px',
-                  color: '#ffffff',
-                  textShadow: `
-                    -1px -1px 0 #FF8901,
-                    1px -1px 0 #FF8901,
-                    -1px 1px 0 #FF8901,
-                    1px 1px 0 #FF8901
-                  `,
-                }}
-              >
-                NCON Containers
-              </h1>
-            </div>
-          </div>
-        </div>
-      </div>
+     <div className="bg-amber-700 relative md:order-1 order-2 h-64 md:h-auto">
+             <img
+               src={mainImage}
+               alt="Main Example"
+               className="w-full h-full object-cover"
+             />
+             <div className="absolute top-5 left-5 text-left px-4 z-10">
+               <p
+                 className="tracking-wider text-sm"
+                 style={{
+                   fontFamily: 'Saira, sans-serif',
+                   fontWeight: '500',
+                   color: 'white',
+                   textShadow:
+                     '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+                 }}
+               >
+                 Welcome to
+               </p>
+               <h1
+                 className="text-xl md:text-3xl leading-snug font-saira"
+                 style={{
+                   fontFamily: 'Saira, sans-serif',
+                   color: '#ffffff',
+                   textShadow:
+                     '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+                 }}
+               >
+                 NCON Containers
+               </h1>
+             </div>
+           </div>
+
 
       {/* Right Side - Form */}
-      <div className="bg-white relative p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-gray-100">
+      <div className="bg-white p-6 md:p-8 overflow-y-auto md:order-2 order-1">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 border-w-fit">
             Requirements Form
@@ -185,27 +207,34 @@ const TradeForm = () => {
             </select>
 
             <button
-              type="button"
-              className={
-                selectedOption === "buy"
-                  ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
-                  : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
-              }
-              onClick={() => setSelectedOption("buy")}
-            >
-              Buy Containers
-            </button>
-            <button
-              type="button"
-              className={
-                selectedOption === "sell"
-                  ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
-                  : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
-              }
-              onClick={() => setSelectedOption("sell")}
-            >
-              Sell Containers
-            </button>
+          type="button"
+          className={
+            selectedOption === "buy"
+              ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+              : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
+          }
+          onClick={() => {
+            setSelectedOption("buy");
+            setTradeAction("buy_containers");
+          }}
+        >
+          Buy Containers
+        </button>
+
+        <button
+          type="button"
+          className={
+            selectedOption === "sell"
+              ? "bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+              : "border border-orange-500 text-orange-500 px-4 py-2 rounded-md hover:bg-orange-50"
+          }
+          onClick={() => {
+            setSelectedOption("sell");
+            setTradeAction("sell_containers");
+          }}
+        >
+          Sell Containers
+        </button>
           </div>
 
           {/* Container Specifications */}
@@ -282,14 +311,14 @@ const TradeForm = () => {
             </div>
           </div>
 
-          {/* Drop-off and Pick-Up */}
+          {/* Location Details */}
           <div className="mb-6">
-            <h3 className="font-semibold text-gray-700 mb-2">Drop-off and Pick-Up</h3>
+            <h3 className="font-semibold text-gray-700 mb-2">Location Details</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
                 <div className="flex gap-2">
-                  <input
+                  {/* <input
                     type="text"
                     name="pickUpLocation"
                     value={form.pickUpLocation}
@@ -304,7 +333,21 @@ const TradeForm = () => {
                     className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
                   >
                     + Add Location
-                  </button>
+                  </button> */}
+                  <select
+  name="pickUpLocation"
+  value={form.pickUpLocation}
+  onChange={handleChange}
+  className="flex-grow border border-gray-300 p-2 rounded-md"
+  required
+>
+  <option value="">Select Pick-up Location</option>
+  {ports.map(port => (
+    <option key={port._id} value={port._id}>
+      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
+    </option>
+  ))}
+</select>
                 </div>
               </div>
             </div>
@@ -371,20 +414,25 @@ const TradeForm = () => {
                 type="text"
                 placeholder="Select by Port, Country or Region Name"
                 className="w-full border border-gray-300 rounded-md p-2 mb-4"
+                onChange={(e) => setPortsSearch(e.target.value)}
               />
               <div className="space-y-4">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="flex items-start gap-4 p-2 border rounded-md shadow-sm">
-                    <div className="text-orange-500 text-xl">⚓</div>
-                    <div className="flex-grow">
-                      <p className="font-semibold">Port Name</p>
-                      <p className="text-sm text-gray-500">
-                        Address: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-                      </p>
+                {portsLoading ? (
+                  <div>Loading ports...</div>
+                ) : (
+                  ports.map((port, i) => (
+                    <div key={i} className="flex items-start gap-4 p-2 border rounded-md shadow-sm">
+                      <div className="text-orange-500 text-xl">⚓</div>
+                      <div className="flex-grow">
+                        <p className="font-semibold">{port.portName}</p>
+                        <p className="text-sm text-gray-500">
+                          Address: {port.address || "N/A"}
+                        </p>
+                      </div>
+                      <input type="checkbox" className="mt-2" />
                     </div>
-                    <input type="checkbox" className="mt-2" />
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
               <button
                 onClick={toggleModal}
@@ -396,8 +444,52 @@ const TradeForm = () => {
           </div>
         )}
       </div>
+
+      {/* Pop-up Modal for Success/Error */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all duration-300">
+          <div
+            className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${popupType === 'success' ? 'border-orange-500' : 'border-red-500'} scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+            style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', backdropFilter: 'blur(10px)' }}
+          >
+            <div className="p-8">
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${popupType === 'success' ? 'bg-gradient-to-r from-orange-400 to-amber-500' : 'bg-gradient-to-r from-red-400 to-rose-500'}`}>
+                    {popupType === 'success' ? (
+                      <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className={`text-2xl font-bold ${popupType === 'success' ? 'text-orange-600' : 'text-red-600'}`}>{popupType === 'success' ? 'Success!' : 'Error!'}</h2>
+                <p className="text-gray-600 leading-relaxed">{popupMessage}</p>
+              </div>
+              {popupType === 'error' && (
+                <button
+                  onClick={() => setShowPopup(false)}
+                  className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                >
+                  Close
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default TradeForm;
+
+
+
+

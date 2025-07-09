@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
-import axios from 'axios'; // <-- Add axios import
+import axios from 'axios';
 
 const LeaseForm = () => {
   const [containers, setContainers] = useState([{
@@ -17,7 +17,17 @@ const LeaseForm = () => {
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [loading, setLoading] = useState(false);
+  const [ports, setPorts] = useState([]);
+  const [portsLoading, setPortsLoading] = useState(false);
+  const [portsSearch, setPortsSearch] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false); // New state for success popup
   const navigate = useNavigate();
+
+  // Define the base URL as a constant for easy modification
+  const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
+
+  const [popup, setPopup] = useState({ visible: false, message: '', success: true });
+  const [errorMessage, setErrorMessage] = useState(""); // Add this below showSuccessPopup
 
   const toggleModal = () => setShowModal(!showModal);
   const addContainer = () => setContainers([...containers, {
@@ -49,91 +59,115 @@ const LeaseForm = () => {
   });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      // Send one API call per container entry
-      for (const c of containers) {
-        await axios.post('https://backend-production-d773.up.railway.app/api/lead-request', {
-          requestType: "buy", // <-- FIXED: must be "buy" or "sell"
-          tradeType: "trade", // <-- FIXED: match your other forms
-          tradeAction: "buy_containers", // <-- FIXED: must be "buy_containers" or "sell_containers"
-          containerType: c.containerType,
-          purposeOfContainer: "export",
-          condition: c.condition,
-          leasingPeriod: c.leasingPeriod,
-          perDiem: c.perDiem,
-          withCSCRevalidation: false,
-          locations: [
-            getLocationObj(onHireLocation)
-          ],
-          email: email,
-          mobile: mobile,
-          quantity: Number(c.quantity),
-          urgency: "high",
-          notes: `Off-hire location: ${offHireLocation}`
-        });
-      }
-      alert('Lease request(s) submitted successfully!');
-      setContainers([{
-        quantity: '',
-        containerType: '',
-        condition: '',
-        leasingPeriod: '',
-        perDiem: ''
-      }]);
-      setOnHireLocation('');
-      setOffHireLocation('');
-      setEmail('');
-      setMobile('');
-    } catch (error) {
-      if (error.response) {
-        console.log("API Error Response:", error.response.data);
-        alert(
-          'Failed to submit lease request: ' +
-          (error.response.data?.message || JSON.stringify(error.response.data))
-        );
-      } else {
-        console.log("Error:", error.message);
-        alert('Failed to submit lease request. Please try again.');
-      }
+  e.preventDefault();
+  setLoading(true);
+  try {
+    for (const c of containers) {
+      await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
+        requestType: "buy",
+        tradeType: "lease",
+        tradeAction: "buy_containers",
+        containerType: c.containerType,
+        purposeOfContainer: "export",
+        condition: c.condition,
+        leasingPeriod: c.leasingPeriod,
+        perDiem: c.perDiem,
+        withCSCRevalidation: false,
+        locations: [
+          getLocationObj(onHireLocation),
+          getLocationObj(offHireLocation)
+        ],
+        email: email,
+        mobile: mobile,
+        quantity: Number(c.quantity),
+        urgency: "high",
+        notes: `Lease request for ${c.quantity} ${c.containerType} containers. On-hire: ${onHireLocation}, Off-hire: ${offHireLocation}. Additional notes: ${c.notes || ''}`
+      });
     }
-    setLoading(false);
-  };
+
+    setPopup({ visible: true, message: "Form submitted successfully.", success: true });
+    setTimeout(() => setPopup({ visible: false, message: '', success: true }), 2500);
+
+    setContainers([{
+      quantity: '',
+      containerType: '',
+      condition: '',
+      leasingPeriod: '',
+      perDiem: ''
+    }]);
+    setOnHireLocation('');
+    setOffHireLocation('');
+    setEmail('');
+    setMobile('');
+  }  catch (error) {
+  if (error.response) {
+    console.error("API Error Response:", error.response.data);
+    const message = error.response.data?.message || "Failed to submit lease request.";
+    setErrorMessage(message);
+  } else {
+    console.error("Error:", error.message);
+    setErrorMessage("Failed to submit lease request. Please try again.");
+  }
+}
+  setLoading(false);
+};
+
+  useEffect(() => {
+    const fetchPorts = async () => {
+      setPortsLoading(true);
+      try {
+        const res = await axios.get(
+          `${BASE_BACKEND_URL}api/ports?page=1&limit=50&search=${portsSearch}`
+        );
+        setPorts(res.data?.data || []);
+      } catch (err) {
+        setPorts([]);
+        console.error('Failed to fetch ports:', err);
+      }
+      setPortsLoading(false);
+    };
+    fetchPorts();
+  }, [portsSearch]);
 
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%] relative">
-      {/* Top (on mobile) / Left Section (on desktop) */}
-      <div className="bg-amber-700 relative h-64 md:h-auto">
-        <img
-          src={leaseImage} // ✅ use imported image here
-          alt="Background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-10 left-6 text-left px-4 z-10">
-          <p
-            className="text-white text-sm font-medium"
-            style={{
-              textShadow:
-                '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
-            }}
-          >
-            Welcome to
-          </p>
-          <h1
-            className="text-[28px] md:text-[35px] font-bold text-white"
-            style={{
-              textShadow:
-                '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
-            }}
-          >
-            NCON Containers
-          </h1>
-        </div>
-      </div>
+    <div className="min-h-screen grid grid-cols-1 md:grid-cols-[60%_40%]">
+          {/* Left Image Section */}
+         <div className="bg-amber-700 relative order-1 h-64 md:h-auto">
+                 <img
+                   src={leaseImage}
+                   alt="Main Example"
+                   className="w-full h-full object-cover"
+                 />
+                 <div className="absolute top-5 left-5 text-left px-4 z-10">
+                   <p
+                     className="tracking-wider text-sm"
+                     style={{
+                       fontFamily: 'Saira, sans-serif',
+                       fontWeight: '500',
+                       color: 'white',
+                       textShadow:
+                         '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+                     }}
+                   >
+                     Welcome to
+                   </p>
+                   <h1
+                     className="text-xl md:text-3xl leading-snug font-saira"
+                     style={{
+                       fontFamily: 'Saira, sans-serif',
+                       color: '#ffffff',
+                       textShadow:
+                         '-1px -1px 0 #FF8901, 1px -1px 0 #FF8901, -1px 1px 0 #FF8901, 1px 1px 0 #FF8901',
+                     }}
+                   >
+                     NCON Containers
+                   </h1>
+                 </div>
+               </div>
+
 
       {/* Bottom (on mobile) / Right Section (on desktop) */}
-      <div className="bg-white p-6 md:p-8 overflow-y-auto">
+      <div className="bg-white p-6 md:p-8 overflow-y-auto md:order-2 order-1">
         <h2 className="text-xl md:text-2xl font-bold text-gray-800 border-b-4 border-orange-400 pb-2 mb-6">
           Requirements Form
         </h2>
@@ -276,45 +310,37 @@ const LeaseForm = () => {
                 <label className="block text-sm mb-1">
                   On-Hire Location: <span className="text-red-500">*</span>
                 </label>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Location"
-                    className="flex-grow border border-gray-300 p-2 rounded-md"
-                    value={onHireLocation}
-                    onChange={e => setOnHireLocation(e.target.value)}
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleModal}
-                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                  >
-                    + Add Location
-                  </button>
-                </div>
+                <select
+                  className="flex-grow border border-gray-300 p-2 rounded-md"
+                  value={onHireLocation}
+                  onChange={e => setOnHireLocation(e.target.value)}
+                  required
+                >
+                  <option value="">Select On-Hire Location</option>
+                  {ports.map(port => (
+                    <option key={port._id} value={port._id}>
+                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-sm mb-1">
                   Off-Hire Location: <span className="text-red-500">*</span>
                 </label>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Location"
-                    className="flex-grow border border-gray-300 p-2 rounded-md"
-                    value={offHireLocation}
-                    onChange={e => setOffHireLocation(e.target.value)}
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleModal}
-                    className="border border-orange-500 text-orange-500 px-2 rounded hover:bg-orange-50 text-sm"
-                  >
-                    + Add Location
-                  </button>
-                </div>
+                <select
+                  className="flex-grow border border-gray-300 p-2 rounded-md"
+                  value={offHireLocation}
+                  onChange={e => setOffHireLocation(e.target.value)}
+                  required
+                >
+                  <option value="">Select Off-Hire Location</option>
+                  {ports.map(port => (
+                    <option key={port._id} value={port._id}>
+                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
@@ -363,24 +389,29 @@ const LeaseForm = () => {
                 type="text"
                 placeholder="Select by Port, Country or Region Name"
                 className="w-full border border-gray-300 rounded-md p-2 mb-4"
+                value={portsSearch}
+                onChange={e => setPortsSearch(e.target.value)}
               />
               <div className="space-y-4">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-4 p-2 border rounded-md shadow-sm"
-                  >
-                    <div className="text-orange-500 text-xl">⚓</div>
-                    <div className="flex-grow">
-                      <p className="font-semibold">Port Name</p>
-                      <p className="text-sm text-gray-500">
-                        Address: Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt.
-                      </p>
+                {portsLoading ? (
+                  <div>Loading ports...</div>
+                ) : (
+                  ports.map((port, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-4 p-2 border rounded-md shadow-sm"
+                    >
+                      <div className="text-orange-500 text-xl">⚓</div>
+                      <div className="flex-grow">
+                        <p className="font-semibold">{port.portName}</p>
+                        <p className="text-sm text-gray-500">
+                          Address: {port.address || "N/A"}
+                        </p>
+                      </div>
+                      <input type="checkbox" className="mt-2" />
                     </div>
-                    <input type="checkbox" className="mt-2" />
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
               <button
                 onClick={toggleModal}
@@ -392,6 +423,54 @@ const LeaseForm = () => {
           </div>
         )}
       </div>
+
+      {popup.visible && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all duration-300">
+    <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${popup.success ? 'border-orange-500' : 'border-red-500'} scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+      style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', backdropFilter: 'blur(10px)' }}>
+      
+      <div className="p-8">
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            <div className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${popup.success ? 'bg-gradient-to-r from-orange-400 to-amber-500' : 'bg-gradient-to-r from-red-400 to-rose-500'}`}>
+              {popup.success ? (
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="space-y-3">
+          <h2 className={`text-2xl font-bold ${popup.success ? 'text-orange-600' : 'text-red-600'}`}>
+            {popup.success ? "Success!" : "Error!"}
+          </h2>
+          <p className="text-gray-600 leading-relaxed">{popup.message}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+{errorMessage && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white border-t-4 border-red-500 text-red-600 p-6 rounded-2xl shadow-2xl w-[90%] max-w-sm text-center animate-fade-in">
+      <div className="text-4xl mb-2">⚠️</div>
+      <h3 className="text-xl font-bold mb-2">Submission Failed</h3>
+      <p className="text-sm text-gray-700">{errorMessage}</p>
+      <button
+        onClick={() => setErrorMessage("")}
+        className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+  
     </div>
   );
 };
