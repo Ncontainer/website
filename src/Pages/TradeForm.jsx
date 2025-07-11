@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import mainImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import LocationModal from '../components/LocationModal';
 
 const TradeForm = () => {
   const location = useLocation();
@@ -28,8 +29,11 @@ const TradeForm = () => {
   const [selectedOption, setSelectedOption] = useState(selectedFromQuery || "sell");
   const [ports, setPorts] = useState([]);
   const [portsLoading, setPortsLoading] = useState(false);
-  const [portsSearch, setPortsSearch] = useState("");
   const navigate = useNavigate();
+
+const [showPickupModal, setShowPickupModal] = useState(false);
+const [showDropoffModal, setShowDropoffModal] = useState(false);
+const [portsSearch, setPortsSearch] = useState("");
 
   // Define the base URL as a constant for easy modification
   const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
@@ -316,7 +320,7 @@ const TradeForm = () => {
             <h3 className="font-semibold text-gray-700 mb-2">Location Details</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
+                
                 <div className="flex gap-2">
                   {/* <input
                     type="text"
@@ -334,20 +338,15 @@ const TradeForm = () => {
                   >
                     + Add Location
                   </button> */}
-                  <select
-  name="pickUpLocation"
-  value={form.pickUpLocation}
-  onChange={handleChange}
-  className="flex-grow border border-gray-300 p-2 rounded-md"
-  required
->
-  <option value="">Select Pick-up Location</option>
-  {ports.map(port => (
-    <option key={port._id} value={port._id}>
-      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
-    </option>
-  ))}
-</select>
+              <div>
+  <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
+  <div
+    className="w-full border border-gray-300 p-2 rounded-md cursor-pointer bg-white"
+    onClick={() => setShowPickupModal(true)}
+  >
+    {form.pickUpLocation ? ports.find(p => p._id === form.pickUpLocation)?.name : "Select Pick-up Location"}
+  </div>
+</div>
                 </div>
               </div>
             </div>
@@ -484,6 +483,18 @@ const TradeForm = () => {
           </div>
         </div>
       )}
+      <LocationModal
+  visible={showPickupModal}
+  onClose={() => setShowPickupModal(false)}
+  onSelect={(id) => {
+    setForm(prev => ({ ...prev, pickUpLocation: id }));
+    setShowPickupModal(false);
+  }}
+  ports={ports}
+  selectedId={form.pickUpLocation}
+  search={portsSearch}
+  setSearch={setPortsSearch}
+/>
     </div>
   );
 };

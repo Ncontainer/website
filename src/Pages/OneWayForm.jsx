@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 import axios from 'axios';
+import LocationModal from '../components/LocationModal';
 
 const OneWayForm = () => {
   const location = useLocation();
@@ -23,10 +24,14 @@ const OneWayForm = () => {
   const [selectedOption, setSelectedOption] = useState(selectedFromQuery || "use");
   const [ports, setPorts] = useState([]);
   const [portsLoading, setPortsLoading] = useState(false);
-  const [portsSearch, setPortsSearch] = useState("");
+  
   const [popup, setPopup] = useState({ visible: false, message: '', success: true });
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
+const [showPickupModal, setShowPickupModal] = useState(false);
+const [showDropoffModal, setShowDropoffModal] = useState(false);
+const [portsSearch, setPortsSearch] = useState("");
 
   // Define the base URL as a constant for easy modification
   const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
@@ -284,40 +289,31 @@ const handleSubmit = async (e) => {
           <div className="mb-6">
             <h3 className="font-semibold text-gray-700 mb-2">Drop-off and Pick-Up</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+                
+                 {/* Pick-up Location */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Pick-up Location: *</label>
-                <select
-                  name="pickUpLocation"
-                  value={form.pickUpLocation}
-                  onChange={handleChange}
-                  className="flex-grow border border-gray-300 p-2 rounded-md"
-                  required
+                <div
+                  className="w-full border border-gray-300 p-2 rounded-md cursor-pointer bg-white"
+                  onClick={() => setShowPickupModal(true)}
                 >
-                  <option value="">Select Pick-up Location</option>
-                  {ports.map(port => (
-                    <option key={port._id} value={port._id}>
-                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
-                    </option>
-                  ))}
-                </select>
+                  {form.pickUpLocation ? ports.find(p => p._id === form.pickUpLocation)?.name : "Select Pick-up Location"}
+                </div>
               </div>
+
+              {/* Drop-off Location */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Drop-off Location: *</label>
-                <select
-                  name="dropOffLocation"
-                  value={form.dropOffLocation}
-                  onChange={handleChange}
-                  className="flex-grow border border-gray-300 p-2 rounded-md"
-                  required
+                <div
+                  className="w-full border border-gray-300 p-2 rounded-md cursor-pointer bg-white"
+                  onClick={() => setShowDropoffModal(true)}
                 >
-                  <option value="">Select Drop-off Location</option>
-                  {ports.map(port => (
-                    <option key={port._id} value={port._id}>
-                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
-                    </option>
-                  ))}
-                </select>
+                  {form.dropOffLocation ? ports.find(p => p._id === form.dropOffLocation)?.name : "Select Drop-off Location"}
+                </div>
               </div>
+              
+              
             </div>
           </div>
 
@@ -410,6 +406,31 @@ const handleSubmit = async (e) => {
   </div>
 )}
       </div>
+      <LocationModal
+  visible={showPickupModal}
+  onClose={() => setShowPickupModal(false)}
+  onSelect={(id) => {
+    setForm(prev => ({ ...prev, pickUpLocation: id }));
+    setShowPickupModal(false);
+  }}
+  ports={ports}
+  selectedId={form.pickUpLocation}
+  search={portsSearch}
+  setSearch={setPortsSearch}
+/>
+
+<LocationModal
+  visible={showDropoffModal}
+  onClose={() => setShowDropoffModal(false)}
+  onSelect={(id) => {
+    setForm(prev => ({ ...prev, dropOffLocation: id }));
+    setShowDropoffModal(false);
+  }}
+  ports={ports}
+  selectedId={form.dropOffLocation}
+  search={portsSearch}
+  setSearch={setPortsSearch}
+/>
     </div>
   );
 };

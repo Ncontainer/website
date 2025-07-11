@@ -23,6 +23,8 @@ const LeaseForm = () => {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false); // New state for success popup
   const navigate = useNavigate();
 
+  const [activeField, setActiveField] = useState(''); // 'onHire' or 'offHire'
+
   // Define the base URL as a constant for easy modification
   const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
 
@@ -30,6 +32,17 @@ const LeaseForm = () => {
   const [errorMessage, setErrorMessage] = useState(""); // Add this below showSuccessPopup
 
   const toggleModal = () => setShowModal(!showModal);
+
+  const openLocationModal = (field) => {
+  setActiveField(field);
+  setShowModal(true);
+   };
+
+   const handleLocationSelect = (id) => {
+  if (activeField === 'onHire') setOnHireLocation(id);
+  if (activeField === 'offHire') setOffHireLocation(id);
+  setShowModal(false);
+};
   const addContainer = () => setContainers([...containers, {
     quantity: '',
     containerType: '',
@@ -49,14 +62,23 @@ const LeaseForm = () => {
     );
     setContainers(updated);
   };
+const getLocationObj = (locationId) => {
+  const location = ports.find(p => p._id === locationId);
+  return location
+    ? {
+        portName: location.portName || "Unknown",
+        portCode: location.portCode || "UNK",
+        country: location.countryName || "Unknown",
+        region: location.region || "Unknown",
+      }
+    : {
+        portName: "Unknown",
+        portCode: "UNK",
+        country: "Unknown",
+        region: "Unknown",
+      };
+};
 
-  // Example static location data for demonstration
-  const getLocationObj = (locationStr) => ({
-    portName: locationStr || "Unknown",
-    portCode: "UNK",
-    country: "Unknown",
-    region: "Unknown"
-  });
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -310,37 +332,32 @@ const LeaseForm = () => {
                 <label className="block text-sm mb-1">
                   On-Hire Location: <span className="text-red-500">*</span>
                 </label>
-                <select
-                  className="flex-grow border border-gray-300 p-2 rounded-md"
-                  value={onHireLocation}
-                  onChange={e => setOnHireLocation(e.target.value)}
-                  required
-                >
-                  <option value="">Select On-Hire Location</option>
-                  {ports.map(port => (
-                    <option key={port._id} value={port._id}>
-                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
-                    </option>
-                  ))}
-                </select>
+              {/* On-Hire */}
+
+<button
+  type="button"
+  onClick={() => openLocationModal('onHire')}
+  className="w-full border border-gray-300 p-2 rounded-md text-left"
+>
+  {onHireLocation
+    ? ports.find(p => p._id === onHireLocation)?.portName || "Selected"
+    : "Select On-Hire Location"}
+</button>
               </div>
               <div>
                 <label className="block text-sm mb-1">
                   Off-Hire Location: <span className="text-red-500">*</span>
                 </label>
-                <select
-                  className="flex-grow border border-gray-300 p-2 rounded-md"
-                  value={offHireLocation}
-                  onChange={e => setOffHireLocation(e.target.value)}
-                  required
-                >
-                  <option value="">Select Off-Hire Location</option>
-                  {ports.map(port => (
-                    <option key={port._id} value={port._id}>
-                      {port.name} {port.code ? `(${port.code})` : ""} {port.countryName ? `- ${port.countryName}` : ""}
-                    </option>
-                  ))}
-                </select>
+      {/* Off-Hire */}
+<button
+  type="button"
+  onClick={() => openLocationModal('offHire')}
+  className="w-full border border-gray-300 p-2 rounded-md text-left"
+>
+  {offHireLocation
+    ? ports.find(p => p._id === offHireLocation)?.portName || "Selected"
+    : "Select Off-Hire Location"}
+</button>
               </div>
             </div>
           </div>
@@ -394,24 +411,32 @@ const LeaseForm = () => {
               />
               <div className="space-y-4">
                 {portsLoading ? (
-                  <div>Loading ports...</div>
-                ) : (
-                  ports.map((port, i) => (
-                    <div
-                      key={i}
-                      className="flex items-start gap-4 p-2 border rounded-md shadow-sm"
-                    >
-                      <div className="text-orange-500 text-xl">⚓</div>
-                      <div className="flex-grow">
-                        <p className="font-semibold">{port.portName}</p>
-                        <p className="text-sm text-gray-500">
-                          Address: {port.address || "N/A"}
-                        </p>
-                      </div>
-                      <input type="checkbox" className="mt-2" />
-                    </div>
-                  ))
-                )}
+  <div className="text-gray-500 text-sm">Loading ports...</div>
+) : (
+  ports.map((port, i) => (
+    <button
+      key={i}
+      type="button"
+      onClick={() => handleLocationSelect(port._id)}
+      className={`w-full text-left p-4 border rounded-lg shadow-md hover:bg-orange-50 transition-all duration-200 ${
+        (activeField === 'onHire' && onHireLocation === port._id) ||
+        (activeField === 'offHire' && offHireLocation === port._id)
+          ? 'border-orange-500 bg-orange-100'
+          : 'border-gray-200 bg-white'
+      }`}
+    >
+      <div className="flex items-start gap-4">
+        <div className="text-orange-500 text-xl mt-1">⚓</div>
+        <div className="flex-grow">
+          <p className="font-semibold text-gray-800">{port.portName}</p>
+          <p className="text-sm text-gray-500">Region: {port.region || "N/A"}</p>
+          <p className="text-sm text-gray-500">Country: {port.countryName || "Unknown"}</p>
+          <p className="text-sm text-gray-400">Code: {port.portCode || "N/A"}</p>
+        </div>
+      </div>
+    </button>
+  ))
+)}
               </div>
               <button
                 onClick={toggleModal}
