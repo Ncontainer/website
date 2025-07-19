@@ -32,36 +32,36 @@ export default function Footer() {
         </div>
 
         {/* Contact Info */}
-        <div
-          className={`grid ${
-            isMobile ? "grid-cols-1 gap-4" : "grid-cols-3 gap-2"
-          } mb-12`}
-        >
-          <div
-            className={`flex items-center ${
-              isMobile ? "justify-center" : ""
-            } bg-white/25 p-4 rounded`}
-          >
-            <MapPin className="text-orange-500 mr-2" size={isMobile ? 16 : 20} />
-            <span className="text-[0.8rem] sm:text-sm">794 Mcallister St San Francisco, 94102</span>
-          </div>
-          <div
-            className={`flex items-center ${
-              isMobile ? "justify-center" : ""
-            } bg-white/25 p-4 rounded`}
-          >
-            <Mail className="text-orange-500 mr-2" size={isMobile ? 16 : 20} />
-            <span className="text-[0.8rem] lg:text-sm overflow-hidden">containers@shippingcompany.com</span>
-          </div>
-          <div
-            className={`flex items-center ${
-              isMobile ? "justify-center" : ""
-            } bg-white/25 p-4 rounded`}
-          >
-            <Phone className="text-orange-500 mr-2" size={isMobile ? 16 : 20} />
-            <span className="text-[0.8rem] sm:text-sm">+91 9876543210</span>
-          </div>
-        </div>
+       <div
+  className={`grid ${
+    isMobile ? "grid-cols-1 gap-4" : "grid-cols-3 gap-2"
+  } mb-12`}
+>
+  <div
+    className={`flex flex-col items-center justify-center bg-white/25 p-4 rounded text-center`}
+  >
+    <MapPin className="text-orange-500 mb-2" size={isMobile ? 16 : 20} />
+    <span className="text-[0.8rem] sm:text-sm text-center">
+      794 Mcallister St San Francisco, 94102
+    </span>
+  </div>
+  <div
+    className={`flex flex-col items-center justify-center bg-white/25 p-4 rounded text-center`}
+  >
+    <Mail className="text-orange-500 mb-2" size={isMobile ? 16 : 20} />
+    <span className="text-[0.8rem] lg:text-sm text-center overflow-hidden">
+      containers@shippingcompany.com
+    </span>
+  </div>
+  <div
+    className={`flex flex-col items-center justify-center bg-white/25 p-4 rounded text-center`}
+  >
+    <Phone className="text-orange-500 mb-2" size={isMobile ? 16 : 20} />
+    <span className="text-[0.8rem] sm:text-sm text-center">
+      +91 9876543210
+    </span>
+  </div>
+</div>
 
         {/* Footer Links - Headings */}
         <div className="flex justify-between mb-6">

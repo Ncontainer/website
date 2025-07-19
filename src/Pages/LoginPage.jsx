@@ -32,7 +32,7 @@ export default function LoginPage() {
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('token', res.data.token);
       alert('Login successful!');
-      navigate('/one-way');
+      navigate('/');
     } catch (error) {
       setPopup({ visible: true, message: 'Login failed. Please check your credentials.', success: false });
     }
