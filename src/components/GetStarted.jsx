@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import img from '../images/04.png';
 
 const GetStarted = () => {
+  const navigate = useNavigate();
+
+  const handleCTAClick = () => {
+    navigate("/products/dry_Container");
+  };
+
   return (
     <section className="w-full pt-6 sm:pt-0 sm:h-[42rem] h-auto relative overflow-visible">
       {/* Orange background */}
@@ -37,11 +44,11 @@ const GetStarted = () => {
               nisi ut aliquip ex ea commodo consequat.
             </p>
             <div className="flex flex-wrap gap-3 md:gap-4">
-              <button className="px-6 sm:px-8 py-2 bg-white text-secondary font-medium text-sm sm:text-base rounded-full hover:bg-orange-50 transition-colors">
-                CTA BTN
-              </button>
-              <button className="px-6 sm:px-8 py-2 bg-transparent text-white font-medium text-sm sm:text-base rounded-full border border-white hover:bg-white hover:bg-opacity-10 transition-colors">
-                CTA BTN
+              <button
+                onClick={handleCTAClick}
+                className="px-6 sm:px-8 py-2 bg-white text-secondary font-medium text-sm sm:text-base rounded-full hover:bg-orange-50 transition-colors"
+              >
+                Explore Our Products
               </button>
             </div>
           </div>

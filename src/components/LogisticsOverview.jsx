@@ -1,12 +1,12 @@
 import { Eye, Rocket } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import hero3 from "../images/hero3.png";
 
 const LogisticsOverview = () => {
+  const navigate = useNavigate();
+
   const handleLearnMoreClick = () => {
-    const servicesSection = document.getElementById("our-services");
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: "smooth" });
-    }
+    navigate("/about");
   };
 
   return (

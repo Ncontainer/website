@@ -195,7 +195,7 @@ const handleSubmit = async (e) => {
             <option value="One-Way">One-Way</option>
             <option value="Lease">Lease</option>
             <option value="Trade">Trade</option>
-            <option value="Empty Repo">Empty Repo</option>
+            
           </select>
 
           <button
@@ -283,6 +283,40 @@ const handleSubmit = async (e) => {
                   <option value="IICL">IICL</option>
                 </select>
               </div>
+              <div>
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Expected Price: <span className="text-red-500">*</span>
+  </label>
+  <select
+    name="containerType"
+    value={form.containerType}
+    onChange={handleChange}
+    className="w-full border border-gray-300 p-2 rounded-md"
+    required
+  >
+    <option value="" disabled hidden>Select price</option>
+    <option value="4000$">4000$</option>
+    <option value="6000$">6000$</option>
+    <option value="8000$">8000$</option>
+  </select>
+</div>
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Container's Age: <span className="text-red-500">*</span>
+  </label>
+  <select
+    name="containerType"
+    value={form.containerType}
+    onChange={handleChange}
+    className="w-full border border-gray-300 p-2 rounded-md"
+    required
+  >
+      <option value="" disabled hidden>select Age</option>
+    <option value="5y">less than 5 years</option>
+    <option value="3y">less than 3 years</option>
+    <option value="2y">less than 2 years</option>
+  </select>
+</div>
             </div>
           </fieldset>
 

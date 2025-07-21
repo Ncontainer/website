@@ -207,7 +207,7 @@ const [portsSearch, setPortsSearch] = useState("");
               <option>One-Way</option>
               <option>Lease</option>
               <option>Trade</option>
-              <option>Empty Repo</option>
+              
             </select>
 
             <button

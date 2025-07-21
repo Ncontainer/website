@@ -284,11 +284,11 @@ export default function RegistrationPage() {
         {/* Email OTP Section */}
         {!otpData.isOtpVerified && (
           <form className="w-full max-w-xl space-y-4">
-            <p className="text-left text-sm text-gray-700 font-medium">Verify your email address</p>
+            <p className="text-left text-sm text-gray-700 font-medium">Verify your email address/ phone number</p>
             <div className="flex gap-2 items-stretch">
               <input
                 type="email"
-                placeholder="Email ID"
+                placeholder="Email ID / Phone number"
                 className="flex-1 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
                 value={formData.emailId}
                 onChange={handleChange}

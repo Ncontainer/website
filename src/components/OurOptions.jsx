@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const OurOptions = () => {
+  const navigate = useNavigate();
   const orangeColor = '#ff8901';
 
   return (
@@ -25,14 +26,16 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-10 border border-orange-500 hover:border-transparent rounded-3xl"
-                style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
+                onClick={() => navigate('/one-way')}
+                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-10 border border-orange-500 hover:border-transparent rounded-3xl"
+                style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }}
               >
                 Use
               </button>
               <button
-                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-8 rounded-3xl"
-                style={{ backgroundColor: orangeColor }} // Inline style for orange
+                onClick={() => navigate('/one-way')}
+                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-8 rounded-3xl"
+                style={{ backgroundColor: orangeColor }}
               >
                 Supply
               </button>
@@ -52,14 +55,16 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-11 border border-orange-500 hover:border-transparent rounded-3xl"
-                 style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
+                onClick={() => navigate('/trade')}
+                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-11 border border-orange-500 hover:border-transparent rounded-3xl"
+                style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }}
               >
                 Buy
               </button>
               <button
-                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-11 rounded-3xl"
-                style={{ backgroundColor: orangeColor }} // Inline style for orange
+                onClick={() => navigate('/trade')}
+                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-11 rounded-3xl"
+                style={{ backgroundColor: orangeColor }}
               >
                 Sell
               </button>
@@ -79,14 +84,16 @@ const OurOptions = () => {
             </p>
             <div className="flex gap-2">
               <button
-                className="bg-transparent hover:bg-orange-500 text-orange-500  hover:text-white py-2 px-6 border border-orange-500 hover:border-transparent rounded-3xl"
-                style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }} // Inline styles for orange
+                onClick={() => navigate('/lease')}
+                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 border border-orange-500 hover:border-transparent rounded-3xl"
+                style={{ color: orangeColor, borderColor: orangeColor, '--tw-bg-opacity': 0.1 }}
               >
                 Domestic
               </button>
               <button
-                className="bg-orange-500 hover:bg-orange-700 text-white  py-2 px-10 rounded-3xl"
-                style={{ backgroundColor: orangeColor }} // Inline style for orange
+                onClick={() => navigate('/lease')}
+                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-10 rounded-3xl"
+                style={{ backgroundColor: orangeColor }}
               >
                 EXIM
               </button>

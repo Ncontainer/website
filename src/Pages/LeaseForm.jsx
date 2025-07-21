@@ -280,6 +280,8 @@ const getLocationObj = (locationId) => {
                     <option value="WWT">WWT</option>
                   </select>
                 </div>
+                 
+                
                 <div>
                   <label className="block text-sm mb-1">
                     Leasing period (in Days):{' '}
@@ -310,8 +312,43 @@ const getLocationObj = (locationId) => {
                     <span className="absolute right-3 top-2.5 text-sm text-gray-500">
                       | USD
                     </span>
+                    
                   </div>
                 </div>
+                <div>
+  <label className="block text-sm mb-1">
+    Expected Price: <span className="text-red-500">*</span>
+  </label>
+  <select
+    className="w-full border border-gray-300 p-2 rounded-md"
+    value={c.condition || ''}
+    onChange={e => handleContainerChange(i, 'condition', e.target.value)}
+    required
+  >
+    <option value="" disabled hidden>Select Price</option>
+    <option value="4000$">4000$</option>
+    <option value="6000$">6000$</option>
+    <option value="8000$">8000$</option>
+  </select>
+</div>
+
+             <div>
+  <label className="block text-sm mb-1">
+    Container's Age: <span className="text-red-500">*</span>
+  </label>
+  <select
+    className="w-full border border-gray-300 p-2 rounded-md"
+    value={c.condition || ''}
+    onChange={e => handleContainerChange(i, 'condition', e.target.value)}
+    required
+  >
+    <option value="" disabled hidden>select Age</option>
+    <option value="5y">less than 5 years</option>
+    <option value="3y">less than 3 years</option>
+    <option value="2y">less than 2 years</option>
+  </select>
+</div>
+                
               </div>
             </fieldset>
           ))}
