@@ -321,8 +321,8 @@ const getLocationObj = (locationId) => {
   </label>
   <select
     className="w-full border border-gray-300 p-2 rounded-md"
-    value={c.condition || ''}
-    onChange={e => handleContainerChange(i, 'condition', e.target.value)}
+    value={c.expectedPrice || ''}
+    onChange={e => handleContainerChange(i, 'expectedPrice', e.target.value)}
     required
   >
     <option value="" disabled hidden>Select Price</option>
@@ -332,17 +332,17 @@ const getLocationObj = (locationId) => {
   </select>
 </div>
 
-             <div>
+<div>
   <label className="block text-sm mb-1">
     Container's Age: <span className="text-red-500">*</span>
   </label>
   <select
     className="w-full border border-gray-300 p-2 rounded-md"
-    value={c.condition || ''}
-    onChange={e => handleContainerChange(i, 'condition', e.target.value)}
+    value={c.containerAge || ''}
+    onChange={e => handleContainerChange(i, 'containerAge', e.target.value)}
     required
   >
-    <option value="" disabled hidden>select Age</option>
+    <option value="" disabled hidden>Select Age</option>
     <option value="5y">less than 5 years</option>
     <option value="3y">less than 3 years</option>
     <option value="2y">less than 2 years</option>

@@ -283,13 +283,13 @@ const handleSubmit = async (e) => {
                   <option value="IICL">IICL</option>
                 </select>
               </div>
-              <div>
+            <div>
   <label className="block text-sm font-medium text-gray-700 mb-1">
     Expected Price: <span className="text-red-500">*</span>
   </label>
   <select
-    name="containerType"
-    value={form.containerType}
+    name="expectedPrice"
+    value={form.expectedPrice}
     onChange={handleChange}
     className="w-full border border-gray-300 p-2 rounded-md"
     required
@@ -300,18 +300,19 @@ const handleSubmit = async (e) => {
     <option value="8000$">8000$</option>
   </select>
 </div>
+
 <div>
   <label className="block text-sm font-medium text-gray-700 mb-1">
     Container's Age: <span className="text-red-500">*</span>
   </label>
   <select
-    name="containerType"
-    value={form.containerType}
+    name="containerAge"
+    value={form.containerAge}
     onChange={handleChange}
     className="w-full border border-gray-300 p-2 rounded-md"
     required
   >
-      <option value="" disabled hidden>select Age</option>
+    <option value="" disabled hidden>select Age</option>
     <option value="5y">less than 5 years</option>
     <option value="3y">less than 3 years</option>
     <option value="2y">less than 2 years</option>
