@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
 
+
 export default function RegistrationPage() {
   const navigate = useNavigate();
 
@@ -113,27 +114,28 @@ export default function RegistrationPage() {
     fetchStates();
   }, [formData.country]);
 
-  const handleChange = (e) => {
-    const { placeholder, value } = e.target;
-    let fieldName;
+const handleChange = (e) => {
+  const { name, value, placeholder } = e.target;
+  let fieldName = name;
 
+  if (!fieldName) {
     switch (placeholder) {
       case 'First Name': fieldName = 'firstName'; break;
       case 'Last Name': fieldName = 'lastName'; break;
       case 'Email ID': fieldName = 'emailId'; break;
+      case 'Email ID / Phone number': fieldName = 'emailId'; break;
       case 'Mobile Number': fieldName = 'mobileNumber'; break;
       case 'Company Name': fieldName = 'companyName'; break;
       case 'Enter Address': fieldName = 'address'; break;
       case 'Password': fieldName = 'password'; break;
-      default: fieldName = placeholder;
+      default: fieldName = ''; break;
     }
+  }
 
-    if (e.target.tagName === 'SELECT') {
-      fieldName = e.target.name;
-    }
-
+  if (fieldName) {
     setFormData(prev => ({ ...prev, [fieldName]: value }));
-  };
+  }
+};
 
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
@@ -289,6 +291,7 @@ export default function RegistrationPage() {
               <input
                 type="email"
                 placeholder="Email ID / Phone number"
+                name="emailId"
                 className="flex-1 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
                 value={formData.emailId}
                 onChange={handleChange}

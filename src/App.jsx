@@ -21,6 +21,7 @@ import LeaseForm from './pages/LeaseForm';
 import TradeForm from './pages/TradeForm';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from "./components/Footer";
+import OurProducts from "./Pages/OurProducts";
 
 // function App() {
 //   return (
@@ -56,12 +57,14 @@ function App() {
         <Route path="/feedback" element = {<Feedback />} />    
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/our-products" element={<OurProducts/>}/>
         
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/verify" element={<VerificationPage />} />
         <Route path="/one-way" element={<OneWayForm />} />
         <Route path="/lease" element={<LeaseForm />} />
         <Route path="/trade" element={<TradeForm />} />
+        
 
         </Routes>
 
