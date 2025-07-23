@@ -9,7 +9,9 @@ const LeaseForm = () => {
     containerType: '',
     condition: '',
     leasingPeriod: '',
-    perDiem: ''
+    perDiem: '',
+     expectedPrice: '',         
+  containerAge: '', 
   }]);
   const [showModal, setShowModal] = useState(false);
   const [onHireLocation, setOnHireLocation] = useState('');
@@ -86,25 +88,27 @@ const getLocationObj = (locationId) => {
   try {
     for (const c of containers) {
       await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
-        requestType: "buy",
-        tradeType: "lease",
-        tradeAction: "buy_containers",
-        containerType: c.containerType,
-        purposeOfContainer: "export",
-        condition: c.condition,
-        leasingPeriod: c.leasingPeriod,
-        perDiem: c.perDiem,
-        withCSCRevalidation: false,
-        locations: [
-          getLocationObj(onHireLocation),
-          getLocationObj(offHireLocation)
-        ],
-        email: email,
-        mobile: mobile,
-        quantity: Number(c.quantity),
-        urgency: "high",
-        notes: `Lease request for ${c.quantity} ${c.containerType} containers. On-hire: ${onHireLocation}, Off-hire: ${offHireLocation}. Additional notes: ${c.notes || ''}`
-      });
+  requestType: "buy",
+  tradeType: "lease",
+  tradeAction: "buy_containers",
+  containerType: c.containerType,
+  purposeOfContainer: "export",
+  condition: c.condition,
+  leasingPeriod: c.leasingPeriod,
+  perDiem: c.perDiem,
+  withCSCRevalidation: false,
+  expectedPrice: c.expectedPrice, // ✅ Add this line
+  containerAgeing: c.containerAge, // ✅ Add this line
+  locations: [
+    getLocationObj(onHireLocation),
+    getLocationObj(offHireLocation)
+  ],
+  email: email,
+  mobile: mobile,
+  quantity: Number(c.quantity),
+  urgency: "high",
+  notes: `Lease request for ${c.quantity} ${c.containerType} containers. On-hire: ${onHireLocation}, Off-hire: ${offHireLocation}. Additional notes: ${c.notes || ''}`
+});
     }
 
     setPopup({ visible: true, message: "Form submitted successfully.", success: true });
@@ -326,9 +330,9 @@ const getLocationObj = (locationId) => {
     required
   >
     <option value="" disabled hidden>Select Price</option>
-    <option value="4000$">4000$</option>
-    <option value="6000$">6000$</option>
-    <option value="8000$">8000$</option>
+    <option value="$4000">$4000</option>
+    <option value="$6000">$6000</option>
+    <option value="$8000">$8000</option>
   </select>
 </div>
 

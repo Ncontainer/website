@@ -18,7 +18,9 @@ const OneWayForm = () => {
     dropOffLocation: '',
     email: '',
     mobile: '',
-    notes: ''
+    notes: '',
+    expectedPrice: '',   // <-- Add this
+    containerAgeing: ''
   });
   const [loading, setLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(selectedFromQuery || "use");
@@ -103,23 +105,25 @@ const handleSubmit = async (e) => {
   setLoading(true);
   try {
     const response = await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
-      requestType: requestType, // Use the new state here
-      tradeType: "one_way",
-      tradeAction: tradeAction,
-      containerType: form.containerType,
-      purposeOfContainer: "export",
-      condition: form.condition,
-      withCSCRevalidation: true,
-      locations: [
-        getLocationObj(form.pickUpLocation),
-        getLocationObj(form.dropOffLocation)
-      ],
-      email: form.email,
-      mobile: form.mobile,
-      quantity: Number(form.quantity),
-      urgency: "high",
-      notes: form.notes
-    });
+  requestType: requestType,
+  tradeType: "one_way",
+  tradeAction: tradeAction,
+  containerType: form.containerType,
+  purposeOfContainer: "export",
+  condition: form.condition,
+  expectedPrice: form.expectedPrice,            // ✅ REQUIRED
+  containerAgeing: form.containerAgeing,           // ✅ Rename key to match backend
+  withCSCRevalidation: true,
+  locations: [
+    getLocationObj(form.pickUpLocation),
+    getLocationObj(form.dropOffLocation)
+  ],
+  email: form.email,
+  mobile: form.mobile,
+  quantity: Number(form.quantity),
+  urgency: "high",
+  notes: form.notes
+});
     setPopup({ visible: true, message: "Request submitted successfully!", success: true });
     setTimeout(() => setPopup({ visible: false, message: '', success: true }), 2500);
     setForm({
@@ -130,7 +134,9 @@ const handleSubmit = async (e) => {
       dropOffLocation: '',
       email: '',
       mobile: '',
-      notes: ''
+      notes: '',
+      expectedPrice: '',
+      containerAgeing: ''
     });
   } catch (error) {
     if (error.response) {
@@ -295,9 +301,9 @@ const handleSubmit = async (e) => {
     required
   >
     <option value="" disabled hidden>Select price</option>
-    <option value="4000$">4000$</option>
-    <option value="6000$">6000$</option>
-    <option value="8000$">8000$</option>
+    <option value="$4000">$4000</option>
+    <option value="$6000">$6000</option>
+    <option value="$8000">$8000</option>
   </select>
 </div>
 
@@ -306,8 +312,8 @@ const handleSubmit = async (e) => {
     Container's Age: <span className="text-red-500">*</span>
   </label>
   <select
-    name="containerAge"
-    value={form.containerAge}
+    name="containerAgeing"
+    value={form.containerAgeing}
     onChange={handleChange}
     className="w-full border border-gray-300 p-2 rounded-md"
     required

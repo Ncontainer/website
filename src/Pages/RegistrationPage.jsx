@@ -151,109 +151,121 @@ const handleChange = (e) => {
   };
 
   // --- Email OTP logic ---
-  const sendOtp = async () => {
-    if (!formData.emailId.trim()) {
-      setPopup({ visible: true, message: 'Please enter email address first.', success: false });
-      return;
+ const sendOtp = async () => {
+  const input = formData.emailId.trim();
+
+  if (!input) {
+    setPopup({ visible: true, message: 'Please enter email or phone number first.', success: false });
+    return;
+  }
+
+  setOtpData(prev => ({ ...prev, isLoading: true }));
+
+  try {
+    const payload = {};
+
+    // Check if input is a phone number
+    if (/^\d{10,15}$/.test(input)) {
+      payload.mobile = input;
+    } else {
+      payload.email = input;
     }
 
-    setOtpData(prev => ({ ...prev, isLoading: true }));
+    await axios.post(`${BASE_BACKEND_URL}api/auth/send-otp`, payload);
 
-    try {
-      await axios.post(`${BASE_BACKEND_URL}api/auth/send-otp`, {
-        email: formData.emailId
-      });
-
-      setOtpData(prev => ({
-        ...prev,
-        isOtpSent: true,
-        isLoading: false
-      }));
-      setResendTimer(12);
-      setPopup({ visible: true, message: 'OTP sent successfully!', success: true });
-    } catch (error) {
-      setOtpData(prev => ({ ...prev, isLoading: false }));
-
-    if (
-  (error.response && error.response.status === 400 && error.request && typeof XMLHttpRequest !== 'undefined' && error.request instanceof XMLHttpRequest) ||
-  (error.response && error.response.data && typeof error.response.data.message === 'string' &&
-    (error.response.data.message.toLowerCase().includes('already registered') || error.response.data.message.toLowerCase().includes('already exists')))
-) {
-  setPopup({ visible: true, message: 'The user is already registered.', success: false });
-} else {
-  setPopup({ visible: true, message: 'Failed to send OTP. Please try again.', success: false });
-}
-    }
-  };
+    setOtpData(prev => ({
+      ...prev,
+      isOtpSent: true,
+      isLoading: false
+    }));
+    setResendTimer(12);
+    setPopup({ visible: true, message: 'OTP sent successfully!', success: true });
+  } catch (error) {
+    setOtpData(prev => ({ ...prev, isLoading: false }));
+    setPopup({ visible: true, message: 'Failed to send OTP. Please try again.', success: false });
+  }
+};
 
   const verifyOtp = async () => {
-    if (!otpData.otp.trim()) {
-      setPopup({ visible: true, message: 'Please enter OTP.', success: false });
-      return;
+  if (!otpData.otp.trim()) {
+    setPopup({ visible: true, message: 'Please enter OTP.', success: false });
+    return;
+  }
+
+  setIsVerifyingOtp(true);
+
+  try {
+    const input = formData.emailId.trim();
+    const payload = { otp: otpData.otp };
+
+    if (/^\d{10,15}$/.test(input)) {
+      payload.mobile = input;
+    } else {
+      payload.email = input;
     }
-    setIsVerifyingOtp(true);
-    try {
-      const response = await axios.post(`${BASE_BACKEND_URL}api/auth/verify-otp`, {
-        email: formData.emailId,
-        otp: otpData.otp
-      });
-      setOtpData(prev => ({
-        ...prev,
-        isOtpVerified: true,
-        sessionToken: response.data.sessionToken || response.data.token || '',
-      }));
-      setPopup({ visible: true, message: 'OTP verified successfully!', success: true });
-    } catch (error) {
-      setPopup({ visible: true, message: 'Invalid OTP. Please try again.', success: false });
-    } finally {
-      setIsVerifyingOtp(false);
-    }
+
+    const response = await axios.post(`${BASE_BACKEND_URL}api/auth/verify-otp`, payload);
+
+    setOtpData(prev => ({
+      ...prev,
+      isOtpVerified: true,
+      sessionToken: response.data.sessionToken || response.data.token || '',
+    }));
+    setPopup({ visible: true, message: 'OTP verified successfully!', success: true });
+  } catch (error) {
+    setPopup({ visible: true, message: 'Invalid OTP. Please try again.', success: false });
+  } finally {
+    setIsVerifyingOtp(false);
+  }
+};
+
+ const handleContinue = async (e) => {
+  e.preventDefault();
+
+  const required = ['firstName', 'lastName', 'emailId', 'mobileNumber', 'companyName', 'country', 'state', 'address', 'password'];
+  const allFilled = required.every(field => formData[field] && formData[field].trim() !== '');
+
+  if (!allFilled) {
+    setPopup({ visible: true, message: 'Please fill all the required details.', success: false });
+    return;
+  }
+
+  if (!otpData.isOtpVerified || !otpData.sessionToken) {
+    setPopup({ visible: true, message: 'Please verify your email or phone first.', success: false });
+    return;
+  }
+
+  const registrationData = {
+    firstName: formData.firstName.trim(),
+    lastName: formData.lastName.trim(),
+    companyName: formData.companyName.trim(),
+    country: parseInt(formData.country), // Ensure it's an ID (number)
+    state: parseInt(formData.state),
+    address: formData.address.trim(),
+    password: formData.password,
+    sessionToken: otpData.sessionToken,
   };
 
-  const handleContinue = async (e) => {
-    e.preventDefault();
+  const input = formData.emailId.trim();
+  if (/^\d{10,15}$/.test(input)) {
+    registrationData.mobile = input;
+  } else {
+    registrationData.emailId = input;
+  }
 
-    const required = ['firstName', 'lastName', 'emailId', 'mobileNumber', 'companyName', 'country', 'state', 'address', 'password'];
-    const allFilled = required.every(field => formData[field] && formData[field].trim() !== '');
-
-    if (!allFilled) {
-      setPopup({ visible: true, message: 'Please fill all the required details.', success: false });
-      return;
-    }
-
-    if (!otpData.isOtpVerified) {
-      setPopup({ visible: true, message: 'Please verify your email address with OTP first.', success: false });
-      return;
-    }
-
-    try {
-      const registrationData = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.emailId,
-        mobileNumber: formData.mobileNumber,
-        companyName: formData.companyName,
-        country: formData.country,
-        state: formData.state,
-        address: formData.address,
-        password: formData.password,
-        sessionToken: otpData.sessionToken
-      };
-
-      await axios.post(`${BASE_BACKEND_URL}api/auth/register`, registrationData);
-      setPopup({ visible: true, message: 'Registration successful! Redirecting to login...', success: true });
-      setTimeout(() => {
-        setPopup({ visible: false, message: '', success: true });
-        navigate('/login');
-      }, 2500);
-    } catch (error) {
-      if (error.response) {
-        setPopup({ visible: true, message: 'Registration failed: ' + (error.response.data?.message || JSON.stringify(error.response.data)), success: false });
-      } else {
-        setPopup({ visible: true, message: 'Registration failed! Please try again.', success: false });
-      }
-    }
-  };
+  try {
+    console.log("Submitting registration:", registrationData); // DEBUG
+    await axios.post(`${BASE_BACKEND_URL}api/auth/register`, registrationData);
+    setPopup({ visible: true, message: 'Registration successful! Redirecting to login...', success: true });
+    setTimeout(() => {
+      setPopup({ visible: false, message: '', success: true });
+      navigate('/login');
+    }, 2500);
+  } catch (error) {
+    const errorMessage = error?.response?.data?.message || JSON.stringify(error?.response?.data) || 'Unknown error';
+    setPopup({ visible: true, message: 'Registration failed: ' + errorMessage, success: false });
+  }
+};
 
   // Show popup for 2 seconds (2000ms) for both success and error
   useEffect(() => {
