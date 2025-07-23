@@ -164,13 +164,7 @@ const handleChange = (e) => {
   try {
     const payload = {};
 
-    // Check if input is a phone number
-    if (/^\d{10,15}$/.test(input)) {
-      payload.mobile = input;
-    } else {
-      payload.email = input;
-    }
-
+   payload.contact = input;
     await axios.post(`${BASE_BACKEND_URL}api/auth/send-otp`, payload);
 
     setOtpData(prev => ({
@@ -198,11 +192,7 @@ const handleChange = (e) => {
     const input = formData.emailId.trim();
     const payload = { otp: otpData.otp };
 
-    if (/^\d{10,15}$/.test(input)) {
-      payload.mobile = input;
-    } else {
-      payload.email = input;
-    }
+    payload.contact = input;
 
     const response = await axios.post(`${BASE_BACKEND_URL}api/auth/verify-otp`, payload);
 
@@ -246,12 +236,7 @@ const handleChange = (e) => {
     sessionToken: otpData.sessionToken,
   };
 
-  const input = formData.emailId.trim();
-  if (/^\d{10,15}$/.test(input)) {
-    registrationData.mobile = input;
-  } else {
-    registrationData.emailId = input;
-  }
+registrationData.contact = formData.emailId.trim();
 
   try {
     console.log("Submitting registration:", registrationData); // DEBUG
