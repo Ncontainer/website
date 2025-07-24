@@ -11,6 +11,7 @@ const OneWayForm = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({
+    
     quantity: '',
     containerType: '',
     condition: '',
@@ -88,36 +89,59 @@ const [portsSearch, setPortsSearch] = useState("");
  const getLocationObj = (locationId) => {
   const port = ports.find(p => p._id === locationId);
   return port ? {
-    portName: port.name,
-    portCode: port.code || "UNK",
-    country: port.countryName || "Unknown",
-    region: port.region || "Unknown"
-  } : {
-    portName: "Unknown",
-    portCode: "UNK",
-    country: "Unknown",
-    region: "Unknown"
-  };
+  name: port.name,
+  code: port.code || "UNK",
+  country: port.countryName || "Unknown",
+  region: port.region || "Unknown"
+} : {
+  name: "Unknown",
+  code: "UNK",
+  country: "Unknown",
+  region: "Unknown"
+};
 };
 
 const handleSubmit = async (e) => {
+
   e.preventDefault();
   setLoading(true);
+
+  if (!form.pickUpLocation || !form.dropOffLocation) {
+  setPopup({
+    visible: true,
+    message: "Please select both Pick-up and Drop-off locations.",
+    success: false
+  });
+  setLoading(false);
+  return;
+}
   try {
-    const response = await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
+   const onHirePort = ports.find(p => p._id === form.pickUpLocation);
+const offHirePort = ports.find(p => p._id === form.dropOffLocation);
+
+const onHireLocation = {
+  portId: onHirePort?._id,
+  portName: onHirePort?.name,
+  locationType: "on_hire"
+};
+
+const offHireLocation = {
+  portId: offHirePort?._id,
+  portName: offHirePort?.name,
+  locationType: "off_hire"
+};
+
+const response = await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
   requestType: requestType,
   tradeType: "one_way",
   tradeAction: tradeAction,
   containerType: form.containerType,
   purposeOfContainer: "export",
   condition: form.condition,
-  expectedPrice: form.expectedPrice,            // ✅ REQUIRED
-  containerAgeing: form.containerAgeing,           // ✅ Rename key to match backend
+  expectedPrice: form.expectedPrice,
+  containerAgeing: form.containerAgeing,
   withCSCRevalidation: true,
-  locations: [
-    getLocationObj(form.pickUpLocation),
-    getLocationObj(form.dropOffLocation)
-  ],
+  locations: [onHireLocation, offHireLocation], // ✅ Now valid
   email: form.email,
   mobile: form.mobile,
   quantity: Number(form.quantity),
@@ -319,9 +343,9 @@ const handleSubmit = async (e) => {
     required
   >
     <option value="" disabled hidden>select Age</option>
-    <option value="5y">less than 5 years</option>
-    <option value="3y">less than 3 years</option>
-    <option value="2y">less than 2 years</option>
+    <option value="Less than 5 years">Less than 5 years</option>
+<option value="Less than 3 years">Less than 3 years</option>
+<option value="Less than 2 years">Less than 2 years</option>
   </select>
 </div>
             </div>

@@ -234,9 +234,12 @@ const handleChange = (e) => {
     address: formData.address.trim(),
     password: formData.password,
     sessionToken: otpData.sessionToken,
+    email: formData.emailId.trim(), 
+    mobileNumber: formData.mobileNumber.trim()
   };
 
-registrationData.contact = formData.emailId.trim();
+registrationData.email = formData.emailId.trim();
+registrationData.mobileNumber = formData.mobileNumber.trim();
 
   try {
     console.log("Submitting registration:", registrationData); // DEBUG

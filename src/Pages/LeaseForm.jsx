@@ -347,9 +347,9 @@ const getLocationObj = (locationId) => {
     required
   >
     <option value="" disabled hidden>Select Age</option>
-    <option value="5y">less than 5 years</option>
-    <option value="3y">less than 3 years</option>
-    <option value="2y">less than 2 years</option>
+    <option value="Less than 5 years">Less than 5 years</option>
+<option value="Less than 3 years">Less than 3 years</option>
+<option value="Less than 2 years">Less than 2 years</option>
   </select>
 </div>
                 
