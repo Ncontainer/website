@@ -1,7 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-
+import logo from "../images/whitelogo.png"
 export default function Footer() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -24,13 +24,12 @@ export default function Footer() {
       <div className="mx-auto w-4/5">
         {/* Logo and Tagline */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold mb-2">LOGO</h1>
-          <p className="text-sm md:text-base text-gray-300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-
+  <img src={logo} alt="Company Logo" className="mx-auto h-12 md:h-16 mb-2" />
+  <p className="text-sm md:text-base text-gray-300">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </p>
+</div>
         {/* Contact Info */}
        <div
   className={`grid ${

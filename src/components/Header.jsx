@@ -9,7 +9,7 @@ import {
   X,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import logoImage from "../images/NCON_Logo.png"
+import logoImage from  "../images/blacklogo.png";
 import dryImage from '../images/popup.png';
 
 export default function Header() {
@@ -168,7 +168,8 @@ const sendBrochureToEmail = async () => {
         <div className="flex justify-between items-center px-6 py-4">
           <div className="flex-1 md:flex-none flex justify-center md:justify-start items-center">
             <Link to="/" className="flex items-center" onClick={() => handleNavClick("home")}>
-  <img src={logoImage} alt="Logo" className="h-10 w-auto" />
+  {/* <img src={logoImage} alt="Logo" className="h-10 w-auto" /> */}
+  <img src={logoImage} alt="Logo" className="h-11 w-auto object-cover " />
 </Link>
           </div>
           <nav className="hidden md:flex md:space-x-4 lg:space-x-6 xl:space-x-8 items-center">
