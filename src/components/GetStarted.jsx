@@ -5,7 +5,7 @@ const GetStarted = () => {
   const navigate = useNavigate();
 
   const handleCTAClick = () => {
-    navigate("/products/dry_Container");
+    navigate("/our-products");
   };
 
   return (
