@@ -1,10 +1,10 @@
 import { useState } from "react";
-import drycontainer from "../images/drycontainer1.png";
-import drycontainer2 from "../images/drycontainer2.png";
-import drycontainer3 from "../images/drycontainer3.png";
+import drycontainer from "../images/drycontainer1.webp";
+import drycontainer2 from "../images/drycontainer2.webp";
+import drycontainer3 from "../images/drycontainer3.webp";
 
-import generalPurpose from "../images/general-purpose-container.png";
-import flatRackContainer from "../images/flat-rack-container.png";
+import generalPurpose from "../images/general-purpose-container.webp";
+import flatRackContainer from "../images/flat-rack-container.webp";
 import highCubeContainer from "../images/high-cube-container.png";
 import openRackContainer from "../images/open-rack-container.png";
 

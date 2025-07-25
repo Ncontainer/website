@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Phone, Mail } from 'lucide-react';
-import bg from "../images/contactusbg.png"
+import bg from "../images/contactusbg.webp"
 import axios from 'axios';
 
 const ContactUs = () => {

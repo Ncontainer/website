@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import leaseImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.webp';
 import axios from 'axios';
 
 const LeaseForm = () => {

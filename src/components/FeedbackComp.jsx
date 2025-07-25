@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Send, Phone, MapPin, MessageSquare } from "lucide-react";
-import img from "../images/feedbackimg1.png";
-import img2 from "../images/feedbackimg2.png";
+import img from "../images/feedbackimg1.webp";
+import img2 from "../images/feedbackimg2.webp";
 import { Link } from "react-router-dom";
 import axios from "axios"; // Add axios import
 

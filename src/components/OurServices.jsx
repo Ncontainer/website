@@ -1,5 +1,5 @@
 import { Leaf, Shield, Building2, Network } from "lucide-react";
-import img1 from "../images/img1.jpg";
+import img1 from "../images/ourserviceimg.png";
 
 const OurServices = () => {
   return (

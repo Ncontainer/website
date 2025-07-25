@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../images/About.png";
+import img from "../images/About.webp";
 import {
   ShieldCheck,
   Users,

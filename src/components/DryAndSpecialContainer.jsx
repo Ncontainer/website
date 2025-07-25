@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import drycontainer from '../images/drycontainer1.png';
-import drycontainer2 from '../images/drycontainer2.png';
-import drycontainer3 from '../images/drycontainer3.png';
+import drycontainer from '../images/drycontainer1.webp';
+import drycontainer2 from '../images/drycontainer2.webp';
+import drycontainer3 from '../images/drycontainer3.webp';
 
 
 export default function DryAndSpecialContainer() {

@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../images/blog2.png";
+import img from "../images/blog2.webp";
 
 const LifeAtNcon = () => {
   return (

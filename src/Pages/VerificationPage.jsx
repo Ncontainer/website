@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import bannerImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.webp';
 
 function VerificationPage() {
   const [otp, setOtp] = useState('');

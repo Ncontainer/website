@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import blogImage1 from "../images/blog1.webp"
-import blogImage2 from "../images/blog2.png"
-import blogImage3 from "../images/blog3.png"
-import blog from "../images/04.png"
+import blogImage2 from "../images/blog2.webp"
+import blogImage3 from "../images/blog3.webp"
+import blog from "../images/04.webp"
 import NewsLetter from './NewsLetter';
 
 const Blog = () => {

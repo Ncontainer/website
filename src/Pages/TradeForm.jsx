@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import mainImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import mainImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.webp';
 import LocationModal from '../components/LocationModal';
 
 const TradeForm = () => {

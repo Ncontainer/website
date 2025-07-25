@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import loginImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import loginImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.webp';
 
 
 export default function LoginPage() {

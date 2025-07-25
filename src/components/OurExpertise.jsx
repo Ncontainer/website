@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom'; // Add this for internal routing
-import img from "../images/04.png";
+import img from "../images/04.webp";
 import steel from "../images/steel.png";
 import aluminum from "../images/steel.png";
 import copper from "../images/steel.png";

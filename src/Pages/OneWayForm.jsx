@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.png';
+import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.webp';
 import axios from 'axios';
 import LocationModal from '../components/LocationModal';
 

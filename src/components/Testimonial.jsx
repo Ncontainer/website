@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Quote } from 'lucide-react';
-import img1 from "../images/06.png"
-import user from "../images/defaultUser.png"
+import img1 from "../images/06.webp"
+import user from "../images/defaultUser.webp"
 
 const Testimonial = () => {
   // Sample testimonial data

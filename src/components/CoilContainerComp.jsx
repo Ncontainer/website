@@ -1,8 +1,8 @@
 import React from 'react';
-import img1 from "../images/coilimg1.png";
-import img2 from "../images/coilimg2.png";
-import img3 from "../images/coilimg3.png";
-import img4 from "../images/coilimg4.png";
+import img1 from "../images/coilimg1.webp";
+import img2 from "../images/coilimg2.webp";
+import img3 from "../images/coilimg3.webp";
+import img4 from "../images/coilimg4.webp";
 import ContainerSpecifications from './ContainerSpecifications';
 
 export default function CoilContainerComp() {
