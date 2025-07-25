@@ -1,8 +1,8 @@
 import React from "react";
-import img1 from "../images/rcimg1.png";
-import img2 from "../images/rcimg2.png";
-import img3 from "../images/rcimg3.png";
-import img4 from "../images/rcimg4.png";
+import img1 from "../images/rcimg1.webp";
+import img2 from "../images/rcimg2.webp";
+import img3 from "../images/rcimg3.webp";
+import img4 from "../images/rcimg4.webp";
 
 
 export default function RefrigeratedContainerComp() {

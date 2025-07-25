@@ -1,10 +1,10 @@
 import React from "react";
-import img1 from "../images/mcimg1.png";
-import img2 from "../images/mcimg2.png";
-import img3 from "../images/mcimg3.png";
-import img4 from "../images/mcimg4.png";
-import img5 from "../images/mcimg5.png";
-import img6 from "../images/mcimg6.png";
+import img1 from "../images/mcimg1.webp";
+import img2 from "../images/mcimg2.webp";
+import img3 from "../images/mcimg3.webp";
+import img4 from "../images/mcimg4.webp";
+import img5 from "../images/mcimg5.webp";
+import img6 from "../images/mcimg6.webp";
 
 
 export default function ModularContainerComp() {
