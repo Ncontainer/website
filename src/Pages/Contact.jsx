@@ -3,7 +3,7 @@ import { useState } from "react";
 import HexagonalWorldMap from "../components/HexagonalWorldMap"
 import ContactUs from "../components/ContactUs";
 import OurTeam from "../components/OurTeam";
-import blog from "../images/04.webp"
+import blog from "../images/04.png"
 import NewsLetter from "../components/NewsLetter";
 
 function Contact() {

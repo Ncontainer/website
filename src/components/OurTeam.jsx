@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import tm01 from "../images/TM01.png";
 import tm02 from "../images/TM02.png";
 import tm03 from "../images/TM03.png";
-import tm04 from "../images/04.webp";
+import tm04 from "../images/04.png";
 import tm05 from "../images/TM05.png";
 
 const OurTeam = () => {
