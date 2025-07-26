@@ -61,7 +61,7 @@ export default function OurProducts() {
         <div
           key={index}
           className={`flex flex-col md:flex-row ${
-            index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+            index % 2 == 0 ? 'md:flex-row-reverse' : ''
           } items-center gap-6 mb-12`}
         >
           <div className="md:w-1/2">

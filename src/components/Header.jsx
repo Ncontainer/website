@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logoImage from  "../images/blacklogo.png";
 import dryImage from '../images/popup.png';
 
+
 export default function Header() {
 const [showBrochureSuccess, setShowBrochureSuccess] = useState(false);
 const [showEmailPrompt, setShowEmailPrompt] = useState(false);
@@ -165,14 +166,14 @@ const sendBrochureToEmail = async () => {
         </div>
 
         {/* Main Navigation */}
-        <div className="flex justify-between items-center px-6 py-4">
-          <div className="flex-1 md:flex-none flex justify-center md:justify-start items-center">
+        <div className="flex items-center justify-between px-6 py-4 gap-6 md:gap-10">
+          <div className="flex-none flex justify-start items-center">
             <Link to="/" className="flex items-center" onClick={() => handleNavClick("home")}>
   {/* <img src={logoImage} alt="Logo" className="h-10 w-auto" /> */}
   <img src={logoImage} alt="Logo" className="h-11 w-auto object-cover " />
 </Link>
           </div>
-          <nav className="hidden md:flex md:space-x-4 lg:space-x-6 xl:space-x-8 items-center">
+          <nav className="hidden lg:flex items-center gap-6 lg:gap-8 xl:gap-10">
             <NavItem text="Home" to="/" isActive={activeItem === "home"} onClick={() => handleNavClick("home")} />
             <NavItem text="About Us" to="/about" isActive={activeItem === "about"} onClick={() => handleNavClick("about")} />
             {/* Products Dropdown */}
@@ -209,7 +210,7 @@ const sendBrochureToEmail = async () => {
           </nav>
 
           <div className="flex items-center">
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
              {isLoggedIn ? (
   <button
     onClick={handleLogout}
@@ -227,7 +228,7 @@ const sendBrochureToEmail = async () => {
   </Link>
 )}
             </div>
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -236,7 +237,7 @@ const sendBrochureToEmail = async () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden fixed inset-0 z-60 ${isMenuOpen ? "block" : "hidden"}`}>
+        <div className={`lg:hidden fixed inset-0 z-60 ${isMenuOpen ? "block" : "hidden"}`}>
           <div className="fixed inset-0 bg-black bg-opacity-50" onClick={toggleMenu}></div>
           <div className="absolute right-0 top-0 h-full w-[80%] max-w-xs bg-secondary shadow-lg overflow-y-auto">
             <div className="flex justify-end p-4">
@@ -325,6 +326,14 @@ const sendBrochureToEmail = async () => {
 {showEmailPrompt && (
   <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
     <div className="bg-white rounded-xl shadow-xl w-[90%] max-w-4xl p-8 flex flex-col md:flex-row items-center gap-6 relative">
+
+      <button
+        onClick={() => setShowEmailPrompt(false)}
+        className="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl font-bold"
+        aria-label="Close"
+      >
+        &times;
+      </button>
       {/* Left Illustration */}
       <div className="flex-1">
         <img

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import mapImage from "../images/map.svg" 
+import mapImage from "../images/map.svg";
 
 const GlobalStatsCounter = () => {
   const [counts, setCounts] = useState([
@@ -33,14 +33,12 @@ const GlobalStatsCounter = () => {
     },
   ]);
 
-  // Animation for counting up
   useEffect(() => {
-    const startValue = 500; // Starting value for animation (50% of target)
-    const duration = 2000; // Animation duration in milliseconds
-    const interval = 20; // Update interval in milliseconds
+    const startValue = 500;
+    const duration = 2000;
+    const interval = 20;
     const steps = duration / interval;
 
-    // Set initial values
     setCounts((prevCounts) =>
       prevCounts.map((count) => ({
         ...count,
@@ -78,7 +76,7 @@ const GlobalStatsCounter = () => {
 
   return (
     <div className="w-full bg-secondary text-white">
-      {/* Header section */}
+      {/* Header */}
       <div className="container mx-auto px-4 md:px-8 pt-12 pb-6">
         <h1 className="text-2xl md:text-3xl font-bold">
           Powering innovation
@@ -89,7 +87,6 @@ const GlobalStatsCounter = () => {
 
       {/* Map section */}
       <div className="relative container mx-auto px-4 md:px-8 py-6">
-        {/* Hexagonal world map */}
         <div className="w-full relative">
           <HexagonalWorldMap />
         </div>
@@ -116,29 +113,35 @@ const GlobalStatsCounter = () => {
 
 // Hexagonal World Map Component
 const HexagonalWorldMap = () => {
-  // Location markers
+  // Position markers as percentages of width/height
   const locations = [
-    { top: "35%", left: "20%" }, // North America
-    { top: "75%", left: "25%" }, // South America
-    { top: "45%", left: "48%" }, // Europe/Africa
-    { top: "35%", left: "65%" }, // Asia
-    { top: "75%", left: "80%" }, // Australia
+    { top: "30%", left: "27%" }, // North America
+    { top: "65%", left: "35%" }, // South America
+    { top: "44%", left: "48%" }, // Africa
+    { top: "37%", left: "65%" }, // Asia
+    { top: "62%", left: "77%" }, // Australia
+    { top: "26%", left: "49%" },
   ];
 
   return (
-    <div className="relative w-full  aspect-[2/.9]">
-      {/* Hexagonal pattern for world map */}
-      <div className="absolute inset-0 opacity-70 md:-translate-x-20">
-        <img src={mapImage} alt="map" className="align-center"/>
-      
-      </div>
+    <div className="relative w-full aspect-[2/0.9]">
+      {/* World Map */}
+      <img
+        src={mapImage}
+        alt="Hexagonal World Map"
+        className="absolute inset-0 w-full h-full object-contain opacity-70"
+      />
 
-      {/* Location markers */}
+      {/* Location Markers */}
       {locations.map((loc, index) => (
         <div
           key={index}
           className="absolute w-3 h-3 bg-white rounded-full shadow-lg flex items-center justify-center"
-          style={{ top: loc.top, left: loc.left }}
+          style={{
+            top: loc.top,
+            left: loc.left,
+            transform: "translate(-50%, -50%)",
+          }}
         >
           <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
         </div>
