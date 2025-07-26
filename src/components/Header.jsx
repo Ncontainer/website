@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import logoImage from  "../images/blacklogo.png";
-import dryImage from '../images/popup.png';
+import dryImage from '../images/popup.webp';
 
 
 export default function Header() {
@@ -267,7 +267,7 @@ const sendBrochureToEmail = async () => {
               <Link to="/resources" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("resources")}>Resources</Link>
               <Link to="/contact" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap" onClick={() => handleNavClick("contact")}>Contact Us</Link>
               <Link to="/feedback" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("feedback")}>Feedback</Link>
-              <Link to="/brochure" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("brochure")}>Brochure</Link>
+              <Link to="/brochure" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={handleBrochureClick}>Brochure</Link>
               {/* Mobile Extras */}
               <div className="pt-3 border-t border-white/20">
                 <div className="flex space-x-5 pb-5 justify-center">
