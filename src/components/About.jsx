@@ -1,5 +1,8 @@
 import React from "react";
 import img from "../images/About.webp";
+import bg1 from "../images/Section 3 About Us.webp";
+import bg2 from "../images/Section 4 About Us.webp";
+import bg3 from "../images/Section 5 About Us.webp";
 import {
   ShieldCheck,
   Users,
@@ -43,31 +46,28 @@ const About = () => {
         </div>
 
         {/* Our Vision Section */}
-        <div className="relative w-[94%] sm:w-[90%] lg:w-[88%] mx-auto py-10 px-6 sm:px-10 rounded-md text-white bg-[#f7921e] overflow-hidden">
+        <div className="relative w-[94%] sm:w-[90%] lg:w-[88%] mx-auto py-10 px-6 sm:px-10 rounded-md text-white bg-[#f7921e] overflow-hidden"
+         style={{
+    backgroundImage: `url(${bg1})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }}>
           {/* Diagonal Lines */}
-          <div className="absolute inset-0 pointer-events-none z-0">
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute top-0 h-full w-20 border border-white/20 opacity-30"
-                style={{
-                  left: `${i * 10}%`,
-                  transform: "skewX(-20deg)",
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="relative z-10 text-center max-w-3xl mx-auto">
-            <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold bg-white/20 inline-block px-6 py-2 rounded-md mb-4">
-              Our Vision
-            </h3>
-            <p className="text-sm sm:text-base md:text-lg px-2">
-              To be the most trusted and innovative container solutions provider, by empowering
-              businesses with flexible, cost effective, sustainable, and technology-driven container
-              management.
-            </p>
-          </div>
+        
+          <div
+  className="relative z-10 text-center max-w-3xl mx-auto px-4 py-6 rounded-md"
+ 
+>
+  <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold inline-block mb-4">
+    Our Vision
+  </h3>
+  <p className="text-sm sm:text-base md:text-lg text-white">
+    To be the most trusted and innovative container solutions provider, by empowering
+    businesses with flexible, cost effective, sustainable, and technology-driven container
+    management.
+  </p>
+</div>
         </div>
       </section>
 
@@ -75,20 +75,14 @@ const About = () => {
       <section className="w-[94%] sm:w-[92%] lg:w-[90%] mx-auto flex flex-col gap-10 px-4 py-12">
 
         {/* Our Mission */}
-        <div className="relative rounded-md text-white bg-[#1E1E1E] overflow-hidden p-6 sm:p-10">
-          {/* Diagonal Lines */}
-          <div className="absolute inset-0 pointer-events-none z-0">
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute top-0 h-full w-20 border border-white/10"
-                style={{
-                  left: `${i * 10}%`,
-                  transform: "skewX(-20deg)",
-                }}
-              />
-            ))}
-          </div>
+        <div className="relative rounded-md text-white bg-[#1E1E1E] overflow-hidden p-6 sm:p-10"
+        style={{
+    backgroundImage: `url(${bg2})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }}>
+         
 
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Left Content */}
@@ -135,20 +129,14 @@ const About = () => {
         </div>
 
         {/* Our Values */}
-        <div className="relative rounded-md text-white bg-[#ff9215] overflow-hidden p-6 sm:p-10">
-          {/* Diagonal Lines */}
-          <div className="absolute inset-0 pointer-events-none z-0">
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute top-0 h-full w-20 border border-white/20"
-                style={{
-                  left: `${i * 10}%`,
-                  transform: "skewX(-20deg)",
-                }}
-              />
-            ))}
-          </div>
+        <div className="relative rounded-md text-white bg-[#ff9215] overflow-hidden p-6 sm:p-10"  
+         style={{
+    backgroundImage: `url(${bg3})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }}>
+          
 
           <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
             {/* Title */}

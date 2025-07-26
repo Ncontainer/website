@@ -94,9 +94,8 @@ export default function Hero() {
           <div
             className={`flex ${
               isMobile ? "flex-col" : "flex-row"
-            } items-center justify-between w-full max-w-7xl mx-auto ${
-              isMobile ? "mt-0" : isMediumScreen ? "mt-6" : "mt-[-6rem]"
-            }`}
+            } items-center justify-between w-full max-w-7xl mx-auto 
+             ${isMobile ? "mt-0" : isMediumScreen ? "mt-6" : "mt-[-6]"}`}
           >
             {/* Text Section */}
             <div
