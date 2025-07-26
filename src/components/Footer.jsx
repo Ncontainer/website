@@ -24,7 +24,7 @@ export default function Footer() {
       <div className="mx-auto w-4/5">
         {/* Logo and Tagline */}
         <div className="text-center mb-8">
-  <img src={logo} alt="Company Logo" className="mx-auto h-12 md:h-16 mb-2" />
+  <img src={logo} alt="Company Logo" className="mx-auto h-18 md:h-16 mb-2" />
   <p className="text-sm md:text-base text-gray-300">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua.
