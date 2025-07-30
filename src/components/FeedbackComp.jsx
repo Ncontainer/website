@@ -3,8 +3,8 @@ import { Send, Phone, MapPin, MessageSquare } from "lucide-react";
 import img from "../images/feedbackimg1.webp";
 import img2 from "../images/feedbackimg2.webp";
 import { Link } from "react-router-dom";
-import axios from "axios"; // Add axios import
-import HCaptcha from "@hcaptcha/react-hcaptcha";
+import axios from "axios";
+import HCaptcha from "@hcaptcha/react-hcaptcha"; 
 
 export default function FeedbackComp() {
   const [formData, setFormData] = useState({
@@ -17,7 +17,8 @@ export default function FeedbackComp() {
     message: "",
   });
 
-  const [captchaToken, setCaptchaToken] = useState(null);
+  const [captchaToken, setCaptchaToken] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -26,31 +27,28 @@ export default function FeedbackComp() {
     }));
   };
 
-  // Update handleSubmit to use axios POST
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!captchaToken) {
-    alert("Please complete the hCaptcha");
-    return;
-  }
-
-  try {
-    // 1️⃣ Verify hCaptcha first
-    const verifyRes = await axios.post(
-      "https://cktgf93ztd.us-east-1.awsapprunner.com/api/hcaptcha/verify",
-      { token: captchaToken }
-    );
-
-    if (!verifyRes.data.success) {
-      alert("Captcha verification failed");
+    if (!captchaToken) {
+      alert("Please complete the CAPTCHA");
       return;
     }
 
-    // 2️⃣ Submit feedback only if captcha passes
-    await axios.post(
-      "https://cktgf93ztd.us-east-1.awsapprunner.com/api/help/secure",
-      {
+    try {
+      // Step 1: Verify hCaptcha token with backend
+      const verifyResponse = await axios.post(
+        "https://cktgf93ztd.us-east-1.awsapprunner.com/api/hcaptcha/verify",
+        { token: captchaToken }
+      );
+
+      if (!verifyResponse.data.success) {
+        alert("CAPTCHA verification failed. Please try again.");
+        return;
+      }
+
+      // Step 2: Submit the feedback form
+      await axios.post("https://cktgf93ztd.us-east-1.awsapprunner.com/api/help", {
         name: formData.name,
         companyName: formData.companyName,
         email: formData.email,
@@ -58,40 +56,40 @@ export default function FeedbackComp() {
         bookingEnquiryNumber: formData.bookingNumber,
         category: formData.category.toLowerCase(),
         message: formData.message,
-        token: captchaToken
-      }
-    );
+      });
 
-    alert("Feedback submitted successfully!");
-    setFormData({
-      name: "",
-      companyName: "",
-      email: "",
-      mobile: "",
-      bookingNumber: "",
-      category: "",
-      message: "",
-    });
-    setCaptchaToken(null);
-  } catch (error) {
-    console.error(error);
-    alert("Failed to submit feedback. Please try again.");
-  }
-};
+      alert("Feedback submitted successfully!");
+      setFormData({
+        name: "",
+        companyName: "",
+        email: "",
+        mobile: "",
+        bookingNumber: "",
+        category: "",
+        message: "",
+      });
+      setCaptchaToken("");
+    } catch (error) {
+      if (error.response) {
+        console.log("API Error Response:", error.response.data);
+        alert(
+          "Failed to submit feedback: " +
+            (error.response.data?.message || JSON.stringify(error.response.data))
+        );
+      } else {
+        console.log("Error:", error.message);
+        alert("Failed to submit feedback. Please try again.");
+      }
+    }
+  };
 
   return (
     <>
       <div className="w-full h-72 md:h-[450px] overflow-hidden">
-        <img
-          src={img}
-          alt="Container Ship"
-          className="w-full h-full object-cover"
-        />
+        <img src={img} alt="Container Ship" className="w-full h-full object-cover" />
       </div>
       <div className="text-center mb-6 md:mb-8 pt-4 md:pt-8 px-4 md:px-0">
-        <p className="text-orange-500 font-medium text-sm md:text-base">
-          FEEDBACK
-        </p>
+        <p className="text-orange-500 font-medium text-sm md:text-base">FEEDBACK</p>
         <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mt-1 md:mt-2">
           Need Help?
         </h1>
@@ -107,10 +105,7 @@ export default function FeedbackComp() {
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div className="flex flex-col">
-                  <label
-                    htmlFor="name"
-                    className="text-sm font-medium text-gray-800 mb-1"
-                  >
+                  <label htmlFor="name" className="text-sm font-medium text-gray-800 mb-1">
                     Name
                   </label>
                   <input
@@ -144,10 +139,7 @@ export default function FeedbackComp() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div className="flex flex-col">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium text-gray-800 mb-1"
-                  >
+                  <label htmlFor="email" className="text-sm font-medium text-gray-800 mb-1">
                     Email ID
                   </label>
                   <input
@@ -161,10 +153,7 @@ export default function FeedbackComp() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label
-                    htmlFor="mobile"
-                    className="text-sm font-medium text-gray-800 mb-1"
-                  >
+                  <label htmlFor="mobile" className="text-sm font-medium text-gray-800 mb-1">
                     Mobile Number
                   </label>
                   <input
@@ -198,10 +187,7 @@ export default function FeedbackComp() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label
-                    htmlFor="category"
-                    className="text-sm font-medium text-gray-800 mb-1"
-                  >
+                  <label htmlFor="category" className="text-sm font-medium text-gray-800 mb-1">
                     Category
                   </label>
                   <select
@@ -221,10 +207,7 @@ export default function FeedbackComp() {
               </div>
 
               <div className="mb-4">
-                <label
-                  htmlFor="message"
-                  className="text-sm font-medium text-gray-800 mb-1"
-                >
+                <label htmlFor="message" className="text-sm font-medium text-gray-800 mb-1">
                   Message
                 </label>
                 <textarea
@@ -238,12 +221,13 @@ export default function FeedbackComp() {
                 ></textarea>
               </div>
 
-                <div className="flex items-center mb-4">
-                  <HCaptcha
-                    sitekey="your-hcaptcha-site-key" // Replace with your site key
-                    onVerify={(token) => setCaptchaToken(token)}
-                  />
-                </div>
+              {/* hCaptcha */}
+              <div className="flex items-center mb-4">
+                <HCaptcha
+                  sitekey="75c08054-507e-46dc-8cf2-32347d54eed2"
+                  onVerify={(token) => setCaptchaToken(token)}
+                />
+              </div>
 
               <button
                 onClick={handleSubmit}
@@ -256,7 +240,6 @@ export default function FeedbackComp() {
 
           {/* Right Section - Contact Info with Background Image */}
           <div className="w-full lg:w-2/5 relative overflow-hidden">
-            {/* Background container ship image with overlay */}
             <div
               className="absolute inset-0 bg-cover bg-center z-0"
               style={{
@@ -267,18 +250,12 @@ export default function FeedbackComp() {
               }}
             ></div>
 
-            {/* Dark overlay for better readability */}
             <div className="absolute inset-0 bg-gray-900 opacity-80 z-10"></div>
 
-            {/* Content */}
             <div className="relative z-20 text-white p-8 h-full flex flex-col justify-center">
               <div className="mb-12">
-                <h2 className="text-orange-500 font-medium text-xl mb-1">
-                  Message us
-                </h2>
-                <p className="text-gray-300 mb-4">
-                  Directly speak to our friendly Team
-                </p>
+                <h2 className="text-orange-500 font-medium text-xl mb-1">Message us</h2>
+                <p className="text-gray-300 mb-4">Directly speak to our friendly Team</p>
                 <div className="flex items-center mb-2">
                   <Send size={18} className="mr-2 text-white" />
                   <Link to="#" className="text-white hover:underline">
@@ -294,30 +271,21 @@ export default function FeedbackComp() {
               </div>
 
               <div className="mb-12">
-                <h2 className="text-orange-500 font-medium text-xl mb-1">
-                  Call us
-                </h2>
+                <h2 className="text-orange-500 font-medium text-xl mb-1">Call us</h2>
                 <p className="text-gray-300 mb-2">
                   Call our team Mon-Fri from 10 AM to 6 PM
                 </p>
                 <div className="flex items-center">
                   <Phone size={18} className="mr-2 text-white" />
-                  <Link
-                    to="tel:+919876543210"
-                    className="text-white hover:underline"
-                  >
+                  <Link to="tel:+919876543210" className="text-white hover:underline">
                     +91 9876543210
                   </Link>
                 </div>
               </div>
 
               <div>
-                <h2 className="text-orange-500 font-medium text-xl mb-1">
-                  Visit us
-                </h2>
-                <p className="text-gray-300 mb-2">
-                  Chat to us in-person at our Head Office
-                </p>
+                <h2 className="text-orange-500 font-medium text-xl mb-1">Visit us</h2>
+                <p className="text-gray-300 mb-2">Chat to us in-person at our Head Office</p>
                 <div className="flex items-center">
                   <MapPin size={18} className="mr-2 text-white" />
                   <Link to="#" className="text-white hover:underline">
