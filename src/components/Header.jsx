@@ -33,6 +33,28 @@ const [userEmail, setUserEmail] = useState("");
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 📌 Close brochure popup on browser back
+useEffect(() => {
+  const handlePopState = () => {
+    if (showEmailPrompt) {
+      setShowEmailPrompt(false); // close popup
+    }
+  };
+
+  window.addEventListener("popstate", handlePopState);
+
+  return () => {
+    window.removeEventListener("popstate", handlePopState);
+  };
+}, [showEmailPrompt]);
+
+// 📌 When popup opens, push a new history state
+useEffect(() => {
+  if (showEmailPrompt) {
+    window.history.pushState({ popup: true }, ""); 
+  }
+}, [showEmailPrompt]);
+
   // Effect for setting the active nav item based on the current URL
 useEffect(() => {
   const path = location.pathname;
@@ -63,11 +85,11 @@ useEffect(() => {
   };
 
   const handleNavClick = (item, keepMenuOpen = false) => {
-    setActiveItem(item);
-    if (window.innerWidth < 768 && !keepMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  };
+  setActiveItem(item);
+  if (window.innerWidth < 1024 && !keepMenuOpen) {  // 👈 Changed 768 → 1024
+    setIsMenuOpen(false);
+  }
+};
  const handleLogout = () => {
   const confirmLogout = window.confirm("Are you sure you want to log out?");
   if (confirmLogout) {

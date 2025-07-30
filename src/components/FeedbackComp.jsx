@@ -4,6 +4,7 @@ import img from "../images/feedbackimg1.webp";
 import img2 from "../images/feedbackimg2.webp";
 import { Link } from "react-router-dom";
 import axios from "axios"; // Add axios import
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 export default function FeedbackComp() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ export default function FeedbackComp() {
     message: "",
   });
 
+  const [captchaToken, setCaptchaToken] = useState(null);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -25,42 +27,57 @@ export default function FeedbackComp() {
   };
 
   // Update handleSubmit to use axios POST
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post('https://cktgf93ztd.us-east-1.awsapprunner.com/api/help', {
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!captchaToken) {
+    alert("Please complete the hCaptcha");
+    return;
+  }
+
+  try {
+    // 1️⃣ Verify hCaptcha first
+    const verifyRes = await axios.post(
+      "https://cktgf93ztd.us-east-1.awsapprunner.com/api/hcaptcha/verify",
+      { token: captchaToken }
+    );
+
+    if (!verifyRes.data.success) {
+      alert("Captcha verification failed");
+      return;
+    }
+
+    // 2️⃣ Submit feedback only if captcha passes
+    await axios.post(
+      "https://cktgf93ztd.us-east-1.awsapprunner.com/api/help/secure",
+      {
         name: formData.name,
         companyName: formData.companyName,
         email: formData.email,
         mobile: formData.mobile,
         bookingEnquiryNumber: formData.bookingNumber,
         category: formData.category.toLowerCase(),
-        message: formData.message
-      });
-      alert('Feedback submitted successfully!');
-      setFormData({
-        name: "",
-        companyName: "",
-        email: "",
-        mobile: "",
-        bookingNumber: "",
-        category: "",
-        message: "",
-      });
-    } catch (error) {
-      // Log the error details for debugging
-      if (error.response) {
-        console.log("API Error Response:", error.response.data);
-        alert(
-          'Failed to submit feedback: ' +
-          (error.response.data?.message || JSON.stringify(error.response.data))
-        );
-      } else {
-        console.log("Error:", error.message);
-        alert('Failed to submit feedback. Please try again.');
+        message: formData.message,
+        token: captchaToken
       }
-    }
-  };
+    );
+
+    alert("Feedback submitted successfully!");
+    setFormData({
+      name: "",
+      companyName: "",
+      email: "",
+      mobile: "",
+      bookingNumber: "",
+      category: "",
+      message: "",
+    });
+    setCaptchaToken(null);
+  } catch (error) {
+    console.error(error);
+    alert("Failed to submit feedback. Please try again.");
+  }
+};
 
   return (
     <>
@@ -221,14 +238,12 @@ export default function FeedbackComp() {
                 ></textarea>
               </div>
 
-              <div className="flex items-center mb-4">
-                <div className="border p-2 flex items-center w-fit">
-                  <input type="checkbox" id="recaptcha" className="mr-2" />
-                  <label htmlFor="recaptcha" className="text-sm">
-                    I'm not a Robot
-                  </label>
+                <div className="flex items-center mb-4">
+                  <HCaptcha
+                    sitekey="your-hcaptcha-site-key" // Replace with your site key
+                    onVerify={(token) => setCaptchaToken(token)}
+                  />
                 </div>
-              </div>
 
               <button
                 onClick={handleSubmit}
