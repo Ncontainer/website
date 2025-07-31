@@ -1,10 +1,10 @@
 import React from "react";
-import img1 from "../images/tankcomp1.png";
-import img2 from "../images/tankcomp2.png";
-import img3 from "../images/tankcomp3.png";
-import img4 from "../images/tankcomp4.png";
-import img5 from "../images/tankcomp5.png";
-import img6 from "../images/tankcomp6.png";
+import img1 from "../images/tankcomp1.webp";
+import img2 from "../images/tankcomp2.webp";
+import img3 from "../images/tankcomp3.webp";
+import img4 from "../images/tankcomp4.webp";
+import img5 from "../images/tankcomp5.webp";
+import img6 from "../images/tankcomp6.webp";
 
 export default function TankComp() {
   return (

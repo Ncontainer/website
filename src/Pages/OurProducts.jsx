@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import dryImage from '../images/drycontainer1.webp';
-import liquidImage from '../images/tankcomp1.png';
+import liquidImage from '../images/tankcomp1.webp';
 import coilImage from '../images/coilimg1.webp';
 import modularImage from '../images/mcimg1.webp';
 import refrigeratedImage from '../images/rcimg1.webp';

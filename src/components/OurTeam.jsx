@@ -1,149 +1,149 @@
 import { useState, useEffect, useRef } from 'react';
-import tm01 from "../images/TM01.png";
-import tm02 from "../images/TM02.png";
-import tm03 from "../images/TM03.png";
-import tm04 from "../images/04.png";
-import tm05 from "../images/TM05.png";
+import tm01 from "../images/TM01.webp";
+import tm02 from "../images/TM02.webp";
+import tm03 from "../images/TM03.webp";
+import tm04 from "../images/TM04.webp";
+import tm05 from "../images/TM05.webp";
 
 const OurTeam = () => {
   // Sample team data
-  const teamMembers = [
-    {
-      id: 1,
-      name: 'John Doe',
-      position: 'Chief Operating Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
-      image: tm01
-    },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      position: 'Chief Marketing Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
-      image: tm02
-    },
-    {
-      id: 3,
-      name: 'Michael Johnson',
-      position: 'Chief Technology Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
-      image: tm03
-    },
-    {
-      id: 4,
-      name: 'Sarah Williams',
-      position: 'Chief Financial Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
-      image: tm04
-    },
-    {
-      id: 5,
-      name: 'David Brown',
-      position: 'Chief Product Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
-      image: tm05
-    }
-  ];
+  // const teamMembers = [
+  //   {
+  //     id: 1,
+  //     name: 'John Doe',
+  //     position: 'Chief Operating Officer',
+  //     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+  //     image: tm01
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Jane Smith',
+  //     position: 'Chief Marketing Officer',
+  //     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+  //     image: tm02
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Michael Johnson',
+  //     position: 'Chief Technology Officer',
+  //     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+  //     image: tm03
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'Sarah Williams',
+  //     position: 'Chief Financial Officer',
+  //     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+  //     image: tm04
+  //   },
+  //   {
+  //     id: 5,
+  //     name: 'David Brown',
+  //     position: 'Chief Product Officer',
+  //     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+  //     image: tm05
+  //   }
+  // ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [animationState, setAnimationState] = useState('active');
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
-  const carouselRef = useRef(null);
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [animationState, setAnimationState] = useState('active');
+  // const [touchStart, setTouchStart] = useState(0);
+  // const [touchEnd, setTouchEnd] = useState(0);
+  // const carouselRef = useRef(null);
+  // const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-  // Function to cycle through team members automatically
-  useEffect(() => {
-    const timer = setInterval(() => {
-      changeTeamMember('next');
-    }, 5000);
+  // // Function to cycle through team members automatically
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     changeTeamMember('next');
+  //   }, 5000);
 
-    return () => clearInterval(timer);
-  }, [currentIndex, teamMembers.length]);
+  //   return () => clearInterval(timer);
+  // }, [currentIndex, teamMembers.length]);
 
-  // Function to handle slide animation and member change
-  const changeTeamMember = (direction) => {
-    setAnimationState('exit');
+  // // Function to handle slide animation and member change
+  // const changeTeamMember = (direction) => {
+  //   setAnimationState('exit');
     
-    setTimeout(() => {
-      if (direction === 'next') {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % teamMembers.length);
-      } else if (direction === 'prev') {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + teamMembers.length) % teamMembers.length);
-      } else if (typeof direction === 'number') {
-        setCurrentIndex(direction);
-      }
+  //   setTimeout(() => {
+  //     if (direction === 'next') {
+  //       setCurrentIndex((prevIndex) => (prevIndex + 1) % teamMembers.length);
+  //     } else if (direction === 'prev') {
+  //       setCurrentIndex((prevIndex) => (prevIndex - 1 + teamMembers.length) % teamMembers.length);
+  //     } else if (typeof direction === 'number') {
+  //       setCurrentIndex(direction);
+  //     }
       
-      setAnimationState('enter');
+  //     setAnimationState('enter');
       
-      setTimeout(() => {
-        setAnimationState('active');
-      }, 500);
-    }, 500);
-  };
+  //     setTimeout(() => {
+  //       setAnimationState('active');
+  //     }, 500);
+  //   }, 500);
+  // };
 
-  // Manually select a specific team member
-  const selectTeamMember = (index) => {
-    if (index === currentIndex) return;
-    changeTeamMember(index);
-  };
+  // // Manually select a specific team member
+  // const selectTeamMember = (index) => {
+  //   if (index === currentIndex) return;
+  //   changeTeamMember(index);
+  // };
 
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e) => {
-    setTouchStart(e.touches[0].clientX);
-  };
+  // // Touch handlers for mobile swipe
+  // const handleTouchStart = (e) => {
+  //   setTouchStart(e.touches[0].clientX);
+  // };
   
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.touches[0].clientX);
-  };
+  // const handleTouchMove = (e) => {
+  //   setTouchEnd(e.touches[0].clientX);
+  // };
   
-  const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 100) {
-      // Swipe left
-      changeTeamMember('next');
-    } else if (touchStart - touchEnd < -100) {
-      // Swipe right
-      changeTeamMember('prev');
-    }
-  };
+  // const handleTouchEnd = () => {
+  //   if (touchStart - touchEnd > 100) {
+  //     // Swipe left
+  //     changeTeamMember('next');
+  //   } else if (touchStart - touchEnd < -100) {
+  //     // Swipe right
+  //     changeTeamMember('prev');
+  //   }
+  // };
 
-  // Animation classes based on state
-  const getAnimationClass = () => {
-    switch (animationState) {
-      case 'enter':
-        return 'translate-x-0 opacity-0';
-      case 'active':
-        return 'translate-x-0 opacity-100';
-      case 'exit':
-        return 'translate-x-full opacity-0';
-      default:
-        return 'translate-x-0 opacity-100';
-    }
-  };
+  // // Animation classes based on state
+  // const getAnimationClass = () => {
+  //   switch (animationState) {
+  //     case 'enter':
+  //       return 'translate-x-0 opacity-0';
+  //     case 'active':
+  //       return 'translate-x-0 opacity-100';
+  //     case 'exit':
+  //       return 'translate-x-full opacity-0';
+  //     default:
+  //       return 'translate-x-0 opacity-100';
+  //   }
+  // };
 
-  // Visible members for carousel
-  const getVisibleMembers = () => {
-    if (typeof window !== 'undefined' && window.innerWidth < 640) {
-      // Mobile: show only current member
-      return [teamMembers[currentIndex]];
-    } else if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      // Small tablet: show 2 members
-      return [
-        teamMembers[currentIndex],
-        teamMembers[(currentIndex + 1) % teamMembers.length]
-      ];
-    } else if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      // Tablet: show 3 members
-      return [
-        teamMembers[currentIndex],
-        teamMembers[(currentIndex + 1) % teamMembers.length],
-        teamMembers[(currentIndex + 2) % teamMembers.length]
-      ];
-    } else {
-      // Desktop: show all members
-      return teamMembers;
-    }
-  };
+  // // Visible members for carousel
+  // const getVisibleMembers = () => {
+  //   if (typeof window !== 'undefined' && window.innerWidth < 640) {
+  //     // Mobile: show only current member
+  //     return [teamMembers[currentIndex]];
+  //   } else if (typeof window !== 'undefined' && window.innerWidth < 768) {
+  //     // Small tablet: show 2 members
+  //     return [
+  //       teamMembers[currentIndex],
+  //       teamMembers[(currentIndex + 1) % teamMembers.length]
+  //     ];
+  //   } else if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+  //     // Tablet: show 3 members
+  //     return [
+  //       teamMembers[currentIndex],
+  //       teamMembers[(currentIndex + 1) % teamMembers.length],
+  //       teamMembers[(currentIndex + 2) % teamMembers.length]
+  //     ];
+  //   } else {
+  //     // Desktop: show all members
+  //     return teamMembers;
+  //   }
+  // };
 
   return  <div></div>
   //(
