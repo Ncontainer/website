@@ -1,28 +1,37 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.webp';
 
-function ForgotPasswordPage() {
-  const [email, setEmail] = useState('');
+function ResetPasswordPage() {
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [popup, setPopup] = useState({ visible: false, message: '', success: true });
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token'); // assuming token is passed via query param
 
-  // Define the base URL as a constant for easy modification
   const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
 
-  const handleReset = async () => {
+  const handleResetPassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setPopup({ visible: true, message: 'Passwords do not match.', success: false });
+      return;
+    }
+
     try {
-      const res = await axios.post(`${BASE_BACKEND_URL}api/auth/forgot-password`, {
-        email,
+      await axios.post(`${BASE_BACKEND_URL}api/auth/reset-password`, {
+        token,
+        newPassword,
       });
-      setPopup({ visible: true, message: 'Reset link or OTP sent to your email.', success: true });
+
+      setPopup({ visible: true, message: 'Password reset successfully.', success: true });
       setTimeout(() => {
         setPopup({ visible: false, message: '', success: true });
-        navigate('/'); // Redirect to home page after success popup
+        navigate('/login'); // Redirect to login after success
       }, 2000);
     } catch (error) {
-      setPopup({ visible: true, message: 'Failed to send reset instructions. Please try again.', success: false });
+      setPopup({ visible: true, message: 'Failed to reset password. Please try again.', success: false });
     }
   };
 
@@ -40,29 +49,29 @@ function ForgotPasswordPage() {
         </div>
 
         <div className="w-full flex flex-col gap-4">
-          <h2 className="text-2xl font-bold text-gray-900">Forgot Password</h2>
-          <p className="text-gray-600">Enter your registered email address:</p>
+          <h2 className="text-2xl font-bold text-gray-900">Reset Password</h2>
+          <p className="text-gray-600">Enter your new password:</p>
           <input
-            type="email"
-            placeholder="Email ID"
+            type="password"
+            placeholder="New Password"
             className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <div className="flex justify-center md:justify-start">
             <button
-              onClick={handleReset}
+              onClick={handleResetPassword}
               className="bg-amber-500 w-80 text-white px-4 py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300"
             >
-              Reset Password
+              Update Password
             </button>
-
-            {/* <button
-  onClick={() => navigate('/reset-password')}
-  className="bg-amber-500 w-80 text-white px-4 py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300"
->
-  Reset Password
-</button> */}
           </div>
         </div>
       </div>
@@ -108,4 +117,4 @@ function ForgotPasswordPage() {
   );
 }
 
-export default ForgotPasswordPage;
+export default ResetPasswordPage;

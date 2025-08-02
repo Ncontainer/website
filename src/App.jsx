@@ -22,6 +22,7 @@ import TradeForm from './pages/TradeForm';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from "./components/Footer";
 import OurProducts from "./Pages/OurProducts";
+import ResetPasswordPage from './components/ResetPasswordPage';
 
 // function App() {
 //   return (
@@ -65,6 +66,7 @@ function App() {
         <Route path="/lease" element={<LeaseForm />} />
         <Route path="/trade" element={<TradeForm />} />
         
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
 
         </Routes>
 
