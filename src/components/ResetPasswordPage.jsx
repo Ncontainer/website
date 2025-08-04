@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import heroImage from '../images/add5ce280c52659353300a1f07d05e4e79e2fbff.webp';
 
 function ResetPasswordPage() {
@@ -8,30 +8,48 @@ function ResetPasswordPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [popup, setPopup] = useState({ visible: false, message: '', success: true });
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get('token'); // assuming token is passed via query param
+  const { token } = useParams(); // Token from URL path
 
   const BASE_BACKEND_URL = 'https://cktgf93ztd.us-east-1.awsapprunner.com/';
 
+  useEffect(() => {
+    console.log("Token from URL path:", token); // Debugging
+  }, [token]);
+
   const handleResetPassword = async () => {
+    if (!token) {
+      setPopup({ visible: true, message: 'Invalid or missing token.', success: false });
+      return;
+    }
+
     if (newPassword !== confirmPassword) {
       setPopup({ visible: true, message: 'Passwords do not match.', success: false });
       return;
     }
 
     try {
-      await axios.post(`${BASE_BACKEND_URL}api/auth/reset-password`, {
-        token,
-        newPassword,
-      });
+      await axios.post(
+        `${BASE_BACKEND_URL}api/auth/reset-password`,
+        {
+          resetToken: token, // backend expects resetToken in body
+          newPassword
+        },
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
 
       setPopup({ visible: true, message: 'Password reset successfully.', success: true });
       setTimeout(() => {
         setPopup({ visible: false, message: '', success: true });
-        navigate('/login'); // Redirect to login after success
+        navigate('/login');
       }, 2000);
     } catch (error) {
-      setPopup({ visible: true, message: 'Failed to reset password. Please try again.', success: false });
+      setPopup({
+        visible: true,
+        message: error.response?.data?.message || 'Failed to reset password. Please try again.',
+        success: false
+      });
     }
   };
 
@@ -76,21 +94,45 @@ function ResetPasswordPage() {
         </div>
       </div>
 
-      {/* Pop-up Modal for Success/Error */}
       {popup.visible && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-all duration-300">
-          <div className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${popup.success ? 'border-orange-500' : 'border-red-500'} scale-100 opacity-100 translate-y-0 transition-all duration-500`}
-            style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', backdropFilter: 'blur(10px)' }}>
+          <div
+            className={`relative bg-white rounded-3xl shadow-2xl w-[90%] max-w-sm text-center border-t-4 ${
+              popup.success ? 'border-orange-500' : 'border-red-500'
+            } scale-100 opacity-100 translate-y-0 transition-all duration-500`}
+            style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
             <div className="p-8">
               <div className="flex justify-center mb-6">
                 <div className="relative">
-                  <div className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${popup.success ? 'bg-gradient-to-r from-orange-400 to-amber-500' : 'bg-gradient-to-r from-red-400 to-rose-500'}`}>
+                  <div
+                    className={`rounded-full h-20 w-20 flex items-center justify-center shadow-lg ${
+                      popup.success
+                        ? 'bg-gradient-to-r from-orange-400 to-amber-500'
+                        : 'bg-gradient-to-r from-red-400 to-rose-500'
+                    }`}
+                  >
                     {popup.success ? (
-                      <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                      <svg
+                        className="h-10 w-10 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        viewBox="0 0 24 24"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     ) : (
-                      <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                      <svg
+                        className="h-10 w-10 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        viewBox="0 0 24 24"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     )}
@@ -98,7 +140,13 @@ function ResetPasswordPage() {
                 </div>
               </div>
               <div className="space-y-3">
-                <h2 className={`text-2xl font-bold ${popup.success ? 'text-orange-600' : 'text-red-600'}`}>{popup.success ? 'Success!' : 'Error!'}</h2>
+                <h2
+                  className={`text-2xl font-bold ${
+                    popup.success ? 'text-orange-600' : 'text-red-600'
+                  }`}
+                >
+                  {popup.success ? 'Success!' : 'Error!'}
+                </h2>
                 <p className="text-gray-600 leading-relaxed">{popup.message}</p>
               </div>
               {!popup.success && (

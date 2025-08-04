@@ -169,8 +169,8 @@ const sendBrochureToEmail = async () => {
                  
                 </svg>
               </span>
-              <span className="text-sm font-sans">nconsales2025@gmail.com</span>
-              {/* <span className="text-sm font-sans">794 Mcallister St San Francisco, 94102</span> */}
+              {/* <span className="text-sm font-sans">nconsales2025@gmail.com</span> */}
+              <span className="text-sm font-sans">794 Mcallister St San Francisco, 94102</span> 
             </div>
             <div className="flex items-center space-x-1">
               <span className="text-secondary">
@@ -262,81 +262,125 @@ const sendBrochureToEmail = async () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden fixed inset-0 z-60 ${isMenuOpen ? "block" : "hidden"}`}>
-          <div className="fixed inset-0 bg-black bg-opacity-50" onClick={toggleMenu}></div>
-          <div className="absolute right-0 top-0 h-full w-[80%] max-w-xs bg-secondary shadow-lg overflow-y-auto">
-            <div className="flex justify-end p-4">
-              <button onClick={toggleMenu} className="text-white focus:outline-none" aria-label="Close menu">
-                <X size={24} />
-              </button>
-            </div>
-            <div className="px-6 pb-6 space-y-5">
-              <Link to="/" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("home")}>Home</Link>
-              <Link to="/about" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap" onClick={() => handleNavClick("about")}>About Us</Link>
-              {/* Mobile Products Dropdown */}
-              <div>
-                <button onClick={toggleProducts} className="flex justify-between w-full py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white/25 transition-colors">
-                  <span className="whitespace-nowrap">Products</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transform transition-transform ${isProductsOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div className={`${isProductsOpen ? "block" : "hidden"} pl-4`}>
-                  <Link to="/products/dry_Container" className="block py-2 px-8 text-white hover:bg-white/25 transition-colors whitespace-nowrap" onClick={() => handleNavClick("products")}>Dry Container</Link>
-                  <Link to="/products/tanks" className="block py-2 px-8 text-white hover:bg-white/25 transition-colors" onClick={() => handleNavClick("products")}>Tanks</Link>
-                  <Link to="/products/coil_containers" className="block py-2 px-8 text-white hover:bg-white/25 transition-colors whitespace-nowrap" onClick={() => handleNavClick("products")}>Coil Containers</Link>
-                  <Link to="/products/modular_containers" className="block py-2 px-8 text-white hover:bg-white/25 transition-colors whitespace-nowrap" onClick={() => handleNavClick("products")}>Modular Containers</Link>
-                  <Link to="/products/refrigerated_containers" className="block py-2 px-8 text-white hover:bg-white/25 transition-colors whitespace-nowrap" onClick={() => handleNavClick("products")}>Refrigerated Containers</Link>
-                </div>
-              </div>
-              <Link to="/resources" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("resources")}>Resources</Link>
-              <Link to="/contact" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap" onClick={() => handleNavClick("contact")}>Contact Us</Link>
-              <Link to="/feedback" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={() => handleNavClick("feedback")}>Feedback</Link>
-              <Link to="/brochure" className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors" onClick={handleBrochureClick}>Brochure</Link>
-              {/* Mobile Extras */}
-              <div className="pt-3 border-t border-white/20">
-                <div className="flex space-x-5 pb-5 justify-center">
-                  <Link to="#" className="text-white hover:text-white/80"><Facebook size={20} /></Link>
-                  <Link to="#" className="text-white hover:text-white/80"><Twitter size={20} /></Link>
-                  <Link to="#" className="text-white hover:text-white/80"><Instagram size={20} /></Link>
-                  <Link to="#" className="text-white hover:text-white/80"><Linkedin size={20} /></Link>
-                  <Link to="#" className="text-white hover:text-white/80"><Youtube size={20} /></Link>
-                </div>
-                <div className="space-y-4 pt-3 border-t border-white/20 pb-5">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-white"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></span>
-                    <span className="text-sm text-white">794 Mcallister St, San Francisco, 94102</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-white"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg></span>
-                    <span className="text-sm text-white">+91 9876543210</span>
-                  </div>
-                </div>
-                <div className="pt-4">
-                  {isLoggedIn ? (
-  <button
-    onClick={() => {
-      handleLogout();
-      toggleMenu();
-    }}
-    className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors"
-  >
-    Logout
-  </button>
-) : (
-  <Link
-    to="/login"
-    className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors"
-    onClick={toggleMenu}
-  >
-    Login
-  </Link>
-)}
-                </div>
-              </div>
-            </div>
+        {/* Mobile Menu */}
+<div className={`lg:hidden fixed inset-0 z-60 ${isMenuOpen ? "block" : "hidden"}`}>
+  <div className="fixed inset-0 bg-black bg-opacity-50" onClick={toggleMenu}></div>
+  <div className="absolute right-0 top-0 h-full w-[80%] max-w-xs bg-secondary shadow-lg overflow-y-auto">
+    <div className="flex justify-end p-4">
+      <button onClick={toggleMenu} className="text-white focus:outline-none" aria-label="Close menu">
+        <X size={24} />
+      </button>
+    </div>
+    <div className="px-6 pb-6 space-y-5">
+      <Link
+        to="/"
+        className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors"
+        onClick={() => handleNavClick("home")}
+      >
+        Home
+      </Link>
+      <Link
+        to="/about"
+        className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap"
+        onClick={() => handleNavClick("about")}
+      >
+        About Us
+      </Link>
+
+      {/* ✅ Products now directly navigates to /our-products */}
+      <Link
+        to="/our-products"
+        className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap"
+        onClick={() => handleNavClick("products")}
+      >
+        Products
+      </Link>
+
+      <Link
+        to="/resources"
+        className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors"
+        onClick={() => handleNavClick("resources")}
+      >
+        Resources
+      </Link>
+      <Link
+        to="/contact"
+        className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap"
+        onClick={() => handleNavClick("contact")}
+      >
+        Contact Us
+      </Link>
+      <Link
+        to="/feedback"
+        className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors"
+        onClick={() => handleNavClick("feedback")}
+      >
+        Feedback
+      </Link>
+     <button
+  onClick={() => {
+    handleBrochureClick();
+    toggleMenu(); // Close mobile menu after click
+  }}
+  className="block w-full text-left py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors"
+>
+  Brochure
+</button>
+
+
+      {/* Mobile Extras */}
+      <div className="pt-3 border-t border-white/20">
+        <div className="flex space-x-5 pb-5 justify-center">
+          <Link to="#" className="text-white hover:text-white/80"><Facebook size={20} /></Link>
+          <Link to="#" className="text-white hover:text-white/80"><Twitter size={20} /></Link>
+          <Link to="#" className="text-white hover:text-white/80"><Instagram size={20} /></Link>
+          <Link to="#" className="text-white hover:text-white/80"><Linkedin size={20} /></Link>
+          <Link to="#" className="text-white hover:text-white/80"><Youtube size={20} /></Link>
+        </div>
+        <div className="space-y-4 pt-3 border-t border-white/20 pb-5">
+          <div className="flex items-center space-x-3">
+            <span className="text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </span>
+            <span className="text-sm text-white">794 Mcallister St, San Francisco, 94102</span>
+          </div>
+          <div className="flex items-center space-x-3">
+            <span className="text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </span>
+            <span className="text-sm text-white">+91 9876543210</span>
           </div>
         </div>
+        <div className="pt-4">
+          {isLoggedIn ? (
+            <button
+              onClick={() => {
+                handleLogout();
+                toggleMenu();
+              }}
+              className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="block w-full border border-white text-white py-3 px-4 rounded-md text-center font-medium hover:bg-white hover:text-secondary transition-colors"
+              onClick={toggleMenu}
+            >
+              Login
+            </Link>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
       {/* ✅ Confirmation Modal when logged in */}
 {showBrochureSuccess && (

@@ -66,7 +66,7 @@ function App() {
         <Route path="/lease" element={<LeaseForm />} />
         <Route path="/trade" element={<TradeForm />} />
         
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
 
         </Routes>
 

@@ -11,6 +11,7 @@ export default function Hero() {
       const width = window.innerWidth;
       setIsMobile(width < 768);
       setIsMediumScreen(width >= 768 && width < 1024);
+      
     };
 
     handleResize();
@@ -31,7 +32,7 @@ export default function Hero() {
       {/* Main Content (Always Above Video) */}
       <div className="relative z-20 flex flex-col w-full h-auto bg-transparent">
         <div
-          className={`w-full px-4 sm:px-6 md:px-8 lg:px-16 pt-8 sm:pt-12 md:pt-16 lg:pt-20`}
+          className={`w-full px-4 sm:px-6 md:px-8 lg:px-16 pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-20 md:pb-28`} 
         >
           <div
             className={`flex ${
@@ -45,6 +46,7 @@ export default function Hero() {
                   ? "w-full text-center items-center flex flex-col mb-6"
                   : "w-1/2 pr-8 text-left"
               }`}
+              style={{ marginBottom: isMobile ? "2rem" : "3rem" }}
             >
               <div className="mb-2 md:mb-4 text-secondary">
                 <span className="text-sm sm:text-base md:text-lg font-medium text-orange-600">
@@ -60,10 +62,10 @@ export default function Hero() {
               >
                 Get your load to market faster
               </div>
-              <p className="text-gray-600 mb-4 md:mb-6 max-w-md text-xs sm:text-sm md:text-base lg:text-lg">
+              {/* <p className="text-gray-600 mb-4 md:mb-6 max-w-md text-xs sm:text-sm md:text-base lg:text-lg">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+              </p> */}
               <div className="relative z-30">
                 <button
                   className="bg-amber-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-amber-600 transition duration-300"
