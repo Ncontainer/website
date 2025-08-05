@@ -1,129 +1,71 @@
 import { useState, useEffect, useRef } from 'react';
 import hero1 from "../images/Hero1.png";
 import herovideo from "../images/herovideo.mp4";
-
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
   const [isMediumScreen, setIsMediumScreen] = useState(false);
   const [videoHeight, setVideoHeight] = useState(0);
-
   const videoRef = useRef(null);
-
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       setIsMobile(width < 768);
       setIsMediumScreen(width >= 768 && width < 1024);
-
       if (videoRef.current) {
         setVideoHeight(videoRef.current.offsetHeight);
       }
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
-
     const observer = new ResizeObserver(() => {
       if (videoRef.current) {
         setVideoHeight(videoRef.current.offsetHeight);
       }
     });
     if (videoRef.current) observer.observe(videoRef.current);
-
     return () => {
       window.removeEventListener("resize", handleResize);
       observer.disconnect();
     };
   }, []);
-
   const handleExploreClick = () => {
     const section = document.getElementById("logistics-overview");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
-
   return (
     <div className="relative w-full overflow-hidden">
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col w-full h-[400px] lg:h-[500px] md:h-[450px] bg-transparent">
-        <div
-          className="w-full px-4 sm:px-6 md:px-8 lg:px-16 pt-6 sm:pt-10 md:pt-12 lg:pb-0 lg:pt-14"
-        >
-          <div
-            className={`flex ${
-              isMobile ? "flex-col" : "flex-row"
-            } items-start justify-between w-full max-w-7xl mx-auto`}
-          >
-            {/* Text Section */}
-            <div
-              className={`${
-                isMobile
-                  ? "w-full text-center items-center flex flex-col mb-8"
-                  : "w-[500px]  pr-8 text-left"
-              } md:w-[700px]`}
-            >
-              <div className="mb-2 md:mb-3 text-secondary">
-                <span className="text-sm sm:text-base md:text-lg font-medium text-orange-600">
-                  WELCOME TO COMPANY
-                </span>
-              </div>
-              <div
-                className={`${
-                  isMobile
-                    ? "text-2xl text-center"
-                    : "text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-left"
-                } text-black md:text-2xl lg:text-4xl mb-4 font-saira leading-tight`}
-              >
-                Get Your Load <br />
-                to market Faster
-              </div>
-              <p className="text-gray-600 mb-4 md:mb-6 max-w-md text-sm sm:text-base md:text-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <div className="relative z-30">
-                <button
-                  className="bg-amber-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-amber-600 transition duration-300"
-                  onClick={handleExploreClick}
-                >
-                  Explore More
-                </button>
-              </div>
-            </div>
-
-            {/* Image Section */}
-            <div
-              className={`${
-                isMobile ? "w-full mt-6 z-30" : "w-[800px] "
-              } lg:absolute relative  right-0 bottom-[-100px] pointer-events-none`}
-            >
-              <div className="relative hero-img w-full">
-                <div
-                  className={`w-full relative z-20 transform ${
-                    isMobile
-                      ? "scale-[1]"
-                      : isMediumScreen
-                      ? "scale-[1.05]"
-                      : "scale-[1.1]"
-                  }`}
-                >
-                  <img
-                    src={hero1}
-                    alt="Orange shipping container being lifted"
-                    className="w-[70rem] h-auto object-contain"
-                  />
-                </div>
-              </div>
-            </div>
+      {/* Main Content */}
+      <div className="relative w-full h-auto bg-white">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start px-4 md:px-8 lg:px-16 pt-10">
+          {/* Text */}
+          <div className="w-full lg:w-[500px] mb-8">
+            <span className="text-orange-600 text-sm md:text-base font-medium">
+              WELCOME TO COMPANY
+            </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font- text-black leading-tight mt-3">
+              Get Your Load <br /> to market Faster
+            </h1>
+            <p className="text-gray-600 mt-4 text-base md:text-lg max-w-md">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          {/* Image */}
+          <div className="relative z-30 w-fit lg:w-[700px] xl1440:w-[800px] lg:absolute right-0 lg:bottom-[-270px] xl1440:bottom-[-200px] pointer-events-none">
+            <img
+              src={hero1}
+              alt="Shipping container"
+              className="w-full max-w-[70rem] object-contain"
+            />
           </div>
         </div>
       </div>
-
       {/* Background Video */}
       <div
         ref={videoRef}
-        className={`relative z-10 video-block ${
+        className={`relative top-[-100px] md:top-[100px]  video-block ${
           isMobile ? "h-[180px]" : isMediumScreen ? "h-[40%]" : "h-[40%]"
         } ${isMobile ? "rounded-none" : "rounded-xl w-[90%] mx-auto"}`}
       >
@@ -144,7 +86,6 @@ export default function Hero() {
             isMobile ? "rounded-none" : "rounded-xl"
           }`}
         ></div>
-
         {/* Stats Bar */}
         <div className="absolute bottom-0 right-0 z-20 w-full md:w-[60%]">
           <div className="flex bg-orange-500 w-full justify-around rounded-md py-2 sm:py-3 md:py-4">
@@ -177,7 +118,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
       {/* Custom CSS for 1440px screen adjustments */}
       <style jsx>{`
         @media (min-width: 1440px) {
@@ -192,3 +132,24 @@ export default function Hero() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
