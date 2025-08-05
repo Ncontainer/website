@@ -52,7 +52,9 @@ const products = [
 export default function OurProducts() {
   return (
     <div className="px-6 md:px-20 py-12 bg-gray-50 text-gray-800">
-      <h1 className="text-4xl font-bold text-center mb-4">Our Products</h1>
+      <h1 className="text-[40px] leading-[40px] font-normal text-center mb-4 uppercase">
+        Our Products
+      </h1>
       <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
         At NCON, we prioritize the safety and security of your steel and aluminum coils during transportation. Our containers are designed to prevent damage and ensure stability throughout the journey.
       </p>
@@ -61,7 +63,7 @@ export default function OurProducts() {
         <div
           key={index}
           className={`flex flex-col md:flex-row ${
-            index % 2 == 0 ? 'md:flex-row-reverse' : ''
+            index % 2 === 0 ? 'md:flex-row-reverse' : ''
           } items-center gap-6 mb-12`}
         >
           <div className="md:w-1/2">
@@ -72,7 +74,9 @@ export default function OurProducts() {
             />
           </div>
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-semibold mb-2">{product.title}</h2>
+            <h2 className="text-[40px] leading-[40px] font-normal mb-2 uppercase">
+              {product.title}
+            </h2>
             <p className="text-gray-700 mb-4">{product.description}</p>
             <Link to={product.route}>
               <button className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-full transition">

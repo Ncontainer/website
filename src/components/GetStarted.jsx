@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import img from '../images/04.png';
+import bgImage from '../images/Section 3 About Us.webp';
 
 const GetStarted = () => {
   const navigate = useNavigate();
@@ -10,22 +11,16 @@ const GetStarted = () => {
 
   return (
     <section className="w-full pt-6 sm:pt-0 sm:h-[42rem] h-auto relative overflow-visible">
-      {/* Orange background */}
-      <div className="absolute inset-0 bg-secondary z-0 pointer-events-none">
-        {/* Diagonal lines for texture */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute h-full w-1 bg-white"
-              style={{
-                left: `${i * 5}%`,
-                transform: 'rotate(15deg) scale(2)',
-              }}
-            ></div>
-          ))}
-        </div>
-      </div>
+      {/* Background with imported image */}
+      <div
+        className="absolute inset-0 bg-secondary z-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      ></div>
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
         <div className="flex flex-col md:flex-row items-center">

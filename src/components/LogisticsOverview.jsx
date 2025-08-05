@@ -26,7 +26,7 @@ const LogisticsOverview = () => {
           <div className="w-full md:w-1/2 flex flex-col justify-center space-y-6 order-1 md:order-2">
             <div>
               <h3 className="text-secondary uppercase mb-2 text-xl md:text-2xl">OVERVIEW</h3>
-              <h2 className="text-4xl md:text-6xl mb-4">Logistics Beyond Expectation</h2>
+              <h2 className="text-4xl md:text-6xl mb-4 font-saira">Logistics Beyond Expectation</h2>
               <p
                 className="text-gray-600 text-base md:text-lg"
                 style={{ fontFamily: 'Roboto' }}

@@ -30,9 +30,9 @@ const About = () => {
             <p className="text-orange-500 uppercase text-base sm:text-lg font-semibold tracking-wide mb-2">
               About Us
             </p>
-            <h2 className="text-xl sm:text-2xl md:text-3xl mb-4 sm:mb-6 w-full">
-              NCON: Container as a <br className="hidden sm:block" /> Solution
-            </h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 w-full">
+            NCON: Container as a <br className="hidden sm:block" /> Solution
+        </h2>
           </div>
           <div className="text-gray-500 text-justify text-sm sm:text-base md:text-base sm:max-w-[65%]" style={{ fontFamily: 'Roboto' }}>
             Containerization is an industry that has rapidly evolved since its inception. Constant

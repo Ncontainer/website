@@ -90,7 +90,7 @@ export default function FeedbackComp() {
       </div>
       <div className="text-center mb-6 md:mb-8 pt-4 md:pt-8 px-4 md:px-0">
         <p className="text-orange-500 font-medium text-sm md:text-base">FEEDBACK</p>
-        <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mt-1 md:mt-2">
+        <h1 className="text-2xl md:text-4xl font-normal text-gray-900 mt-1 md:mt-2">
           Need Help?
         </h1>
         <p className="text-gray-600 text-sm md:text-base mt-1 md:mt-2 max-w-sm md:max-w-none mx-auto">
@@ -277,8 +277,8 @@ export default function FeedbackComp() {
                 </p>
                 <div className="flex items-center">
                   <Phone size={18} className="mr-2 text-white" />
-                  <Link to="tel:+919876543210" className="text-white hover:underline">
-                    +91 9876543210
+                  <Link to="tel:+91 9820420924" className="text-white hover:underline">
+                    +91 9820420924
                   </Link>
                 </div>
               </div>

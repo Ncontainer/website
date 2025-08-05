@@ -9,7 +9,7 @@ const LifeAtNcon = () => {
           <h2 className="text-orange-600 font-semibold uppercase text-lg">
             Glimpse at NCON
           </h2>
-          <h1 className="text-3xl md:text-4xl font-semibold mt-2 ">
+          <h1 className="text-3xl md:text-4xl mt-2 ">
             Life at NCON
           </h1>
         </div>

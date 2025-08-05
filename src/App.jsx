@@ -43,7 +43,7 @@ function App() {
       <Header />
 
       {/* Padding to offset fixed header (adjust value if your header height changes) */}
-      <div className="pt-[72px]  md:pt-[80px] lg:pt-[100px] min-h-screen">
+      <div className="pt-[72px]  md:pt-[70px] lg:pt-[100px] min-h-screen">
         <Routes>
         <Route path="/" element = {<Home />} />
         <Route path="/about" element = {<AboutUs />} />

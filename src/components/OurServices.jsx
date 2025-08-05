@@ -8,7 +8,7 @@ const OurServices = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row gap-8 mb-16">
           <div className="w-full md:w-1/2">
-            <h3 className="text-secondary font-medium uppercase mb-2">OUR SERVICES</h3>
+            <h3 className="text-secondary font-large uppercase mb-2 text-2xl">OUR SERVICES</h3>
             <h2 className="text-4xl md:text-5xl">We help Transport your Future</h2>
           </div>
           <div className="w-full md:w-1/2 mt-9">

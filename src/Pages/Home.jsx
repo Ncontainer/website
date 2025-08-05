@@ -13,8 +13,11 @@ import Footer from "../components/Footer";
 const Home = () => {
   return (
     <div className="w-full overflow-x-hidden">
-      <Header />
-      <Hero />
+     
+     <Header />
+  <div className="-mt-100">
+  <Hero />
+</div>
       <section id="logistics-overview">
         <LogisticsOverview />
       </section>

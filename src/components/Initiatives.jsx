@@ -36,7 +36,7 @@ const Initiatives = () => {
     <div className="w-[90%] mx-auto py-10 px-3 sm:px-4">
       <div className="text-center">
         <h3 className="text-orange-500 font-medium uppercase tracking-wide text-sm sm:text-base">INITIATIVES</h3>
-        <h2 className="mt-2 text-3xl font-bold text-gray-900 sm:text-4xl">Initiatives at NCON</h2>
+        <h2 className="mt-2 text-3xl  text-gray-900 sm:text-4xl">Initiatives at NCON</h2>
         <p className="mt-3 max-w-3xl mx-auto text-sm sm:text-base text-gray-600">
           At NCON, we believe that even the smallest initiative can pave the way for a brighter future. We are committed to making
           meaningful contributions in areas that truly matter. Explore our initiatives
