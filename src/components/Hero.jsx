@@ -49,7 +49,6 @@ export default function Hero() {
       <div className="relative z-20 flex flex-col w-full bg-transparent">
         <div
           className="w-full px-4 sm:px-6 md:px-8 lg:px-16 pt-6 sm:pt-10 md:pt-12 lg:pt-14"
-          style={{ paddingBottom: videoHeight / 2.5 }} // Reduced padding for less gap
         >
           <div
             className={`flex ${
@@ -99,7 +98,7 @@ export default function Hero() {
                 isMobile ? "w-full mt-6 z-30" : "w-1/2"
               } relative pointer-events-none`}
             >
-              <div className="relative hero-img">
+              <div className="relative hero-img w-[700px]">
                 <div
                   className={`relative z-20 transform ${
                     isMobile
