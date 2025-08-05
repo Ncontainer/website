@@ -11,22 +11,25 @@ export default function ModularContainerComp() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section - Stack vertically on mobile, side by side on larger screens */}
-      <div className="flex sm:py-6 w-[90%] m-auto flex-col ">
-        {/* Left side - Text content */}
-        <div className="bg-white p-4 lg:p-8">          <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black mb-4">
-            MODULAR CONTAINER
-          </h1>
-        </div>
-        <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3  mb-4 sm:mb-0">
-          <p>
-            NCON's modular containers are designed to meet your diverse needs
-            providing reliable, versatile and cost-effective applications for a
-            wide range of applications. Whether creating portable offices,
-            security cabins, or portable toilets, these containers ensure that
-            the space is functional and secure from installation to use.
-          </p>
-        </div>
-      </div>
+     <div className="flex sm:py-6 w-[90%] m-auto flex-col items-center">
+  {/* Title Section */}
+  <div className="bg-white p-4 lg:p-8 w-full flex flex-col items-center">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black mb-4">
+      MODULAR CONTAINER
+    </h1>
+  </div>
+
+  {/* Paragraph Section */}
+  <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3 mb-4 sm:mb-0 text-center max-w-3xl">
+    <p>
+      NCON's modular containers are designed to meet your diverse needs
+      providing reliable, versatile and cost-effective applications for a
+      wide range of applications. Whether creating portable offices,
+      security cabins, or portable toilets, these containers ensure that
+      the space is functional and secure from installation to use.
+    </p>
+  </div>
+</div>
 
       {/* Full width container image for bottom section */}
       <div className="w-full h-64 md:h-96 lg:h-[450px] overflow-hidden">

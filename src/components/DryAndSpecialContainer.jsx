@@ -21,18 +21,18 @@ export default function DryAndSpecialContainer() {
         />
         <div className="absolute inset-0 bg-black opacity-50" />
 
-        <div className="relative container mx-auto px-4 h-full flex flex-col justify-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            DRY & SPECIAL <br className="md:hidden" />CONTAINERS
-          </h1>
-          <p className="text-white text-sm md:text-base max-w-2xl mt-4">
-            Move any cargo with confidence using NCON's extensive fleet of DRY and Special Containers.
-            Containers are the cornerstone of global shipping, offering a secure, standardized way to
-            transport a vast array of cargo. At NCON, we recognize that no two shipments are exactly alike.
-            That's why we provide a comprehensive range of DRY and Special Containers, ensuring you
-            have the perfect solution for any cargo, regardless of size, shape, or specific needs.
-          </p>
-        </div>
+       <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-center">
+  <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2 text-center">
+    DRY & SPECIAL <br className="md:hidden" />CONTAINERS
+  </h1>
+  <p className="text-white text-center md:text-base max-w-2xl mt-4">
+    Move  cargo with confidence using NCON's extensive fleet of DRY and Special Containers.
+    Containers are the cornerstone of global shipping, offering a secure, standardized way to
+    transport a vast array of cargo. At NCON, we recognize that no two shipments are exactly alike.
+    That's why we provide a comprehensive range of DRY and Special Containers, ensuring you
+    have the perfect solution for any cargo, regardless of size, shape, or specific needs.
+  </p>
+</div>
       </div>
 
       {/* Main Content Section */}

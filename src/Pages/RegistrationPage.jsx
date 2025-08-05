@@ -277,7 +277,7 @@ registrationData.mobileNumber = formData.mobileNumber.trim();
             Welcome to
           </p>
           <div className="w-full border-b-4 border-orange-400 pb-2 mt-1">
-            <h1 className="text-center text-xl md:text-2xl leading-normal font-saira font-normal mx-auto">
+            <h1 className="text-center text-xl md:text-2xl leading-normal font-saira font-normal mx-auto " style={{ textShadow: '1px 1px 0 #FF8901' }}>
               NCON Containers
             </h1>
           </div>
@@ -346,95 +346,135 @@ registrationData.mobileNumber = formData.mobileNumber.trim();
         )}
 
         {/* Registration Form */}
-        {otpData.isOtpVerified && (
-          <form className="w-full max-w-xl space-y-4 mt-6" onSubmit={handleContinue}>
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="First Name"
-                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-                value={formData.firstName}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-                value={formData.lastName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="email"
-                placeholder="Email ID"
-                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-                value={formData.emailId}
-                readOnly // Email is now verified and read-only
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-            <input
-              type="text"
-              placeholder="Mobile Number"
-              className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-              value={formData.mobileNumber}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              placeholder="Company Name"
-              className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-              value={formData.companyName}
-              onChange={handleChange}
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <select
-                name="country"
-                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
-                value={formData.country}
-                onChange={e => setFormData(prev => ({ ...prev, country: e.target.value, state: '' }))}
-              >
-                <option value="">Select Country</option>
-                {countries.map((country) => (
-                  <option key={country.id} value={country.id}>{country.name}</option>
-                ))}
-              </select>
+{otpData.isOtpVerified && (
+  <form className="w-full max-w-xl space-y-6 mt-6" onSubmit={handleContinue}>
+    
+    {/* First & Last Name */}
+    <div className="grid grid-cols-2 gap-4">
+      <div className="flex flex-col">
+        <label className="mb-1 text-gray-700 text-sm font-medium">First Name</label>
+        <input
+          type="text"
+          placeholder="First Name"
+          className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="flex flex-col">
+        <label className="mb-1 text-gray-700 text-sm font-medium">Last Name</label>
+        <input
+          type="text"
+          placeholder="Last Name"
+          className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+      </div>
+    </div>
 
-              <select
-                name="state"
-                className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
-                value={formData.state}
-                onChange={e => setFormData(prev => ({ ...prev, state: e.target.value }))}
-                //disabled={!formData.country || !states.length}
-              >
-                <option value="">Select State</option>
-                {states.map((state) => (
-                  <option key={state.id} value={state.id}>{state.name}</option>
-                ))}
-              </select>
-            </div>
-            <textarea
-              placeholder="Enter Address"
-              rows="3"
-              className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
-              value={formData.address}
-              onChange={handleChange}
-            />
-            <button
-              type="submit"
-              className="w-full bg-amber-500 text-white py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300"
-            >
-              Continue
-            </button>
-          </form>
-        )}
+    {/* Email & Password */}
+    <div className="grid grid-cols-2 gap-4">
+      <div className="flex flex-col">
+        <label className="mb-1 text-gray-700 text-sm font-medium">Email ID</label>
+        <input
+          type="email"
+          placeholder="Email ID"
+          className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+          value={formData.emailId}
+          readOnly // Email is now verified and read-only
+        />
+      </div>
+      <div className="flex flex-col">
+        <label className="mb-1 text-gray-700 text-sm font-medium">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+          value={formData.password}
+          onChange={handleChange}
+        />
+      </div>
+    </div>
+
+    {/* Mobile Number */}
+    <div className="flex flex-col">
+      <label className="mb-1 text-gray-700 text-sm font-medium">Mobile Number</label>
+      <input
+        type="text"
+        placeholder="Mobile Number"
+        className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+        value={formData.mobileNumber}
+        onChange={handleChange}
+      />
+    </div>
+
+    {/* Company Name */}
+    <div className="flex flex-col">
+      <label className="mb-1 text-gray-700 text-sm font-medium">Company Name</label>
+      <input
+        type="text"
+        placeholder="Company Name"
+        className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+        value={formData.companyName}
+        onChange={handleChange}
+      />
+    </div>
+
+    {/* Country & State */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="flex flex-col">
+        <label className="mb-1 text-gray-700 text-sm font-medium">Select Country</label>
+        <select
+          name="country"
+          className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+          value={formData.country}
+          onChange={e => setFormData(prev => ({ ...prev, country: e.target.value, state: '' }))}
+        >
+          <option value="">Select Country</option>
+          {countries.map((country) => (
+            <option key={country.id} value={country.id}>{country.name}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="flex flex-col">
+        <label className="mb-1 text-gray-700 text-sm font-medium">Select State</label>
+        <select
+          name="state"
+          className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+          value={formData.state}
+          onChange={e => setFormData(prev => ({ ...prev, state: e.target.value }))}
+        >
+          <option value="">Select State</option>
+          {states.map((state) => (
+            <option key={state.id} value={state.id}>{state.name}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    {/* Address */}
+    <div className="flex flex-col">
+      <label className="mb-1 text-gray-700 text-sm font-medium">Enter Address</label>
+      <textarea
+        placeholder="Enter Address"
+        rows="3"
+        className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
+        value={formData.address}
+        onChange={handleChange}
+      />
+    </div>
+
+    {/* Submit */}
+    <button
+      type="submit"
+      className="w-full bg-amber-500 text-white py-3 rounded-full font-semibold hover:bg-amber-400 transition duration-300"
+    >
+      Continue
+    </button>
+  </form>
+)}
       </div>
 
       {/* Pop-up Modal for Success/Error */}

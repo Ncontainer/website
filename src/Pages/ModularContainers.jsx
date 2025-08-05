@@ -5,12 +5,14 @@ import WhyUs from "../components/WhyUs"
 
 
 import React from "react";
+import WhyUsModular from "../components/WhyUsModular";
 
 const ModularContainers = () => {
   return (
     <>
       <ModularContainerComp />
-      <WhyUs/>
+      {/* <WhyUs/> */}
+      <WhyUsModular/>
       <OurOptions />
       <OurExperties/>
     </>

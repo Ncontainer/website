@@ -26,23 +26,26 @@ const About = () => {
 
         {/* Content Section */}
         <div className="w-[94%] m-auto flex flex-col sm:flex-row justify-between gap-6 px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-10 bg-white text-black">
-          <div className="sm:max-w-[30%]">
-            <p className="text-orange-500 uppercase text-base sm:text-lg font-semibold tracking-wide mb-2">
-              About Us
-            </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 w-full">
-            NCON: Container as a <br className="hidden sm:block" /> Solution
+          <div className="sm:max-w-[50%]">
+            <p className="text-orange-500 uppercase text-lg sm:text-2xl  tracking-wide mb-2">
+  About Us
+</p>
+            <h2 className="text-2xl sm:text-3xl md:text-7xl mb-4 sm:mb-6 w-full">
+          NCON: Container as a <br className="hidden sm:block" /> Solution
         </h2>
           </div>
-          <div className="text-gray-500 text-justify text-sm sm:text-base md:text-base sm:max-w-[65%]" style={{ fontFamily: 'Roboto' }}>
-            Containerization is an industry that has rapidly evolved since its inception. Constant
-            fluctuations and technological advancements in global supply trade has underscored the need
-            to redefine container solutions. NCON is born out of a growing need to use technology and
-            solutions to increase operational efficiency and enhance sustainability while creating an
-            enriching workspace to reimagine the global logistics’ landscape. NCON is part of the
-            Saksham Group of Companies, amongst the largest conglomerates in logistics spanning project
-            logistics, chemical transportation, container trading, custom broking, and IT solutions.
-          </div>
+        <div 
+  className="text-gray-500 text-justify text-sm sm:text-base md:text-base max-w-[800px] mx-auto px-4" 
+  style={{ fontFamily: 'Roboto' }}
+>
+  Containerization is an industry that has rapidly evolved since its inception. Constant
+  fluctuations and technological advancements in global supply trade has underscored the need
+  to redefine container solutions. NCON is born out of a growing need to use technology and
+  solutions to increase operational efficiency and enhance sustainability while creating an
+  enriching workspace to reimagine the global logistics’ landscape. NCON is part of the
+  Saksham Group of Companies, amongst the largest conglomerates in logistics spanning project
+  logistics, chemical transportation, container trading, custom broking, and IT solutions.
+</div>
         </div>
 
         {/* Our Vision Section */}
@@ -59,7 +62,7 @@ const About = () => {
   className="relative z-10 text-center max-w-3xl mx-auto px-4 py-6 rounded-md"
  
 >
-  <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold inline-block mb-4">
+  <h3 className="bg-white/20 px-10 py-3  text-white text-xl sm:text-2xl md:text-3xl rounded-md font-semibold  inline-block mb-4">
     Our Vision
   </h3>
   <p className="text-sm sm:text-base md:text-lg text-white">
@@ -121,7 +124,7 @@ const About = () => {
 
             {/* Right Title */}
             <div className="order-1 md:order-2 flex justify-center items-center">
-              <h3 className="bg-black text-white px-10 py-4 text-xl sm:text-2xl font-semibold">
+              <h3 className="bg-black text-white px-10 py-4 text-xl sm:text-2xl md:text-3xl font-semibold ">
                 Our Mission
               </h3>
             </div>
@@ -141,7 +144,7 @@ const About = () => {
           <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
             {/* Title */}
             <div className="flex justify-center">
-              <h3 className="bg-white/20 text-white px-10 py-3 text-xl sm:text-2xl rounded-md font-semibold">
+              <h3 className="bg-white/20 text-white px-10 py-3 text-xl sm:text-2xl md:text-3xl rounded-md font-semibold">
                 Our Values
               </h3>
             </div>

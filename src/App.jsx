@@ -24,6 +24,7 @@ import Footer from "./components/Footer";
 import OurProducts from "./Pages/OurProducts";
 import ResetPasswordPage from './components/ResetPasswordPage';
 
+
 // function App() {
 //   return (
 //     <Home />
@@ -67,6 +68,7 @@ function App() {
         <Route path="/trade" element={<TradeForm />} />
         
         <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+        
 
         </Routes>
 

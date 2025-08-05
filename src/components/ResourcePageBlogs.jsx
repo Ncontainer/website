@@ -84,7 +84,6 @@ const Blog = () => {
   return (
     <div className="w-[90%] mx-auto py-4 sm:py-16 mt-6">
     
-      
       {/* Blog Posts Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 w-full md:w-[90%] mx-auto">
         {blogPosts.map((post) => (
@@ -95,8 +94,9 @@ const Blog = () => {
                 alt={post.title}
                 className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
               />
-            </div>            <div className="p-3 md:p-6">
-              <h3 className="text-sm md:text-xl font-bold mb-2 md:mb-4 line-clamp-2 hover:text-secondary transition-colors cursor-pointer">
+            </div>
+            <div className="p-3 md:p-6">
+              <h3 className="text-sm md:text-xl font-normal mb-2 md:mb-4 line-clamp-2 hover:text-secondary transition-colors cursor-pointer">
                 {post.title}
               </h3>
               <div className="flex items-center text-xs md:text-sm text-gray-600">
@@ -108,7 +108,6 @@ const Blog = () => {
           </div>
         ))}
       </div>
-      
   
     </div>
   );

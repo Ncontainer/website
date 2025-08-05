@@ -35,7 +35,7 @@ function ForgotPasswordPage() {
         <div className="w-full mb-8">
           <p className="text-center text-[#FF8901] font-medium text-sm">Welcome to</p>
           <div className="w-full border-b-4 border-orange-400 pb-2 mt-1">
-            <h1 className="text-center text-2xl font-normal">NCON Containers</h1>
+            <h1 className="text-center text-2xl font-normal" style={{ textShadow: '1px 1px 0 #FF8901' }}>NCON Containers</h1>
           </div>
         </div>
 

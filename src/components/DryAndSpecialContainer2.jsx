@@ -14,27 +14,27 @@ export default function DryAndSpecialContainer() {
   return (
     <div className="flex flex-col w-full bg-white">
       {/* Hero Section */}
-      <div className="flex py-6 w-[90%] m-auto flex-col">
-        {/* Left side - Text content */}
-        <div className="bg-white  p-2 md:p-4 lg:p-8 md:w-full flex flex-col justify-center">         
-           <h1 className="text-2xl sm:text-3xl md:text-4xl  text-black mb-4 text-center">
-            DRY & SPECIAL CONTAINERS
-          </h1>
-        </div>
-        <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3">
-          <p>
-            Move any cargo with confidence using NCON's extensive fleet of DRY
-            and Special Containers. Containers are the cornerstone of global
-            shipping, offering a secure, standardized way to transport a vast
-            array of cargo. At NCON, we recognize that no two shipments are
-            exactly alike. That's why we provide a comprehensive range of DRY
-            and Special Containers, ensuring you have the perfect solution for
-            any cargo, regardless of size, shape, or specific needs.
-          </p>
-        
-        </div>
-      </div>
+     <div className="flex py-6 w-[90%] m-auto flex-col items-center">
+  {/* Left side - Text content */}
+  <div className="bg-white p-2 md:p-4 lg:p-8 md:w-full flex flex-col justify-center items-center">         
+    <h1 className="text-2xl sm:text-3xl md:text-4xl text-black mb-4 text-center">
+      DRY & SPECIAL CONTAINERS
+    </h1>
+  </div>
 
+  {/* Paragraph section */}
+  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 text-center max-w-3xl">
+    <p>
+      Move any cargo with confidence using NCON's extensive fleet of DRY
+      and Special Containers. Containers are the cornerstone of global
+      shipping, offering a secure, standardized way to transport a vast
+      array of cargo. At NCON, we recognize that no two shipments are
+      exactly alike. That's why we provide a comprehensive range of DRY
+      and Special Containers, ensuring you have the perfect solution for
+      any cargo, regardless of size, shape, or specific needs.
+    </p>
+  </div>
+</div>
       {/* Full width container image for bottom section */}
       <div className="w-full h-64 md:h-96 lg:h-[450px] overflow-hidden">
         <img
@@ -73,7 +73,7 @@ export default function DryAndSpecialContainer() {
         {/* Content based on active tab */}
         {activeTab === "dry" && (
           <div className="flex flex-col md:flex-row gap-8">            <div className="w-full md:w-1/2">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
                 Dry Van Containers
               </h2>
 
@@ -166,7 +166,7 @@ export default function DryAndSpecialContainer() {
 
         {activeTab === "special" && (
           <div className="flex flex-col md:flex-row gap-8">            <div className="w-full md:w-1/2">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
                 Special Containers
               </h2>
 

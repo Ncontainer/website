@@ -81,8 +81,8 @@ const IndustriesSection = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start mb-8 mx-8">
         <div className="mb-6 md:mb-0 md:w-1/3">
-          <h3 className="text-orange-500 uppercase font-medium text-sm mb-2">OUR EXPERTISE</h3>
-          <h2 className="text-3xl md:text-4xl">Industries we Cater to</h2>
+          <h3 className="text-orange-500 uppercase  md:text-2xl text-sm mb-2">OUR EXPERTISE</h3>
+          <h2 className="text-3xl md:text-7xl">Industries we Cater to</h2>
         </div>
         <div className="md:w-1/2">
           <p className="text-gray-600 text-sm">

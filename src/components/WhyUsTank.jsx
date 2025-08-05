@@ -39,8 +39,8 @@ export default function WhyUsTank() {
     <div className="w-full bg-white pb-6 sm:py-16 px-4">
       <div className="container mx-auto">
         {/* Section Header */}        <div className="text-center mb-12">
-          <p className="text-orange-500 font-medium mb-2">Why Us?</p>
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">Benefits of Choosing ARCON for Highly Corrosive Tanks</h2>
+          <p className="text-orange-500 text-[20px] mb-2">Why Us?</p>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-6xl">Benefits of Choosing NCON for Highly Corrosive Tanks</h2>
         </div>
 
         {/* Benefits Grid */}

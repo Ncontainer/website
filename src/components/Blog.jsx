@@ -10,21 +10,21 @@ const Blog = () => {
   const blogPosts = [
     {
       id: 1,
-      title: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
+      description: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
       image: blogImage1,
       author: 'Neon Group',
       date: '01 Jan 025',
     },
     {
       id: 2,
-      title: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
+      description: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
       image: blogImage2,
       author: 'Neon Group',
       date: '01 Jan 025',
     },
     {
       id: 3,
-      title: 'Why CSC Standards Matter: A Complete Guide for Safe Container Transport',
+      description: 'Why CSC Standards Matter: A Complete Guide for Safe Container Transport',
       image: blogImage3,
       author: 'Neon Group',
       date: '01 Jan 025',
@@ -32,7 +32,7 @@ const Blog = () => {
   ];
 
   return (
-    <div className="w-[90%] mx-auto py-16 mt-6">
+    <div className="w-[90%] mx-auto py-16 mt-6" style={{ fontFamily: 'Saira, sans-serif' }}>
       {/* Blog Header */}
       <div className="text-center mb-12">
         <p className="text-secondary text-xl uppercase mb-2">BLOGS</p>
@@ -51,13 +51,16 @@ const Blog = () => {
             <div className="rounded-lg h-56 md:h-56 lg:h-64 overflow-hidden">
               <img 
                 src={post.image} 
-                alt={post.title}
+                alt={post.description}
                 className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
               />
             </div>
             <div className="p-3 md:p-6">
-              <p className="text-sm md:text-base font-normal leading-relaxed mb-2 md:mb-4 line-clamp-2 hover:text-secondary transition-colors cursor-pointer">
-                {post.title}
+              <p 
+                className="text-sm md:text-base font-normal leading-relaxed mb-2 md:mb-4 line-clamp-2 text-gray-800"
+                style={{ fontWeight: 400 }}
+              >
+                {post.description}
               </p>
               <div className="flex items-center text-xs md:text-sm text-gray-600">
                 <span className="mr-1 md:mr-2">By: {post.author}</span>

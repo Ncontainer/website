@@ -10,34 +10,37 @@ export default function TankComp() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section - Stack vertically on mobile, side by side on larger screens */}
-      <div className="flex sm:py-6 w-[90%] m-auto flex-col ">
-        {/* Left side - Text content */}        <div className="bg-white p-4 lg:p-8 ">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black mb-4">
-            LIQUID TRANSPORT SOLUTIONS
-          </h1>
-        </div>
-        <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 leading-relaxed mb-4 sm:mb-0">
-          <p>
-            NCON, a premier ISO tank container supplier, specializes in
-            providing tanks on lease for bulk and hazardous chemicals. Our
-            flexible lease terms cater to your needs, offering ISO tank
-            containers of various capacities for liquids, from food to corrosive
-            acids.
-          </p>
-          <p>
-            As a one-stop solution, we provide ISO tank containers for rent with
-            options for tank types, purposes, durations, and terms. Safety is
-            our priority; we offer company-owned modern ISO tank containers for
-            secure storage at your facilities or our warehouse.
-          </p>
-          <p>
-            Securely store and transport your most challenging chemicals with
-            ARCON's industry-leading highly corrosive tank solutions, including
-            the renowned T14 and T50 ISO tank containers designed to handle
-            aggressive acids and bases.
-          </p>
-        </div>
-      </div>
+     <div className="flex sm:py-6 w-[90%] m-auto flex-col items-center">
+  {/* Left side - Text content */}
+  <div className="bg-white p-4 lg:p-8 w-full flex flex-col items-center">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black mb-4">
+      LIQUID TRANSPORT SOLUTIONS
+    </h1>
+  </div>
+
+  {/* Paragraph Section */}
+  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 leading-relaxed mb-4 sm:mb-0 text-center max-w-3xl">
+    <p>
+      NCON, a premier ISO tank container supplier, specializes in
+      providing tanks on lease for bulk and hazardous chemicals. Our
+      flexible lease terms cater to your needs, offering ISO tank
+      containers of various capacities for liquids, from food to corrosive
+      acids.
+    </p>
+    <p>
+      As a one-stop solution, we provide ISO tank containers for rent with
+      options for tank types, purposes, durations, and terms. Safety is
+      our priority; we offer company-owned modern ISO tank containers for
+      secure storage at your facilities or our warehouse.
+    </p>
+    <p>
+      Securely store and transport your most challenging chemicals with
+      ARCON's industry-leading highly corrosive tank solutions, including
+      the renowned T14 and T50 ISO tank containers designed to handle
+      aggressive acids and bases.
+    </p>
+  </div>
+</div>
 
       {/* Full width container image for bottom section */}
       <div className="w-full h-64 md:h-96 lg:h-[450px] overflow-hidden">
@@ -63,13 +66,13 @@ export default function TankComp() {
               various transport modes.
             </p>
 
-            <h3 className="text-base sm:text-lg mb-4 font-medium">Key Features</h3>
+            <h3 className="text-base sm:text-lg mb-4 font-bold">Key Features</h3>
 
             <ul className="space-y-3">
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Large Capacity:</span> Up to 26,000 liters
+                  <span className="font-bold">Large Capacity:</span> Up to 26,000 liters
                   for bulk transport.
                 </div>
               </li>
@@ -77,7 +80,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Multi-modal Compatibility:</span> Seamless
+                  <span className="font-bold">Multi-modal Compatibility:</span> Seamless
                   transport by roads, sea, and rail.
                 </div>
               </li>
@@ -85,7 +88,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Certified Safety:</span> ISO-compliant for
+                  <span className="font-bold">Certified Safety:</span> ISO-compliant for
                   hazardous and non-hazardous materials.
                 </div>
               </li>
@@ -93,7 +96,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Customizable Options:</span> Available for
+                  <span className="font-bold">Customizable Options:</span> Available for
                   hire with tailored modifications.
                 </div>
               </li>
@@ -138,13 +141,13 @@ export default function TankComp() {
               smooth logistics across various modes of transportation.
             </p>
 
-            <h3 className="text-base sm:text-lg mb-4 font-medium">Key Features</h3>
+            <h3 className="text-base sm:text-lg mb-4 font-bold">Key Features</h3>
 
             <ul className="space-y-3">
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Chemical Resistance:</span> Specialty
+                  <span className="font-bold">Chemical Resistance:</span> Specialty
                   linings prevent corrosion for durability.
                 </div>
               </li>
@@ -152,7 +155,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Capacity Range:</span> From 9,000 to 27,000
+                  <span className="font-bold">Capacity Range:</span> From 9,000 to 27,000
                   liters for bulk chemical transport.
                 </div>
               </li>
@@ -160,7 +163,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Multi-modal Transport:</span> Ideal to
+                  <span className="font-bold">Multi-modal Transport:</span> Ideal to
                   transport with container ships, road chassis, and rail cars.
                 </div>
               </li>
@@ -168,7 +171,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Certified Safety:</span> Fully
+                  <span className="font-bold">Certified Safety:</span> Fully
                   ISO-compliant for global safety and efficiency.
                 </div>
               </li>
@@ -176,7 +179,7 @@ export default function TankComp() {
               <li className="flex items-start">
                 <div className="h-5 w-5 rounded-full bg-orange-500 flex-shrink-0 mt-1 mr-3"></div>
                 <div>
-                  <span className="font-medium">Wide Applications:</span> Ideal for
+                  <span className="font-bold">Wide Applications:</span> Ideal for
                   petrochemical, pharmaceutical, and mining industries.
                 </div>
               </li>

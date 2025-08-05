@@ -15,7 +15,7 @@ function Resources() {
           <h2 className="text-orange-600  uppercase text-base sm:text-lg tracking-wide">
             BLOGS
           </h2>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl mt-2  leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-6xl mt-2  leading-tight">
             What's Happening <br/>in the Industry
           </h1>
         </div>

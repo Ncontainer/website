@@ -394,8 +394,9 @@ const sendBrochureToEmail = async () => {
 {/* ✅ Email Input Modal when NOT logged in */}
 {showEmailPrompt && (
   <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
-    <div className="bg-white rounded-xl shadow-xl w-[90%] max-w-4xl p-8 flex flex-col md:flex-row items-center gap-6 relative">
+    <div className="bg-white rounded-xl shadow-xl w-[95%] max-w-5xl p-10 relative flex flex-col items-center">
 
+      {/* Close Button */}
       <button
         onClick={() => setShowEmailPrompt(false)}
         className="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl font-bold"
@@ -403,35 +404,50 @@ const sendBrochureToEmail = async () => {
       >
         &times;
       </button>
-      {/* Left Illustration */}
-      <div className="flex-1">
-        <img
-          src={dryImage}
-          alt="Truck Illustration"
-          className="w-full max-w-sm mx-auto"
-        />
+
+      {/* Centered Heading at Top */}
+      <div className="w-full text-center mb-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-black 
+                       [text-shadow:_1px_1px_0_orange,_-1px_-1px_0_orange]">
+          NCON Containers
+        </h2>
+        <div className="h-1 w-96 bg-orange-500 mx-auto mt-3"></div>
       </div>
 
-      {/* Right Form Section */}
-      <div className="flex-1 text-center md:text-left">
-        <h2 className="text-2xl md:text-3xl font-bold text-black mb-2">NCON Containers</h2>
-        <div className="h-1 w-20 bg-orange-500 mx-auto md:mx-0 mb-4"></div>
-        <p className="text-gray-700 mb-6">
-          To download the Brochure, please enter your email ID. The Brochure will be sent to your email.
-        </p>
-        <input
-          type="email"
-          placeholder="Email ID"
-          value={userEmail}
-          onChange={(e) => setUserEmail(e.target.value)}
-          className="w-full border border-gray-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-orange-400"
-        />
-       <button
-  onClick={sendBrochureToEmail}
-  className="px-4 py-2 bg-secondary hover:bg-secondary-dark text-white rounded-md"
->
-  Submit
-</button>
+      {/* Content Row */}
+      <div className="flex flex-col md:flex-row items-center gap-8 w-full">
+        
+        {/* Left Illustration */}
+        <div className="flex-1 flex justify-center">
+          <img
+            src={dryImage}
+            alt="Truck Illustration"
+            className="w-full max-w-md"
+          />
+        </div>
+
+        {/* Right Form Section */}
+        <div className="flex-1 text-center md:text-left">
+          <p className="text-gray-700 mb-8">
+            To download the Brochure, please enter your email ID. The Brochure will be sent to your email.
+          </p>
+
+          <p className="mb-2 font-medium">Email ID</p>
+          <input
+            type="email"
+            placeholder="Email ID"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+            className="w-full border border-gray-300 rounded-md p-4 mb-8 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          
+          <button
+            onClick={sendBrochureToEmail}
+            className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-medium transition-colors"
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   </div>
