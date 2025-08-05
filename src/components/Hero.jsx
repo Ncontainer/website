@@ -46,9 +46,9 @@ export default function Hero() {
   return (
     <div className="relative w-full overflow-hidden">
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col w-full bg-transparent">
+      <div className="relative z-20 flex flex-col w-full h-[400px] lg:h-[500px] md:h-[450px] bg-transparent">
         <div
-          className="w-full px-4 sm:px-6 md:px-8 lg:px-16 pt-6 sm:pt-10 md:pt-12 lg:pt-14"
+          className="w-full px-4 sm:px-6 md:px-8 lg:px-16 pt-6 sm:pt-10 md:pt-12 lg:pb-0 lg:pt-14"
         >
           <div
             className={`flex ${
@@ -60,8 +60,8 @@ export default function Hero() {
               className={`${
                 isMobile
                   ? "w-full text-center items-center flex flex-col mb-8"
-                  : "w-1/2 pr-8 text-left"
-              }`}
+                  : "w-[500px]  pr-8 text-left"
+              } md:w-[700px]`}
             >
               <div className="mb-2 md:mb-3 text-secondary">
                 <span className="text-sm sm:text-base md:text-lg font-medium text-orange-600">
@@ -73,7 +73,7 @@ export default function Hero() {
                   isMobile
                     ? "text-2xl text-center"
                     : "text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-left"
-                } text-black mb-4 font-saira leading-tight`}
+                } text-black md:text-2xl lg:text-4xl mb-4 font-saira leading-tight`}
               >
                 Get Your Load <br />
                 to market Faster
@@ -95,12 +95,12 @@ export default function Hero() {
             {/* Image Section */}
             <div
               className={`${
-                isMobile ? "w-full mt-6 z-30" : "w-1/2"
-              } relative pointer-events-none`}
+                isMobile ? "w-full mt-6 z-30" : "w-[800px] "
+              } lg:absolute relative  right-0 bottom-[-100px] pointer-events-none`}
             >
-              <div className="relative hero-img w-[700px]">
+              <div className="relative hero-img w-full">
                 <div
-                  className={`relative z-20 transform ${
+                  className={`w-full relative z-20 transform ${
                     isMobile
                       ? "scale-[1]"
                       : isMediumScreen
@@ -111,7 +111,7 @@ export default function Hero() {
                   <img
                     src={hero1}
                     alt="Orange shipping container being lifted"
-                    className="w-full h-auto object-contain"
+                    className="w-[70rem] h-auto object-contain"
                   />
                 </div>
               </div>
