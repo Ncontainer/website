@@ -30,7 +30,7 @@ const About = () => {
             <p className="text-orange-500 uppercase text-lg sm:text-2xl  tracking-wide mb-2">
   About Us
 </p>
-            <h2 className="text-2xl sm:text-3xl md:text-7xl mb-4 sm:mb-6 w-full">
+            <h2 className="text-2xl sm:text-3xl md:text-6xl mb-4 sm:mb-6 w-full">
           NCON: Container as a <br className="hidden sm:block" /> Solution
         </h2>
           </div>

@@ -19,7 +19,7 @@ export default function TankComp() {
   </div>
 
   {/* Paragraph Section */}
-  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 leading-relaxed mb-4 sm:mb-0 text-center max-w-3xl">
+  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 leading-relaxed mb-4 sm:mb-0 text-center max-w-7xl">
     <p>
       NCON, a premier ISO tank container supplier, specializes in
       providing tanks on lease for bulk and hazardous chemicals. Our

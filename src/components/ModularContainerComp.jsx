@@ -20,7 +20,7 @@ export default function ModularContainerComp() {
   </div>
 
   {/* Paragraph Section */}
-  <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3 mb-4 sm:mb-0 text-center max-w-3xl">
+  <div className="text-gray-600 mx-8 text-sm md:text-base space-y-3 mb-4 sm:mb-0 text-center max-w-7xl">
     <p>
       NCON's modular containers are designed to meet your diverse needs
       providing reliable, versatile and cost-effective applications for a

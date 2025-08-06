@@ -6,10 +6,12 @@ export default {
   ],  theme: {
     extend: {
       colors: {
-        secondary: '#ff8901',
+        secondary: '#FF8901',
+      },
+      screens: {
+        xl1440: "1440px",
       },
     },
   },
   plugins: [],
-  
 }

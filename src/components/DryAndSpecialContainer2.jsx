@@ -23,7 +23,7 @@ export default function DryAndSpecialContainer() {
   </div>
 
   {/* Paragraph section */}
-  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 text-center max-w-3xl">
+  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 text-center max-w-7xl">
     <p>
       Move any cargo with confidence using NCON's extensive fleet of DRY
       and Special Containers. Containers are the cornerstone of global

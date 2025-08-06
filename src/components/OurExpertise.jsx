@@ -79,18 +79,24 @@ const IndustriesSection = () => {
   return (
     <div className="w-full md:w-[95%] mx-auto pb-4 lg:py-8">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start mb-8 mx-8">
-        <div className="mb-6 md:mb-0 md:w-1/3">
-          <h3 className="text-orange-500 uppercase  md:text-2xl text-sm mb-2">OUR EXPERTISE</h3>
-          <h2 className="text-3xl md:text-7xl">Industries we Cater to</h2>
-        </div>
-        <div className="md:w-1/2">
-          <p className="text-gray-600 text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-      </div>
+     <div className="flex flex-col md:flex-row justify-between items-start mb-8 mx-8">
+  {/* Left section stays untouched */}
+  <div className="mb-6 md:mb-0 md:w-1/3">
+    <h3 className="text-orange-500 uppercase md:text-2xl text-sm mb-2">
+      OUR EXPERTISE
+    </h3>
+    <h2 className="text-3xl md:text-7xl">
+      Industries we Cater to
+    </h2>
+  </div>
+
+  {/* Right section shifted down */}
+  <div className="md:w-1/2 md:mt-[38px]">
+    <p className="text-gray-600 text-sm">
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+    </p>
+  </div>
+</div>
 
       {/* Slider */}
       <div className="relative overflow-hidden px-4">

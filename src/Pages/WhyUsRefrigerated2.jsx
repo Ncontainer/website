@@ -48,7 +48,7 @@ export default function WhyUsRefrigerated2() {
         <div className="text-center mb-12">
           <p className="text-orange-500 md:text-[20px] mb-2">Why Us?</p>
           <h2 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl">
-            Why Choose our Coil-tainers?
+            Why Choose our Refrigerated Containers?
           </h2>
         </div>
 

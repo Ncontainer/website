@@ -18,7 +18,7 @@ export default function RefrigeratedContainerComp() {
   </div>
 
   {/* Paragraph Section */}
-  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 mb-4 sm:mb-0 text-center max-w-3xl">
+  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 mb-4 sm:mb-0 text-center max-w-7xl">
     <p>
       NCON, a leader in intermodal container solutions, now offers
       refrigerated containers for the secure and efficient transport of

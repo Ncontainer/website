@@ -18,7 +18,7 @@ export default function CoilContainerComp() {
   </div>
 
   {/* Paragraph Section */}
-  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 mb-4 sm:mb-0 text-center max-w-3xl">
+  <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 mb-4 sm:mb-0 text-center max-w-7xl">
     <p>
       Ensure safety and security for your steel and aluminum coils while transporting with NCON's coils containers. These specialized coil containers are designed to prevent accidents and damage to coils and ensure stability, with secure lashing and protection against shifting during transit. This ensures that both types of coils reach their destinations intact and undamaged.
     </p>

@@ -158,37 +158,83 @@ const sendBrochureToEmail = async () => {
     <header className={`bg-white shadow-sm w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "scrolled-header" : ""}`}>
       <div className="w-[90%] mx-auto">
         {/* Top bar */}
-        <div className="hidden md:flex justify-between items-center px-6 py-2 text-gray-700 border-b">
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-1">
-              <span className="text-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  {/* <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> */}
-                   <path strokeLinecap="round" strokeLinejoin="round"  strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V6a2 2 0 00-2-2H3a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                 
-                </svg>
-              </span>
-              {/* <span className="text-sm font-sans">nconsales2025@gmail.com</span> */}
-              <span className="text-sm font-sans">794 Mcallister St San Francisco, 94102</span> 
-            </div>
-            <div className="flex items-center space-x-1">
-              <span className="text-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </span>
-              <span className="text-sm font-sans">+91 9820420924</span>
-            </div>
-          </div>
-          <div className="flex space-x-3">
-            <Link to="#" className="text-gray-500 hover:text-secondary transition-colors"><Facebook size={16} /></Link>
-            <Link to="#" className="text-gray-500 hover:text-secondary transition-colors"><Twitter size={16} /></Link>
-            <Link to="#" className="text-gray-500 hover:text-secondary transition-colors"><Instagram size={16} /></Link>
-            <Link to="#" className="text-gray-500 hover:text-secondary transition-colors"><Linkedin size={16} /></Link>
-            <Link to="#" className="text-gray-500 hover:text-secondary transition-colors"><Youtube size={16} /></Link>
-          </div>
-        </div>
+       <div className="hidden md:flex justify-between items-center px-6 py-2 text-gray-700 border-b">
+  <div className="flex items-center space-x-6">
+    {/* Mail */}
+    <div className="flex items-center space-x-1">
+      <span className="text-secondary">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          className="h-4 w-4 relative top-[2px]" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round"  
+            strokeWidth={2} 
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V6a2 2 0 00-2-2H3a2 2 0 00-2 2v8a2 2 0 002 2z"
+          />
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" 
+          />
+        </svg>
+      </span>
+      <span className="text-sm font-sans">containers@shippingcompany.com</span> 
+    </div>
+
+    {/* Phone */}
+    <div className="flex items-center space-x-1">
+      <span className="text-secondary">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          className="h-4 w-4" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" 
+          />
+        </svg>
+      </span>
+      <span className="text-sm font-sans">+91 9820420924</span>
+    </div>
+  </div>
+
+  {/* Social Icons */}
+  <div className="flex space-x-3">
+    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+      <Facebook size={16} />
+    </Link>
+    {/* Twitter X logo */}
+    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 1200 1227" 
+        className="h-4 w-4 fill-current"
+      >
+        <path d="M714.163 519.284L1160.89 0H1055.03L674.575 441.568L363.707 0H0L466.675 681.313L0 1226.3H105.86L509.05 762.98L842.172 1226.3H1200L714.163 519.284ZM560.087 699.945L514.03 635.661L144.962 79.495H308.35L593.632 486.715L639.689 550.999L1056.01 1146.8H892.624L560.087 699.945Z"/>
+      </svg>
+    </Link>
+    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+      <Instagram size={16} />
+    </Link>
+    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+      <Linkedin size={16} />
+    </Link>
+    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+      <Youtube size={16} />
+    </Link>
+  </div>
+</div>
 
         {/* Main Navigation */}
         <div className="flex items-center justify-between px-6 py-4 gap-6 md:gap-10">

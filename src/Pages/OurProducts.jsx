@@ -55,8 +55,8 @@ export default function OurProducts() {
       <h1 className="text-[40px] leading-[40px] font-normal text-center mb-4 uppercase">
         Our Products
       </h1>
-      <p className="text-center text-gray-600 max-w-2xl mx-auto mb-10">
-        At NCON, we prioritize the safety and security of your steel and aluminum coils during transportation. Our containers are designed to prevent damage and ensure stability throughout the journey.
+      <p className="text-center text-gray-600 max-w-7xl mx-auto mb-10">
+       At NCON, we prioritize the safety and security of your steel and aluminum coils during transportation. Our Coil Containers are expertly designed to safeguard your cargo against damage and accidents. These specialized containers feature secure lashing systems to prevent shifting, ensuring stability throughout the journey
       </p>
 
       {products.map((product, index) => (
