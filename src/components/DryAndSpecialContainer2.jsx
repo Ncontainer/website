@@ -17,7 +17,7 @@ export default function DryAndSpecialContainer() {
      <div className="flex py-6 w-[90%] m-auto flex-col items-center">
   {/* Left side - Text content */}
   <div className="bg-white p-2 md:p-4 lg:p-8 md:w-full flex flex-col justify-center items-center">         
-    <h1 className="text-2xl sm:text-3xl md:text-4xl text-black mb-4 text-center">
+    <h1 className="text-4xl sm:text-3xl md:text-4xl text-black mb-4 text-center">
       DRY & SPECIAL CONTAINERS
     </h1>
   </div>
@@ -73,7 +73,7 @@ export default function DryAndSpecialContainer() {
         {/* Content based on active tab */}
         {activeTab === "dry" && (
           <div className="flex flex-col md:flex-row gap-8">            <div className="w-full md:w-1/2">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
+              <h2 className="text-4xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
                 Dry Van Containers
               </h2>
 
@@ -166,7 +166,7 @@ export default function DryAndSpecialContainer() {
 
         {activeTab === "special" && (
           <div className="flex flex-col md:flex-row gap-8">            <div className="w-full md:w-1/2">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
+              <h2 className="text-4xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
                 Special Containers
               </h2>
 

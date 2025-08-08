@@ -85,7 +85,7 @@ const IndustriesSection = () => {
     <h3 className="text-orange-500 uppercase md:text-2xl text-sm mb-2">
       OUR EXPERTISE
     </h3>
-    <h2 className="text-3xl md:text-7xl">
+    <h2 className="text-4xl md:text-7xl">
       Industries we Cater to
     </h2>
   </div>

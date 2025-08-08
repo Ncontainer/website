@@ -40,7 +40,7 @@ export default function WhyUsCoil() {
       <div className="container mx-auto">
         {/* Section Header */}        <div className="text-center mb-12">
           <p className="text-orange-500 md:text-[20px] mb-2">Why Us?</p>
-          <h2 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl ">Why Choose our Coil-tainers?</h2>
+          <h2 className="text-3xl sm:text-2xl md:text-5xl lg:text-6xl ">Why Choose our Coil-tainers?</h2>
         </div>
 
         {/* Benefits Grid */}

@@ -14,7 +14,7 @@ export default function ModularContainerComp() {
      <div className="flex sm:py-6 w-[90%] m-auto flex-col items-center">
   {/* Title Section */}
   <div className="bg-white p-4 lg:p-8 w-full flex flex-col items-center">
-    <h1 className="text-2xl sm:text-3xl md:text-4xl text-center text-black mb-4">
+    <h1 className="text-4xl sm:text-3xl md:text-4xl text-center text-black mb-4">
       MODULAR CONTAINER
     </h1>
   </div>
@@ -44,7 +44,7 @@ export default function ModularContainerComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}          <div className="md:w-1/2 mb-6 md:mb-0 order-1 mt-6 md:mt-0 md:order-none">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               Portable Security Cabin:
             </h2>
             <p>
@@ -115,7 +115,7 @@ export default function ModularContainerComp() {
 
           {/* Right side - Text content */}
           <div className="md:w-1/2">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               PUF Cabin:
             </h2>
             <p>
@@ -165,7 +165,7 @@ export default function ModularContainerComp() {
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
           <div className="md:w-1/2 mb-6 md:mb-0 order-2 mt-6 md:mt-0 md:order-none">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
             Portable Container Toilet:
             </h2>
             <p>
@@ -245,7 +245,7 @@ export default function ModularContainerComp() {
 
           {/* Right side - Text content */}
           <div className="md:w-1/2">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
             Office Cabin:
             </h2>
             <p>
@@ -297,7 +297,7 @@ export default function ModularContainerComp() {
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
           <div className="md:w-1/2 mb-6 md:mb-0 order-2 mt-6 md:mt-0 md:order-none">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
             Prefabricated Cabin:
             </h2>
             <p>

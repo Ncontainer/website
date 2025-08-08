@@ -378,7 +378,11 @@ const sendBrochureToEmail = async () => {
       <div className="pt-3 border-t border-white/20">
         <div className="flex space-x-5 pb-5 justify-center">
           <Link to="#" className="text-white hover:text-white/80"><Facebook size={20} /></Link>
-          <Link to="#" className="text-white hover:text-white/80"><Twitter size={20} /></Link>
+          <Link to="#" className="text-white hover:text-white/80">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" className="h-5 w-5 fill-current">
+    <path d="M714.163 519.284L1160.89 0H1055.03L674.575 441.568L363.707 0H0L466.675 681.313L0 1226.3H105.86L509.05 762.98L842.172 1226.3H1200L714.163 519.284ZM560.087 699.945L514.03 635.661L144.962 79.495H308.35L593.632 486.715L639.689 550.999L1056.01 1146.8H892.624L560.087 699.945Z"/>
+  </svg>
+</Link>
           <Link to="#" className="text-white hover:text-white/80"><Instagram size={20} /></Link>
           <Link to="#" className="text-white hover:text-white/80"><Linkedin size={20} /></Link>
           <Link to="#" className="text-white hover:text-white/80"><Youtube size={20} /></Link>

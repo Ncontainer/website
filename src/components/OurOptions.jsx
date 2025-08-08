@@ -8,7 +8,7 @@ const OurOptions = () => {
   return (
     <div className="pb-8 lg:py-12">
       <div className="w-full px-4 sm:px-6 lg:px-8" style={{ width: '85%', margin: '0 auto' }}>
-        <h2 className="text-2xl sm:text-3xl md:text-6xl text-gray-900 text-center mt-4 sm:mt-0 mb-8">
+        <h2 className="text-4xl sm:text-3xl md:text-6xl text-gray-900 text-center mt-4 sm:mt-0 mb-8">
           Our Options
         </h2>
 
