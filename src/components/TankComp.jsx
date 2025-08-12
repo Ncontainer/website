@@ -192,7 +192,7 @@ export default function TankComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               Speciality Lined Liquid Tanks- Corrosive Chemical
             </h2>
 
@@ -236,7 +236,7 @@ export default function TankComp() {
           </div>
 
           {/* Right side - Text content */}
-          <div className="md:w-1/2">            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
+          <div className="md:w-1/2">            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               Cryogenic / LNG Tanks
             </h2>
 
@@ -258,7 +258,7 @@ export default function TankComp() {
       <div className="w-[95%] m-auto bg-white p-6 md:p-12">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
+          <div className="md:w-1/2 mb-6 md:mb-0 order-2 md:order-none mt-4 md:mt-0">            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3">
               Baffled-lined Liquid Tanks
             </h2>
 

@@ -35,7 +35,7 @@ export default function WhyUsRefrigerated() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <p className="text-orange-500 md:text-[20px] mb-2">Why Us?</p>
-          <h2 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl">
+          <h2 className="text-4xl sm:text-2xl md:text-5xl lg:text-6xl">
             Key Benefits of Refrigerated Containers
           </h2>
         </div>

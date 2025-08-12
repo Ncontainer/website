@@ -141,7 +141,7 @@ export default function RefrigeratedContainerComp() {
 
           {/* Right side - Text content */}
           <div className="md:w-1/2">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3 ">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3 ">
             20ft Reefer Containers
             </h2>
             <p>
@@ -207,7 +207,7 @@ export default function RefrigeratedContainerComp() {
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
           {/* Left side - Text content */}
           <div className="md:w-1/2 mb-6 md:mb-0  order-2 md:order-none mt-6 md:mt-0">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3 ">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black mb-3 ">
             40ft Reefer Containers
             </h2>
             <p>
