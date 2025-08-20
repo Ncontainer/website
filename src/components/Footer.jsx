@@ -147,7 +147,7 @@ export default function Footer() {
         <div className={`flex ${isMobile ? "flex-col space-y-4" : "flex-row justify-between items-center"} text-sm md:text-base`}>
           <div>Copyright © 2025 Company</div>
           <div>
-            All Rights Reserved | <Link to="#">Terms and Conditions</Link> |{" "}
+            All Rights Reserved | <Link to="/terms-conditions">Terms and Conditions</Link> |{" "}
             <Link to="#">Privacy Policy</Link>
           </div>
         </div>

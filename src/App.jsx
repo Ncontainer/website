@@ -23,6 +23,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Footer from "./components/Footer";
 import OurProducts from "./Pages/OurProducts";
 import ResetPasswordPage from './components/ResetPasswordPage';
+import TermsAndConditions from "./Pages/TermsAndConditions";
 
 
 // function App() {
@@ -68,6 +69,7 @@ function App() {
         <Route path="/trade" element={<TradeForm />} />
         
         <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+        <Route path="/terms-conditions" element={<TermsAndConditions/>}></Route>
         
 
         </Routes>
