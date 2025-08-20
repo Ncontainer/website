@@ -148,7 +148,7 @@ export default function Footer() {
           <div>Copyright © 2025 Company</div>
           <div>
             All Rights Reserved | <Link to="/terms-conditions">Terms and Conditions</Link> |{" "}
-            <Link to="#">Privacy Policy</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </div>
         </div>
       </div>

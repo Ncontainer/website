@@ -105,7 +105,10 @@ const TermsAndConditions = () => {
       </div>
       
     </div>
-    
+    <NewsLetter/>
+      <div style={{marginBottom: '70px'}} >
+            
+        </div>
   </div>
   );
 };
