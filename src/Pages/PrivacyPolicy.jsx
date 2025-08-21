@@ -39,21 +39,37 @@ const PrivacyPolicy = () => {
           <h2
             style={{
               fontSize: '1.2rem',
-              fontWeight: 'bold',
+              fontWeight: 'normal',
               color: 'rgb(249 115 22)',
               marginBottom: '10px',
             }}
           >
             1. Information We Collect
           </h2>
-          <p>We collect information to provide and improve our services, and to communicate with you. This may include:</p>
-          <p><strong>a. Personal Information:</strong> Name, email address, phone number, physical address, company details, and transaction/financial data (securely processed).</p>
-          <p><strong>b. Non-Personal Information:</strong> Website usage data (IP address, browser type, OS, referral source, pages viewed, date/time) and cookies/tracking data.</p>
+          <p>
+            We collect information to provide and improve our services, and to communicate with you.
+            This may include:
+          </p>
+          <p>
+            <strong>a. Personal Information:</strong> Name, email address, phone number, physical
+            address, company details, and transaction/financial data (securely processed).
+          </p>
+          <p>
+            <strong>b. Non-Personal Information:</strong> Website usage data (IP address, browser
+            type, OS, referral source, pages viewed, date/time) and cookies/tracking data.
+          </p>
         </div>
 
         {/* Section 2 */}
         <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'rgb(249 115 22)', marginBottom: '10px' }}>
+          <h2
+            style={{
+              fontSize: '1.2rem',
+              fontWeight: 'normal',
+              color: 'rgb(249 115 22)',
+              marginBottom: '10px',
+            }}
+          >
             2. How We Use Your Information
           </h2>
           <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
@@ -69,30 +85,61 @@ const PrivacyPolicy = () => {
 
         {/* Section 3 */}
         <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'rgb(249 115 22)', marginBottom: '10px' }}>
+          <h2
+            style={{
+              fontSize: '1.2rem',
+              fontWeight: 'normal',
+              color: 'rgb(249 115 22)',
+              marginBottom: '10px',
+            }}
+          >
             3. Data Sharing and Disclosure
           </h2>
           <p>We do not sell, rent, or lease your Personal Information. We may share data with:</p>
           <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-            <li><strong>Service Providers:</strong> For payment processing, data analysis, email delivery, etc.</li>
-            <li><strong>Legal Requirements:</strong> If required by law, court, or to protect rights/safety.</li>
-            <li><strong>Business Transfers:</strong> In case of merger, acquisition, or sale of assets.</li>
+            <li>
+              <strong>Service Providers:</strong> For payment processing, data analysis, email
+              delivery, etc.
+            </li>
+            <li>
+              <strong>Legal Requirements:</strong> If required by law, court, or to protect
+              rights/safety.
+            </li>
+            <li>
+              <strong>Business Transfers:</strong> In case of merger, acquisition, or sale of
+              assets.
+            </li>
           </ul>
         </div>
 
         {/* Section 4 */}
         <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'rgb(249 115 22)', marginBottom: '10px' }}>
+          <h2
+            style={{
+              fontSize: '1.2rem',
+              fontWeight: 'normal',
+              color: 'rgb(249 115 22)',
+              marginBottom: '10px',
+            }}
+          >
             4. Data Security
           </h2>
           <p>
-            We use physical, technical, and administrative safeguards to protect your information. However, no transmission over the internet or storage method is 100% secure.
+            We use physical, technical, and administrative safeguards to protect your information.
+            However, no transmission over the internet or storage method is 100% secure.
           </p>
         </div>
 
         {/* Section 5 */}
         <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'rgb(249 115 22)', marginBottom: '10px' }}>
+          <h2
+            style={{
+              fontSize: '1.2rem',
+              fontWeight: 'normal',
+              color: 'rgb(249 115 22)',
+              marginBottom: '10px',
+            }}
+          >
             5. Cookies and Other Tracking Technologies
           </h2>
           <p>We use cookies to:</p>
@@ -101,46 +148,83 @@ const PrivacyPolicy = () => {
             <li>Analyze website traffic and patterns.</li>
             <li>Provide a personalized experience.</li>
           </ul>
-          <p>You can disable cookies via your browser, but some website features may not work properly.</p>
+          <p>
+            You can disable cookies via your browser, but some website features may not work
+            properly.
+          </p>
         </div>
 
         {/* Section 6 */}
         <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'rgb(249 115 22)', marginBottom: '10px' }}>
+          <h2
+            style={{
+              fontSize: '1.2rem',
+              fontWeight: 'normal',
+              color: 'rgb(249 115 22)',
+              marginBottom: '10px',
+            }}
+          >
             6. Your Rights
           </h2>
           <p>
-            You have the right to access, correct, or delete your Personal Information. You may also object to processing or request restriction. To exercise these rights, use the details in our “Contact Us” section.
+            You have the right to access, correct, or delete your Personal Information. You may also
+            object to processing or request restriction. To exercise these rights, use the details
+            in our “Contact Us” section.
           </p>
         </div>
 
         {/* Section 7 */}
         <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'rgb(249 115 22)', marginBottom: '10px' }}>
+          <h2
+            style={{
+              fontSize: '1.2rem',
+              fontWeight: 'normal',
+              color: 'rgb(249 115 22)',
+              marginBottom: '10px',
+            }}
+          >
             7. Third-Party Links
           </h2>
           <p>
-            Our website may contain links to third-party sites. We are not responsible for their privacy practices. Please review their policies.
+            Our website may contain links to third-party sites. We are not responsible for their
+            privacy practices. Please review their policies.
           </p>
         </div>
 
         {/* Section 8 */}
         <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'rgb(249 115 22)', marginBottom: '10px' }}>
+          <h2
+            style={{
+              fontSize: '1.2rem',
+              fontWeight: 'normal',
+              color: 'rgb(249 115 22)',
+              marginBottom: '10px',
+            }}
+          >
             8. Children’s Privacy
           </h2>
           <p>
-            Our services are not intended for children under 13. We do not knowingly collect information from them. If you believe a child has provided us with data, please contact us immediately.
+            Our services are not intended for children under 13. We do not knowingly collect
+            information from them. If you believe a child has provided us with data, please contact
+            us immediately.
           </p>
         </div>
 
         {/* Section 9 */}
         <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'rgb(249 115 22)', marginBottom: '10px' }}>
+          <h2
+            style={{
+              fontSize: '1.2rem',
+              fontWeight: 'normal',
+              color: 'rgb(249 115 22)',
+              marginBottom: '10px',
+            }}
+          >
             9. Changes to This Privacy Policy
           </h2>
           <p>
-            We may update this Privacy Policy from time to time. Changes will be posted here with an updated “Last Updated” date. Please review periodically.
+            We may update this Privacy Policy from time to time. Changes will be posted here with an
+            updated “Last Updated” date. Please review periodically.
           </p>
         </div>
       </div>
