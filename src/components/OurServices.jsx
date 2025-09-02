@@ -3,7 +3,7 @@ import img1 from "../images/ourserviceimg.webp";
 
 const OurServices = () => {
   return (
-    <section className="w-full md:mt-24 bg-gray-50 py-16">
+    <section className="w-full  bg-gray-50 py-16">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="flex flex-col md:flex-row gap-8 mb-16">

@@ -21,7 +21,7 @@ const TermsAndConditions = () => {
         style={{
           fontSize: '0.9rem',
           marginBottom: '50px',
-          maxWidth: '800px',
+          width: '90%',
           textAlign: 'center',
           margin: '0 auto',
         }}
@@ -33,16 +33,17 @@ const TermsAndConditions = () => {
         Customer agrees to be bound by these Terms and Conditions.
       </p>
 
-      {/* Section 1: Definitions */}
+      {/* Content Wrapper */}
       <div
         style={{
-          maxWidth: '800px',
+          width: '90%',
           margin: '0 auto',
           fontFamily: 'sans-serif',
           lineHeight: '1.6',
           color: '#333',
         }}
       >
+        {/* Section 1: Definitions */}
         <div style={{ marginBottom: '20px' }}>
           <h2
             style={{

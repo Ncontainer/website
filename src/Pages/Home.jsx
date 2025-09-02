@@ -18,7 +18,7 @@ const Home = () => {
   <div className="-mt-100">
   <Hero />
 </div>
-      <section id="logistics-overview">
+      <section id="logistics-overview"className=" mb-4">
         <LogisticsOverview />
       </section>
       <section id="our-services">

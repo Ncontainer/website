@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
         style={{
           fontSize: '0.9rem',
           marginBottom: '50px',
-          maxWidth: '800px',
+          width: '90%',
           textAlign: 'center',
           margin: '0 auto',
         }}
@@ -27,7 +27,7 @@ const PrivacyPolicy = () => {
 
       <div
         style={{
-          maxWidth: '800px',
+          width: '90%',
           margin: '0 auto',
           fontFamily: 'sans-serif',
           lineHeight: '1.6',

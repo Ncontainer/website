@@ -107,9 +107,9 @@ export default function RefrigeratedContainerComp() {
                 </div>
               </li>
             </ul>
-                        <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
+                        {/* <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
               Learn More
-            </button>
+            </button> */}
           </div>
 
           {/* Right side - Image */}
@@ -191,9 +191,9 @@ export default function RefrigeratedContainerComp() {
                 </div>
               </li>
             </ul>
-                        <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
+                        {/* <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
               Learn More
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -260,9 +260,9 @@ export default function RefrigeratedContainerComp() {
               </li>
 
             </ul>
-            <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
+            {/* <button className="px-6 py-2 mt-4 bg-secondary text-white rounded-full hover:bg-white hover:text-black transition-colors">
               Learn More
-            </button>
+            </button> */}
             
           </div>
 

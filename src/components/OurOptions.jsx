@@ -5,6 +5,11 @@ const OurOptions = () => {
   const navigate = useNavigate();
   const orangeColor = '#ff8901';
 
+  // Handler to navigate with selected option as query param
+  const handleButtonClick = (route, option) => {
+    navigate(`${route}?selected=${option}`);
+  };
+
   return (
     <div className="pb-8 lg:py-12">
       <div className="w-full px-4 sm:px-6 lg:px-8" style={{ width: '85%', margin: '0 auto' }}>
@@ -47,14 +52,14 @@ const OurOptions = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-2 w-full">
               <button
-                onClick={() => navigate('/one-way')}
+                onClick={() => handleButtonClick('/one-way', 'use')}
                 className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 sm:px-8 md:px-10 border border-orange-500 hover:border-transparent rounded-3xl"
                 style={{ color: orangeColor, borderColor: orangeColor }}
               >
                 Use
               </button>
               <button
-                onClick={() => navigate('/one-way')}
+                onClick={() => handleButtonClick('/one-way', 'supply')}
                 className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-6 sm:px-8 md:px-10 rounded-3xl"
                 style={{ backgroundColor: orangeColor }}
               >
@@ -97,14 +102,14 @@ const OurOptions = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-2 w-full">
               <button
-                onClick={() => navigate('/trade')}
+                onClick={() => handleButtonClick('/trade', 'buy')}
                 className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 sm:px-8 md:px-10 border border-orange-500 hover:border-transparent rounded-3xl"
                 style={{ color: orangeColor, borderColor: orangeColor }}
               >
                 Buy
               </button>
               <button
-                onClick={() => navigate('/trade')}
+                onClick={() => handleButtonClick('/trade', 'sell')}
                 className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-6 sm:px-8 md:px-10 rounded-3xl"
                 style={{ backgroundColor: orangeColor }}
               >
@@ -147,14 +152,14 @@ const OurOptions = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-2 w-full">
               <button
-                onClick={() => navigate('/lease')}
+                onClick={() => handleButtonClick('/lease', 'domestic')}
                 className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 sm:px-8 md:px-10 border border-orange-500 hover:border-transparent rounded-3xl"
                 style={{ color: orangeColor, borderColor: orangeColor }}
               >
                 Domestic
               </button>
               <button
-                onClick={() => navigate('/lease')}
+                onClick={() => handleButtonClick('/lease', 'exim')}
                 className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-6 sm:px-8 md:px-10 rounded-3xl"
                 style={{ backgroundColor: orangeColor }}
               >
