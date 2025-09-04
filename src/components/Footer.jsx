@@ -101,23 +101,24 @@ export default function Footer() {
         <div className="text-center mb-8">
           <img src={logo} alt="Company Logo" className="mx-auto h-18 md:h-16 mb-2" />
           <p className="text-sm md:text-base text-gray-300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            NCON is a tech-forward logistics company specializing in container leasing, trading, transportation, and storage. With deep industry 
+experience and a strong Pan-India and global network, we deliver dependable solutions tailored for modern businesses.
           </p>
         </div>
 
         {/* Contact Info */}
         <div className={`grid ${isMobile ? "grid-cols-1 gap-4" : "grid-cols-3 gap-2"} mb-12`}>
           <ContactCard icon={<MapPin />} text="794 Mcallister St San Francisco, 94102" />
-          <ContactCard icon={<Mail />} text="containers@shippingcompany.com" />
-          <ContactCard icon={<Phone />} text="+91 9820420924" />
+          <ContactCard icon={<Mail />} text="sales@nconcontainer.com" />
+          <ContactCard icon={<Phone />} text="+91 98204 20924" />
         </div>
 
         {/* Footer Links */}
         <div className="flex justify-between mb-6">
-          <FooterColumn title="Product">
+          <FooterColumn title="Container Types">
             <FooterLink to="/products/dry_Container" text="Dry Container" />
             <FooterLink to="/products/tanks" text="Liquid Transport Solutions" />
-            <FooterLink to="/products/coil_containers" text="Coil Containers" />
+            {/* <FooterLink to="/products/coil_containers" text="Coil Containers" /> */}
             <FooterLink to="/products/modular_containers" text="Modular Containers" />
             <FooterLink to="/products/refrigerated_containers" text="Refrigerated Container" />
           </FooterColumn>
@@ -126,19 +127,26 @@ export default function Footer() {
             <FooterLink to="/about" text="About" />
             <FooterLink to="/contact" text="Contact us" />
             <FooterLink to="/feedback" text="Feedback" />
-            <FooterLink to="/resources" text="Resources" />
+            {/* <FooterLink to="/resources" text="Resources" /> */}
             <button onClick={handleBrochureClick} className="hover:text-orange-500">
               Brochure
             </button>
           </FooterColumn>
 
-          <FooterColumn title="Support">
+            <FooterColumn title="Services">
+            <FooterLink to="trade" text="Buy & Sell" />
+            <FooterLink to="lease" text="Lease" />
+            <FooterLink to="one-way" text="Transportation" />
+           
+          </FooterColumn>
+
+          {/* <FooterColumn title="Support">
             <FooterLink to="#" text="Getting started" />
             <FooterLink to="#" text="Help center" />
             <FooterLink to="#" text="Server status" />
             <FooterLink to="#" text="Report a bug" />
             <FooterLink to="#" text="Chat support" />
-          </FooterColumn>
+          </FooterColumn> */}
         </div>
 
         <div className="border-t border-gray-700 my-6"></div>

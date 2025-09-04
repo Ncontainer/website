@@ -6,27 +6,30 @@ import blog from "../images/04.png";
 import NewsLetter from './NewsLetter';
 
 const Blog = () => {
-  // Blog post data
+  // Blog post data (split into title + subtitle)
   const blogPosts = [
     {
       id: 1,
-      description: 'How Much Does a Shipping Container Weigh? A Complete Guide to Container Weights',
+      title: 'How Much Does a Shipping Container Weigh:',
+      subtitle: 'A Complete Guide to Container Weights.',
       image: blogImage1,
-      author: 'Neon Group',
+      author: 'Ncon Group',
       date: '01 Jan 025',
     },
     {
       id: 2,
-      description: 'Understanding Container Markings: Shipping Container Numbers and Key Identifications Explained',
+      title: 'Understanding Container Markings:',
+      subtitle: 'Shipping Container Numbers and Their Identifications Explained',
       image: blogImage2,
-      author: 'Neon Group',
+      author: 'Ncon Group',
       date: '01 Jan 025',
     },
     {
       id: 3,
-      description: 'Why CSC Standards Matter: A Complete Guide for Safe Container Transport',
+      title: 'Why CSC Standards Matter?',
+      subtitle: 'A Complete Guide for Safe Container Transport',
       image: blogImage3,
-      author: 'Neon Group',
+      author: 'Ncon Group',
       date: '01 Jan 025',
     },
   ];
@@ -36,7 +39,7 @@ const Blog = () => {
       {/* Blog Header */}
       <div className="text-center mb-12">
         <p className="text-secondary text-xl uppercase mb-2">BLOGS</p>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl">
+        <h2 className="text-5xl md:text-6xl lg:text-5xl ">
           Browse our Blogs<br />& Articles
         </h2>
       </div>
@@ -51,16 +54,14 @@ const Blog = () => {
             <div className="rounded-lg h-56 md:h-56 lg:h-64 overflow-hidden">
               <img 
                 src={post.image} 
-                alt={post.description}
+                alt={post.title}
                 className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
               />
             </div>
             <div className="p-3 md:p-6">
-              <p 
-                className="text-sm md:text-base font-normal leading-relaxed mb-2 md:mb-4 line-clamp-2 text-gray-800"
-                style={{ fontWeight: 400 }}
-              >
-                {post.description}
+              <p className="text-base md:text-lg leading-relaxed mb-2 md:mb-4 text-gray-900">
+                <span className="font-bold">{post.title} </span>
+                <span className="font-normal text-gray-800">{post.subtitle}</span>
               </p>
               <div className="flex items-center text-xs md:text-sm text-gray-600">
                 <span className="mr-1 md:mr-2">By: {post.author}</span>

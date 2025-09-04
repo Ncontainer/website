@@ -26,13 +26,13 @@ const products = [
     image: liquidImage,
     route: "/products/tanks",
   },
-  {
-    title: "Coil-Containers",
-    description:
-      "Ensure safety and stability for your steel and aluminum coils. Our coil containers include lashing systems to prevent shifting, keeping your cargo secure during transport.",
-    image: coilImage,
-    route: "/products/coil_containers",
-  },
+  // {
+  //   title: "Coil-Containers",
+  //   description:
+  //     "Ensure safety and stability for your steel and aluminum coils. Our coil containers include lashing systems to prevent shifting, keeping your cargo secure during transport.",
+  //   image: coilImage,
+  //   route: "/products/coil_containers",
+  // },
   {
     title: "Modular Container",
     description:
@@ -53,7 +53,7 @@ export default function OurProducts() {
   return (
     <div className="px-6 md:px-20 py-12 bg-gray-50 text-gray-800">
       <h1 className="text-[40px] leading-[40px] font-normal text-center mb-4 uppercase">
-        Our Products
+        Types of Containers
       </h1>
       <p className="text-center text-gray-600 max-w-7xl mx-auto mb-10">
        At NCON, we prioritize the safety and security of your steel and aluminum coils during transportation. Our Coil Containers are expertly designed to safeguard your cargo against damage and accidents. These specialized containers feature secure lashing systems to prevent shifting, ensuring stability throughout the journey

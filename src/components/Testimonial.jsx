@@ -8,7 +8,7 @@ const Testimonial = () => {
   const testimonials = [
     {
       id: 1,
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+      text: "We leased containers through NCON for our Rajasthan site, and the turnaround time was excellent. They even handled return logistics — no follow-ups needed.",
       name: "John Doe",
       company: "Company name",
       avatar: user
@@ -109,10 +109,16 @@ const Testimonial = () => {
         <div className="w-full lg:w-1/2 pt-16 lg:pt-0">
           <p className="text-lg font-medium text-secondary mb-2">TESTIMONIALS</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl  text-black mb-6">
-            Positive Reviews<br />from Our Customers
+            Trusted by Clients <br />
+Across the Logistics 
+Landscape
           </h2>
           <p className="text-gray-600 mb-8">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+            We take pride in the satisfaction of our partners — from container 
+buyers to global transport clients.
+
+Here’s what our customers say about NCON’s commitment to 
+efficiency, transparency, and service excellence.
           </p>
           {/* <button className="border border-gray-400 rounded-full px-8 py-3 text-gray-700 font-medium hover:bg-gray-100 transition">
             Read More

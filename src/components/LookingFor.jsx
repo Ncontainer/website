@@ -26,8 +26,8 @@ const LookingFor = () => {
   const features = [
     {
       icon: <ArrowRight color="#ff8901" size={24} />,
-      title: "One Way Movement",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      title: "One Way Container Movement",
+      description: "Efficient repositioning of containers from origin to destination — no returns, no hassle.",
       buttons: [
         { text: "Use", primary: false, route: "/one-way", option: "use" },
         { text: "Supply", primary: true, route: "/one-way", option: "supply" }
@@ -35,8 +35,8 @@ const LookingFor = () => {
     },
     {
       icon: <ArrowLeftRight color="#ff8901" size={24} />,
-      title: "Click to Trade",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      title: "Buy & Sell Containers",
+      description: " returns, no hassle. Trade containers with ease — verified listings, competitive pricing, and transparent processes.",
       buttons: [
         { text: "Buy", primary: false, route: "/trade", option: "buy" },
         { text: "Sell", primary: true, route: "/trade", option: "sell" }
@@ -44,8 +44,8 @@ const LookingFor = () => {
     },
     {
       icon: <FileText color="#ff8901" size={24} />,
-      title: "Lease with Ease",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      title: "Flexible Leasing Options",
+      description: "Lease containers for domestic or international needs with reliable pickup and return logistics.",
       buttons: [
         { text: "Domestic", primary: false, route: "/lease", option: "domestic" },
         { text: "EXIM", primary: true, route: "/lease", option: "exim" }

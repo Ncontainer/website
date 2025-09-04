@@ -46,10 +46,11 @@ export default function Hero() {
               WELCOME TO COMPANY
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font- text-black leading-tight mt-3">
-              Get Your Load <br /> to market Faster
+              Get Your Load <br /> to market  —Faster, Safer, 
+Smarter
             </h1>
             <p className="text-gray-600 mt-4 text-base md:text-lg max-w-md">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Simplifying container buying, selling, leasing, and transport across India and international locations — all under one roof.
             </p>
           </div>
           {/* Image */}

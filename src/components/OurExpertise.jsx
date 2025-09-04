@@ -145,7 +145,7 @@ const IndustriesSection = () => {
       </div>
 
       {/* Container Types Section */}
-      <div className="bg-gradient-to-r from-[#FF8901] to-[#FFC107] md:rounded-lg p-1 flex flex-col md:flex-row items-center h-auto pt-4 sm:pt-1 mt-10">
+      {/* <div className="bg-gradient-to-r from-[#FF8901] to-[#FFC107] md:rounded-lg p-1 flex flex-col md:flex-row items-center h-auto pt-4 sm:pt-1 mt-10">
         <div className="md:w-1/2 mb-6 md:mb-0 pl-8">
           <h2 className="text-white text-2xl font-bold mb-4">We Also Solutions in</h2>
           <div className="flex flex-wrap gap-2">
@@ -168,7 +168,7 @@ const IndustriesSection = () => {
             className="w-full h-full object-cover object-center"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

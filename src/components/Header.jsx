@@ -66,6 +66,7 @@ useEffect(() => {
   else if (path === "/feedback") setActiveItem("feedback");
   else if (path === "/brochure") setActiveItem("brochure");
   else if (path === "/login") setActiveItem("login");
+  else if (path == "/one-way") setActiveItem("oneway")
   else setActiveItem(""); // fallback
 }, [location.pathname]);  // ← track actual route changes
 
@@ -90,6 +91,7 @@ useEffect(() => {
     setIsMenuOpen(false);
   }
 };
+const [isServicesOpen, setIsServicesOpen] = useState(false);
  const handleLogout = () => {
   const confirmLogout = window.confirm("Are you sure you want to log out?");
   if (confirmLogout) {
@@ -184,7 +186,7 @@ const sendBrochureToEmail = async () => {
           />
         </svg>
       </span>
-      <span className="text-sm font-sans">containers@shippingcompany.com</span> 
+      <span className="text-sm font-sans">sales@nconcontainer.com</span> 
     </div>
 
     {/* Phone */}
@@ -205,7 +207,7 @@ const sendBrochureToEmail = async () => {
           />
         </svg>
       </span>
-      <span className="text-sm font-sans">+91 9820420924</span>
+      <span className="text-sm font-sans">+91 98204 20924</span>
     </div>
   </div>
 
@@ -272,9 +274,57 @@ const sendBrochureToEmail = async () => {
                 <Link to="/products/refrigerated_containers" className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm whitespace-nowrap" onClick={() => handleNavClick("products")}>Refrigerated Containers</Link>
               </div> */}
               {/* <div className={`h-0.5 bg-secondary transition-all duration-300 ${activeItem === "products" || isProductsOpen ? "w-full" : "w-0"} group-hover:w-full`}></div> */}
-            
-            <NavItem text="Products" to="/our-products" isActive={activeItem === "products"} onClick={() => handleNavClick("products")}/>
-            <NavItem text="Resources" to="/resources" isActive={activeItem === "resources"} onClick={() => handleNavClick("resources")} />
+            {/* ✅ Services Dropdown */}
+<div
+  className="relative group"
+  onMouseEnter={() => setIsProductsOpen(true)}
+  onMouseLeave={() => setIsProductsOpen(false)}
+>
+  <button
+    className={`flex items-center text-sm md:text-sm lg:text-base font-medium whitespace-nowrap transition-colors ${
+      activeItem === "services" ? "text-secondary" : "text-gray-800"
+    }`}
+    onClick={() => handleNavClick("services", true)}
+  >
+    <span>Services</span>
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  {/* Dropdown */}
+  <div
+    className={`absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md overflow-hidden z-20 transition-all duration-300 ${
+      isProductsOpen ? "opacity-100 visible" : "opacity-0 invisible"
+    }`}
+  >
+    <Link
+      to="/trade"
+      className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm"
+      onClick={() => handleNavClick("trade")}
+    >
+      Buy & Sell
+    </Link>
+    <Link
+      to="/lease"
+      className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm"
+      onClick={() => handleNavClick("lease")}
+    >
+      Lease
+    </Link>
+    <Link
+      to="/one-way"
+      className="block px-4 py-2 text-gray-800 hover:bg-orange-50 hover:text-secondary text-sm"
+      onClick={() => handleNavClick("oneway")}
+    >
+      Transportation
+    </Link>
+  </div>
+
+  <div className={`h-0.5 bg-secondary transition-all duration-300 ${activeItem === "services" || isProductsOpen ? "w-full" : "w-0"} group-hover:w-full`}></div>
+</div>
+            <NavItem text="Container Types" to="/our-products" isActive={activeItem === "products"} onClick={() => handleNavClick("products")}/>
+            {/* <NavItem text="Resources" to="/resources" isActive={activeItem === "resources"} onClick={() => handleNavClick("resources")} /> */}
             <NavItem text="Contact Us" to="/contact" isActive={activeItem === "contact"} onClick={() => handleNavClick("contact")} />
             <NavItem text="Feedback" to="/feedback" isActive={activeItem === "feedback"} onClick={() => handleNavClick("feedback")} />
            <NavItem text="Brochure" isActive={activeItem === "brochure"} onClick={handleBrochureClick}/>
@@ -333,22 +383,68 @@ const sendBrochureToEmail = async () => {
         About Us
       </Link>
 
+      {/* Services with Dropdown */}
+<div>
+  <button
+    onClick={() => setIsServicesOpen(!isServicesOpen)}
+    className="w-full flex justify-between items-center py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors"
+  >
+    Services
+    <svg
+      className={`w-5 h-5 transform transition-transform ${isServicesOpen ? "rotate-180" : "rotate-0"}`}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+{isServicesOpen && (
+  <div className="pl-6 space-y-2 bg-secondary/20">
+    <Link
+      to="/trade"
+      className="block py-2 px-4 text-white hover:bg-white hover:text-secondary transition-colors"
+      onClick={() => { handleNavClick("trade"); toggleMenu(); }}
+    >
+      Buy & Sell
+    </Link>
+    <Link
+      to="/lease"
+      className="block py-2 px-4 text-white hover:bg-white hover:text-secondary transition-colors"
+      onClick={() => { handleNavClick("lease"); toggleMenu(); }}
+    >
+      Lease
+    </Link>
+    <Link
+      to="/one-way"
+      className="block py-2 px-4 text-white hover:bg-white hover:text-secondary transition-colors"
+      onClick={() => { handleNavClick("oneway"); toggleMenu(); }}
+    >
+      Transportation
+    </Link>
+  </div>
+)}
+  
+</div>
+
       {/* ✅ Products now directly navigates to /our-products */}
       <Link
         to="/our-products"
         className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap"
         onClick={() => handleNavClick("products")}
       >
-        Products
+        Container Types
       </Link>
 
-      <Link
+      {/* <Link
         to="/resources"
         className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors"
         onClick={() => handleNavClick("resources")}
       >
         Resources
-      </Link>
+      </Link> */}
       <Link
         to="/contact"
         className="block py-3 px-4 border-b border-white/20 text-white font-medium hover:bg-white hover:text-secondary transition-colors whitespace-nowrap"

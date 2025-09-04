@@ -88,7 +88,10 @@ const ContactUs = () => {
               Get in Touch<br />with Us
             </h2>
             <p className="text-gray-600 mb-10">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+              Have a query about container leasing, transport, or trade? Our team is 
+ready to support your business logistics needs with precision and 
+professionalism. Reach out anytime, and we’ll get back to you 
+promptly.
             </p>
 
             {/* Contact Details */}
@@ -99,7 +102,7 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <p className="text-gray-500 text-sm sm:text-base">Our Phone</p>
-                  <p className="font-medium  text-[0.8rem] sm:text-base">+91 9820420924</p>
+                  <p className="font-medium  text-[0.8rem] sm:text-base">+91 98204 20924</p>
                 </div>
               </div>
               
@@ -109,7 +112,7 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <p className="text-gray-500 text-sm sm:text-base">Our Email</p>
-                  <p className="font-medium text-[0.8rem] sm:text-base  ">containers@shippingcompany.com</p>
+                  <p className="font-medium text-[0.8rem] sm:text-base  ">sales@nconcontainer.com</p>
                 </div>
               </div>
             </div>

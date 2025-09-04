@@ -31,20 +31,34 @@ const About = () => {
   About Us
 </p>
             <h2 className="text-4xl sm:text-3xl md:text-6xl mb-4 sm:mb-6 w-full">
-          NCON: Container as a <br className="hidden sm:block" /> Solution
+          Redefining Container 
+Solutions with Trust & 
+Innovation
         </h2>
           </div>
         <div 
   className="text-gray-500 text-justify text-sm sm:text-base md:text-base max-w-[800px] mx-auto px-4" 
   style={{ fontFamily: 'Roboto' }}
 >
-  Containerization is an industry that has rapidly evolved since its inception. Constant
-  fluctuations and technological advancements in global supply trade has underscored the need
-  to redefine container solutions. NCON is born out of a growing need to use technology and
-  solutions to increase operational efficiency and enhance sustainability while creating an
-  enriching workspace to reimagine the global logistics’ landscape. NCON is part of the
-  Saksham Group of Companies, amongst the largest conglomerates in logistics spanning project
-  logistics, chemical transportation, container trading, custom broking, and IT solutions.
+At NCON, we don t just move containers we move businesses forward. In an 
+industry crowded with one-size-fits-all players, we stand apart by offering container 
+solutions designed for safety, speed, sustainability, and trust.
+<br />
+<br />
+
+From secure storage facilities to hassle-free rentals, and from buying and selling 
+containers to custom logistics support, we bring more than just boxes on wheels 
+we bring reliability, transparency, and efficiency that redefine what container 
+logistics should mean.
+<br />
+<br />
+
+<div className="font-bold">Our Edge Over Competitors </div>
+
+
+At NCON, containers aren t commodities they re strategic assets. With a techdriven approach and personalized service, we deliver solutions that unlock value, 
+cut costs, and future-proof logistics. We re not just another provider; we re partners 
+in innovation, integrity, and growth.
 </div>
         </div>
 
@@ -66,9 +80,9 @@ const About = () => {
     Our Vision
   </h3>
   <p className="text-sm sm:text-base md:text-lg text-white">
-    To be the most trusted and innovative container solutions provider, by empowering
-    businesses with flexible, cost effective, sustainable, and technology-driven container
-    management.
+    We envision a future where logistics isn t just about moving containers, but about moving with purpose. By 
+blending technology, sustainability, and trust, NCON strives to be the most reliable partner in containerized 
+solutions making logistics faster, safer, and smarter for businesses worldwide.
   </p>
 </div>
         </div>
@@ -93,23 +107,23 @@ const About = () => {
               {[
                 {
                   icon: <CheckCircle className="text-secondary w-6 h-6" />,
-                  title: "Drive cost and operational efficiencies",
-                  desc: "Assuring flexibility and unlocking value for our customers with the power of choice by aggregating the collective power of container inventory.",
+                  title: "Customer Empowerment Mission",
+                  desc: "To give businesses of every size access to world-class container solutions that are flexible, transparent, and affordable — helping them grow without limits..",
                 },
                 {
                   icon: <UserCheck className="text-secondary w-6 h-6" />,
-                  title: "Phygital Approach",
-                  desc: "Leveraging the power of technology and people to forge lasting business relationships to redefine business processes.",
+                  title: "Industry Transformation Mission",
+                  desc: "To challenge the outdated ways of container management by bringing innovation, technology, and speed that redefine global logistics standards."
                 },
                 {
                   icon: <Leaf className="text-secondary w-6 h-6" />,
-                  title: "Sustainable Innovation",
-                  desc: "We aim to develop innovative business solutions which are sensitive to our environment and society, thus paving the way for a sustainable future.",
+                  title: "Safety & Trust Mission",
+                  desc: "To create a logistics ecosystem where safety, reliability, and trust are non-negotiable, ensuring every container we move carries peace of mind along with goods.",
                 },
                 {
                   icon: <Briefcase className="text-secondary w-6 h-6" />,
-                  title: "Enriching Workspace",
-                  desc: "To provide an entrepreneurial environment which encourages bold thinking and innovation, to facilitate high productivity and enhance employees' happiness index.",
+                  title: "Global Vision Mission",
+                  desc: "To position NCON as a trusted global partner for containerized solutions, seamlessly connecting businesses across borders with speed, safety, and innovation.",
                 },
               ].map(({ icon, title, desc }, idx) => (
                 <div key={idx} className="flex items-start gap-4">
@@ -154,29 +168,29 @@ const About = () => {
               {[
                 {
                   icon: <ShieldCheck className="w-6 h-6" />,
-                  title: "Trust",
-                  desc: "With the backing of a robust legacy, we inspire confidence in our customers and stakeholders when it comes to entrusting their requirements with us.",
+                  title: "Safety",
+                  desc: "Every container, every journey, protected with the highest standards.",
                 },
                 {
                   icon: <Users className="w-6 h-6" />,
-                  title: "Customer-centricity",
-                  desc: "We unlock maximum value for our customers at every step by keeping them at the core of decision making.",
+                  title: "Speed",
+                  desc: "Fast, efficient, and reliable solutions that save time and costs.",
                 },
                 {
                   icon: <Rocket className="w-6 h-6" />,
                   title: "Innovation",
-                  desc: "We foster an innovative work-culture which translates into better solutions to customers, employees and stakeholders.",
+                  desc: "We cultivate a forward-thinking work culture that leads to smarter, more efficient solutions for our clients and partners.",
                 },
                 {
                   icon: <Globe2 className="w-6 h-6" />,
-                  title: "Diversity and inclusiveness",
-                  desc: "We promote a culture where people from diverse backgrounds work seamlessly and in alignment with our vision and mission.",
+                  title: "Sustainibilty",
+                  desc: "Greener practices today for a better tomorrow.",
                 },
-                {
-                  icon: <Scale className="w-6 h-6" />,
-                  title: "Integrity and ethics",
-                  desc: "These are the foundations on which we have built our business and organization.",
-                },
+                // {
+                //   icon: <Scale className="w-6 h-6" />,
+                //   title: "Integrity and ethics",
+                //   desc: "These are the foundations on which we have built our business and organization.",
+                // },
               ].map(({ icon, title, desc }, idx) => (
                 <div key={idx} className="flex items-start gap-4">
                   {icon}

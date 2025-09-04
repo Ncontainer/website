@@ -9,6 +9,7 @@ import Testimonial from "../components/Testimonial";
 import ContactUs from "../components/ContactUs";
 import Blog from "../components/Blog";
 import Footer from "../components/Footer";
+import NewsLetter from "../components/NewsLetter";
 
 const Home = () => {
   return (
@@ -28,8 +29,11 @@ const Home = () => {
       <LookingFor />
       <Testimonial />
       <ContactUs />
-      <Blog />
+      {/* <Blog /> */}
       {/* <Footer /> */}
+     <section className="mb-8">
+        <NewsLetter/>
+      </section> 
     </div>
   );
 };

@@ -31,7 +31,11 @@ const LogisticsOverview = () => {
                 className="text-gray-600 text-base md:text-lg"
                 style={{ fontFamily: 'Roboto' }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+               NCON is not just another container leasing company. We’re built to 
+remove the friction from buying, selling, and transporting containers. 
+Whether you're moving goods across Indian states or exporting 
+globally, we bring structure to an otherwise scattered process. No 
+guesswork. No dependencies. Just reliable movement.
               </p>
             </div>
 
@@ -44,7 +48,7 @@ const LogisticsOverview = () => {
                 </div>
                 <h3 className="text-xl md:text-3xl">Our Vision</h3>
                 <p className="text-gray-600 text-sm md:text-lg">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                 To transform container logistics into a streamlined, transparent  experience for every client.
                 </p>
               </div>
 
@@ -55,7 +59,7 @@ const LogisticsOverview = () => {
                 </div>
                 <h3 className="text-xl md:text-3xl">Our Mission</h3>
                 <p className="text-gray-600 text-sm md:text-lg">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                 To provide end-to-end container services through innovative, compliant, and customer focused solutions.
                 </p>
               </div>
             </div>

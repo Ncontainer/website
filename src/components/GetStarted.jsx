@@ -30,13 +30,14 @@ const GetStarted = () => {
               GET STARTED
             </h3>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 leading-tight">
-              Our Space, Your Way, Always
+              Your Container,   <br />Your Terms, Always
             </h2>
             <p className="mb-6 md:mb-8 max-w-lg opacity-90 text-sm sm:text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              At NCON, we simplify container solutions — whether you're buying, 
+leasing, or transporting.
+
+From secure sourcing to seamless delivery, we offer full-service 
+container logistics, tailored to your needs across India and beyond.
             </p>
             <div className="flex flex-wrap gap-3 md:gap-4">
               <button

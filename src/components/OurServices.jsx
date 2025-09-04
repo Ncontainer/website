@@ -13,10 +13,9 @@ const OurServices = () => {
           </div>
           <div className="w-full md:w-1/2 mt-9">
             <p className="text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+         NCON manages the full lifecycle of your container logistics — from sourcing, 
+         leasing, and transporting to eventual storage and retrieval — all through one 
+        dependable partner.
             </p>
           </div>
         </div>
@@ -29,25 +28,30 @@ const OurServices = () => {
               <div className="flex md:justify-end mb-2">
                 <Leaf className="text-secondary" size={32} />
               </div>
-              <h3 className="text-xl md:text-2xl mb-2">Pioneering a Sustainable Future</h3>
+              <h3 className="text-xl md:text-2xl mb-2">Buy & Sell <br />
+Containers</h3>
               <p className="text-gray-600 text-sm md:text-base">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Procure or trade verified shipping containers with full 
+documentation and delivery.
               </p>
             </div>
             <div className="flex flex-col md:items-end md:text-right">
               <div className="flex md:justify-end mb-2">
                 <Building2 className="text-secondary" size={32} />
               </div>
-              <h3 className="text-xl md:text-2xl mb-2">Enriching Workspace</h3>
+              <h3 className="text-xl md:text-2xl mb-2">Lease Containers <br />
+(Pan India)</h3>
               <p className="text-gray-600 text-sm md:text-base">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                 
+Flexible domestic and international leasing with 
+end-of-term pickup.
               </p>
             </div>
           </div>
 
           {/* Center Image (no video button) */}
           <div className="flex justify-center items-center">
-            <div className="relative w-full max-w-full md:max-w-[320px] mx-auto aspect-[3/2] md:aspect-[3/4] bg-blue-900 rounded-lg overflow-hidden">
+            <div className="relative w-full max-w-full md:max-w-[420px] mx-auto aspect-[3/2] md:aspect-[3/4] bg-blue-900 rounded-lg overflow-hidden">
               <img 
                 src={img1} 
                 alt="Container ship aerial view" 
@@ -63,18 +67,22 @@ const OurServices = () => {
               <div className="flex mb-2">
                 <Shield className="text-secondary" size={32} />
               </div>
-              <h3 className="text-xl md:text-2xl mb-2">Operational Efficiency</h3>
+              <h3 className="text-xl md:text-2xl mb-2">Container 
+Transport</h3>
               <p className="text-gray-600 text-sm md:text-base">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Door-to-port, port-to-door, and intra-state transport— 
+by road or sea.
               </p>
             </div>
             <div className="flex flex-col items-start">
               <div className="flex justify-start mb-2">
                 <Network className="text-secondary" size={32} />
               </div>
-              <h3 className="text-xl mb-2">Our Phygital Edge</h3>
+              <h3 className="text-xl mb-2">Future Yard & <br />
+Freight Stations</h3>
               <p className="text-gray-600 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Dedicated container storage facilities across India 
+and Globally.
               </p>
             </div>
           </div>
