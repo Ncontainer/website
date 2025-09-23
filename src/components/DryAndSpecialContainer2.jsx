@@ -25,13 +25,11 @@ export default function DryAndSpecialContainer() {
   {/* Paragraph section */}
   <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 text-center max-w-7xl">
     <p>
-      Move any cargo with confidence using NCON's extensive fleet of DRY
-      and Special Containers. Containers are the cornerstone of global
-      shipping, offering a secure, standardized way to transport a vast
-      array of cargo. At NCON, we recognize that no two shipments are
-      exactly alike. That's why we provide a comprehensive range of DRY
-      and Special Containers, ensuring you have the perfect solution for
-      any cargo, regardless of size, shape, or specific needs.
+      With NCON’s wide fleet of DRY and Special Containers, you can ship your cargo safely and confidently.
+       Containers are the foundation of global trade, offering a secure and reliable way to transport goods
+        of all kinds. At NCON, we understand that every shipment is unique. That’s why we provide a full
+        range of container solutions—making sure there’s always the right option for your cargo, no matter 
+        its size, shape, or special needs.
     </p>
   </div>
 </div>
@@ -73,9 +71,9 @@ export default function DryAndSpecialContainer() {
         {/* Content based on active tab */}
         {activeTab === "dry" && (
           <div className="flex flex-col md:flex-row gap-8">            <div className="w-full md:w-1/2">
-              <h2 className="text-4xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
+              {/* <h2 className="text-4xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
                 Dry Van Containers
-              </h2>
+              </h2> */}
 
               <div className="mb-6">
                 <div className="flex items-start mb-3">
@@ -83,17 +81,17 @@ export default function DryAndSpecialContainer() {
                     <div className="h-2 w-2 rounded-full bg-orange-500"></div>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-800">
+                    {/* <p className="font-bold text-gray-800">
                       The foundation of global shipping:
-                    </p>
+                    </p> */}
                     <p className="text-gray-600">
-                      Our Dry Van containers are the perfect choice for your
-                      general cargo needs
+                    Dry Van Containers are the backbone of worldwide shipping, designed to handle everyday cargo with reliability and ease. At NCON, our Dry Vans are built tough, fully compliant with ISO standards, and come with valid CSC certification—so you can trust your goods are in safe hands. Each container goes through strict quality checks, ensuring you always get top-notch equipment that’s ready to perform, wherever your shipment starts or wherever it’s headed.
+
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start mb-3">
+                {/* <div className="flex items-start mb-3">
                   <div className="mr-2 mt-1">
                     <div className="h-2 w-2 rounded-full bg-orange-500"></div>
                   </div>
@@ -105,9 +103,9 @@ export default function DryAndSpecialContainer() {
                       for your goods.
                     </p>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="flex items-start mb-6">
+                {/* <div className="flex items-start mb-6">
                   <div className="mr-2 mt-1">
                     <div className="h-2 w-2 rounded-full bg-orange-500"></div>
                   </div>
@@ -121,7 +119,7 @@ export default function DryAndSpecialContainer() {
                       originates or travels to.
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 <p className="font-medium text-gray-800 mb-4">Available in:</p>                <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col items-center">
@@ -166,9 +164,9 @@ export default function DryAndSpecialContainer() {
 
         {activeTab === "special" && (
           <div className="flex flex-col md:flex-row gap-8">            <div className="w-full md:w-1/2">
-              <h2 className="text-4xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
+              {/* <h2 className="text-4xl sm:text-2xl md:text-3xl lg:text-4xl  mb-6">
                 Special Containers
-              </h2>
+              </h2> */}
 
               <div className="mb-6">
                 <div className="flex items-start mb-3">
@@ -176,17 +174,17 @@ export default function DryAndSpecialContainer() {
                     <div className="h-2 w-2 rounded-full bg-orange-500"></div>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-800">
+                    {/* <p className="font-bold text-gray-800">
                       Specialized solutions:
-                    </p>
+                    </p> */}
                     <p className="text-gray-600">
-                      Our special containers are designed for unique cargo
-                      requirements
+                    Special Containers are built to handle cargo that needs more than the standard solution. Whether it’s temperature-sensitive goods that require refrigerated containers with precise cooling, or oversized shipments that fit best in open-top and flat rack designs, NCON has you covered. Each container is designed to meet unique transport needs, giving you flexibility, safety, and confidence no matter what you’re shipping.
+
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start mb-3">
+                {/* <div className="flex items-start mb-3">
                   <div className="mr-2 mt-1">
                     <div className="h-2 w-2 rounded-full bg-orange-500"></div>
                   </div>
@@ -199,9 +197,9 @@ export default function DryAndSpecialContainer() {
                       temperature control
                     </p>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="flex items-start mb-6">
+                {/* <div className="flex items-start mb-6">
                   <div className="mr-2 mt-1">
                     <div className="h-2 w-2 rounded-full bg-orange-500"></div>
                   </div>
@@ -214,7 +212,7 @@ export default function DryAndSpecialContainer() {
                       capabilities
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 <p className="font-medium text-gray-800 mb-4">Available in:</p>                <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col items-center">

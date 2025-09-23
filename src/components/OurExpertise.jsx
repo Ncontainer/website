@@ -15,11 +15,11 @@ const IndustriesSection = () => {
   const [slideWidth, setSlideWidth] = useState(0);
 
   const industryImages = [
-    { id: 1, name: 'Steel', image: steel },
-    { id: 2, name: 'Aluminum', image: aluminum },
-    { id: 3, name: 'Copper', image: copper },
-    { id: 4, name: 'Iron', image: iron },
-    { id: 5, name: 'Titanium', image: titanium },
+    { id: 1, name: 'Steel, Copper, Aluminum', image: steel },
+    { id: 2, name: 'Logistics & Supply Chain', image: aluminum },
+    { id: 3, name: 'Construction & Infrastructure', image: copper },
+    { id: 4, name: 'Food & Beverages', image: iron },
+    { id: 5, name: 'Pharmaceuticals & Healthcare', image: titanium },
   ];
 
   const containerTypes = [
@@ -86,14 +86,14 @@ const IndustriesSection = () => {
       OUR EXPERTISE
     </h3>
     <h2 className="text-4xl md:text-7xl">
-      Industries we Cater to
+      Industries we Cater
     </h2>
   </div>
 
   {/* Right section shifted down */}
   <div className="md:w-1/2 md:mt-[38px]">
     <p className="text-gray-600 text-sm">
-     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+     NCON serves a wide spectrum of industries, from steel, aluminum, and copper to food, pharma, chemicals, logistics, and construction. Our specialized containers ensure safety, efficiency, and reliability for every type of cargo. 
     </p>
   </div>
 </div>
@@ -144,7 +144,15 @@ const IndustriesSection = () => {
         </div>
       </div>
 
-      {/* Container Types Section */}
+     
+    </div>
+  );
+};
+
+export default IndustriesSection;
+
+
+ {/* Container Types Section */}
       {/* <div className="bg-gradient-to-r from-[#FF8901] to-[#FFC107] md:rounded-lg p-1 flex flex-col md:flex-row items-center h-auto pt-4 sm:pt-1 mt-10">
         <div className="md:w-1/2 mb-6 md:mb-0 pl-8">
           <h2 className="text-white text-2xl font-bold mb-4">We Also Solutions in</h2>
@@ -169,8 +177,3 @@ const IndustriesSection = () => {
           />
         </div>
       </div> */}
-    </div>
-  );
-};
-
-export default IndustriesSection;

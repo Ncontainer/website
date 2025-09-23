@@ -222,9 +222,9 @@ const response = await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
             onChange={handleFormTypeChange}
             defaultValue="One-Way"
           >
-            <option value="One-Way">One-Way</option>
+            <option value="One-Way">Transportation</option>
             <option value="Lease">Lease</option>
-            <option value="Trade">Trade</option>
+            <option value="Trade">Buy & Sell</option>
             
           </select>
 
@@ -255,6 +255,10 @@ const response = await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
             Supply Containers
           </button>
         </div>
+→ Any and every type of containers all across the globe and in India <br />
+
+→ We can transport your container as well <br />
+→ Full Truck Load / Other Transport Services fulfilled by Nisha Roadways <br />
 
         <form onSubmit={handleSubmit}>
           <fieldset className="rounded-md p-4 mb-6 border border-gray-400">
@@ -272,6 +276,7 @@ const response = await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
                   required
                 />
               </div>
+              
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Container Type: *</label>
                 <select

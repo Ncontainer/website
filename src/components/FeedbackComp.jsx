@@ -287,11 +287,16 @@ export default function FeedbackComp() {
                 <h2 className="text-orange-500 font-medium text-xl mb-1">Visit us</h2>
                 <p className="text-gray-300 mb-2">Chat to us in-person at our Head Office</p>
                 <div className="flex items-center">
-                  <MapPin size={18} className="mr-2 text-white" />
-                  <Link to="#" className="text-white hover:underline">
-                    100 Smith Street, Wellington - 78965, New Zealand
-                  </Link>
-                </div>
+  <MapPin size={18} className="mr-2 text-white" />
+  <Link 
+    to="https://www.google.com/maps/search/?api=1&query=Office+No.607,+Mayuresh+Cosmos,+Sec+-+11,+Plot+No.+37,+CBD+Belapur,+Navi+Mumbai+-+400+614" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="text-white hover:underline"
+  >
+    Office No.607, Mayuresh Cosmos, Sec - 11, Plot No. 37, CBD Belapur, Navi Mumbai - 400 614.
+  </Link>
+</div>
               </div>
             </div>
           </div>

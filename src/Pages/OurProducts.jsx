@@ -13,16 +13,16 @@ import OurExpertise from "../components/OurExpertise";
 
 const products = [
   {
-    title: "Dry & Special Containers",
+    title: " Your Everyday Cargo Hero – Reliable, Versatile, Global",
     description:
-      "Move any cargo with confidence using NCON’s extensive fleet of DRY and Special Containers. These containers are the cornerstone of global shipping and offer a safe, standardized way to transport cargo of all shapes and sizes.",
+      "From everyday cargo to unique shipments, our Dry & Special Containers make global trade seamless. Standardized, durable, and ready for any challenge, they’re the backbone of safe and efficient shipping worldwide.",
     image: dryImage,
     route: "/products/dry_container",
   },
   {
-    title: "Liquid Transport Solutions",
+    title: " Liquid Cargo, Solid Solutions",
     description:
-      "NCON provides ISO tank containers for hazardous and non-hazardous liquid transportation. With flexible lease options, our tanks cater to industries ranging from food to chemicals.",
+      "Moving liquids safely is complex — we make it simple.NCON’s ISO Tank Containers are designed for both hazardous and non-hazardous liquids, with flexible leasing options. From food-grade products to industrial chemicals, we’ve got a secure solution for every industry.",
     image: liquidImage,
     route: "/products/tanks",
   },
@@ -34,16 +34,16 @@ const products = [
   //   route: "/products/coil_containers",
   // },
   {
-    title: "Modular Container",
+    title: "Cabin Containers – Spaces That Move With You",
     description:
-      "Ideal for portable offices, storage, and temporary setups. Modular containers offer flexibility, fast deployment, and secure space for various uses.",
+      "Need a portable office, storage room, or temporary setup? Our Cabin Containers give you flexible, ready-to-use space — fast. Easy to deploy, secure, and adaptable for multiple uses.",
     image: modularImage,
     route: "/products/modular_containers",
   },
   {
-    title: "Refrigerated Container",
+    title: "Cool Cargo, Warm Confidence",
     description:
-      "Our reefers provide optimal temperature control for transporting food, pharmaceuticals, or floral goods. They ensure cargo remains in ideal condition from origin to destination.",
+      "Keep it cool, keep it safe. NCON’s Reefer Containers maintain precise temperatures for perishable goods like food, medicine, or flowers. Your products arrive as fresh as they left, every single time.",
     image: refrigeratedImage,
     route: "/products/refrigerated_containers",
   },
@@ -53,10 +53,10 @@ export default function OurProducts() {
   return (
     <div className="px-6 md:px-20 py-12 bg-gray-50 text-gray-800">
       <h1 className="text-[40px] leading-[40px] font-normal text-center mb-4 uppercase">
-        Types of Containers
+        Smart Container Choices for Smarter Trade
       </h1>
       <p className="text-center text-gray-600 max-w-7xl mx-auto mb-10">
-       At NCON, we prioritize the safety and security of your steel and aluminum coils during transportation. Our Coil Containers are expertly designed to safeguard your cargo against damage and accidents. These specialized containers feature secure lashing systems to prevent shifting, ensuring stability throughout the journey
+       At NCON, we know that every cargo is different — from everyday goods to specialized shipments. That’s why we provide a wide range of container solutions, each built with safety, reliability, and efficiency at the core. Explore our containers designed to protect your cargo, simplify logistics, and power global trade.
       </p>
 
       {products.map((product, index) => (

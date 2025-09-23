@@ -196,7 +196,7 @@ const [portsSearch, setPortsSearch] = useState("");
             Requirements Form
           </h2>
         </div>
-
+   
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-3 gap-2 mb-5">
             <select
@@ -204,9 +204,10 @@ const [portsSearch, setPortsSearch] = useState("");
               defaultValue="Trade"
               onChange={handleFormChange}
             >
-              <option>One-Way</option>
-              <option>Lease</option>
-              <option>Trade</option>
+              <option value="Trade">Buy & Sell</option>
+              <option value="One-Way">Transportation</option>
+              <option value="Lease" >Lease</option>
+              
               
             </select>
 
@@ -240,7 +241,18 @@ const [portsSearch, setPortsSearch] = useState("");
           Sell Containers
         </button>
           </div>
+                      → Best Price
+               <br />
+→ Simple, Fast, & Transparent Process <br />
+→ Anywhere to Anywhere Buy <br />
+→ On-time payments <br />
+→ All types of containers ( Damaged, Scrap) / new/old <br />
+→ Price Assessment based on age & photos <br />
+→ Transfer Money Globally <br />
+→ Requirement Assessment as per the client <br />
+→ Globally Available <br />
 
+  
           {/* Container Specifications */}
           <div className="rounded-md p-4 mb-6 border border-black-400">
             <h3 className="font-semibold text-lg text-gray-700 mb-4">Container Specifications</h3>

@@ -108,7 +108,7 @@ experience and a strong Pan-India and global network, we deliver dependable solu
 
         {/* Contact Info */}
         <div className={`grid ${isMobile ? "grid-cols-1 gap-4" : "grid-cols-3 gap-2"} mb-12`}>
-          <ContactCard icon={<MapPin />} text="794 Mcallister St San Francisco, 94102" />
+          <ContactCard icon={<MapPin />} text="Office No.607, Mayuresh Cosmos, Sec - 11, Plot No. 37, CBD Belapur, Navi Mumbai - 400 614" />
           <ContactCard icon={<Mail />} text="sales@nconcontainer.com" />
           <ContactCard icon={<Phone />} text="+91 98204 20924" />
         </div>

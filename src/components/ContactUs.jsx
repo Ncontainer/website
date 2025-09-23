@@ -8,7 +8,6 @@ const ContactUs = () => {
     name: '',
     email: '',
     phone: '',
-    topic: 'Topic 1',
     message: ''
   });
 
@@ -28,13 +27,6 @@ const ContactUs = () => {
         [name]: ''
       }));
     }
-  };
-
-  const handleTopicSelect = (topic) => {
-    setFormData(prev => ({
-      ...prev,
-      topic
-    }));
   };
 
   const validateForm = () => {
@@ -60,7 +52,6 @@ const ContactUs = () => {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          topic: formData.topic.toLowerCase(), // or just formData.topic if backend expects "Topic 1"
           message: formData.message
         });
         alert('Form submitted successfully!');
@@ -68,7 +59,6 @@ const ContactUs = () => {
           name: '',
           email: '',
           phone: '',
-          topic: 'Topic 1',
           message: ''
         });
       } catch (error) {
@@ -184,26 +174,6 @@ promptly.
                   </div>
                 </div>
                 
-                <div className="mb-6">
-                  <label className="text-white/80 block mb-2">Topic*</label>
-                  <div className="flex flex-wrap gap-2">
-                    {['Topic 1', 'Topic 2', 'Topic 3'].map((topic) => (
-                      <button
-                        key={topic}
-                        type="button"
-                        onClick={() => handleTopicSelect(topic)}
-                        className={`py-2 px-4 rounded-full transition-all ${
-                          formData.topic === topic 
-                            ? 'bg-gray-100/20 text-white' 
-                            : 'bg-gray-100/10 text-white/70 hover:bg-gray-100/15'
-                        }`}
-                      >
-                        {topic}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                
                 <div className="mb-8">
                   <label htmlFor="message" className="sr-only">Message</label>
                   <div className="relative">
@@ -219,7 +189,8 @@ promptly.
                     {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
                   </div>
                 </div>
-                  <button
+
+                <button
                   type="button"
                   onClick={handleSubmit}
                   className="w-full sm:max-w-full max-w-[300px] mx-auto bg-white text-black py-1 m:py-4 rounded-full font-medium hover:bg-white/90 transition-colors border-2 border-secondary"

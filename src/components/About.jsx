@@ -40,7 +40,7 @@ Innovation
   className="text-gray-500 text-justify text-sm sm:text-base md:text-base max-w-[800px] mx-auto px-4" 
   style={{ fontFamily: 'Roboto' }}
 >
-At NCON, we don t just move containers we move businesses forward. In an 
+At NCON, we do not just move containers we move businesses forward. In an 
 industry crowded with one-size-fits-all players, we stand apart by offering container 
 solutions designed for safety, speed, sustainability, and trust.
 <br />
@@ -56,8 +56,8 @@ logistics should mean.
 <div className="font-bold">Our Edge Over Competitors </div>
 
 
-At NCON, containers aren t commodities they re strategic assets. With a techdriven approach and personalized service, we deliver solutions that unlock value, 
-cut costs, and future-proof logistics. We re not just another provider; we re partners 
+At NCON, containers aren not commodities they re strategic assets. With a techdriven approach and personalized service, we deliver solutions that unlock value, 
+cut costs, and future-proof logistics. We are not just another provider; we are partners 
 in innovation, integrity, and growth.
 </div>
         </div>

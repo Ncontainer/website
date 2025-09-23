@@ -42,9 +42,9 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start px-4 md:px-8 lg:px-16 pt-10">
           {/* Text */}
           <div className="w-full lg:w-[500px] mb-8">
-            <span className="text-orange-600 text-sm md:text-base font-medium">
+            {/* <span className="text-orange-600 text-sm md:text-base font-medium">
               WELCOME TO COMPANY
-            </span>
+            </span> */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font- text-black leading-tight mt-3">
               Get Your Load <br /> to market  —Faster, Safer, 
 Smarter

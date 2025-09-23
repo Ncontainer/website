@@ -1,173 +1,98 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// OurOptions.jsx
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, ArrowLeftRight, FileText } from "lucide-react";
 
 const OurOptions = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
-  const orangeColor = '#ff8901';
 
-  // Handler to navigate with selected option as query param
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const features = [
+    {
+      icon: <ArrowRight color="#ff8901" size={24} />,
+      title: "Transportation",
+      description:
+        "Efficient repositioning of containers from origin to destination — no returns, no hassle.",
+      buttons: [
+        { text: "Use", primary: false, route: "/one-way", option: "use" },
+        // { text: "Supply", primary: true, route: "/one-way", option: "supply" },
+      ],
+    },
+    {
+      icon: <ArrowLeftRight color="#ff8901" size={24} />,
+      title: "Buy & Sell Containers",
+      description:
+        "Trade containers with ease — verified listings, competitive pricing, and transparent processes.",
+      buttons: [
+        { text: "Buy", primary: false, route: "/trade", option: "buy" },
+        { text: "Sell", primary: true, route: "/trade", option: "sell" },
+      ],
+    },
+    {
+      icon: <FileText color="#ff8901" size={24} />,
+      title: "Flexible Leasing Options",
+      description:
+        "Lease containers for domestic or international needs with reliable pickup and return logistics.",
+      buttons: [
+        { text: "Use", primary: false, route: "/lease", option: "domestic" },
+        // { text: "EXIM", primary: true, route: "/lease", option: "exim" },
+      ],
+    },
+  ];
+
   const handleButtonClick = (route, option) => {
     navigate(`${route}?selected=${option}`);
   };
 
   return (
-    <div className="pb-8 lg:py-12">
-      <div className="w-full px-4 sm:px-6 lg:px-8" style={{ width: '85%', margin: '0 auto' }}>
-        <h2 className="text-4xl sm:text-3xl md:text-6xl text-gray-900 text-center mt-4 sm:mt-0 mb-8">
+    <div className="flex flex-col items-center py-12 px-4 md:px-8 lg:px-16 w-[95%] mx-auto">
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl text-black">
           Our Options
         </h2>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* One Way Movement */}
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
-            <div
-              className="w-12 h-12 rounded-full"
-              style={{
-                backgroundColor: 'rgba(255, 137, 1, 0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 1rem',
-              }}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke={orangeColor}
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 9l3-3m0 6l-3-3m7 11a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+      <div
+        className={`grid grid-cols-1 ${
+          isMobile ? "" : "md:grid-cols-3"
+        } gap-8 w-full`}
+      >
+        {features.map((feature, index) => (
+          <div
+            key={index}
+            className="bg-[#FAFAFA] p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col"
+          >
+            <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
+              {feature.icon}
             </div>
-            <h3 className="text-xl text-gray-800 mb-2">One Way Movement</h3>
-            <p className="text-gray-600 mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 w-full">
-              <button
-                onClick={() => handleButtonClick('/one-way', 'use')}
-                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 sm:px-8 md:px-10 border border-orange-500 hover:border-transparent rounded-3xl"
-                style={{ color: orangeColor, borderColor: orangeColor }}
-              >
-                Use
-              </button>
-              <button
-                onClick={() => handleButtonClick('/one-way', 'supply')}
-                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-6 sm:px-8 md:px-10 rounded-3xl"
-                style={{ backgroundColor: orangeColor }}
-              >
-                Supply
-              </button>
+            <h3 className="text-xl mb-2">{feature.title}</h3>
+            <p className="text-gray-600 text-sm mb-6">{feature.description}</p>
+            <div className="flex mt-auto space-x-4">
+              {feature.buttons.map((button, btnIndex) => (
+                <button
+                  key={btnIndex}
+                  className={`px-6 py-2 rounded-full ${
+                    button.primary
+                      ? "bg-secondary text-white"
+                      : "border border-secondary text-secondary"
+                  } text-sm font-medium`}
+                  onClick={() => handleButtonClick(button.route, button.option)}
+                >
+                  {button.text}
+                </button>
+              ))}
             </div>
           </div>
-
-          {/* Click to Trade */}
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
-            <div
-              className="w-12 h-12 rounded-full"
-              style={{
-                backgroundColor: 'rgba(255, 137, 1, 0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 1rem',
-              }}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke={orangeColor}
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-                />
-              </svg>
-            </div>
-            <h3 className="text-xl text-gray-800 mb-2">Click to Trade</h3>
-            <p className="text-gray-600 mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 w-full">
-              <button
-                onClick={() => handleButtonClick('/trade', 'buy')}
-                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 sm:px-8 md:px-10 border border-orange-500 hover:border-transparent rounded-3xl"
-                style={{ color: orangeColor, borderColor: orangeColor }}
-              >
-                Buy
-              </button>
-              <button
-                onClick={() => handleButtonClick('/trade', 'sell')}
-                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-6 sm:px-8 md:px-10 rounded-3xl"
-                style={{ backgroundColor: orangeColor }}
-              >
-                Sell
-              </button>
-            </div>
-          </div>
-
-          {/* Lease with Ease */}
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
-            <div
-              className="w-12 h-12 rounded-full"
-              style={{
-                backgroundColor: 'rgba(255, 137, 1, 0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 1rem',
-              }}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke={orangeColor}
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12h6m-6 4h6m2-2H9m2-2h2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <h3 className="text-xl text-gray-800 mb-2">Lease with Ease</h3>
-            <p className="text-gray-600 mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 w-full">
-              <button
-                onClick={() => handleButtonClick('/lease', 'domestic')}
-                className="bg-transparent hover:bg-orange-500 text-orange-500 hover:text-white py-2 px-6 sm:px-8 md:px-10 border border-orange-500 hover:border-transparent rounded-3xl"
-                style={{ color: orangeColor, borderColor: orangeColor }}
-              >
-                Domestic
-              </button>
-              <button
-                onClick={() => handleButtonClick('/lease', 'exim')}
-                className="bg-orange-500 hover:bg-orange-700 text-white py-2 px-6 sm:px-8 md:px-10 rounded-3xl"
-                style={{ backgroundColor: orangeColor }}
-              >
-                EXIM
-              </button>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

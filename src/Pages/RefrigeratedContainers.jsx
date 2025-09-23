@@ -12,7 +12,7 @@ const RefrigeratedContainers = () => {
         <>
         <RefrigeratedContainerComp />
          <WhyUsRefrigerated/>
-        <ReContainerSpecifications />
+        {/* <ReContainerSpecifications /> */}
        <WhyUsRefrigerated2/>
         <OurOptions/>
         <OurExpertise/>

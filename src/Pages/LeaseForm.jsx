@@ -209,14 +209,18 @@ const getLocationObj = (locationId) => {
               if (selected === 'Trade') navigate('/trade');
             }}
           >
-            <option value="One-Way">One-Way</option>
-            <option value="Trade">Trade</option>
+            <option value="One-Way">Transportation</option>
+            <option value="Trade">Buy & Sell</option>
             <option value="Lease">Lease</option>
           </select>
           <button className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
             Use Containers
           </button>
         </div>
+            → Freight from One Day to as required <br />
+→ No time duration <br />
+→ One Way Leasing available in PAN India <br />
+→ Container Leasing Amount depends upon: Number of containers & Distance <br />
 
         <form onSubmit={handleSubmit}>
           {/* Container Entries */}

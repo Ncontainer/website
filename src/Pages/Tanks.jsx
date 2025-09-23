@@ -12,7 +12,7 @@ const Tanks= () => {
     <TankComp/>
     <WhyUsTank/>
     <OurOptions />
-    <div className="container mx-auto py-8 w-[93%]">      <div className="flex items-center">
+    {/* <div className="container mx-auto py-8 w-[93%]">      <div className="flex items-center">
         <div className="w-1/2 px-4">
           <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl mb-4">Tanks at a Glance</h2>
        
@@ -37,7 +37,7 @@ const Tanks= () => {
       
       </div>
       </div>
-    </div>
+    </div> */}
     <OurExpertise/>
     </>
   );

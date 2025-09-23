@@ -93,7 +93,7 @@ const GlobalStatsCounter = () => {
       </div>
 
       {/* Stats section */}
-      <div className="container mx-auto px-4 md:px-8 py-6">
+      {/* <div className="container mx-auto px-4 md:px-8 py-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {counts.map((item, index) => (
             <div key={index} className="flex flex-col">
@@ -106,7 +106,7 @@ const GlobalStatsCounter = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

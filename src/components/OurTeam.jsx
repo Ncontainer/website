@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import tm01 from "../images/TM01.webp";
-import tm02 from "../images/TM02.webp";
+import tm01 from "../images/navin sir - NCON.jpg";
+import tm02 from "../images/Vishal sir - NCON.jpg";
 import tm03 from "../images/TM03.webp";
 import tm04 from "../images/TM04.webp";
 import tm05 from "../images/TM05.webp";
@@ -10,16 +10,18 @@ const OurTeam = () => {
   const teamMembers = [
     {
       id: 1,
-      name: 'John Doe',
-      position: 'Chief Operating Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+      name: 'Navin Agarwal',
+      position: 'CEO',
+      bio: ' With a clear vision and passion for innovation, Navin Agarwal has been the driving force behind NCON’s growth and success. As CEO, he leads with a focus on building sustainable solutions in the container industry, ensuring excellence in both service and customer satisfaction. ',
+      bio2:'  Under his leadership, NCON has expanded its reach, diversified its services, and  strengthened relationships with global partners. His commitment to quality and integrity continues to shape the company’s journey towards becoming a trusted name in the industry.',
       image: tm01
     },
     {
       id: 2,
-      name: 'Jane Smith',
-      position: 'Chief Marketing Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+      name: 'Vishal Kalyadapu',
+      position: 'Business Developer Manager',
+      bio: 'Vishal Kalyadapu plays a key role in driving NCON’s business growth by identifying new opportunities, building client relationships, and expanding the company’s market presence. With a strategic mindset and strong industry knowledge, he ensures that NCON continues to deliver value-driven solutions tailored to customer needs.',
+      bio2:' His expertise in forging partnerships and developing long-term strategies has contributed significantly to the company’s expansion and reputation in the container industry. Vishal’s dedication to innovation and excellence makes him a vital part of NCON’s leadership team.',
       image: tm02
     },
     {
@@ -149,7 +151,7 @@ const OurTeam = () => {
     <div className="w-[85%] mx-auto px-4 py-4 md:py-8">
       <div className="text-center mb-8 md:mb-12">
         <p className="text-orange-500 font-medium mb-2">TEAM</p>
-                  <h2 className="text-3xl md:text-4xl  ">Meet Our Team</h2>
+                  <h2 className="text-4xl sm:text-3xl md:text-6xl mb-4 sm:mb-6 w-full  ">Meet Our Team</h2>
 
       </div>
 
@@ -179,6 +181,8 @@ const OurTeam = () => {
               <div className="space-y-3 max-h-48 overflow-auto">
                 <p style={{fontFamily : "Roboto"}}>{teamMembers[currentIndex].bio}</p>
                 {/* <p>{teamMembers[currentIndex].bio}</p> */}
+                <br />
+                <p  style={{fontFamily : "Roboto"}}>{teamMembers[currentIndex].bio2}</p>
               </div>
             </div>
           </div>
@@ -191,7 +195,9 @@ const OurTeam = () => {
               <p className="text-xl text-gray-600 mb-20">{teamMembers[currentIndex].position}</p>
               <div className="space-y-4">
                 <p className='text-xl text-justify'>{teamMembers[currentIndex].bio}</p>
-                <p className='text-xl text-justify'>{teamMembers[currentIndex].bio}</p>
+                {/* <p className='text-xl text-justify'>{teamMembers[currentIndex].bio}</p> */}
+                <br />
+                 <p className='text-xl text-justify'>{teamMembers[currentIndex].bio2}</p>
               </div>
             </div>
             
