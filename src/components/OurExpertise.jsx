@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import img from "../images/04.png";
-import steel from "../images/steel.png";
-import aluminum from "../images/steel.png";
-import copper from "../images/steel.png";
-import iron from "../images/steel.png";
-import titanium from "../images/steel.png";
+import steel from "../images/Steel.webp";
+import aluminum from "../images/supply.webp";
+import copper from "../images/contruct.webp";
+import iron from "../images/food.webp";
+import titanium from "../images/health.webp";
 
 const IndustriesSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

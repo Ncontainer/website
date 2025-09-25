@@ -217,11 +217,9 @@ const getLocationObj = (locationId) => {
             Use Containers
           </button>
         </div>
-            → Freight from One Day to as required <br />
-→ No time duration <br />
-→ One Way Leasing available in PAN India <br />
-→ Container Leasing Amount depends upon: Number of containers & Distance <br />
-
+  Our leasing solutions are flexible—from one day to long-term, with no fixed duration. We also offer one-way leasing across PAN India. Lease costs are based on the number of containers and distance, ensuring transparent and fair pricing.
+<br />
+<br />
         <form onSubmit={handleSubmit}>
           {/* Container Entries */}
           {containers.map((c, i) => (

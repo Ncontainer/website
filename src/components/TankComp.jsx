@@ -1,9 +1,9 @@
 import React from "react";
 import img1 from "../images/tankcomp1.webp";
-import img2 from "../images/tankcomp2.webp";
-import img3 from "../images/tankcomp3.webp";
+import img2 from "../images/Gemini_Generated_Image_11bay811bay811ba.webp";
+import img3 from "../images/Gemini_Generated_Image_frhoa8frhoa8frho.webp";
 import img4 from "../images/tankcomp4.webp";
-import img5 from "../images/tankcomp5.webp";
+import img5 from "../images/Gemini_Generated_Image_xpxrbpxpxrbpxpxr.webp";
 import img6 from "../images/tankcomp6.webp";
 
 export default function TankComp() {
@@ -19,23 +19,8 @@ export default function TankComp() {
 
         <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 leading-relaxed mb-4 sm:mb-0 text-center max-w-7xl">
           <p>
-            NCON, a premier ISO tank container supplier, specializes in
-            providing tanks on lease for bulk and hazardous chemicals. Our
-            flexible lease terms cater to your needs, offering ISO tank
-            containers of various capacities for liquids, from food to corrosive
-            acids.
-          </p>
-          <p>
-            As a one-stop solution, we provide ISO tank containers for rent with
-            options for tank types, purposes, durations, and terms. Safety is
-            our priority; we offer company-owned modern ISO tank containers for
-            secure storage at your facilities or our warehouse.
-          </p>
-          <p>
-            Securely store and transport your most challenging chemicals with
-            ARCON's industry-leading highly corrosive tank solutions, including
-            the renowned T14 and T50 ISO tank containers designed to handle
-            aggressive acids and bases.
+          At NCON, we make transporting and storing bulk and hazardous chemicals simple and secure. Our flexible leasing options and wide range of tanks handle everything from food-grade liquids to highly corrosive acids. With modern, company-owned tanks—including T14 and T50 containers—you can trust your most challenging chemicals are managed safely and efficiently. All our tanks are fully ISO-certified, ensuring the highest global standards of safety and quality.
+
           </p>
         </div>
       </div>

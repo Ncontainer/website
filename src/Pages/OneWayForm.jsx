@@ -255,11 +255,9 @@ const response = await axios.post(`${BASE_BACKEND_URL}api/lead-request`, {
             Supply Containers
           </button>
         </div>
-→ Any and every type of containers all across the globe and in India <br />
-
-→ We can transport your container as well <br />
-→ Full Truck Load / Other Transport Services fulfilled by Nisha Roadways <br />
-
+ We transport all types of containers across India and globally. Whether delivering your container or moving it elsewhere, we ensure safe and timely services. Through our partner Nisha Roadways, we also provide Full Truck Load and other transport solutions.
+ <br />
+ <br />
         <form onSubmit={handleSubmit}>
           <fieldset className="rounded-md p-4 mb-6 border border-gray-400">
             <legend className="font-semibold text-lg  text-gray-700">Container Specifications</legend>

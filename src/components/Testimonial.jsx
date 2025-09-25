@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Quote } from 'lucide-react';
-import img1 from "../images/06.webp"
+import img1 from "../images/image (9).webp"
 import user from "../images/defaultUser.webp"
 
 const Testimonial = () => {

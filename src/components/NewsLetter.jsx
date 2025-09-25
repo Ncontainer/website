@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import blog from "../images/04.png";
+import blog from "../images/Gemini_Generated_Image_dv8btadv8btadv8b.webp";
 import axios from "axios"; // Add axios import
 
 const NewsLetter = () => {

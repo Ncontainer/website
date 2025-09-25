@@ -5,8 +5,8 @@ import drycontainer3 from "../images/drycontainer3.webp";
 
 import generalPurpose from "../images/general-purpose-container.webp";
 import flatRackContainer from "../images/flat-rack-container.webp";
-import highCubeContainer from "../images/high-cube-container.png";
-import openRackContainer from "../images/open-rack-container.png";
+import highCubeContainer from "../images/Gemini_Generated_Image_dkt5bzdkt5bzdkt5.webp";
+import openRackContainer from "../images/Gemini_Generated_Image_gxu4z1gxu4z1gxu4.webp";
 
 export default function DryAndSpecialContainer() {
   const [activeTab, setActiveTab] = useState("dry");

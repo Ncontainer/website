@@ -213,11 +213,11 @@ const sendBrochureToEmail = async () => {
 
   {/* Social Icons */}
   <div className="flex space-x-3">
-    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+    {/* <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
       <Facebook size={16} />
-    </Link>
+    </Link> */}
     {/* Twitter X logo */}
-    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+    {/* <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 1200 1227" 
@@ -225,16 +225,16 @@ const sendBrochureToEmail = async () => {
       >
         <path d="M714.163 519.284L1160.89 0H1055.03L674.575 441.568L363.707 0H0L466.675 681.313L0 1226.3H105.86L509.05 762.98L842.172 1226.3H1200L714.163 519.284ZM560.087 699.945L514.03 635.661L144.962 79.495H308.35L593.632 486.715L639.689 550.999L1056.01 1146.8H892.624L560.087 699.945Z"/>
       </svg>
-    </Link>
-    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+    </Link> */}
+    <Link to="https://www.instagram.com/nconcontainers/" className="text-gray-500 hover:text-secondary transition-colors">
       <Instagram size={16} />
     </Link>
-    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+    {/* <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
       <Linkedin size={16} />
-    </Link>
-    <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
+    </Link> */}
+    {/* <Link to="#" className="text-gray-500 hover:text-secondary transition-colors">
       <Youtube size={16} />
-    </Link>
+    </Link> */}
   </div>
 </div>
 
@@ -473,15 +473,15 @@ const sendBrochureToEmail = async () => {
       {/* Mobile Extras */}
       <div className="pt-3 border-t border-white/20">
         <div className="flex space-x-5 pb-5 justify-center">
-          <Link to="#" className="text-white hover:text-white/80"><Facebook size={20} /></Link>
+          {/* <Link to="#" className="text-white hover:text-white/80"><Facebook size={20} /></Link>
           <Link to="#" className="text-white hover:text-white/80">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" className="h-5 w-5 fill-current">
     <path d="M714.163 519.284L1160.89 0H1055.03L674.575 441.568L363.707 0H0L466.675 681.313L0 1226.3H105.86L509.05 762.98L842.172 1226.3H1200L714.163 519.284ZM560.087 699.945L514.03 635.661L144.962 79.495H308.35L593.632 486.715L639.689 550.999L1056.01 1146.8H892.624L560.087 699.945Z"/>
   </svg>
-</Link>
-          <Link to="#" className="text-white hover:text-white/80"><Instagram size={20} /></Link>
-          <Link to="#" className="text-white hover:text-white/80"><Linkedin size={20} /></Link>
-          <Link to="#" className="text-white hover:text-white/80"><Youtube size={20} /></Link>
+</Link> */}
+          <Link to="https://www.instagram.com/nconcontainers/" className="text-white hover:text-white/80"><Instagram size={20} /></Link>
+          {/* <Link to="#" className="text-white hover:text-white/80"><Linkedin size={20} /></Link>
+          <Link to="#" className="text-white hover:text-white/80"><Youtube size={20} /></Link> */}
         </div>
         <div className="space-y-4 pt-3 border-t border-white/20 pb-5">
           <div className="flex items-center space-x-3">

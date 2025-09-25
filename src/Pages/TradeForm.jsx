@@ -241,16 +241,11 @@ const [portsSearch, setPortsSearch] = useState("");
           Sell Containers
         </button>
           </div>
-                      → Best Price
+         
                <br />
-→ Simple, Fast, & Transparent Process <br />
-→ Anywhere to Anywhere Buy <br />
-→ On-time payments <br />
-→ All types of containers ( Damaged, Scrap) / new/old <br />
-→ Price Assessment based on age & photos <br />
-→ Transfer Money Globally <br />
-→ Requirement Assessment as per the client <br />
-→ Globally Available <br />
+NCON offers the best prices with a simple, fast, and transparent buying process. We provide anywhere-to-anywhere purchase services for all types of containers—new, old, damaged, or scrap. Pricing is fairly assessed based on age and photos, with secure global money transfers and on-time payments guaranteed.
+ <br />
+ <br />
 
   
           {/* Container Specifications */}

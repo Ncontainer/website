@@ -16,12 +16,7 @@ export default function RefrigeratedContainerComp() {
         </div>
         <div className="text-gray-600 mx-2 md:mx-8 text-sm md:text-base space-y-3 mb-4 sm:mb-0 text-center max-w-7xl">
           <p>
-            NCON, a leader in intermodal container solutions, now offers
-            refrigerated containers for the secure and efficient transport of
-            your temperature-sensitive cargo. Whether transporting food,
-            pharmaceuticals, or delicate floral arrangements, these refrigerated
-            containers ensure that cargo remains in optimal condition from
-            origin to destination.
+            NCON brings you reliable refrigerated containers to keep your temperature-sensitive cargo safe and fresh. From food and pharmaceuticals to delicate flowers, our containers ensure your goods stay in perfect condition throughout the journey, no matter the distance.
           </p>
         </div>
       </div>
@@ -50,7 +45,17 @@ export default function RefrigeratedContainerComp() {
             10ft Reefer Containers
           </h2>
           <p className="mt-1 text-sm text-gray-600 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Compact solution for small-volume, temperature-sensitive cargo (-30°C to +25°C).
+            Compact Design: Ideal for tight spaces and urban transport <br />
+
+Temperature Control: Maintains -30°C to +25°C
+<br />
+
+Energy Efficient: Reliable cooling with minimal power use
+<br />
+Durable Build: Corrosion-resistant for long-lasting use
+
+<br />
+Applications: Pharmaceuticals, perishable food, specialty chemicals, and small-scale shipments <br />
           </p>
         </div>
 
@@ -67,7 +72,20 @@ export default function RefrigeratedContainerComp() {
             20ft Reefer Containers
           </h2>
           <p className="mt-1 text-sm text-gray-600 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Medium cargo, flexible, intermodal compatible.
+          Capacity: 27.76 m³ for mid-sized shipments
+
+<br />
+Temperature Range: -30°C to +25°C for varied cargo
+<br />
+
+Intermodal Ready: Easy transfer via trucks, ships, and trains
+<br />
+
+ISO-Compliant: Ensures safe and secure transport
+<br />
+
+Applications: Food exports, pharmaceuticals, and temperature-controlled chemicals
+<br />
           </p>
         </div>
 
@@ -84,7 +102,19 @@ export default function RefrigeratedContainerComp() {
             40ft Reefer Containers
           </h2>
           <p className="mt-1 text-sm text-gray-600 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Large-scale, bulk shipments, high-capacity cooling (-30°C to +25°C).
+           Capacity: 68.47 m³ for bulk shipments. <br />
+
+
+Temperature Control: -30°C to +25°C for consistent cargo preservation <br />
+
+
+Intermodal Ready: Easy transfer via road, rail, and sea <br />
+
+
+Durable Build: Premium materials for long-haul and harsh conditions. <br />
+
+
+Applications: Frozen foods, medical supplies, and temperature-sensitive chemicals <br />
           </p>
         </div>
       </div>
