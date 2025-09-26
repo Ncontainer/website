@@ -10,10 +10,11 @@ const LeaseForm = () => {
     condition: '',
     leasingPeriod: '',
     perDiem: '',
-     expectedPrice: '',         
-  containerAge: '', 
+    expectedPrice: '',         
+    containerAge: '', 
   }]);
-  const [showModal, setShowModal] = useState(false);
+  const [showOnHireModal, setShowOnHireModal] = useState(false);
+  const [showOffHireModal, setShowOffHireModal] = useState(false);
   const [onHireLocation, setOnHireLocation] = useState('');
   const [offHireLocation, setOffHireLocation] = useState('');
   const [email, setEmail] = useState('');
@@ -33,18 +34,24 @@ const LeaseForm = () => {
   const [popup, setPopup] = useState({ visible: false, message: '', success: true });
   const [errorMessage, setErrorMessage] = useState(""); // Add this below showSuccessPopup
 
-  const toggleModal = () => setShowModal(!showModal);
-
   const openLocationModal = (field) => {
-  setActiveField(field);
-  setShowModal(true);
-   };
+    if (field === 'onHire') {
+      setShowOnHireModal(true);
+    } else {
+      setShowOffHireModal(true);
+    }
+    setPortsSearch(""); // Reset search when opening modal
+  };
 
-   const handleLocationSelect = (id) => {
-  if (activeField === 'onHire') setOnHireLocation(id);
-  if (activeField === 'offHire') setOffHireLocation(id);
-  setShowModal(false);
-};
+  const handleLocationSelect = (id, type) => {
+    if (type === 'onHire') {
+      setOnHireLocation(id);
+      setShowOnHireModal(false);
+    } else {
+      setOffHireLocation(id);
+      setShowOffHireModal(false);
+    }
+  };
   const addContainer = () => setContainers([...containers, {
     quantity: '',
     containerType: '',
@@ -290,7 +297,7 @@ const getLocationObj = (locationId) => {
                 
                 <div>
                   <label className="block text-sm mb-1">
-                    Leasing period (in Days):{' '}
+                    Leasing period (days):{' '}
                     <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -383,7 +390,7 @@ const getLocationObj = (locationId) => {
   className="w-full border border-gray-300 p-2 rounded-md text-left"
 >
   {onHireLocation
-    ? ports.find(p => p._id === onHireLocation)?.portName || "Selected"
+    ? ports.find(p => p._id === onHireLocation)?.name || "Select On-Hire Location"
     : "Select On-Hire Location"}
 </button>
               </div>
@@ -398,7 +405,7 @@ const getLocationObj = (locationId) => {
   className="w-full border border-gray-300 p-2 rounded-md text-left"
 >
   {offHireLocation
-    ? ports.find(p => p._id === offHireLocation)?.portName || "Selected"
+    ? ports.find(p => p._id === offHireLocation)?.name || "Select Off-Hire Location"
     : "Select Off-Hire Location"}
 </button>
               </div>
@@ -438,54 +445,105 @@ const getLocationObj = (locationId) => {
           </button>
         </form>
 
-        {/* Modal */}
-        {showModal && (
+        {/* On-Hire Location Modal */}
+        {showOnHireModal && (
           <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
             <div className="bg-white rounded-xl shadow-lg w-[90%] sm:w-[500px] max-h-[80vh] p-6 overflow-y-auto border-4 border-blue-300">
               <h3 className="font-semibold text-gray-800 text-lg mb-4">
-                Location Selector Popup Modal
+                Select On-Hire Location
               </h3>
               <input
                 type="text"
-                placeholder="Select by Port, Country or Region Name"
+                placeholder="Search by Port, Country or Region Name"
                 className="w-full border border-gray-300 rounded-md p-2 mb-4"
                 value={portsSearch}
                 onChange={e => setPortsSearch(e.target.value)}
               />
               <div className="space-y-4">
                 {portsLoading ? (
-  <div className="text-gray-500 text-sm">Loading ports...</div>
-) : (
-  ports.map((port, i) => (
-    <button
-      key={i}
-      type="button"
-      onClick={() => handleLocationSelect(port._id)}
-      className={`w-full text-left p-4 border rounded-lg shadow-md hover:bg-orange-50 transition-all duration-200 ${
-        (activeField === 'onHire' && onHireLocation === port._id) ||
-        (activeField === 'offHire' && offHireLocation === port._id)
-          ? 'border-orange-500 bg-orange-100'
-          : 'border-gray-200 bg-white'
-      }`}
-    >
-      <div className="flex items-start gap-4">
-        <div className="text-orange-500 text-xl mt-1">⚓</div>
-        <div className="flex-grow">
-          <p className="font-semibold text-gray-800">{port.portName}</p>
-          <p className="text-sm text-gray-500">Region: {port.region || "N/A"}</p>
-          <p className="text-sm text-gray-500">Country: {port.countryName || "Unknown"}</p>
-          <p className="text-sm text-gray-400">Code: {port.portCode || "N/A"}</p>
-        </div>
-      </div>
-    </button>
-  ))
-)}
+                  <div className="text-gray-500 text-sm">Loading ports...</div>
+                ) : (
+                  ports.map((port, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => handleLocationSelect(port._id, 'onHire')}
+                      className={`w-full text-left p-4 border rounded-lg shadow-md hover:bg-orange-50 transition-all duration-200 ${
+                        onHireLocation === port._id
+                          ? 'border-orange-500 bg-orange-100'
+                          : 'border-gray-200 bg-white'
+                      }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="text-orange-500 text-xl mt-1">⚓</div>
+                        <div className="flex-grow">
+                          <p className="font-semibold text-gray-800">{port.name}</p>
+                          <p className="text-sm text-gray-500">Region: {port.region || "N/A"}</p>
+                          <p className="text-sm text-gray-500">Country: {port.countryName || "Unknown"}</p>
+                          <p className="text-sm text-gray-400">Code: {port.portCode || "N/A"}</p>
+                        </div>
+                      </div>
+                    </button>
+                  ))
+                )}
               </div>
               <button
-                onClick={toggleModal}
+                onClick={() => setShowOnHireModal(false)}
                 className="bg-orange-500 text-white py-2 px-6 mt-4 rounded-md hover:bg-orange-600 float-right"
               >
-                Done
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Off-Hire Location Modal */}
+        {showOffHireModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl shadow-lg w-[90%] sm:w-[500px] max-h-[80vh] p-6 overflow-y-auto border-4 border-blue-300">
+              <h3 className="font-semibold text-gray-800 text-lg mb-4">
+                Select Off-Hire Location
+              </h3>
+              <input
+                type="text"
+                placeholder="Search by Port, Country or Region Name"
+                className="w-full border border-gray-300 rounded-md p-2 mb-4"
+                value={portsSearch}
+                onChange={e => setPortsSearch(e.target.value)}
+              />
+              <div className="space-y-4">
+                {portsLoading ? (
+                  <div className="text-gray-500 text-sm">Loading ports...</div>
+                ) : (
+                  ports.map((port, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => handleLocationSelect(port._id, 'offHire')}
+                      className={`w-full text-left p-4 border rounded-lg shadow-md hover:bg-orange-50 transition-all duration-200 ${
+                        offHireLocation === port._id
+                          ? 'border-orange-500 bg-orange-100'
+                          : 'border-gray-200 bg-white'
+                      }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="text-orange-500 text-xl mt-1">⚓</div>
+                        <div className="flex-grow">
+                          <p className="font-semibold text-gray-800">{port.name}</p>
+                          <p className="text-sm text-gray-500">Region: {port.region || "N/A"}</p>
+                          <p className="text-sm text-gray-500">Country: {port.countryName || "Unknown"}</p>
+                          <p className="text-sm text-gray-400">Code: {port.portCode || "N/A"}</p>
+                        </div>
+                      </div>
+                    </button>
+                  ))
+                )}
+              </div>
+              <button
+                onClick={() => setShowOffHireModal(false)}
+                className="bg-orange-500 text-white py-2 px-6 mt-4 rounded-md hover:bg-orange-600 float-right"
+              >
+                Close
               </button>
             </div>
           </div>

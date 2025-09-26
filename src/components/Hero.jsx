@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import hero1 from "../images/Hero1.png";
+// import hero1 from "../images/Hero1.png";
+import hero1 from "../images/Hero1_new.webp";
 import herovideo from "../images/herovideo.mp4";
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
@@ -54,7 +55,7 @@ Smarter
             </p>
           </div>
           {/* Image */}
-          <div className="relative z-30 w-fit lg:w-[700px] xl1440:w-[800px] lg:absolute right-0 lg:bottom-[-270px] xl1440:bottom-[-200px] pointer-events-none">
+          <div className="z-30 hero-img flex-1 flex justify-center lg:justify-end w-full">
             <img
               src={hero1}
               alt="Shipping container"
@@ -66,7 +67,7 @@ Smarter
       {/* Background Video */}
       <div
         ref={videoRef}
-        className={`relative top-[-100px] md:top-[100px]  video-block ${
+        className={`relative top-[-100px] md:top-[100px] mt-16  md:mt-0  video-block ${
           isMobile ? "h-[180px]" : isMediumScreen ? "h-[40%]" : "h-[40%]"
         } ${isMobile ? "rounded-none" : "rounded-xl w-[90%] mx-auto"}`}
       >
