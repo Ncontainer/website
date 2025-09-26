@@ -12,6 +12,8 @@ import { Link, useNavigate } from "react-router-dom";
 import logoImage from  "../images/blacklogo.png";
 import dryImage from '../images/popup.webp';
 
+import NCON_Brochure from '../data/NCON-Your-Trusted-Partner-in-Container-Solutions.pdf';
+
 
 export default function Header() {
 const [showBrochureSuccess, setShowBrochureSuccess] = useState(false);
@@ -106,24 +108,37 @@ const handleBrochureClick = async () => {
   if (isLoggedIn) {
     try {
       // Download the brochure PDF from backend
-      const response = await fetch("https://cktgf93ztd.us-east-1.awsapprunner.com/api/brochure/send", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      // const response = await fetch("https://cktgf93ztd.us-east-1.awsapprunner.com/api/brochure/send", {
+      //   method: "GET",
+      //   headers: {
+      //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+      //   },
+      // });
 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+      // const blob = await response.blob();
+      // const url = window.URL.createObjectURL(blob);
+      // const link = document.createElement("a");
+      // link.href = url;
+      // link.download = "NCON_Brochure.pdf";
+      // document.body.appendChild(link);
+      // link.click();
+      // link.remove();
+
+      // setShowBrochureSuccess(true);
+      // setTimeout(() => setShowBrochureSuccess(false), 3000);
+
+
+      // direct download from static file - NCON_Brochure
       const link = document.createElement("a");
-      link.href = url;
+      link.href = NCON_Brochure;
       link.download = "NCON_Brochure.pdf";
       document.body.appendChild(link);
       link.click();
       link.remove();
-
       setShowBrochureSuccess(true);
       setTimeout(() => setShowBrochureSuccess(false), 3000);
+
+      // alert("Brochure downloaded successfully.");
     } catch (error) {
       alert("Failed to download brochure.");
     }

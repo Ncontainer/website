@@ -1,9 +1,9 @@
 import React from "react";
 import img1 from "../images/tankcomp1.webp";
-import img2 from "../images/Gemini_Generated_Image_11bay811bay811ba.webp";
-import img3 from "../images/Gemini_Generated_Image_frhoa8frhoa8frho.webp";
+import img2 from "../images/tankcomp2_new.webp";
+import img3 from "../images/tankcomp3_new.webp";
 import img4 from "../images/tankcomp4.webp";
-import img5 from "../images/Gemini_Generated_Image_xpxrbpxpxrbpxpxr.webp";
+import img5 from "../images/tankcomp5_new.webp";
 import img6 from "../images/tankcomp6.webp";
 
 export default function TankComp() {

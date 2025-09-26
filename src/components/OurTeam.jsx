@@ -1,9 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import tm01 from "../images/navin sir - NCON.jpg";
 import tm02 from "../images/Vishal sir - NCON.jpg";
-import tm03 from "../images/TM03.webp";
-import tm04 from "../images/TM04.webp";
-import tm05 from "../images/TM05.webp";
+import tm03 from "../images/Shruti Parab... - NCON.jpg";
+import tm04 from "../images/Summet Sir - NCON.jpg";
+import tm05 from "../images/Shruti Parab... - NCON.jpg";
+import tm07 from "../images/Dhruv.jpg";
+
+import tm06 from "../images/TM03.webp";
+
+
+
 
 const OurTeam = () => {
   //Sample team data
@@ -26,26 +32,41 @@ const OurTeam = () => {
     },
     {
       id: 3,
-      name: 'Michael Johnson',
-      position: 'Chief Technology Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+      name: 'Shruti Parab',
+      position: 'Business Developer Manager (West Zone)',
+      bio: 'Shruti Parab is a dynamic Business Development Manager at NCON, specializing in the West Zone. With a keen understanding of market trends and customer needs, she excels in creating tailored solutions that drive business growth and enhance client satisfaction.',
       image: tm03
     },
     {
       id: 4,
-      name: 'Sarah Williams',
-      position: 'Chief Financial Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+      name: 'Suumeet Singhania',
+      position: 'Strategic Advisor ',
+      bio: 'A seasoned professional with extensive experience in the container and logistics industry, Suumeet Singhania brings invaluable insights and strategic guidance to NCON. His expertise in market analysis, operational efficiency, and business development helps shape the company’s long-term vision and growth strategies.',
       image: tm04
     },
     {
       id: 5,
-      name: 'David Brown',
-      position: 'Chief Product Officer',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor',
+      name: 'Shruti Parab',
+      position: 'Business Developer Manger',
+      bio: 'Shruti Parab is a dynamic Business Development Manager at NCON, specializing in the West Zone. With a keen understanding of market trends and customer needs, she excels in creating tailored solutions that drive business growth and enhance client satisfaction.',
       image: tm05
-    }
-  ];
+    },
+    {
+      id: 6,
+      name :'Kishore Gopal Naidu',
+      position : 'Business Development Manager ',
+      bio : 'Expert whose innovative ideas and opinions,backed by expertise, influence other in fields by providing unique insight and shaping future direction ',
+      image : 'https://www.llt.at/wp-content/uploads/2021/11/blank-profile-picture-g77b5d6651-1280-705x705.png',
+    },
+ 
+    {
+      id: 7,
+      name :'Dhruv',
+      position : 'Business Development Manager ',
+      bio : 'Good leadership is about building a culture of trust, leading by Influence, and treating people well along the way.',
+      image : tm07,
+    },
+    ]
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animationState, setAnimationState] = useState('active');
@@ -246,7 +267,7 @@ const OurTeam = () => {
             >
               <div className="bg-gray-200 rounded-t-lg overflow-hidden h-[280px]">
                 <img 
-                  src={member.image} 
+                  src={member.image || 'https://via.placeholder.com/150'}
                   alt={member.name} 
                   className="w-full h-full object-cover"
                 />

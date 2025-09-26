@@ -1,12 +1,13 @@
 import { useState } from "react";
 import drycontainer from "../images/drycontainer1.webp";
 import drycontainer2 from "../images/drycontainer2.webp";
-import drycontainer3 from "../images/drycontainer3.webp";
+import drycontainer3 from "../images/drycontainer3_new.webp";
 
-import generalPurpose from "../images/general-purpose-container.webp";
-import flatRackContainer from "../images/flat-rack-container.webp";
+//change image
+import generalPurpose from "../images/20 Ft General Purpose Container.webp"; 
+import flatRackContainer from "../images/20 Ft Flat Rack.webp";
 import highCubeContainer from "../images/Gemini_Generated_Image_dkt5bzdkt5bzdkt5.webp";
-import openRackContainer from "../images/Gemini_Generated_Image_gxu4z1gxu4z1gxu4.webp";
+import openRackContainer from "../images/Gemini_Generated_Image_gxu4z1gxu4z1gxu4.webp"; 
 
 export default function DryAndSpecialContainer() {
   const [activeTab, setActiveTab] = useState("dry");

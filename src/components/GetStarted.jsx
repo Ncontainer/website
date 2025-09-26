@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import img from '../images/04.png';
+import img from '../images/new_04.png';
 import bgImage from '../images/Section 3 About Us.webp';
 
 const GetStarted = () => {
@@ -50,9 +50,9 @@ container logistics, tailored to your needs across India and beyond.
           </div>
 
           {/* Right container image */}
-          <div className="w-full md:w-1/2 flex justify-center md:justify-end relative z-20 mt-[-2rem] mb-[-2rem] pointer-events-none">
+          <div className="w-full md:w-1/3 lg:w-1/2 flex justify-center lg:justify-end relative z-20 mt-[-2rem] mb-[-2rem] pointer-events-none">
             <div className="relative w-full md:w-auto">
-              <div className="transform scale-[1.6] md:scale-[1.7] lg:scale-[1.8] translate-y-0 md:translate-x-8 lg:translate-x-12">
+              <div className="transform sm:scale-0 md:scale-[1.6] lg:scale-[1.6] md:translate-y-[6rem] md:translate-x-8 lg:translate-x-12">
                 <img
                   src={img}
                   alt="Stacked orange shipping containers with Hauler branding"
